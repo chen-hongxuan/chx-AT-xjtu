@@ -1,0 +1,27 @@
+{{ define "main" }}
+  <article class="article-shell">
+    <header class="article-header">
+      <p class="eyebrow">学习笔记 · {{ .Date.Format "2006-01-02" }}</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.description }}<p class="article-description">{{ . }}</p>{{ end }}
+      {{ with .Params.tags }}
+        <nav class="tag-row" aria-label="本文标签">
+          {{ range . }}
+            <a class="tag-pill" href="{{ printf "tags/%s/" . | relURL }}">{{ partial "tag-name.html" . }}</a>
+          {{ end }}
+        </nav>
+      {{ end }}
+    </header>
+    <div class="article-layout">
+      {{ with .TableOfContents }}
+        <aside class="article-toc">
+          <p>目录</p>
+          {{ . }}
+        </aside>
+      {{ end }}
+      <div class="article-content">
+        {{ .Content }}
+      </div>
+    </div>
+  </article>
+{{ end }}

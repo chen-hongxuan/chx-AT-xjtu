@@ -1,0 +1,42 @@
+{{ define "main" }}
+  {{ $term := .Params.tag_id }}
+  {{ if not $term }}
+    <section class="page-shell tag-page">
+      <header class="page-heading">
+        <p class="eyebrow">知识地图</p>
+        <h1>标签</h1>
+        <p class="lead">从课程、主题到具体知识点逐层浏览文章。</p>
+      </header>
+      <div class="tag-tree-panel">
+        {{ partial "tag-tree.html" (dict "nodes" hugo.Data.tag_tree.nodes "current" "") }}
+      </div>
+    </section>
+  {{ else }}
+    {{ $node := partial "tag-find-node.html" (dict "nodes" hugo.Data.tag_tree.nodes "target" $term) }}
+    {{ $ids := slice $term }}
+    {{ with $node }}
+      {{ $ids = partial "tag-descendant-ids.html" (dict "node" .) }}
+    {{ end }}
+    {{ $posts := where site.RegularPages "Section" "posts" }}
+    {{ $posts = where $posts "Params.tags" "intersect" $ids }}
+    <section class="page-shell tag-page">
+      <header class="page-heading">
+        <p class="eyebrow">标签浏览</p>
+        <h1>{{ with $node }}{{ .title }}{{ else }}{{ $term }}{{ end }}</h1>
+        <p class="lead">这里包含当前标签及其所有子标签下的文章。</p>
+      </header>
+      <div class="tag-layout">
+        <aside class="tag-sidebar" aria-label="标签树">
+          {{ partial "tag-tree.html" (dict "nodes" hugo.Data.tag_tree.nodes "current" $term) }}
+        </aside>
+        <div class="post-grid">
+          {{ range $posts.ByDate.Reverse }}
+            {{ partial "post-card.html" . }}
+          {{ else }}
+            <p class="empty-state">这个标签下暂时还没有文章。</p>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

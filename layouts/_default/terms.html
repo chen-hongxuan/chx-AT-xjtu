@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <section class="page-shell tag-page">
+    <header class="page-heading">
+      <p class="eyebrow">知识地图</p>
+      <h1>标签</h1>
+      <p class="lead">从课程、主题到具体知识点逐层浏览文章。</p>
+    </header>
+    <div class="tag-tree-panel">
+      {{ partial "tag-tree.html" (dict "nodes" hugo.Data.tag_tree.nodes "current" "") }}
+    </div>
+  </section>
+{{ end }}

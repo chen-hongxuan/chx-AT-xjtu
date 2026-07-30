@@ -1,0 +1,13 @@
+{{- $target := .target -}}
+{{- $found := false -}}
+{{- range .nodes -}}
+  {{- if eq .id $target -}}
+    {{- $found = . -}}
+  {{- else if and .children (not $found) -}}
+    {{- $candidate := partial "tag-find-node.html" (dict "nodes" .children "target" $target) -}}
+    {{- if $candidate -}}
+      {{- $found = $candidate -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $found -}}

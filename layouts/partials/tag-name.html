@@ -1,0 +1,3 @@
+{{- $id := . -}}
+{{- $node := partial "tag-find-node.html" (dict "nodes" hugo.Data.tag_tree.nodes "target" $id) -}}
+{{- with $node -}}{{ .title }}{{- else -}}{{ $id }}{{- end -}}

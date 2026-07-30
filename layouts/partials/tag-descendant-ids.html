@@ -1,0 +1,11 @@
+{{- $node := .node -}}
+{{- $ids := slice $node.id -}}
+{{- with $node.children -}}
+  {{- range . -}}
+    {{- $childIDs := partial "tag-descendant-ids.html" (dict "node" .) -}}
+    {{- range $childIDs -}}
+      {{- $ids = $ids | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $ids -}}

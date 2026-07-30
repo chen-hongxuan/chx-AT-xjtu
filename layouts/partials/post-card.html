@@ -1,0 +1,16 @@
+<article class="post-card">
+  <p class="post-date">{{ .Date.Format "2006-01-02" }}</p>
+  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  {{ with .Params.description }}
+    <p>{{ . }}</p>
+  {{ else }}
+    <p>{{ .Summary | plainify | truncate 118 }}</p>
+  {{ end }}
+  {{ with .Params.tags }}
+    <div class="tag-row">
+      {{ range first 3 . }}
+        <a class="tag-pill" href="{{ printf "tags/%s/" . | relURL }}">{{ partial "tag-name.html" . }}</a>
+      {{ end }}
+    </div>
+  {{ end }}
+</article>

@@ -1,0 +1,40 @@
+baseURL: "https://chen-hongxuan.github.io/chx-AT-xjtu/"
+locale: "zh-CN"
+defaultContentLanguage: "zh-cn"
+title: "chx(AT)xjtu · 学习笔记"
+enableRobotsTXT: true
+summaryLength: 100
+
+pagination:
+  pagerSize: 12
+
+permalinks:
+  posts: "/posts/:slug/"
+
+taxonomies: {}
+
+params:
+  description: "记录 XCPC、Mathematical Logic 与 TCS 的学习笔记。"
+  author: "chen-hongxuan"
+
+caches:
+  images:
+    dir: :cacheDir/images
+
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - ["\\[", "\\]"]
+            - ["$$", "$$"]
+          inline:
+            - ["\\(", "\\)"]
+  highlight:
+    codeFences: true
+    guessSyntax: false
+    lineNos: false
+    noClasses: true
+    style: "dracula"

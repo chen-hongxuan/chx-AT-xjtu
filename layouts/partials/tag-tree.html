@@ -1,0 +1,12 @@
+{{- $nodes := .nodes -}}
+{{- $current := .current -}}
+<ul class="tag-tree">
+  {{- range $nodes -}}
+    <li>
+      <a class="{{ if eq .id $current }}is-current{{ end }}" href="{{ printf "tags/%s/" .id | relURL }}">{{ .title }}</a>
+      {{- with .children -}}
+        {{ partial "tag-tree.html" (dict "nodes" . "current" $current) }}
+      {{- end -}}
+    </li>
+  {{- end -}}
+</ul>
