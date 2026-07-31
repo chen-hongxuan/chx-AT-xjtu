@@ -8,38 +8,38 @@ draft: false
 
 -----------------------------------------------------------------------------------
 $$
-\newcommand{\lra}{\leftrightarrow}
-\newcommand{\fa}{\forall}
-\newcommand{\ex}{\exists}
-\newcommand{\r}{\mathfrak{R}}
-\newcommand{\bl}{\begin{aligned}}
-\newcommand{\el}{\end{aligned}}
-\newcommand{\t}{ {\bf t} }
-\newcommand{\f}{ {\bf f} }
-\newcommand{\eq}{\equiv}
-\newcommand{\la}[1]{\langle #1\rangle}
-\newcommand{\ov}[1]{\overline{#1}}
-\newcommand{\m}{\mu}
-\newcommand{\st}{{\mathrm{st}}}
-\newcommand{\p}{\mathfrak{P}}
-\newcommand{\l}{\lambda}
-\newcommand{\xn}{{\vec x_n}}
-\newcommand{\dd}{\downarrow}
-\newcommand{\aa}{\uparrow}
-\newcommand{\x}{\vec x}
-\newcommand{\if}{\mathbf{if}\quad}
-\newcommand{\oth}{\mathbf{otherwise}}
-\newcommand{\bb}[1]{\{#1\}}
-\newcommand{\U}[1]{U^{(#1)}}
-\newcommand{\no}{\o^{-1}}
-\newcommand{\dom}{\mathrm{dom}\ }
-\newcommand{\ran}{\mathrm{ran}\ }
-\newcommand{\o}{\mathcal O}
-\newcommand{\re}{{\bf r.e.}}
-\newcommand{\I}{\mathcal I}
-\newcommand{\fd}{\mathscr{Find}}
+\gdef\lra{\leftrightarrow}
+\gdef\fa{\forall}
+\gdef\ex{\exists}
+\gdef\r{\mathfrak{R}}
+\gdef\bl{\begin{aligned}}
+\gdef\el{\end{aligned}}
+\gdef\t{ {\bf t} }
+\gdef\f{ {\bf f} }
+\gdef\eq{\equiv}
+\gdef\la#1{\langle #1\rangle}
+\gdef\ov#1{\overline{#1}}
+\gdef\m{\mu}
+\gdef\st{{\mathrm{st}}}
+\gdef\p{\mathfrak{P}}
+\gdef\l{\lambda}
+\gdef\xn{{\vec x_n}}
+\gdef\dd{\downarrow}
+\gdef\aa{\uparrow}
+\gdef\x{\vec x}
+\gdef\if{\mathbf{if}\quad}
+\gdef\oth{\mathbf{otherwise}}
+\gdef\bb#1{\{#1\}}
+\gdef\U#1{U^{(#1)}}
+\gdef\no{\o^{-1}}
+\gdef\dom{\mathrm{dom}\ }
+\gdef\ran{\mathrm{ran}\ }
+\gdef\o{\mathcal O}
+\gdef\re{{\bf r.e.}}
+\gdef\I{\mathcal I}
+\gdef\fd{\mathscr{Find}}
 $$
----------------------------------------------------------
+***
 
 ##### I.68
 
