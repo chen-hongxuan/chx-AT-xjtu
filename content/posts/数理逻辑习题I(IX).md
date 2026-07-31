@@ -229,7 +229,6 @@ $$
 \bl
 n\in f^{-1}[A]&\iff \rob\vdash\A(\w{f(n)})\\
 &\iff \rob\vdash\B(\w n)
-
 \el
 $$
 从而集合 $f^{-1}[A]$ 被公式 $\B$ 在 $\rob$ 中正向强定义.
@@ -278,11 +277,9 @@ $$
 我们仅需证明 $\r'$ 关于原始递归封闭即可. 设 $\l\xn.f,\l\xn yz.g\in\r'$ , 考虑由 $f,g$ 原始递归得到的函数
 $$
 h:=\l\xn y.\left\{
-
 \bl
 &f(\xn)&\if&y=0\\
 &g(\xn,y\ \dot-\  1,h(\xn,y\ \dot-\  1))&&\oth
-
 \el
 \right.
 $$

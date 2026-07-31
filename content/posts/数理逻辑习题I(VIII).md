@@ -403,8 +403,6 @@ $$
 y\in\ran\bb x&\iff(\ex m\in \N^{(x)_1})\bb x(m)=y\\
 &\iff (\ex m\in\N^{(x)_1})(\ex z)T^{(x)_1}(x,m,\la{y,z})\\
 &\iff (\ex m')(\ex z)T(x,m',\la{y,z})
-
-
 \el
 $$
 当然我们可以把两个存在量词压缩在一起, 从而 $y\in\ran\bb x$ 是一个部分递归谓词, 因此可以假定它的指标为 $i_0$ , 之后应用 S-m-n 定理, 得到对于任意的 $x,y\in\N$ , 我们有
