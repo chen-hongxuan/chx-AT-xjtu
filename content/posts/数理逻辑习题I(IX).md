@@ -157,22 +157,30 @@ $$
 #### I.116
 
 由于 $K$ 是 $\re$ 的, 由 I.113 存在形如 $(\ex z)Q(x,z)$ 的公式 $K_*$ 在 $\rob$ 中正向强定义之, 其中 $Q$ 是 $\rob$ 中强定义某个原始递归关系的公式, 接下来我们考虑说明这个集合在 $\Gamma$ 中也是正向强可定义的.
-##### Lem 1.  若关系 $\l x.R\in\r_*$ , 则它在 $\Gamma$ 中是强可定义的.
+{{<thmbox type="lemma" title="引理" number="1">}}
+若关系 $\l x.R\in\r_*$ , 则它在 $\Gamma$ 中是强可定义的.
+{{</thmbox>}}
 
-> 令 $\R$ 在 $\rob$ 中强定义之, 则对于任意 $n\in\N$ 
-> $$
-> \bl
-> R(n)&\iff \rob\vdash\R(\w n)\\
-> \neg R(n)&\iff\rob\vdash\neg\R(\w n)
-> \el
-> $$
-> 而我们有 $\rob\subseteq\Gamma$ , 故 $\R$ 亦在 $\Gamma$ 中强定义 $R$ .
+{{<thmbox type="proof" title="证明">}}
+令 $\R$ 在 $\rob$ 中强定义之, 则对于任意 $n\in\N$
+$$
+\bl
+R(n)&\iff \rob\vdash\R(\w n)\\
+\neg R(n)&\iff\rob\vdash\neg\R(\w n)
+\el
+$$
+而我们有 $\rob\subseteq\Gamma$ , 故 $\R$ 亦在 $\Gamma$ 中强定义 $R$ .
+{{</thmbox>}}
 
-##### Lem 2.  所有 $\re$ 关系 $\l x.R$ 都是 $\Gamma$ 中正向强可定义的.
+{{<thmbox type="lemma" title="引理" number="2">}}
+所有 $\re$ 关系 $\l x.R$ 都是 $\Gamma$ 中正向强可定义的.
+{{</thmbox>}}
 
-> 取关系 $\l xz.Q\in\r_*$ 使得 $R(x)\lra(\ex z)Q(x,z)$ , 并令公式 $\Q(v_0,v_1)$ 在 $\Gamma$ 中强表示 $Q$ , 于是可以构造公式 $\R(v_0):\eq(\ex v_1)\Q(v_0,v_1)$ , 对于 $x\in\N$ 
-> 	若 $R(x)$ , 则存在 $z\in\N$ 使得 $Q(x,z)$ , 因此有 $\Gamma\vdash\Q(\w x,\w z)$ , 从而 $\Gamma\vdash(\ex v_1)\Q(\w x,v_1)$ 即 $\R(\w x)$ .
-> 	若 $\Gamma\vdash(\ex v_1)\Q(\w x,v_1)$ , 由 $\Gamma$ 的 $\omega$-consistency 可得存在 $z\in\N$ 使得 $\Gamma\not \vdash\neg\Q(\w x,\w z)$ , 由 Lem 1 可知这等价于 $\neg\neg Q(x,z)$ 即 $Q(x,z)$ , 故 $(\ex z)Q(x,z)$ 即 $R(x)$ .
+{{<thmbox type="proof" title="证明">}}
+取关系 $\l xz.Q\in\r_*$ 使得 $R(x)\lra(\ex z)Q(x,z)$ , 并令公式 $\Q(v_0,v_1)$ 在 $\Gamma$ 中强表示 $Q$ , 于是可以构造公式 $\R(v_0):\eq(\ex v_1)\Q(v_0,v_1)$ , 对于 $x\in\N$
+	若 $R(x)$ , 则存在 $z\in\N$ 使得 $Q(x,z)$ , 因此有 $\Gamma\vdash\Q(\w x,\w z)$ , 从而 $\Gamma\vdash(\ex v_1)\Q(\w x,v_1)$ 即 $\R(\w x)$ .
+	若 $\Gamma\vdash(\ex v_1)\Q(\w x,v_1)$ , 由 $\Gamma$ 的 $\omega$-consistency 可得存在 $z\in\N$ 使得 $\Gamma\not \vdash\neg\Q(\w x,\w z)$ , 由 Lem 1 可知这等价于 $\neg\neg Q(x,z)$ 即 $Q(x,z)$ , 故 $(\ex z)Q(x,z)$ 即 $R(x)$ .
+{{</thmbox>}}
 
 于是我们可以自然地在 $\Gamma$ 中延用公式 $K_*$ , 之后为导出矛盾我们假设 $\Gamma$ 是完备的, 于是考虑集合 $\ov K$ , 对于任意 $x\in\N$ 
 $$
@@ -234,17 +242,21 @@ n\in f^{-1}[A]&\iff \rob\vdash\A(\w{f(n)})\\
 $$
 从而集合 $f^{-1}[A]$ 被公式 $\B$ 在 $\rob$ 中正向强定义.
 (2) 之后我们给出递归论证法, 由 I.113 及其逆命题, 在 $\rob$ 中正向强可定义集与 $\re$ 集描述的是同一个类. 因此 $A$ 是 $\re$ 的, 我们仅需要证明 $f^{-1}[A]$ 是 $\re$ 的, 由 I.119 可得函数 $f$ 的图是 $\rob$ 中可定义, 之后我们考虑一个引理
-##### Lem 1.  若 $R\subseteq\N$ 是 $\rob$ 中可定义的, 那么它也是 $\rob$ 中强可定义的
+{{<thmbox type="lemma" title="引理" number="1">}}
+若 $R\subseteq\N$ 是 $\rob$ 中可定义的, 那么它也是 $\rob$ 中强可定义的
+{{</thmbox>}}
 
-> 根据假设, 存在公式 $\R(x)$ 使得对于任意的 $n\in\N$ 
-> $$
-> \bl
-> R(n)&\imp \rob\vdash \R(\w n)\\
-> \neg R(n)&\imp\rob\vdash\neg\R(\w n)
-> \el
-> $$
->
-> 因此, 若 $\rob\vdash\R(\w n)$ , 则根据 $\rob$ 的一致性可得 $\rob\not\vdash\neg\R(\w n)$ , 从而必定有 $\neg\neg R(n)$ 即 $R(n)$ , 所以 $R(n)\ \ \mathrm{iff}\ \ \rob\vdash\R(\w n)$ , 借助类似的方法我们还可以证明 $\neg R(n)\ \ \mathrm{iff}\ \ \rob\vdash\neg\R(\w n)$ , 因此 $R$ 是 $\rob$ 中强可定义的.
+{{<thmbox type="proof" title="证明">}}
+根据假设, 存在公式 $\R(x)$ 使得对于任意的 $n\in\N$
+$$
+\bl
+R(n)&\imp \rob\vdash \R(\w n)\\
+\neg R(n)&\imp\rob\vdash\neg\R(\w n)
+\el
+$$
+
+因此, 若 $\rob\vdash\R(\w n)$ , 则根据 $\rob$ 的一致性可得 $\rob\not\vdash\neg\R(\w n)$ , 从而必定有 $\neg\neg R(n)$ 即 $R(n)$ , 所以 $R(n)\ \ \mathrm{iff}\ \ \rob\vdash\R(\w n)$ , 借助类似的方法我们还可以证明 $\neg R(n)\ \ \mathrm{iff}\ \ \rob\vdash\neg\R(\w n)$ , 因此 $R$ 是 $\rob$ 中强可定义的.
+{{</thmbox>}}
 
 因此 $f$ 的图是 $\rob$ 中强可定义的, 由 I.113 可得它是递归的, 因而 $f\in\r$ , 故 $f^{-1}\in\p$ , 所以 $f^{-1}[A]$ 是 $\re$ 集.
 #### I.122

@@ -231,9 +231,11 @@ a:hover { color: var(--accent); }
 
 .thmbox-definition { --thmbox-color: #3f7198; }
 .thmbox-lemma { --thmbox-color: #7654a5; }
+.thmbox-corollary { --thmbox-color: #2d7b76; }
 .thmbox-example { --thmbox-color: #9a672b; }
 .thmbox-proof { --thmbox-color: var(--muted); }
 
 :root[data-theme="dark"] .thmbox-definition { --thmbox-color: #92c9ef; }
 :root[data-theme="dark"] .thmbox-lemma { --thmbox-color: #c5a5ed; }
+:root[data-theme="dark"] .thmbox-corollary { --thmbox-color: #8bd2ca; }
 :root[data-theme="dark"] .thmbox-example { --thmbox-color: #efbe7d; }

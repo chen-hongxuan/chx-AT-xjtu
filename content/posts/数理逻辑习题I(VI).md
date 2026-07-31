@@ -106,11 +106,15 @@ $$
 
 设 $L$ 上的理论 $\cal T$ 被开公式集 $\Gamma$ 公理化, 即 $\mathcal{T}=\thm_\Gamma$ , 则由完全性定理 $\mod{\cal T}=\mod\Gamma$ , 则我们只需要证明, 对于开公式集 $\Gamma$ 以及 $L$ 上的模型 $\mA,\mB$ , 如果 $\mA\vDash\Gamma$ 并且 $\mB\subseteq\mA$ , 那么 $\mB\vDash\Gamma$ . 我们考虑对公式施以归纳来证明如下的引理
 
-##### Lem 1.  固定模型 $\mB\subseteq\mA$ , 则对于任何 $L$ 上的开公式 $\A(\vec x_n)$ 以及 $i\in|\mB|^n$ 均有 $\A[\ov i]^\mA=\t\iff\A[\ov i]^\mB=\t$ .
+{{<thmbox type="lemma" title="引理" number="1">}}
+固定模型 $\mB\subseteq\mA$ , 则对于任何 $L$ 上的开公式 $\A(\vec x_n)$ 以及 $i\in|\mB|^n$ 均有 $\A[\ov i]^\mA=\t\iff\A[\ov i]^\mB=\t$ .
+{{</thmbox>}}
 
-> 首先当 $\A$ 是原子公式的时候, 假定 $\A\eq P(t_1...t_k)$ , 对于任意的 $j\in|\mB|$ , 由于 $\mB\subseteq\mA$ 故 $j\in|\mA|$ , 于是 $\A[\ov j]^\mA=\t$ 等价于 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA$ , 而再一次由于 $\mB\subseteq\mA$ , 故对于 $1\le i\le k$ 有 $t_i(\ov j)^\mA=t_i(\ov j)^\mB\in|\mB|$ , 从而 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA$ 实际上就是 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA|_{|\mB|}$ , 即  $\la{t_1(\ov j)^\mB...t_k(\ov j)^\mB}\in P^\mB$ , 也就是 $\A[\ov j]^\mB=\t$ ; 等词的情况同理.
->
-> 	之后考虑归纳情形, 如果 $\A\eq\neg\B$ , 则对于 $i\in|\mB|^n$ , 根据定义 $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\f$ , 由 I.H. 这等价于 $\B[\ov i]^\mB=\f$ , 等价于 $\A[\ov i]^\mA=\t$ ; 如果 $\A\eq\B\or\C$ , 则对于 $i\in|\mB|^n$ , $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\t$ 或者 $\C[\ov i]^\mA=\t$ , 这等价于 $\B[\ov i]^\mB=\t$ 或者 $\C[\ov i]^\mB=\t$ , 即 $\A[\ov i]^\mB=\t$ .
+{{<thmbox type="proof" title="证明">}}
+首先当 $\A$ 是原子公式的时候, 假定 $\A\eq P(t_1...t_k)$ , 对于任意的 $j\in|\mB|$ , 由于 $\mB\subseteq\mA$ 故 $j\in|\mA|$ , 于是 $\A[\ov j]^\mA=\t$ 等价于 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA$ , 而再一次由于 $\mB\subseteq\mA$ , 故对于 $1\le i\le k$ 有 $t_i(\ov j)^\mA=t_i(\ov j)^\mB\in|\mB|$ , 从而 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA$ 实际上就是 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA|_{|\mB|}$ , 即  $\la{t_1(\ov j)^\mB...t_k(\ov j)^\mB}\in P^\mB$ , 也就是 $\A[\ov j]^\mB=\t$ ; 等词的情况同理.
+
+	之后考虑归纳情形, 如果 $\A\eq\neg\B$ , 则对于 $i\in|\mB|^n$ , 根据定义 $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\f$ , 由 I.H. 这等价于 $\B[\ov i]^\mB=\f$ , 等价于 $\A[\ov i]^\mA=\t$ ; 如果 $\A\eq\B\or\C$ , 则对于 $i\in|\mB|^n$ , $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\t$ 或者 $\C[\ov i]^\mA=\t$ , 这等价于 $\B[\ov i]^\mB=\t$ 或者 $\C[\ov i]^\mB=\t$ , 即 $\A[\ov i]^\mB=\t$ .
+{{</thmbox>}}
 
 而对于 $\A\in\Gamma$ , 如果 $\mA\vDash\A$ , 则对于任意的 $i\in|\mB|^n$ , 由于 $\mB\subseteq\mA$ 故 $i\in|\mA|^n$ , 从而有 $\A[\ov i]^\mA=\t$ , 由于 $\A$ 是开公式, 故根据上面的结果有 $\A[\ov i]^\mB=\t$ 从而 $\mB\vDash\A$ .
 
@@ -128,9 +132,13 @@ $$
 
 之后我们我们来验证 $\mM_i\prec\mM_\omega$ , 证明的策略是对 $L$ 上的公式 $\A$ 施以归纳 . 于是首先我们需要验证一个引理
 
-##### Lem 1.  $\mA,\mB,\mC$ 是语言 $L$ 的模型并且 $\phi:\mA\to_{\prec}\mB,\psi:\mB\to_{\prec}\mC$ , 则 $\psi\circ\phi$ 是 $\mA\to\mC$ 的初等嵌入.
+{{<thmbox type="lemma" title="引理" number="1">}}
+$\mA,\mB,\mC$ 是语言 $L$ 的模型并且 $\phi:\mA\to_{\prec}\mB,\psi:\mB\to_{\prec}\mC$ , 则 $\psi\circ\phi$ 是 $\mA\to\mC$ 的初等嵌入.
+{{</thmbox>}}
 
-> 对于 $L$ 上的公式 $\A(\vec x_n)$ 以及 $i\in|\mA|^n$ , 由 $\phi:\mA\to_{\prec}\mB$ 可得 $\A[\ov i]^\mA=\t\iff \A[\ov{\phi(i)}]^\mB=\t$ , 同时由于 $\phi(i)\in|\mB|^n$ , 故再由 $\psi:\mB\to_\prec\mC$ 可得 $\A[\ov{\phi(i)}]^\mB=\t\iff \A[\ov{\psi(\phi(i))}]^\mC=\t$ , 从而有 $\A[\ov i]^\mA=\t\iff\A[\ov{\psi\circ\phi(i)}]^\mC=\t$ , 故 $\psi\circ\phi$ 是一个初等嵌入.
+{{<thmbox type="proof" title="证明">}}
+对于 $L$ 上的公式 $\A(\vec x_n)$ 以及 $i\in|\mA|^n$ , 由 $\phi:\mA\to_{\prec}\mB$ 可得 $\A[\ov i]^\mA=\t\iff \A[\ov{\phi(i)}]^\mB=\t$ , 同时由于 $\phi(i)\in|\mB|^n$ , 故再由 $\psi:\mB\to_\prec\mC$ 可得 $\A[\ov{\phi(i)}]^\mB=\t\iff \A[\ov{\psi(\phi(i))}]^\mC=\t$ , 从而有 $\A[\ov i]^\mA=\t\iff\A[\ov{\psi\circ\phi(i)}]^\mC=\t$ , 故 $\psi\circ\phi$ 是一个初等嵌入.
+{{</thmbox>}}
 
 接下来我们对于 $L$ 上的公式 $\A(\vec x_n)$ 施以归纳来证明对于任意的 $i\in\N$ 以及 $j\in|\mM_i|^n$ 有 $\A[\ov j]^{\mM_i}=\t\iff\A[\ov j]^{\mM_\omega}=\t$ ,
 
@@ -152,13 +160,17 @@ $$
 $$
 是 $\Gamma$ 的模型即可, 即对于任意 $\D\in\Gamma$ 均有 $\mM_\omega\vDash\D$ . 在此之前可以先验证对于 $i\in\N$ 均有 $\mM_i\subseteq\mM_\omega$ , 之后根据 $\mM_\omega$ 的构造, 任意 $j\in|\mM_\omega|^n$ , 存在充分大的 $k\in\N$ 使得 $j\in|\mM_k|^n$ , 在此前提下我们可以证明以下的一个结论, 
 
-##### Lem 1.  设语言 $L$ 上的两个模型 $\mA,\mB$ 满足 $\mA\subseteq\mB$ , 则对于任意形如 $\B(\vec x_n)\eq\ex\vec y_m\A(\vec x_n,\vec y_m)$ 的公式(其中 $\A$ 为开公式)以及 $i\in|\mA|^n$ , 如果 $\B[\ov i]^\mA=\t$ , 那么 $\B[\ov i]^\mB=\t$ .
+{{<thmbox type="lemma" title="引理" number="1">}}
+设语言 $L$ 上的两个模型 $\mA,\mB$ 满足 $\mA\subseteq\mB$ , 则对于任意形如 $\B(\vec x_n)\eq\ex\vec y_m\A(\vec x_n,\vec y_m)$ 的公式(其中 $\A$ 为开公式)以及 $i\in|\mA|^n$ , 如果 $\B[\ov i]^\mA=\t$ , 那么 $\B[\ov i]^\mB=\t$ .
+{{</thmbox>}}
 
-> 我们对存在量词前缀的长度 $m$ 施以归纳来证明.
->
-> 	对于 $m=0$ 的情形, 即 $\B$ 本身就是开公式, 那么由 I.53 的 Lem 1 可知结论成立.
-> 	
-> 	对于归纳情形, 假定 $\B(\vec x_n)\eq\ex z\C(\vec x_n,z)$ , 若 $\B[\ov i]^\mA=\t$ 则存在 $j\in|\mA|$ 使得 $\C[\ov i,\ov j]^\mA=\t$ , 根据 I.H. $\C[\ov i,\ov j]^\mB=\t$ , 从而 $\B[\ov i]^\mB=\t$ .
+{{<thmbox type="proof" title="证明">}}
+我们对存在量词前缀的长度 $m$ 施以归纳来证明.
+
+	对于 $m=0$ 的情形, 即 $\B$ 本身就是开公式, 那么由 I.53 的 Lem 1 可知结论成立.
+
+	对于归纳情形, 假定 $\B(\vec x_n)\eq\ex z\C(\vec x_n,z)$ , 若 $\B[\ov i]^\mA=\t$ 则存在 $j\in|\mA|$ 使得 $\C[\ov i,\ov j]^\mA=\t$ , 根据 I.H. $\C[\ov i,\ov j]^\mB=\t$ , 从而 $\B[\ov i]^\mB=\t$ .
+{{</thmbox>}}
 
 对于任意 $\A(\vec x_n)\in\Gamma$ , 对于任意的 $i\in|\mM_\omega|^n$ , 根据我们对于 $\momg$ 的构造, 存在充分大的 $k\in\N$ 使得 $i\in|\m_k|$ , 而根据前提每个 $\m_k$ 均为 $\Gamma$ 的模型故 $\m_k\vDash\A$ , 即 $\A[\ov i]^{\m_k}=\t$ , 又因为 $\m_k\subseteq\momg$ 且 $\Gamma$ 是归纳的, 故 $\A[\ov i]^\momg=\t$ , 从而 $\momg\vDash\A$ .
 
@@ -237,13 +249,17 @@ $$
 $$
 令 $I':=\st(a+(b-a)\cdot\frac IK)$ , 于是 $I'\in\R$ 并且 $LHS={^*f}(I')$ , 我们尝试论证这个 $I'$ 就是我们想要的那个实数, 因此我们需要先证明以下的引理
 
-##### Lem 1.  $K$ 是某个无穷大自然数, 则对于任意 $r\in[0,1]\cap\R$ , 存在超自然数 $i$ 使得 $r=\st(\frac iK)$ .
+{{<thmbox type="lemma" title="引理" number="1">}}
+$K$ 是某个无穷大自然数, 则对于任意 $r\in[0,1]\cap\R$ , 存在超自然数 $i$ 使得 $r=\st(\frac iK)$ .
+{{</thmbox>}}
 
-> 我们考虑另外一个语句 $\B$
-> $$
-> \fa x\fa a((a>0)\to\ex k(N(k)\and (x\le k\cdot a< x+a)))
-> $$
-> 这句话说的是, 在区间 $[x,x+a]$ 中一定存在形如 $k\cdot a$ 的数. 它在 $\mR$ 中成立, 所以在 $^*\mR$ 中也成立, 于是我们取 $a$ 为 $\frac 1K$ , 取 $x$ 为 $r$ , 那么存在超自然数 $i$ 使得 $r\le\frac iK\le r+\frac 1K$ , 由于 $K$ 为无穷大自然数, 所以 $\frac 1K$ 为无穷小量, 所以 $r\approx r+\frac 1K$ , 由夹逼定理可得 $\frac iK\approx r$ , 即 $\st(\frac iK)=\st(r)=r$ .
+{{<thmbox type="proof" title="证明">}}
+我们考虑另外一个语句 $\B$
+$$
+\fa x\fa a((a>0)\to\ex k(N(k)\and (x\le k\cdot a< x+a)))
+$$
+这句话说的是, 在区间 $[x,x+a]$ 中一定存在形如 $k\cdot a$ 的数. 它在 $\mR$ 中成立, 所以在 $^*\mR$ 中也成立, 于是我们取 $a$ 为 $\frac 1K$ , 取 $x$ 为 $r$ , 那么存在超自然数 $i$ 使得 $r\le\frac iK\le r+\frac 1K$ , 由于 $K$ 为无穷大自然数, 所以 $\frac 1K$ 为无穷小量, 所以 $r\approx r+\frac 1K$ , 由夹逼定理可得 $\frac iK\approx r$ , 即 $\st(\frac iK)=\st(r)=r$ .
+{{</thmbox>}}
 
 因此 $a+(b-a)\cdot\st(\frac iK)$ 能够遍历全体 $[a,b]$ 中的实数, 所以我们可以说, 对于任意的 $x\in[a,b]\cap\R$ , $f(I')\ge f(x)$ , 于是我们就成功地通过 $^*\mR$ 把这个取得最大值的实数 $I'$ 构造出来了.
 
@@ -251,13 +267,17 @@ $$
 
 根据我们在实分析里证明介值定理的惯例, 我们先证明零点存在性定理.
 
-##### Lem 1.  对于连续函数 $f$ 以及实数 $a,b(a<b)$ , 如果 $f(a)<0<f(b)$ , 则存在实数 $\xi\in[a,b]$ 使得 $f(\xi)=0$ .
+{{<thmbox type="lemma" title="引理" number="1">}}
+对于连续函数 $f$ 以及实数 $a,b(a<b)$ , 如果 $f(a)<0<f(b)$ , 则存在实数 $\xi\in[a,b]$ 使得 $f(\xi)=0$ .
+{{</thmbox>}}
 
-> 我们考虑如下的一个一阶语句 $\A$
-> $$
-> \fa n((N(n)\and n>0)\to\ex i(N(i)\and i<n\and f(a+(b-a)\cdot\frac in)\le 0\and f(a+(b-a)\cdot\frac{i+1}n\ge 0)))
-> $$
-> 它是在说, 如果我们将 $[a,b]$ 这个区间内采样 $n+1$ 个点 $\{a+\frac{b-a}{n}\cdot k:0\le k\le n\}$ , 那么一定存在两个相邻的点 $u,v$ 使得 $f(u)\le 0\le f(v)$ . 这在 $\mR$ 中显然是正确的, 因此它在 $^*\mR$ 中也是正确的, 所以我们取一个无穷大自然数 $K$ 并将其代入 $n$ , 则存在超自然数 $i$ 使得 $f(a+(b-a)\cdot\frac iK)\le 0\le f(a+(b-a)\cdot\frac{i+1}K)$ , 记 $I:=a+(b-a)\cdot\frac iK,I':=a+(b-a)\cdot\frac{i+1}K$ , 则不难注意到 $I'-I=\frac{b-a}K$ 是无穷小量, 故 $I'\approx I$ , 即 $\st(I')=\st(I)$ . 我们直接取 $\xi:=\st(I)$ , 由于 $f(I)\le 0\le f(I')$ 并且 $f$ 是连续函数, 所以有 $f(\xi)=f(\st(I))=\st(f(I))\le 0$ , 而另一方面 $f(\xi)=f(\st(I'))=\st(f(I'))\ge0$ , 从而有 $f(\xi)=0$ .
+{{<thmbox type="proof" title="证明">}}
+我们考虑如下的一个一阶语句 $\A$
+$$
+\fa n((N(n)\and n>0)\to\ex i(N(i)\and i<n\and f(a+(b-a)\cdot\frac in)\le 0\and f(a+(b-a)\cdot\frac{i+1}n\ge 0)))
+$$
+它是在说, 如果我们将 $[a,b]$ 这个区间内采样 $n+1$ 个点 $\{a+\frac{b-a}{n}\cdot k:0\le k\le n\}$ , 那么一定存在两个相邻的点 $u,v$ 使得 $f(u)\le 0\le f(v)$ . 这在 $\mR$ 中显然是正确的, 因此它在 $^*\mR$ 中也是正确的, 所以我们取一个无穷大自然数 $K$ 并将其代入 $n$ , 则存在超自然数 $i$ 使得 $f(a+(b-a)\cdot\frac iK)\le 0\le f(a+(b-a)\cdot\frac{i+1}K)$ , 记 $I:=a+(b-a)\cdot\frac iK,I':=a+(b-a)\cdot\frac{i+1}K$ , 则不难注意到 $I'-I=\frac{b-a}K$ 是无穷小量, 故 $I'\approx I$ , 即 $\st(I')=\st(I)$ . 我们直接取 $\xi:=\st(I)$ , 由于 $f(I)\le 0\le f(I')$ 并且 $f$ 是连续函数, 所以有 $f(\xi)=f(\st(I))=\st(f(I))\le 0$ , 而另一方面 $f(\xi)=f(\st(I'))=\st(f(I'))\ge0$ , 从而有 $f(\xi)=0$ .
+{{</thmbox>}}
 
 于是对于闭区间 $[a,b]$ , 由 I.64 我们可以假定其最小值最大值分别在 $x_1,x_2$ 处取得, 则对于任意 $a\in(f(x_1),f(x_2))$ 取 $g(x)=f(x)-a$ , 则 $g$ 连续并且 $g(x_1)<0<g(x_2)$ , 从而根据 Lem 1 存在零点 $\xi$ 使得 $g(\xi)=0$ , 即为 $f(\xi)=a$ .
 
