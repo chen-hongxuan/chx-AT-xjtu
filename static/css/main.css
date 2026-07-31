@@ -149,8 +149,8 @@ a:hover { color: var(--accent); }
 .article-header { padding-bottom: 38px; border-bottom: 1px solid var(--line); }
 .article-header h1 { font-size: clamp(2.35rem, 5vw, 4rem); }
 .article-description { max-width: 690px; margin: 22px 0; color: var(--muted); font-size: 1.06rem; }
-.article-layout { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 55px; margin-top: 42px; }
-.article-content { min-width: 0; font-size: 1.02rem; }
+.article-layout { display: grid; grid-template-columns: 190px minmax(0, 1fr); grid-template-areas: "toc content"; gap: 55px; margin-top: 42px; }
+.article-content { grid-area: content; min-width: 0; font-size: 1.02rem; }
 .article-content h2 { margin: 2.7em 0 .8em; font-size: 1.65rem; letter-spacing: -.035em; line-height: 1.3; }
 .article-content h3 { margin: 2em 0 .7em; font-size: 1.25rem; }
 .article-content p, .article-content ul, .article-content ol { margin: 1.15em 0; }
@@ -161,7 +161,7 @@ a:hover { color: var(--accent); }
 .article-content pre code { padding: 0; background: transparent; font-size: .86rem; }
 .article-content .katex-display { overflow-x: auto; overflow-y: hidden; padding: 5px 0; }
 
-.article-toc { position: sticky; top: 90px; align-self: start; color: var(--muted); font-size: .84rem; line-height: 1.5; }
+.article-toc { grid-area: toc; position: sticky; top: 90px; align-self: start; color: var(--muted); font-size: .84rem; line-height: 1.5; }
 .article-toc > p { margin: 0 0 8px; color: var(--text); font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .article-toc ul { margin: 0; padding-left: 16px; }
 .article-toc li { margin: 7px 0; }
@@ -191,6 +191,7 @@ a:hover { color: var(--accent); }
   .site-nav { gap: 13px; font-size: .86rem; }
   .post-grid { grid-template-columns: 1fr; }
   .article-layout, .tag-layout { grid-template-columns: 1fr; gap: 28px; }
+  .article-layout { grid-template-areas: "toc" "content"; }
   .article-toc, .tag-sidebar { position: static; }
   .article-toc { padding: 16px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
   .page-shell { padding-top: 50px; }

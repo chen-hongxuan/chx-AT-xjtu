@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
-<link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+{{ $css := "css/main.css" | relURL }}
+<link rel="stylesheet" href="{{ $css }}?v={{ now.Unix }}">
 <script defer src="{{ "js/theme.js" | relURL }}"></script>
 {{ partial "math.html" . }}
