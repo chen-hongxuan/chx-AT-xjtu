@@ -1,3 +1,11 @@
+---
+title: "一种巧妙的优化DP的方法-pht转化"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 `P6944 [ICPC2018 WF]Gem Island`  
 >之前一直都没有弄懂pht转化有什么用，现在懂了，故作文以记之。   
 

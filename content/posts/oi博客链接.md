@@ -1,3 +1,11 @@
+---
+title: "oi博客链接"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 ## 算法好博客：
 
 [$\boxed{\text{莫队好博客}}$](https://ouuan.github.io/post/%E8%8E%AB%E9%98%9F%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F%E8%AF%A6%E8%A7%A3/)

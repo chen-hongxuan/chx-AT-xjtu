@@ -1,3 +1,11 @@
+---
+title: "ss讲课day0"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 ## 简单数学基础
 
 ### 前言

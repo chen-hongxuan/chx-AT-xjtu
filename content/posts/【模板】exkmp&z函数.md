@@ -1,3 +1,11 @@
+---
+title: "【模板】exkmp&z函数"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 ```cpp
 int z[N],ex[N],n,m;
 void get_z(){

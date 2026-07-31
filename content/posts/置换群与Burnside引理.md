@@ -1,3 +1,11 @@
+---
+title: "置换群与Burnside引理"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 ### upd on 2024/10/25：本质上就是陪集分解
 
 ### 问题的引入

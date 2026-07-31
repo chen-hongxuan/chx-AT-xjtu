@@ -1,3 +1,11 @@
+---
+title: "【模板】广义fwt"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 ```cpp
 struct matrix{
 	int a[2][2],n,m;

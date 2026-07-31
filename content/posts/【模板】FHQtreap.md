@@ -1,3 +1,11 @@
+---
+title: "【模板】FHQtreap"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 ```cpp
 mt19937 rnd(time(0));
 struct FHQtreap{

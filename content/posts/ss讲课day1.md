@@ -1,3 +1,11 @@
+---
+title: "ss讲课day1"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 网页：https://vjudge.net/contest/684804#overview
 
 ## 简单计数基础

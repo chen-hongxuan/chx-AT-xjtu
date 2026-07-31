@@ -1,3 +1,11 @@
+---
+title: "【模板】ntt"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 ```cpp
 int cir[N];
 void fft(int *f,int len,int t){

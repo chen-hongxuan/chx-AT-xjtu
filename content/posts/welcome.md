@@ -1,11 +1,9 @@
 ---
-title: "博客开始使用：公式、代码与标签"
-date: 2026-07-31T12:00:00+08:00
+title: "welcome"
+date: 2026-07-31T00:00:00+08:00
 slug: "getting-started"
 description: "第一篇示例笔记，用来确认公式、代码块和树形标签均已生效。"
-tags:
-  - math-linear-algebra
-  - cs-python
+tags: []
 math: true
 draft: false
 ---

@@ -1,3 +1,11 @@
+---
+title: "数理逻辑习题I(I,II,III,IV,V)"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 -------------------------------------
 $$
 \newcommand{\lra}{\leftrightarrow}

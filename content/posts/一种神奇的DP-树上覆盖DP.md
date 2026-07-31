@@ -1,3 +1,11 @@
+---
+title: "一种神奇的DP-树上覆盖DP"
+date: 2026-07-31T00:00:00+08:00
+tags: []
+math: true
+draft: false
+---
+
 ### 遇到做过的题不会做，以后要好好改题 :(
 $\color{blue}\textbf{[例题]}$  
 `ZRtes AB day1 t3`  
