@@ -1,7 +1,8 @@
 ---
 title: "数理逻辑习题I(VI)"
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - mathematical-logic
 math: true
 draft: false
 ---
@@ -56,19 +57,19 @@ $$
 $$
 ***
 
-#####  I.47
+####  I.47
 
 我们只需要做一些检验性的工作即可. 对于常数变元, 条件天然成立; 对于函数符号 $f$ 以及 $\vec i_n\in|\mM|$ , 由于对于任何 $\vec j_n\in|\mK|$ 均有 $f^\mK(\vec j_n)=\phi(f^\mM(\phi^{-1}(j^n)))$ 并且 $\phi$ 是双射, 故存在唯一 $\vec i_n'\in|\mK|$ 使得 $\phi^{-1}(\vec i_n')=\vec i_n$ , 将其代入 $\vec j_n$ 即可得到 $f^\mK(\phi(\vec i_n))=\phi(f^\mM(\vec i_n))$ ; 对于谓词符号 $P$ 也是同理.
 
-##### I.48
+#### I.48
 
 令 $\chi:=\psi\circ\phi$ , 那么对于任意常数符号 $c$ 有 $c^\mK=\phi(c^\mM),c^\mL=\psi(c^\mK)$ 从而有 $c^\mL=\psi(\phi(c^\mM))=\chi(c^\mM)$ ; 对于任意函数符号 $f$ 以及 $\vec i\in|\mM|$ 有 $f^\mK(\phi(\vec i))=\phi(f^\mM(\vec i))$ 从而有 $f^\mL(\psi(\phi(\vec i)))=\psi(f^\mK(\phi(\vec i)))=\psi(\phi(f^\mM(\vec i)))$ , 即 $f^\mL(\chi(\vec i))=\chi(f^\mM(\vec i))$ ; 对于任意谓词符号 $P$ 以及 $\vec i\in|\mM|$ 均有 $\psi(\phi(\vec i))\in P^\mL$ 当且仅当 $\phi(\vec i)\in P^\mK$ 当且仅当 $\vec i\in P^\mM$ , 即 $\chi(\vec i)\in P^\mL$ 当且仅当 $\vec i\in P^\mM$ . 从而嵌入的复合 $\chi$ 仍然是结构的嵌入. 
 
-##### I.49
+#### I.49
 
 这种情况的存在是很广泛的, 设语言 $L$ 及其上的无穷模型 $\mA$ , 令基数 $\mathfrak n:=2^{\max\{|\mA|,|L|\}}$ 则显然有 $\mathfrak n >|\mA|$ , 由 I.6.24 可知存在模型 $\mA'$ 使得 $|\mA'|=\frak n$ 并且 $\mA\prec\mA'$ , 然而事实上他们两个模型之间不存在双射, 因为它们的基数不同, 因此他们必然不同构.
 
-##### I.50
+#### I.50
 
 假设 $L$ 上的公式 $\A(\vec x_n)$ 在 $\mM$ 上定义了集合 $S$ , 那么有对于任意 $i\in|\mM|^n$ 有
 $$
@@ -76,7 +77,7 @@ i\in S \iff \A[\vec x_n\inp \ov i]^\mM=\t
 $$
  而由于 $\phi$ 是 $\mM$ 到 $\mM$ 的同构, 所以由 I.6.8 $\A[\vec x_n\inp\ov i]^\mM=\t\iff \A[\vec x_n\inp\ov{\phi(i)}]^\mM=\t$ , 这即是 $\phi(i)\in S$ .
 
-##### I.51
+#### I.51
 
 若 $\N$ 是可定义的, 那么我们考虑一个函数
 $$
@@ -87,7 +88,7 @@ $$
 $$
 显然它是结构 $(\R,<)$ 上的自同构, 而显然对于 $n\in\N$ 一定有 $\phi(n)\not\in\N$ , 这与 I.50 矛盾了. 
 
-##### I.52
+#### I.52
 
 证明的策略是构造一个 $\N\to\N$ 的双射 $f$ , 它满足对于任意 $x,y\in\N$ 均有 $f(x\cdot y)=f(x)\cdot f(y)$ 并且存在 $a,b\in\N$ 使得 $f(a+b)\not=f(a)+f(b)$ , 前者激励我们在积性函数中寻找答案, 事实上由素数分解定理, 对于每个 $n\in\N$ 均可以将其分解成如下的形式, 并且该形式唯一
 $$
@@ -101,11 +102,11 @@ f:\prod_{i=1}^np_i^{a_i}\mapsto p_1^{a_2}\cdot p_2^{a_1}\cdot\prod_{i=3}^np_i^{a
 $$
 实际上就是交换数字 $n$ 的 $2,3$ 这两个质因数上的幂次而已, 而我们可以验证这样的函数 $f$ 是完全积性函数并且还是双射, 因此 $f$ 可以导出一个 $(\N,\cdot)$ 上的自同构, 然而事实上我们有 $f(2+4)=6$ 而 $f(2)+f(4)=3+6=9$ , 从而加法的图在 $(\N,\cdot)$ 内不可定义.
 
-##### I.53
+#### I.53
 
 设 $L$ 上的理论 $\cal T$ 被开公式集 $\Gamma$ 公理化, 即 $\mathcal{T}=\thm_\Gamma$ , 则由完全性定理 $\mod{\cal T}=\mod\Gamma$ , 则我们只需要证明, 对于开公式集 $\Gamma$ 以及 $L$ 上的模型 $\mA,\mB$ , 如果 $\mA\vDash\Gamma$ 并且 $\mB\subseteq\mA$ , 那么 $\mB\vDash\Gamma$ . 我们考虑对公式施以归纳来证明如下的引理
 
-###### Lem 1.  固定模型 $\mB\subseteq\mA$ , 则对于任何 $L$ 上的开公式 $\A(\vec x_n)$ 以及 $i\in|\mB|^n$ 均有 $\A[\ov i]^\mA=\t\iff\A[\ov i]^\mB=\t$ .
+##### Lem 1.  固定模型 $\mB\subseteq\mA$ , 则对于任何 $L$ 上的开公式 $\A(\vec x_n)$ 以及 $i\in|\mB|^n$ 均有 $\A[\ov i]^\mA=\t\iff\A[\ov i]^\mB=\t$ .
 
 > 首先当 $\A$ 是原子公式的时候, 假定 $\A\eq P(t_1...t_k)$ , 对于任意的 $j\in|\mB|$ , 由于 $\mB\subseteq\mA$ 故 $j\in|\mA|$ , 于是 $\A[\ov j]^\mA=\t$ 等价于 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA$ , 而再一次由于 $\mB\subseteq\mA$ , 故对于 $1\le i\le k$ 有 $t_i(\ov j)^\mA=t_i(\ov j)^\mB\in|\mB|$ , 从而 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA$ 实际上就是 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA|_{|\mB|}$ , 即  $\la{t_1(\ov j)^\mB...t_k(\ov j)^\mB}\in P^\mB$ , 也就是 $\A[\ov j]^\mB=\t$ ; 等词的情况同理.
 >
@@ -113,7 +114,7 @@ $$
 
 而对于 $\A\in\Gamma$ , 如果 $\mA\vDash\A$ , 则对于任意的 $i\in|\mB|^n$ , 由于 $\mB\subseteq\mA$ 故 $i\in|\mA|^n$ , 从而有 $\A[\ov i]^\mA=\t$ , 由于 $\A$ 是开公式, 故根据上面的结果有 $\A[\ov i]^\mB=\t$ 从而 $\mB\vDash\A$ .
 
-##### I.54
+#### I.54
 
 令 
 $$
@@ -127,7 +128,7 @@ $$
 
 之后我们我们来验证 $\mM_i\prec\mM_\omega$ , 证明的策略是对 $L$ 上的公式 $\A$ 施以归纳 . 于是首先我们需要验证一个引理
 
-###### Lem 1.  $\mA,\mB,\mC$ 是语言 $L$ 的模型并且 $\phi:\mA\to_{\prec}\mB,\psi:\mB\to_{\prec}\mC$ , 则 $\psi\circ\phi$ 是 $\mA\to\mC$ 的初等嵌入.
+##### Lem 1.  $\mA,\mB,\mC$ 是语言 $L$ 的模型并且 $\phi:\mA\to_{\prec}\mB,\psi:\mB\to_{\prec}\mC$ , 则 $\psi\circ\phi$ 是 $\mA\to\mC$ 的初等嵌入.
 
 > 对于 $L$ 上的公式 $\A(\vec x_n)$ 以及 $i\in|\mA|^n$ , 由 $\phi:\mA\to_{\prec}\mB$ 可得 $\A[\ov i]^\mA=\t\iff \A[\ov{\phi(i)}]^\mB=\t$ , 同时由于 $\phi(i)\in|\mB|^n$ , 故再由 $\psi:\mB\to_\prec\mC$ 可得 $\A[\ov{\phi(i)}]^\mB=\t\iff \A[\ov{\psi(\phi(i))}]^\mC=\t$ , 从而有 $\A[\ov i]^\mA=\t\iff\A[\ov{\psi\circ\phi(i)}]^\mC=\t$ , 故 $\psi\circ\phi$ 是一个初等嵌入.
 
@@ -139,7 +140,7 @@ $$
 
 如果 $\A\eq\ex y\B(y,\vec x_n)$ , 那么对于 $j\in|\mM_i|^n$ , $\A[\ov j]^{\mM_\omega}=\t$ 当且仅当存在 $k\in|\mM_\omega|$ 使得 $\B[\ov k,\ov j]^{\mM_\omega}=\t$ . 根据我们对 $\mM_\omega$ 的构造, 存在充分大的 $l\in\N$ 使得 $k\in|\mM_l|$ , 而根据 I.H. 有 $\B[\ov k,\ov j]^{\mM_\omega}=\t\iff\B[\ov k,\ov j]^{\mM_l}=\t$ , 这就是在说: $\A[\ov j]^{\mM_\omega}=\t$ 当且仅当"存在 $l\in\N$ 以及 $k\in|\mM_l|$ 使得 $\B[\ov k,\ov j]^{\mM_l}=\t$ ", 即 $\A[\ov j]^{\mM_l}=\t$. 而根据 Lem 1 可得 $\mM_i\prec\mM_l$ , 从而 $\A[\ov j]^{\mM_l}=\t\iff\A[\ov j]^{\mM_i}=\t$ .
 
-##### I.55
+#### I.55
 
 假定 $L$ 上的理论 $\scr S$ 是被 $\Gamma$ 公理化, 并且 $\Gamma$ 是归纳的, 并假定一个的 $L$ 上的模型链 $\la{\mM_i:i\in\N}$ 满足
 $$
@@ -151,7 +152,7 @@ $$
 $$
 是 $\Gamma$ 的模型即可, 即对于任意 $\D\in\Gamma$ 均有 $\mM_\omega\vDash\D$ . 在此之前可以先验证对于 $i\in\N$ 均有 $\mM_i\subseteq\mM_\omega$ , 之后根据 $\mM_\omega$ 的构造, 任意 $j\in|\mM_\omega|^n$ , 存在充分大的 $k\in\N$ 使得 $j\in|\mM_k|^n$ , 在此前提下我们可以证明以下的一个结论, 
 
-###### Lem 1.  设语言 $L$ 上的两个模型 $\mA,\mB$ 满足 $\mA\subseteq\mB$ , 则对于任意形如 $\B(\vec x_n)\eq\ex\vec y_m\A(\vec x_n,\vec y_m)$ 的公式(其中 $\A$ 为开公式)以及 $i\in|\mA|^n$ , 如果 $\B[\ov i]^\mA=\t$ , 那么 $\B[\ov i]^\mB=\t$ .
+##### Lem 1.  设语言 $L$ 上的两个模型 $\mA,\mB$ 满足 $\mA\subseteq\mB$ , 则对于任意形如 $\B(\vec x_n)\eq\ex\vec y_m\A(\vec x_n,\vec y_m)$ 的公式(其中 $\A$ 为开公式)以及 $i\in|\mA|^n$ , 如果 $\B[\ov i]^\mA=\t$ , 那么 $\B[\ov i]^\mB=\t$ .
 
 > 我们对存在量词前缀的长度 $m$ 施以归纳来证明.
 >
@@ -161,7 +162,7 @@ $$
 
 对于任意 $\A(\vec x_n)\in\Gamma$ , 对于任意的 $i\in|\mM_\omega|^n$ , 根据我们对于 $\momg$ 的构造, 存在充分大的 $k\in\N$ 使得 $i\in|\m_k|$ , 而根据前提每个 $\m_k$ 均为 $\Gamma$ 的模型故 $\m_k\vDash\A$ , 即 $\A[\ov i]^{\m_k}=\t$ , 又因为 $\m_k\subseteq\momg$ 且 $\Gamma$ 是归纳的, 故 $\A[\ov i]^\momg=\t$ , 从而 $\momg\vDash\A$ .
 
-##### I.56
+#### I.56
 
 令语言 $L_\mN:=(0,S,+,\times,<)$ 及其上面的标准模型 $\mN:=(\N,0,S,+,\times,<)$ . 考虑向语言中加入一个新的常数符号 $c$ 从而得到新语言 $L':=(0,S,+,\times,<,c)$ , 之后来看 $L'$ 上的公式集
 $$
@@ -169,7 +170,7 @@ $$
 $$
 之后利用紧致性定理来证明 $\scr N$ 是一致的. 首先容易验证, 对于任何 $c'\in\N$ , 拓展后的 $L'$ 上的结构 $\mN(c'):=(\N,0,S,+,\times,<,c')$ 仍然是 $L'$ 上的公式集 ${\bf Th}(\mN)$ 的模型, 而对于 $\scr N$ 的任意有穷子集 $\scr N'$ , 它一定是由 ${\bf Th}(\mN)$ 的有穷个片段 $\scr A$ 以及 $\{S^i0<c:i\in\N\}$ 的有穷个片段 $\scr B$ 组成的, 而正因为 $\scr B$ 有穷, 所以我们总是可以挑选一个充分大的 $n\in\N$ 使得 $\mN(n)\vDash\scr B$ , 故 $\mN(n)\vDash\scr A+B$ 即 $\scr N'$ , 即 $\scr N'$ 是可满足的, 从而 $\scr N$ 是可满足的, 故它存在一个模型 $\mA:=(N,0^\mA,S^\mA,+^\mA,\times^\mA,<^\mA,c^\mA)$ , 之后我们将其限制在 $L_\mN$ 上得到的模型 $\mC$ 即为所求, 因为在它的论域 $N$ 上存在一个比所有"自然数"都要更大的数. 
 
-##### I.57
+#### I.57
 
 令公式集
 $$
@@ -181,7 +182,7 @@ $$
 
 我就要用 upward Lowenheim-Skolem theorem.
 
-##### I.59
+#### I.59
 
 (1) 首先我们有 ${\bf Th}(\mR)\vdash \fa x(x-x=0)$ , 因此在 $^*\mR$ 中, 对于任意 $x\in^*\R$ 均有 $x-x=0$ , 而显然 $0$ 是无穷小量, 从而 $x\approx x$ .
 
@@ -189,11 +190,11 @@ $$
 
 (3) 这可以由 $|x-z|\le|x-y|+|y-z|$ 导出.
 
-##### I.60
+#### I.60
 
 因为 $0\le x\le y\to |x|\le|y|$ 在 $\mR$ 中成立, 故它也在 $^*\mR$ 中成立.
 
-##### I.61
+#### I.61
 
 (2) 对于任意 $x,y\in{^*\R}$ , 均有 $x+y=\st(x)+r+\st(y)+r'=\st(x)+\st(y)+(r+r')$ , 因为 $r,r'$ 是无穷小量所以 $r+r'$ 也是, 而由于 $\st(x),\st(y)\in\R$ 故 $\st(x)+\st(y)\in\R$ 从而 $\st(x+y)=\st(x)+\st(y)$ .
 
@@ -203,17 +204,17 @@ $$
 
 (6) 对 $n$ 施以归纳, $n=0,1$ 的情形是显然的. 而 $\st(a^{n+1})=\st(a^n\cdot a)$ , 根据 (4) 可得 $RHS=\st(a^n)\cdot\st(a)$ , 根据 I.H. 有 $\st(a^n)=\st(a)^n$ 故 $RHS=\st(a)^n\cdot\st(a)=\st(a)^{n+1}$ .
 
-##### I.62
+#### I.62
 
 考虑一阶语句 $\fa x\ex y(N(y)\and y>x)$ , 由于 $^*\R$ 中存在无穷大超实数 , 因而我们也存在无穷大"自然数". 
 
-##### I.63
+#### I.63
 
 首先显然 $h-1$ 是无穷数, 并且我们有 $\fa x[(x\not= 0\and N(x))\to(N(x-1))]$ , 因此 $h-1$ 是 $^*\R$ 中的"自然数". 
 
 然而这并不与传达原理冲突, 因为一个"自然数"的非空子集没有最小值的前提是它不包含标准自然数, 而这样的一个子集我们是没法在 $L$ 中描述它的, 我们的语言的能力在区别无穷和有穷上是很有限的.
 
-##### I.64
+#### I.64
 
 首先我们看一个一阶语句 $\A$
 $$
@@ -236,7 +237,7 @@ $$
 $$
 令 $I':=\st(a+(b-a)\cdot\frac IK)$ , 于是 $I'\in\R$ 并且 $LHS={^*f}(I')$ , 我们尝试论证这个 $I'$ 就是我们想要的那个实数, 因此我们需要先证明以下的引理
 
-###### Lem 1.  $K$ 是某个无穷大自然数, 则对于任意 $r\in[0,1]\cap\R$ , 存在超自然数 $i$ 使得 $r=\st(\frac iK)$ .
+##### Lem 1.  $K$ 是某个无穷大自然数, 则对于任意 $r\in[0,1]\cap\R$ , 存在超自然数 $i$ 使得 $r=\st(\frac iK)$ .
 
 > 我们考虑另外一个语句 $\B$
 > $$
@@ -246,11 +247,11 @@ $$
 
 因此 $a+(b-a)\cdot\st(\frac iK)$ 能够遍历全体 $[a,b]$ 中的实数, 所以我们可以说, 对于任意的 $x\in[a,b]\cap\R$ , $f(I')\ge f(x)$ , 于是我们就成功地通过 $^*\mR$ 把这个取得最大值的实数 $I'$ 构造出来了.
 
-##### I.65
+#### I.65
 
 根据我们在实分析里证明介值定理的惯例, 我们先证明零点存在性定理.
 
-###### Lem 1.  对于连续函数 $f$ 以及实数 $a,b(a<b)$ , 如果 $f(a)<0<f(b)$ , 则存在实数 $\xi\in[a,b]$ 使得 $f(\xi)=0$ .
+##### Lem 1.  对于连续函数 $f$ 以及实数 $a,b(a<b)$ , 如果 $f(a)<0<f(b)$ , 则存在实数 $\xi\in[a,b]$ 使得 $f(\xi)=0$ .
 
 > 我们考虑如下的一个一阶语句 $\A$
 > $$
@@ -260,7 +261,7 @@ $$
 
 于是对于闭区间 $[a,b]$ , 由 I.64 我们可以假定其最小值最大值分别在 $x_1,x_2$ 处取得, 则对于任意 $a\in(f(x_1),f(x_2))$ 取 $g(x)=f(x)-a$ , 则 $g$ 连续并且 $g(x_1)<0<g(x_2)$ , 从而根据 Lem 1 存在零点 $\xi$ 使得 $g(\xi)=0$ , 即为 $f(\xi)=a$ .
 
-##### I.66
+#### I.66
 
 令一阶公式
 $$

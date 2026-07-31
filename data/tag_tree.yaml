@@ -9,7 +9,7 @@ nodes:
             title: 矩阵
           - id: math-eigenvalue
             title: 特征值与特征向量
-      - id: math-mathematical-logic
+      - id: mathematical-logic
         title: 数理逻辑
       - id: math-discrete
         title: 离散数学
