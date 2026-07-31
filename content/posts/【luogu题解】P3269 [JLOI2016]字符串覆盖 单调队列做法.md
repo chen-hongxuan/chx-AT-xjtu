@@ -49,11 +49,11 @@ $$
 
 
 $$
-	f[i][j]=min_{j-len_{i-1}+1 ≤ k ≤ min(j-1,j+len_i-len_{i-1})}(f[i-1][k]+j+len_i-1-k-len_{i-1}+1) 
+f[i][j]=min_{j-len_{i-1}+1 ≤ k ≤ min(j-1,j+len_i-len_{i-1})}(f[i-1][k]+j+len_i-1-k-len_{i-1}+1) 
 $$
 
 $$
-	g[i][j]=max_{j-len_{i-1}+1 ≤ k ≤ min(j-1,j+len_i-len_{i-1})}(g[i-1][k]+j+len_i-1-k-len_{i-1}+1) 
+g[i][j]=max_{j-len_{i-1}+1 ≤ k ≤ min(j-1,j+len_i-len_{i-1})}(g[i-1][k]+j+len_i-1-k-len_{i-1}+1) 
 $$
 
 > 不难发现这个很像一个定长的区间在左右滑动，那就用单调队列优化一下，单调队列里记得是 $f[i-1][j]-j$  与 $g[i-1][j]-j$ 即可。

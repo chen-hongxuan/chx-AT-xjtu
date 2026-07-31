@@ -111,7 +111,7 @@ $$
 >
 > 	之后考虑归纳情形, 如果 $\A\eq\neg\B$ , 则对于 $i\in|\mB|^n$ , 根据定义 $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\f$ , 由 I.H. 这等价于 $\B[\ov i]^\mB=\f$ , 等价于 $\A[\ov i]^\mA=\t$ ; 如果 $\A\eq\B\or\C$ , 则对于 $i\in|\mB|^n$ , $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\t$ 或者 $\C[\ov i]^\mA=\t$ , 这等价于 $\B[\ov i]^\mB=\t$ 或者 $\C[\ov i]^\mB=\t$ , 即 $\A[\ov i]^\mB=\t$ .
 
-	而对于 $\A\in\Gamma$ , 如果 $\mA\vDash\A$ , 则对于任意的 $i\in|\mB|^n$ , 由于 $\mB\subseteq\mA$ 故 $i\in|\mA|^n$ , 从而有 $\A[\ov i]^\mA=\t$ , 由于 $\A$ 是开公式, 故根据上面的结果有 $\A[\ov i]^\mB=\t$ 从而 $\mB\vDash\A$ .
+而对于 $\A\in\Gamma$ , 如果 $\mA\vDash\A$ , 则对于任意的 $i\in|\mB|^n$ , 由于 $\mB\subseteq\mA$ 故 $i\in|\mA|^n$ , 从而有 $\A[\ov i]^\mA=\t$ , 由于 $\A$ 是开公式, 故根据上面的结果有 $\A[\ov i]^\mB=\t$ 从而 $\mB\vDash\A$ .
 
 ##### I.54
 
@@ -125,7 +125,7 @@ P^{\mM_\omega}=\bigcup_{i\in\N}P^{\mM_i};f^{\mM_\omega}=\bigcup_{i\in\N}f^{\mM_i
 $$
 从而 $P^{\mM_i}=P^{\mM_\omega}|_{|\mM_i|},f^{\mM_i}=f^{\mM_\omega}|_{|\mM_i|}$ , 而对于常数符号的解释也是在 $\mM_0$ 就确定并一直不变的, 所以我们有 $\mM_i\subseteq\mM_\omega$ .
 
-	之后我们我们来验证 $\mM_i\prec\mM_\omega$ , 证明的策略是对 $L$ 上的公式 $\A$ 施以归纳 . 于是首先我们需要验证一个引理
+之后我们我们来验证 $\mM_i\prec\mM_\omega$ , 证明的策略是对 $L$ 上的公式 $\A$ 施以归纳 . 于是首先我们需要验证一个引理
 
 ###### Lem 1.  $\mA,\mB,\mC$ 是语言 $L$ 的模型并且 $\phi:\mA\to_{\prec}\mB,\psi:\mB\to_{\prec}\mC$ , 则 $\psi\circ\phi$ 是 $\mA\to\mC$ 的初等嵌入.
 
@@ -133,11 +133,11 @@ $$
 
 接下来我们对于 $L$ 上的公式 $\A(\vec x_n)$ 施以归纳来证明对于任意的 $i\in\N$ 以及 $j\in|\mM_i|^n$ 有 $\A[\ov j]^{\mM_i}=\t\iff\A[\ov j]^{\mM_\omega}=\t$ ,
 
-	如果 $\A$ 是原子公式, 则由于 $\mM_i\subseteq\mM_\omega$ 以及 I.6.23 可得, 对于任意 $j\in|\mM_i|^n$ 有 $\A[\ov j]^{\mM_i}=\t\iff\A[\ov j]^{\mM_\omega}=\t$ .
-	
-	如果 $\A$ 是经由逻辑联词得到的, 假设 $\A\eq\neg\B$ , 则对于 $j\in|\mM_i|^n$ 有 $\A[\ov j]^{\mM_i}=\t\iff \B[\ov j]^{\mM_i}=\f$ , 根据 I.H. 后者等价于 $\B[\ov j]^{\mM_\omega}=\f$ 亦即 $\A[\ov j]^{\mM_\omega}=\t$ ; 对于 $\A\eq\B\or\C$ 的情况, 同理经由 I.H. 可以平凡的验证这一结果.
-	
-	如果 $\A\eq\ex y\B(y,\vec x_n)$ , 那么对于 $j\in|\mM_i|^n$ , $\A[\ov j]^{\mM_\omega}=\t$ 当且仅当存在 $k\in|\mM_\omega|$ 使得 $\B[\ov k,\ov j]^{\mM_\omega}=\t$ . 根据我们对 $\mM_\omega$ 的构造, 存在充分大的 $l\in\N$ 使得 $k\in|\mM_l|$ , 而根据 I.H. 有 $\B[\ov k,\ov j]^{\mM_\omega}=\t\iff\B[\ov k,\ov j]^{\mM_l}=\t$ , 这就是在说: $\A[\ov j]^{\mM_\omega}=\t$ 当且仅当"存在 $l\in\N$ 以及 $k\in|\mM_l|$ 使得 $\B[\ov k,\ov j]^{\mM_l}=\t$ ", 即 $\A[\ov j]^{\mM_l}=\t$. 而根据 Lem 1 可得 $\mM_i\prec\mM_l$ , 从而 $\A[\ov j]^{\mM_l}=\t\iff\A[\ov j]^{\mM_i}=\t$ .
+如果 $\A$ 是原子公式, 则由于 $\mM_i\subseteq\mM_\omega$ 以及 I.6.23 可得, 对于任意 $j\in|\mM_i|^n$ 有 $\A[\ov j]^{\mM_i}=\t\iff\A[\ov j]^{\mM_\omega}=\t$ .
+
+如果 $\A$ 是经由逻辑联词得到的, 假设 $\A\eq\neg\B$ , 则对于 $j\in|\mM_i|^n$ 有 $\A[\ov j]^{\mM_i}=\t\iff \B[\ov j]^{\mM_i}=\f$ , 根据 I.H. 后者等价于 $\B[\ov j]^{\mM_\omega}=\f$ 亦即 $\A[\ov j]^{\mM_\omega}=\t$ ; 对于 $\A\eq\B\or\C$ 的情况, 同理经由 I.H. 可以平凡的验证这一结果.
+
+如果 $\A\eq\ex y\B(y,\vec x_n)$ , 那么对于 $j\in|\mM_i|^n$ , $\A[\ov j]^{\mM_\omega}=\t$ 当且仅当存在 $k\in|\mM_\omega|$ 使得 $\B[\ov k,\ov j]^{\mM_\omega}=\t$ . 根据我们对 $\mM_\omega$ 的构造, 存在充分大的 $l\in\N$ 使得 $k\in|\mM_l|$ , 而根据 I.H. 有 $\B[\ov k,\ov j]^{\mM_\omega}=\t\iff\B[\ov k,\ov j]^{\mM_l}=\t$ , 这就是在说: $\A[\ov j]^{\mM_\omega}=\t$ 当且仅当"存在 $l\in\N$ 以及 $k\in|\mM_l|$ 使得 $\B[\ov k,\ov j]^{\mM_l}=\t$ ", 即 $\A[\ov j]^{\mM_l}=\t$. 而根据 Lem 1 可得 $\mM_i\prec\mM_l$ , 从而 $\A[\ov j]^{\mM_l}=\t\iff\A[\ov j]^{\mM_i}=\t$ .
 
 ##### I.55
 
@@ -159,7 +159,7 @@ $$
 > 	
 > 	对于归纳情形, 假定 $\B(\vec x_n)\eq\ex z\C(\vec x_n,z)$ , 若 $\B[\ov i]^\mA=\t$ 则存在 $j\in|\mA|$ 使得 $\C[\ov i,\ov j]^\mA=\t$ , 根据 I.H. $\C[\ov i,\ov j]^\mB=\t$ , 从而 $\B[\ov i]^\mB=\t$ .
 
-	对于任意 $\A(\vec x_n)\in\Gamma$ , 对于任意的 $i\in|\mM_\omega|^n$ , 根据我们对于 $\momg$ 的构造, 存在充分大的 $k\in\N$ 使得 $i\in|\m_k|$ , 而根据前提每个 $\m_k$ 均为 $\Gamma$ 的模型故 $\m_k\vDash\A$ , 即 $\A[\ov i]^{\m_k}=\t$ , 又因为 $\m_k\subseteq\momg$ 且 $\Gamma$ 是归纳的, 故 $\A[\ov i]^\momg=\t$ , 从而 $\momg\vDash\A$ .
+对于任意 $\A(\vec x_n)\in\Gamma$ , 对于任意的 $i\in|\mM_\omega|^n$ , 根据我们对于 $\momg$ 的构造, 存在充分大的 $k\in\N$ 使得 $i\in|\m_k|$ , 而根据前提每个 $\m_k$ 均为 $\Gamma$ 的模型故 $\m_k\vDash\A$ , 即 $\A[\ov i]^{\m_k}=\t$ , 又因为 $\m_k\subseteq\momg$ 且 $\Gamma$ 是归纳的, 故 $\A[\ov i]^\momg=\t$ , 从而 $\momg\vDash\A$ .
 
 ##### I.56
 
@@ -211,7 +211,7 @@ $$
 
 首先显然 $h-1$ 是无穷数, 并且我们有 $\fa x[(x\not= 0\and N(x))\to(N(x-1))]$ , 因此 $h-1$ 是 $^*\R$ 中的"自然数". 
 
-	然而这并不与传达原理冲突, 因为一个"自然数"的非空子集没有最小值的前提是它不包含标准自然数, 而这样的一个子集我们是没法在 $L$ 中描述它的, 我们的语言的能力在区别无穷和有穷上是很有限的.
+然而这并不与传达原理冲突, 因为一个"自然数"的非空子集没有最小值的前提是它不包含标准自然数, 而这样的一个子集我们是没法在 $L$ 中描述它的, 我们的语言的能力在区别无穷和有穷上是很有限的.
 
 ##### I.64
 
@@ -222,7 +222,7 @@ $$
 
 它的意思是说, 对于任意正整数 $n$ , 我们在 $[a,b]$ 这个区间内采样 $n+1$ 个点, 它们是 $\{a+\frac{b-a}{n}\cdot k:0\le k\le n\}$ , 那么在这 $n+1$ 个点中, 存在一个点 $i$ 使得它上面的函数值大于等于其余的 $n$ 个点. 这句话在 $\mR$ 中当然是正确的, 于是由于 $\mR\prec{^*\mR}$ 故这句话在 $^*\mR$ 中也是正确的. 
 
-	根据前面的讨论我们知道存在无穷大自然数, 取出这样的一个无穷大自然数 $K$ , 那么我们可以把语句 $\A$ 中的 $n$ 替换为 $K$ , 因此存在另一个超自然数(标准或无穷大) $I$ 使得, 对于任意不超过 $K$ 的超自然数 $i$ 均有
+根据前面的讨论我们知道存在无穷大自然数, 取出这样的一个无穷大自然数 $K$ , 那么我们可以把语句 $\A$ 中的 $n$ 替换为 $K$ , 因此存在另一个超自然数(标准或无穷大) $I$ 使得, 对于任意不超过 $K$ 的超自然数 $i$ 均有
 $$
 ^*f(a+(b-a)\cdot\frac IK)\ge{^*f}(a+(b-a)\cdot\frac iK)
 $$
@@ -258,7 +258,7 @@ $$
 > $$
 > 它是在说, 如果我们将 $[a,b]$ 这个区间内采样 $n+1$ 个点 $\{a+\frac{b-a}{n}\cdot k:0\le k\le n\}$ , 那么一定存在两个相邻的点 $u,v$ 使得 $f(u)\le 0\le f(v)$ . 这在 $\mR$ 中显然是正确的, 因此它在 $^*\mR$ 中也是正确的, 所以我们取一个无穷大自然数 $K$ 并将其代入 $n$ , 则存在超自然数 $i$ 使得 $f(a+(b-a)\cdot\frac iK)\le 0\le f(a+(b-a)\cdot\frac{i+1}K)$ , 记 $I:=a+(b-a)\cdot\frac iK,I':=a+(b-a)\cdot\frac{i+1}K$ , 则不难注意到 $I'-I=\frac{b-a}K$ 是无穷小量, 故 $I'\approx I$ , 即 $\st(I')=\st(I)$ . 我们直接取 $\xi:=\st(I)$ , 由于 $f(I)\le 0\le f(I')$ 并且 $f$ 是连续函数, 所以有 $f(\xi)=f(\st(I))=\st(f(I))\le 0$ , 而另一方面 $f(\xi)=f(\st(I'))=\st(f(I'))\ge0$ , 从而有 $f(\xi)=0$ .
 
-	于是对于闭区间 $[a,b]$ , 由 I.64 我们可以假定其最小值最大值分别在 $x_1,x_2$ 处取得, 则对于任意 $a\in(f(x_1),f(x_2))$ 取 $g(x)=f(x)-a$ , 则 $g$ 连续并且 $g(x_1)<0<g(x_2)$ , 从而根据 Lem 1 存在零点 $\xi$ 使得 $g(\xi)=0$ , 即为 $f(\xi)=a$ .
+于是对于闭区间 $[a,b]$ , 由 I.64 我们可以假定其最小值最大值分别在 $x_1,x_2$ 处取得, 则对于任意 $a\in(f(x_1),f(x_2))$ 取 $g(x)=f(x)-a$ , 则 $g$ 连续并且 $g(x_1)<0<g(x_2)$ , 从而根据 Lem 1 存在零点 $\xi$ 使得 $g(\xi)=0$ , 即为 $f(\xi)=a$ .
 
 ##### I.66
 

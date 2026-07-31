@@ -92,7 +92,7 @@ $$
 ##### I.106
 
 首先 $\l xy.\gcd$ 是原始递归函数, 我们可以通过 bounded-$\m$ 配合 $\l xy.x|y$ 得到它, 从而固定长度的最小公倍数函数也是原始递归的, 之后我们可以通过原始递归来得到函数 $p:c\mapsto\lcm\{1,2,...,c+1\}$ , 这是因为 $p(c+1)=\lcm\{p(c),c+1\}$ , 从而 $\l c.p\in\p\r$ .
-	对于固定的输入长度 $n$ , 函数 $\vec a_n\mapsto\max\{1+J(0,n),1+J(1,a_1),...,1+J(n,a_n)\}$ 是原始递归的, 记 $\l c.p$ 与它的复合为 $\l\xn.\zeta$ , 之后我们可以构造函数
+对于固定的输入长度 $n$ , 函数 $\vec a_n\mapsto\max\{1+J(0,n),1+J(1,a_1),...,1+J(n,a_n)\}$ 是原始递归的, 记 $\l c.p$ 与它的复合为 $\l\xn.\zeta$ , 之后我们可以构造函数
 $$
 q':=\l\xn.\lcm\{1+(1+J(1,x_1))\cdot\zeta(\xn),...,1+(1+J(n,x_n))\cdot \zeta(\xn)\}
 $$
@@ -105,7 +105,7 @@ $$
 ##### I.107
 
 我们仅说明归纳步骤.
-	假定 $t\eq f(t_1,...,t_n)$ , 则 $t^\n=f^\n(t_1^\n,...,t_n^\n)$ , 根据 I.H. 我们有 $\rob\vdash t_i=\w{t_i^\n}$ 从而由 Leibniz 替换规则可以得到 $\rob\vdash t=f(\w{t_1^\n},...,\w{t_n^\n})$ . 如果 $f$ 是 $S$ 函数, 则我们有 $t\eq S(t_1)$ , 则根据定义此时 $S(\w{t_1^\n})$ 就是 $\w{t^\n}$ ; 如果 $f$ 是 $+$ 函数, 则由 $\rob({+_2})$ 可得对于任意 $a,b\in\N$ 均有 $\rob\vdash\w a+\w b=\w{a+b}$ , 故此时也有 $\rob\vdash t=\w{t^\n}$ ; 乘法函数的情形同理. 
+假定 $t\eq f(t_1,...,t_n)$ , 则 $t^\n=f^\n(t_1^\n,...,t_n^\n)$ , 根据 I.H. 我们有 $\rob\vdash t_i=\w{t_i^\n}$ 从而由 Leibniz 替换规则可以得到 $\rob\vdash t=f(\w{t_1^\n},...,\w{t_n^\n})$ . 如果 $f$ 是 $S$ 函数, 则我们有 $t\eq S(t_1)$ , 则根据定义此时 $S(\w{t_1^\n})$ 就是 $\w{t^\n}$ ; 如果 $f$ 是 $+$ 函数, 则由 $\rob({+_2})$ 可得对于任意 $a,b\in\N$ 均有 $\rob\vdash\w a+\w b=\w{a+b}$ , 故此时也有 $\rob\vdash t=\w{t^\n}$ ; 乘法函数的情形同理. 
 
 ##### I.108
 
@@ -122,8 +122,8 @@ $$
 ##### I.110
 
 我们对 $y$ 施以归纳来证明, 公式 $\A:\eq x\times y=z$ 定义之.
-	当 $y=0$ 时, 当 $z=0$ 时, 由 $\rob(\times_1)$ 可以得到 $\rob\vdash\w x\times \w y=0$ , 当 $z\not=0$ 时, 显然我们有 $\rob\vdash\neg 0=\w z$ 从而有 $\rob\vdash\neg\w x\times\w y=\w z$ .
-	当 $y=q+1$ 时则 $\rob\vdash\w x\times\w y=\w x\times S\w q$ 从而有 $\rob\vdash\w x\times\w y=\w x\times\w q+\w x$ , 由 I.H. 以及加法的 $\rob$ 可表示性可以立即得出.
+当 $y=0$ 时, 当 $z=0$ 时, 由 $\rob(\times_1)$ 可以得到 $\rob\vdash\w x\times \w y=0$ , 当 $z\not=0$ 时, 显然我们有 $\rob\vdash\neg 0=\w z$ 从而有 $\rob\vdash\neg\w x\times\w y=\w z$ .
+当 $y=q+1$ 时则 $\rob\vdash\w x\times\w y=\w x\times S\w q$ 从而有 $\rob\vdash\w x\times\w y=\w x\times\w q+\w x$ , 由 I.H. 以及加法的 $\rob$ 可表示性可以立即得出.
 
 ##### I.111
 
@@ -141,9 +141,9 @@ n\in A\iff g(n)\in\Theta_\rob
 $$
 因此 $A\subseteq\N$ 是 $\re$ 集.
 
-	如果我们去掉 positively , 那么对于 $x\in\N$ 我们可以借助 $\m$ 算符来枚举证明序列 $m$ 的编码直到它证明了 $\A(\w x)$ 或 $\neg\A(\w x)$ , 由二值性我们知道这样的 $m$ 一定存在, 所以我们构造出了一个递归函数来判别 $\A(\w x)$ 与 $\neg\A(\w x)$ 谁是内定理. 因此 $A$ 是递归的, 所以也必然是 $\re$ 的.
-	
-	逆命题是正确的, 若 $A$ 是 $\re$ 集, 则存在原始递归集 $\l xy.Q$ 使得 $A(x)\lra(\ex y)Q(x,y)$ , 而我们知道 $Q$ 是 $\rob$ 中强可定义的, 令 $\Q(x,y)$ 表示之, 则考虑公式 $(\ex y)\Q(x,y)$ , 若 $x\in A$ , 则存在 $z$ 使得 $Q(x,z)$ , 根据 $\Q$ 的定义有 $\rob\vdash \Q(\w x,\w z)$ , 从而 $\rob\vdash(\ex y)\Q(\w x,y)$ ; 令一方面, 若 $x\notin A$ , 我们通过模型论的方法来说明 $\rob\not\vdash(\ex y)\Q(\w x,y)$ , 此时我们只需要证明 $\rob\cup\{\neg(\ex y)\Q(\w x,y)\}$ 是一致的即可, 考虑标准在标准模型中, 由于 $x\notin A$ , 故 $\neg(\ex y)Q(x,y)$ , 而由于 $\Q$ 在 $\n$ 中定义 $Q$ , 故我们有 $\n\vDash\neg(\ex y)\Q(\w x,y)$ , 从而这个公式和 $\rob$ 是一致的.
+如果我们去掉 positively , 那么对于 $x\in\N$ 我们可以借助 $\m$ 算符来枚举证明序列 $m$ 的编码直到它证明了 $\A(\w x)$ 或 $\neg\A(\w x)$ , 由二值性我们知道这样的 $m$ 一定存在, 所以我们构造出了一个递归函数来判别 $\A(\w x)$ 与 $\neg\A(\w x)$ 谁是内定理. 因此 $A$ 是递归的, 所以也必然是 $\re$ 的.
+
+逆命题是正确的, 若 $A$ 是 $\re$ 集, 则存在原始递归集 $\l xy.Q$ 使得 $A(x)\lra(\ex y)Q(x,y)$ , 而我们知道 $Q$ 是 $\rob$ 中强可定义的, 令 $\Q(x,y)$ 表示之, 则考虑公式 $(\ex y)\Q(x,y)$ , 若 $x\in A$ , 则存在 $z$ 使得 $Q(x,z)$ , 根据 $\Q$ 的定义有 $\rob\vdash \Q(\w x,\w z)$ , 从而 $\rob\vdash(\ex y)\Q(\w x,y)$ ; 令一方面, 若 $x\notin A$ , 我们通过模型论的方法来说明 $\rob\not\vdash(\ex y)\Q(\w x,y)$ , 此时我们只需要证明 $\rob\cup\{\neg(\ex y)\Q(\w x,y)\}$ 是一致的即可, 考虑标准在标准模型中, 由于 $x\notin A$ , 故 $\neg(\ex y)Q(x,y)$ , 而由于 $\Q$ 在 $\n$ 中定义 $Q$ , 故我们有 $\n\vDash\neg(\ex y)\Q(\w x,y)$ , 从而这个公式和 $\rob$ 是一致的.
 
 ##### I.114
 
@@ -197,7 +197,7 @@ $$
 ##### I.118
 
 ($\Rightarrow$) 令公式 $\F(y,\xn)$ 作为函数定义 $\l\xn.f$ , 则对于任意 $b,\vec a_n\in\N$ , 若 $b=f(\vec a_n)$ , 则 $\Gamma\vdash\F(\w b,\w a_1,...,\w a_n)$ ; 而若 $b\not=f(\vec a_n)$ , 则 $\Gamma\vdash\F(\w b,\w a_1,...,\w a_n)\lra\w b=\w{f(\vec a_n)}$ , 从而 $\Gamma\vdash\neg\F(\w b,\w a_1,...,\w a_n)$ . 因此公式 $\F$ 恰好能够定义 $f$ 的图. 并且对于 $b=f(\vec a_n)$ , $\Gamma\vdash\F(y,\w a_1,...,\w a_n)\lra y=\w b$ 天然蕴涵 $\Gamma\vdash\F(y,\w a_1,...,\w a_n)\to y=\w b$ .
-	($\Leftarrow$) 令 $\F(y,\xn)$ 满足如下要求, 则对于任意的 $b,\vec a_n\in\N$ , 若 $b=f(\vec a_n)$ 则 $\Gamma\vdash\F(\w  b,\w a_1,...,\w a_n)$ , 从而根据逻辑公理有 $\vdash y=\w b\to(\F(\w b,\w a_1,...,\w a_n)\lra\F(y,\w a_1,...,\w a_n))$ , 从而有 $\Gamma\vdash y=\w b\to\F(y,\w a_1,...,\w a_n)$ , 而另一个方向则直接由 (ii) 提供, 从而 $\Gamma\vdash\F(y,\w a_1,...,\w a_n)\lra y=\w b$ .
+($\Leftarrow$) 令 $\F(y,\xn)$ 满足如下要求, 则对于任意的 $b,\vec a_n\in\N$ , 若 $b=f(\vec a_n)$ 则 $\Gamma\vdash\F(\w  b,\w a_1,...,\w a_n)$ , 从而根据逻辑公理有 $\vdash y=\w b\to(\F(\w b,\w a_1,...,\w a_n)\lra\F(y,\w a_1,...,\w a_n))$ , 从而有 $\Gamma\vdash y=\w b\to\F(y,\w a_1,...,\w a_n)$ , 而另一个方向则直接由 (ii) 提供, 从而 $\Gamma\vdash\F(y,\w a_1,...,\w a_n)\lra y=\w b$ .
 
 ##### I.119
 
@@ -233,7 +233,7 @@ n\in f^{-1}[A]&\iff \rob\vdash\A(\w{f(n)})\\
 \el
 $$
 从而集合 $f^{-1}[A]$ 被公式 $\B$ 在 $\rob$ 中正向强定义.
-	(2) 之后我们给出递归论证法, 由 I.113 及其逆命题, 在 $\rob$ 中正向强可定义集与 $\re$ 集描述的是同一个类. 因此 $A$ 是 $\re$ 的, 我们仅需要证明 $f^{-1}[A]$ 是 $\re$ 的, 由 I.119 可得函数 $f$ 的图是 $\rob$ 中可定义, 之后我们考虑一个引理
+(2) 之后我们给出递归论证法, 由 I.113 及其逆命题, 在 $\rob$ 中正向强可定义集与 $\re$ 集描述的是同一个类. 因此 $A$ 是 $\re$ 的, 我们仅需要证明 $f^{-1}[A]$ 是 $\re$ 的, 由 I.119 可得函数 $f$ 的图是 $\rob$ 中可定义, 之后我们考虑一个引理
 ###### Lem 1.  若 $R\subseteq\N$ 是 $\rob$ 中可定义的, 那么它也是 $\rob$ 中强可定义的
 
 > 根据假设, 存在公式 $\R(x)$ 使得对于任意的 $n\in\N$ 
@@ -304,7 +304,7 @@ $$
 ##### I.125
 
 由 I.9.41, I.9.42, I.9.46 可以得到除了 $\l xy.x\ \dot-\ y$ 的图的其他函数的图的可表示性, 而利用 $\l xy.x<y$ 我们也可以比较容易地得到 $\l xy.x\ \dot-\ y$ 的图的可表示性, 再由 I.119 可得所有归纳基础的函数都是 $\rob$ 作为函数可定义的.
-	对于函数的复合, 令 $\l\xn.f,\l\xm.g_i(1\le i\le n)\in\r'$ , 假设这 $n+1$ 个函数的图分别被公式 $\F(y,\xn)$ 以及 $\G_i(y,\xm)(1\le i\le n)$ 作为函数定义, 则对于它们的复合 $h:=\l\xm.f(g_1(\xm),...,g_n(\xm))$ , 我们考虑公式
+对于函数的复合, 令 $\l\xn.f,\l\xm.g_i(1\le i\le n)\in\r'$ , 假设这 $n+1$ 个函数的图分别被公式 $\F(y,\xn)$ 以及 $\G_i(y,\xm)(1\le i\le n)$ 作为函数定义, 则对于它们的复合 $h:=\l\xm.f(g_1(\xm),...,g_n(\xm))$ , 我们考虑公式
 $$
 \H(y,\xm):\eq(\ex\vec y_n)\F(y,\vec y_n)\and\bigwedge_{i=1}^n\G_i(y_i,\xm)
 $$
@@ -317,7 +317,7 @@ $$
 (\fa\vec y_n)\bigwedge_{i=1}^ny_i=\w{g_i(\vec a_m)}\to\neg\F(\w b,\vec y_n)
 $$
 仿照 I.120 的证明方法我们可以由 $\rob\vdash\neg\F(\w b,\w{g_1(\vec a_m)},...,\w{g_n(\vec a_m)})$ 轻易地得到上式的 $\rob$-可证性, 从而公式 $\H$ 表达了 $h$ 的图, 再由 I.119 可以的到 $h$ 在 $\rob$ 中作为函数的可定义性.
-	对于 $\m$ 算符, 假设正则 $\l z\xn.g\in\r'$ 被公式 $\G(y,z,\xn)$ 作为函数表示, 对于 $f:=\l \xn.(\m z)g(z,\xn)$,  考虑公式
+对于 $\m$ 算符, 假设正则 $\l z\xn.g\in\r'$ 被公式 $\G(y,z,\xn)$ 作为函数表示, 对于 $f:=\l \xn.(\m z)g(z,\xn)$,  考虑公式
 $$
 \F(y,\xn):=\G(0,y,\xn)\and(\fa z)_{<y}\neg\G(0,z,\xn)
 $$

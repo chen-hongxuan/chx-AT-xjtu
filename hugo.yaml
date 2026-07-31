@@ -32,6 +32,7 @@ markup:
             - ["$$", "$$"]
           inline:
             - ["\\(", "\\)"]
+            - ["$", "$"]
   highlight:
     codeFences: true
     guessSyntax: false

@@ -49,7 +49,7 @@ trivial.
 
 令关系 $R:=\{(y,\vec x_n):y=f(\vec x_n)\}$ 的特征函数为 $\chi$ 则, $\chi\in\r$ . 于是我们考虑函数 $f':=\l\vec x_n.(\m y)\chi(y,\vec x_n)$ , 则根据定义 $f'\in\p$ , 而我们容易验证, 对于任意的 $\xn$ 均有 $f'(\xn)\dd$ 并且 $f'(\xn)=f(\xn)$ , 从而 $f'\in\r$ 并且 $f=f'$ , 从而 $f\in\r$ .
 
-	$f$ 是全函数这一点是必要的, 不然 $f'$ 就不是全函数了.
+$f$ 是全函数这一点是必要的, 不然 $f'$ 就不是全函数了.
 
 ##### I.70
 
@@ -79,7 +79,7 @@ $$
 $$
 f':=\l\x.((\m z)Q'(z,\x))_1
 $$
-	接下来我们说明 $f'$ 是递归函数并且 $f'=f$ . 首先显然有 $f'\in\p$ , 对于输入 $\x$ , 总是存在 $y$ 使得 $(y,\x)\in R$ , 从而根据 $Q$ 的构造可得存在 $z'$ 使得 $(z',y,\x)\in Q$ , 于是取 $z:=\la{z',y}$ 可得 $(z,\x)\in Q'$ , 从而 $f'(x)\dd$ , 因此 $f'\in\r$ ; 同时对于每个输入 $\x$ , 这样的 $y_0$ 是唯一的, 所以对于所有满足 $(z,\x)\in Q'$ 的 $z$ 均有 $((z)_0,(z)_1,\x)\in Q$ 从而有 $((z)_1,\x)\in R$ , 因此一定有 $(z)_1=y_0$ , 所以对于所有 $\x$ 均有 $f'(\x)=f(\x)$ , 因此 $f'=f$ .
+接下来我们说明 $f'$ 是递归函数并且 $f'=f$ . 首先显然有 $f'\in\p$ , 对于输入 $\x$ , 总是存在 $y$ 使得 $(y,\x)\in R$ , 从而根据 $Q$ 的构造可得存在 $z'$ 使得 $(z',y,\x)\in Q$ , 于是取 $z:=\la{z',y}$ 可得 $(z,\x)\in Q'$ , 从而 $f'(x)\dd$ , 因此 $f'\in\r$ ; 同时对于每个输入 $\x$ , 这样的 $y_0$ 是唯一的, 所以对于所有满足 $(z,\x)\in Q'$ 的 $z$ 均有 $((z)_0,(z)_1,\x)\in Q$ 从而有 $((z)_1,\x)\in R$ , 因此一定有 $(z)_1=y_0$ , 所以对于所有 $\x$ 均有 $f'(\x)=f(\x)$ , 因此 $f'=f$ .
 
 ##### I.72
 
@@ -156,7 +156,7 @@ $$
 
 从而对于所有输入 $x,y\in\N$ 均有 $\bb e(x,y)=h$ 故 $h\in\p$ .
 
-	事实上对于任意 $x\in\N$ 我们有
+事实上对于任意 $x\in\N$ 我们有
 $$
 h(0,x)=\left\{\bl
 &\aa&\if&x=0\\
@@ -184,7 +184,7 @@ F:=\l zy\x.sw(f(y,\x),y,U(z,y+1,\x))
 $$
 则取不动点 $e\in\Phi$ 可得 $\l y\x.F(e,y,\x)=\bb e$ , 从而对于任意输入 $y,\x\in\N$ 均有 $\bb e(y,\x)=sw(f(y,\x),y,\bb e(y+1,\x))$ .
 
-	而事实上 $\l\x.g(0,\x)$ 就是 $\l\x.(\m y)f(y,\x)$ .
+而事实上 $\l\x.g(0,\x)$ 就是 $\l\x.(\m y)f(y,\x)$ .
 
 ##### I.80
 
@@ -210,7 +210,7 @@ $$
 
 (1) 不是. 记集合 $\bb{x\in\N:\bb x(x)=0}$ 为 $K'$ , 则上述构造的 $e,e'$ 满足 $e\in K',e\notin K$ , 注意到 $K'\subseteq K$ 因此 $e'\notin K'$ , 则可以通过类似的论证证明 $K'$ 不是完全指标集.
 
-	(2) 不是. 事实上似乎存在归约的聪明证法, 但是我比较蠢, 所以也只能从对角线出发. 考虑证明 $\ov{K'}$ 不是半递归的, 假定是, 则根据 I.8.42 存在 $\l x.f\in\p$ 使得对于任意 $x\in\N$
+(2) 不是. 事实上似乎存在归约的聪明证法, 但是我比较蠢, 所以也只能从对角线出发. 考虑证明 $\ov{K'}$ 不是半递归的, 假定是, 则根据 I.8.42 存在 $\l x.f\in\p$ 使得对于任意 $x\in\N$
 $$
 x\in\ov{K'}\iff f(x)=0
 $$
@@ -220,13 +220,13 @@ $$
 $$
 取 $x$ 为 $i$ 即可轻易得出矛盾.
 
-	(3) 是. 取谓词 $(\ex z)(T^{(1)}(x,x,z)\and (z)_0=0)$ 即可.
+(3) 是. 取谓词 $(\ex z)(T^{(1)}(x,x,z)\and (z)_0=0)$ 即可.
 
 ##### I.82
 
 不一定, 以下给出两种 $f\in\r$ 的选取, 分别使得 $\bb{x\in\N:\bb{f(x)}(x)\dd}$ 是/不是 完全指标集.
-	(1) 取 $f:=\lambda x.0$ , 则 $f(x)=0\notin\Phi$ 从而 $\bb{x\in\N:\bb{f(x)}(x)\dd}=\empty$ , 显然这是一个完全指标集.
-	(2) 取 $f:=\l x.x$ , 则 $\bb{x\in\N:\bb{f(x)}(x)\dd}=K$ 不是完全指标集.
+(1) 取 $f:=\lambda x.0$ , 则 $f(x)=0\notin\Phi$ 从而 $\bb{x\in\N:\bb{f(x)}(x)\dd}=\empty$ , 显然这是一个完全指标集.
+(2) 取 $f:=\l x.x$ , 则 $\bb{x\in\N:\bb{f(x)}(x)\dd}=K$ 不是完全指标集.
 
 ##### I.83
 
@@ -241,9 +241,9 @@ $$
 \tau:=\l xy.\U 1(sw(H(a,y,\psi(x,y)),a,b),y)
 $$
 假设它的指标为 $i_0$ , 则根据 S-m-n 定理可得对于任意 $x\in\N$ 均有 $\l y.\tau(x,y)=\{\sigma(i_0,x)\}$ , 接下来我们证明 $\l x.\sigma(i_0,x)$ 是我们想要的那个归约函数 $f$.
-	对于 $x\in K$ , 则存在 $u$ 使得 $(x,x,u)\in T^{(1)}$ , 因而对于任意 $y\in\N$ 均有 $\psi(x,y)\dd$ . 如果 $\bb b(y)\aa$ 则根据构造 $\tau(x,y)\aa$ ; 而如果 $\bb b(y)\dd$ 并且 $\bb a(y)\aa$ (事实上一定存在这样的 $y$ , 若不然则由 $\bb a\subseteq\bb b$ 可以推出 $\bb a=\bb b$ , 这与 $\bb b\notin A$ 矛盾),  则显然对于任意的 $u$ 均有 $(a,y,u)\notin H$ , 所以这个时候 $\tau(x,y)=\U 1(b,y)=\bb b(y)$ ; 而如果 $\bb b(y)\aa$ 则此时有 $\tau(x,y)\aa$ . 综上所述, 此时 $\bb{\sigma(i_0,x)}=\l y.\tau(x,y)=\bb b$ .
-	对于 $x\notin K$ , 则对于任意 $u$ 均有 $(x,x,u)\notin H$ , 所以 $\psi(x,y)\dd$ 当且仅当 $\bb a(y)\dd$ . 注意这个时候我们实际上已经讨论过 $\bb a(y)\aa$ 的情形了, 所以只需要验证当 $\bb a(y)\dd$ 的时候 $\tau (x,y)=\bb a(y)$ 即可, 根据 $x\notin K$ 的假设, 当 $\bb a(y)\dd$ 时显然有 $(a,y,\psi(x,y))\in H$ 所以实际上 $\tau(x,y)=\U1(a,y)=\bb a(y)$ .  综上所述, 此时 $\bb{\sigma(i_0,x)}=\l y.\tau(x,y)=\bb a$.
-	而 $\l x.\sigma(i_0,x)$ 的单射性是显而易见的并且它还是原始递归的, 所以我们有对于任意 $x\in\N$
+对于 $x\in K$ , 则存在 $u$ 使得 $(x,x,u)\in T^{(1)}$ , 因而对于任意 $y\in\N$ 均有 $\psi(x,y)\dd$ . 如果 $\bb b(y)\aa$ 则根据构造 $\tau(x,y)\aa$ ; 而如果 $\bb b(y)\dd$ 并且 $\bb a(y)\aa$ (事实上一定存在这样的 $y$ , 若不然则由 $\bb a\subseteq\bb b$ 可以推出 $\bb a=\bb b$ , 这与 $\bb b\notin A$ 矛盾),  则显然对于任意的 $u$ 均有 $(a,y,u)\notin H$ , 所以这个时候 $\tau(x,y)=\U 1(b,y)=\bb b(y)$ ; 而如果 $\bb b(y)\aa$ 则此时有 $\tau(x,y)\aa$ . 综上所述, 此时 $\bb{\sigma(i_0,x)}=\l y.\tau(x,y)=\bb b$ .
+对于 $x\notin K$ , 则对于任意 $u$ 均有 $(x,x,u)\notin H$ , 所以 $\psi(x,y)\dd$ 当且仅当 $\bb a(y)\dd$ . 注意这个时候我们实际上已经讨论过 $\bb a(y)\aa$ 的情形了, 所以只需要验证当 $\bb a(y)\dd$ 的时候 $\tau (x,y)=\bb a(y)$ 即可, 根据 $x\notin K$ 的假设, 当 $\bb a(y)\dd$ 时显然有 $(a,y,\psi(x,y))\in H$ 所以实际上 $\tau(x,y)=\U1(a,y)=\bb a(y)$ .  综上所述, 此时 $\bb{\sigma(i_0,x)}=\l y.\tau(x,y)=\bb a$.
+而 $\l x.\sigma(i_0,x)$ 的单射性是显而易见的并且它还是原始递归的, 所以我们有对于任意 $x\in\N$
 $$
 \bl
 x\in\ov K\implies \{\sigma(i_0,x)\}=\bb a\implies \sigma(i_0,x)\in A\\
@@ -274,7 +274,7 @@ $$
 > $$
 > 显然 $\psi_{\ov K}\in\p$ , 接下来我们证明它是集合 $\ov K$ 的产生函数. 对于任意 $e\in\N$ 满足 $W_e\subseteq\ov K$ , 假设 $e\in W_e$ , 则根据定义 $e\in K$ , 从而 $W_e\cap K\not=\empty$ , 这与 $W_e\subseteq \ov K$ 矛盾, 从而 $e\notin W_e$ , 因此 $e\notin K$ 即 $e\in\ov K$ , 于是这个 $e$ 恰好就是我们的目标元素.
 
-	之后我们开始构造归约, 首先关注之前构造出来的函数 $\l x.\sigma(i_0,x)$ , 记之为 $\o$ , 则我们有 $x\in\ov K\iff \o(x)\in A$ , 并且这个 $\o$ 是单射, 所以实际上 $\o$ 是 $\ov K$ 到 $A$ 的双射, 因而我们可以构造 $\o$ 的逆函数
+之后我们开始构造归约, 首先关注之前构造出来的函数 $\l x.\sigma(i_0,x)$ , 记之为 $\o$ , 则我们有 $x\in\ov K\iff \o(x)\in A$ , 并且这个 $\o$ 是单射, 所以实际上 $\o$ 是 $\ov K$ 到 $A$ 的双射, 因而我们可以构造 $\o$ 的逆函数
 $$
 \no:=\l x.(\m y)[y=\o(x)]
 $$
@@ -327,7 +327,7 @@ $$
 y=f(\xn)\iff(\ex z)F(\xn,y,z)
 $$
 因此根据 I.8.49 可得 $\l \xn y.y=f(\xn)$ 是半递归的.
-	($\Leftarrow$) 设函数 $\l y\xn.g\in\p$ 使得对于任意 $\xn,y\in\N$ 均有 $y=f(\xn)\iff g(y,\xn)\dd$ , 则取 $g$ 的指标 $i'$ , 则取函数
+($\Leftarrow$) 设函数 $\l y\xn.g\in\p$ 使得对于任意 $\xn,y\in\N$ 均有 $y=f(\xn)\iff g(y,\xn)\dd$ , 则取 $g$ 的指标 $i'$ , 则取函数
 $$
 f':=\l\xn.Sel^{(n)}(i',\xn)
 $$
@@ -454,7 +454,7 @@ F:=\l zx.\left\{
 \right.
 $$
 并取满足 $\l x.F(e,x)=\bb{e}$ 的指标 $e\in\Phi$ , 则可以验证 $\bb e=f'$ , 从而 $f'\in\p$ , 而显然 $f'$ 是全函数, 故 $f'\in\r$ , 并且根据构造 $R=\ran f'$ , 因此单调不降的递归函数 $f'$ 即为题目所求.
-	($\Leftarrow$) 设 $\l x.f'\in\r$ 是单调不降的, 并且 $R=\ran f'$ , 首先显然有 $f'(0)\in R$ , 故 $R$ 非空. 如果 $R$ 有穷, 那么显然 $R$ 是递归集, 所以我们仅关注 $R$ 是无穷集的情形, 令部分递归函数
+($\Leftarrow$) 设 $\l x.f'\in\r$ 是单调不降的, 并且 $R=\ran f'$ , 首先显然有 $f'(0)\in R$ , 故 $R$ 非空. 如果 $R$ 有穷, 那么显然 $R$ 是递归集, 所以我们仅关注 $R$ 是无穷集的情形, 令部分递归函数
 $$
 \fd:=\l y.(\m x)[f'(x)\ge y]
 $$
@@ -477,7 +477,7 @@ F:=\l zx.\left\{
 $$
 
 之后我们取递归定理的 $e\in\Phi$ 使得 $\l x.F(e,x)=\bb e$ , 则可以通过归纳法来证明对于任意的 $x\in\N$ 均有 $\bb e(x)\dd$ , 因此 $\bb e\in\r$ , 并且事实上 $\bb e$ 就是从小到大遍历 $R$ 中的元素, 它是严格增的并且满足 $\ran\bb e=R$ .
-	($\Leftarrow$) 同理 I.94 .
+($\Leftarrow$) 同理 I.94 .
 
 ##### I.96
 

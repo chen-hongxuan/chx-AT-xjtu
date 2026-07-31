@@ -106,11 +106,11 @@ $$
 
 考虑对 $L$ 上的公式 $\C$ 施以归纳
 
-	当 $\C$ 是原子公式的时候，假定 $\C\equiv P(t_1...t_k)$ 或者 $\C\equiv t_1=t_2$，那么对于任意的一个将 $\C$ 中的若干子公式 $\A$ 替换为 $\B$ 后得到的公式 $\C'$ 均有 $\C\equiv\C'$ ，从而 $\C\lra\C'$ 是逻辑公理 .
-	
-	对于逻辑连词的情形，若 $\C\equiv\neg\D$ ，那么对于任意的 $\C'$ 存在 $\D'$ 使得 $\C'\equiv\neg\D'$ ，根据 I.H. 有 $\Gamma\vdash\D\lra\D'$ ，而 $(\D\lra\D')\to (\neg\D\lra\neg\D')$ 是逻辑公理，故应用 MP 即可得到 $\Gamma\vdash\neg\D\lra\neg\D'$ 即 $\C\lra\C'$；若 $\C\eq\D\or\E$ ，则对于任意的 $\C'$ 存在 $\D',\E'$ 使得 $\C'\eq\D'\or\E'$ ，并且根据 I.H. 有 $\Gamma\vdash\D\lra\D',\E\lra\E'$ ，而 $\D\lra\D',\E\lra\E'\vDash_{\bf Taut}(\D\or\E)\lra(\D'\or\E')$ ，故有 $\Gamma\vdash(\D\or\E)\lra(\D'\or\E')$ 即 $\C\lra\C'$ .
-	
-	当 $\C\eq\ex x\D$ 时，对于任意 $\C'$ 存在 $\D'$ 使得 $\Gamma\vdash\D\lra\D'$ 且 $\C'\eq\ex x\D'$ ，则 $\C\lra\C'\eq\ex x\D\lra\ex x\D'$ ，由 I.4.23 可得 $\D\to\D'\vdash\ex x\D\to\ex x\D'$ 以及 $\D'\to\D\vdash\ex x\D'\to\ex x\D$ 从而有 $\Gamma\vdash\ex x\D\lra\ex x\D'$ 即 $\C\lra\C'$ .
+当 $\C$ 是原子公式的时候，假定 $\C\equiv P(t_1...t_k)$ 或者 $\C\equiv t_1=t_2$，那么对于任意的一个将 $\C$ 中的若干子公式 $\A$ 替换为 $\B$ 后得到的公式 $\C'$ 均有 $\C\equiv\C'$ ，从而 $\C\lra\C'$ 是逻辑公理 .
+
+对于逻辑连词的情形，若 $\C\equiv\neg\D$ ，那么对于任意的 $\C'$ 存在 $\D'$ 使得 $\C'\equiv\neg\D'$ ，根据 I.H. 有 $\Gamma\vdash\D\lra\D'$ ，而 $(\D\lra\D')\to (\neg\D\lra\neg\D')$ 是逻辑公理，故应用 MP 即可得到 $\Gamma\vdash\neg\D\lra\neg\D'$ 即 $\C\lra\C'$；若 $\C\eq\D\or\E$ ，则对于任意的 $\C'$ 存在 $\D',\E'$ 使得 $\C'\eq\D'\or\E'$ ，并且根据 I.H. 有 $\Gamma\vdash\D\lra\D',\E\lra\E'$ ，而 $\D\lra\D',\E\lra\E'\vDash_{\bf Taut}(\D\or\E)\lra(\D'\or\E')$ ，故有 $\Gamma\vdash(\D\or\E)\lra(\D'\or\E')$ 即 $\C\lra\C'$ .
+
+当 $\C\eq\ex x\D$ 时，对于任意 $\C'$ 存在 $\D'$ 使得 $\Gamma\vdash\D\lra\D'$ 且 $\C'\eq\ex x\D'$ ，则 $\C\lra\C'\eq\ex x\D\lra\ex x\D'$ ，由 I.4.23 可得 $\D\to\D'\vdash\ex x\D\to\ex x\D'$ 以及 $\D'\to\D\vdash\ex x\D'\to\ex x\D$ 从而有 $\Gamma\vdash\ex x\D\lra\ex x\D'$ 即 $\C\lra\C'$ .
 
 ##### I.16
 
@@ -141,7 +141,7 @@ $$
 
 对 $L$ 上的公式 $\C$ 施以归纳
 
-	当 $\C$ 是原子公式的时候，假定 $\C\eq P(t_1'...t_k')$ 或者 $\C\eq t_1'=t_2'$ ，对于任意一个 $\C'$ ，由于公式的构成是一个树形结构，所以我们总是可以选择若干个在 $\C$ 中没出现过的变元 $z_1...z_m$ 并且把这些变元替换掉 $\C$ 中需要被替换的位置，从而构造出一个公式 $\C^*[z_1...z_m]$ 使得 $\C^*[z_1...z_m\leftarrow t_{i_1}...t_{i_m}]\eq\C$ 且 $\C^*[z_1...z_m\leftarrow s_{i_1}...s_{i_m}]\eq\C'$ ，于是根据公式 $\C^*$ 就可以定义两个长度为 $m+1$ 的公式序列 $\langle\A_i:0\le i\le m\rangle,\langle\B_i:0\le i\le m\rangle$
+当 $\C$ 是原子公式的时候，假定 $\C\eq P(t_1'...t_k')$ 或者 $\C\eq t_1'=t_2'$ ，对于任意一个 $\C'$ ，由于公式的构成是一个树形结构，所以我们总是可以选择若干个在 $\C$ 中没出现过的变元 $z_1...z_m$ 并且把这些变元替换掉 $\C$ 中需要被替换的位置，从而构造出一个公式 $\C^*[z_1...z_m]$ 使得 $\C^*[z_1...z_m\leftarrow t_{i_1}...t_{i_m}]\eq\C$ 且 $\C^*[z_1...z_m\leftarrow s_{i_1}...s_{i_m}]\eq\C'$ ，于是根据公式 $\C^*$ 就可以定义两个长度为 $m+1$ 的公式序列 $\langle\A_i:0\le i\le m\rangle,\langle\B_i:0\le i\le m\rangle$
 $$
 \A_0:\eq\C^*\ ;\A_{k+1}:\eq\A_k[z_{k+1}\leftarrow t_{i_{k+1}}]\\
 \B_0:\eq\C^*\ ;\B_{k+1}:\eq\B_k[z_{k+1}\leftarrow s_{i_{k+1}}]
@@ -153,7 +153,7 @@ $$
 
 从而得到 $\Gamma\vdash \A_m\lra\B_m$ 即 $\C\lra\C'$ .
 
-	逻辑连词和量词的情形与 I.15 是类似的，也是平凡的，故略去.
+逻辑连词和量词的情形与 I.15 是类似的，也是平凡的，故略去.
 
 ##### I.19
 
@@ -174,17 +174,17 @@ $$
 
 首先来证明 $\vdash\fa x(\A\and\B)\lra(\fa x\A\and\fa x\B)$  
 
-	$(\to)$ 首先由 Specialization 可得 $\vdash\fa x(\A\and\B)\to(\A\and\B)$ ，进一步有 $\A\and\B\vDash_{\bf Taut}\A,\B$ ，之后经由 $\Ax.1$ 以及几次 MP 可以得到 $\vdash\fa x(\A\and\B)\to\A,\fa x(\A\and\B)\to\B$ ，再由 $\fa$-introduction 得到 $\vdash\fa x(\A\and\B)\to\fa x\A,\fa x(\A\and\B)\to\fa x\B$ ，而又有 $\C\to\D,\C\to\E\vDash_{\bf Taut}\C\to(\D\and\E)$ ，从而有 $\vdash\fa x(\A\and\B)\to(\fa x\A\and\fa x\B)$ .
-	
-	$(\leftarrow)$ 首先由 $\vdash(\fa x\A\and\fa x\B)\to\fa x\A,\fa x\A\to\A$ 可以得到 $\vdash(\fa x\A\and\fa x\B)\to\A$ 类似的还有 $\vdash(\fa x\A\and\fa x\B)\to\B$ ，从而有 $\vdash(\fa x\A\and\fa x\B)\to(\A\and\B)$ ，之后由 $\fa$-introduction 可得 $\vdash(\fa x\A\and\fa x\B)\to\fa x(\A\and\B)$ .
-	
-	接下来我们来证明 $\vdash\ex x(\A\or\B)\lra(\ex x\A\or\ex x\B)$ ，事实上可以把存在量词的情形看作全称量词的情形的一个实例，首先注意到 $\vdash\ex x(\A\or\B)\lra \neg\fa x(\neg\A\and\neg\B),(\ex x\A\or\ex x\B)\lra \neg(\fa x\neg\A\and\fa x \neg\B)$ ，于是令 $\A':\eq\neg\A,\B':\eq\neg\B$ ，之后通过 I.4.25 即可得到存在量词的情形的证明.
+$(\to)$ 首先由 Specialization 可得 $\vdash\fa x(\A\and\B)\to(\A\and\B)$ ，进一步有 $\A\and\B\vDash_{\bf Taut}\A,\B$ ，之后经由 $\Ax.1$ 以及几次 MP 可以得到 $\vdash\fa x(\A\and\B)\to\A,\fa x(\A\and\B)\to\B$ ，再由 $\fa$-introduction 得到 $\vdash\fa x(\A\and\B)\to\fa x\A,\fa x(\A\and\B)\to\fa x\B$ ，而又有 $\C\to\D,\C\to\E\vDash_{\bf Taut}\C\to(\D\and\E)$ ，从而有 $\vdash\fa x(\A\and\B)\to(\fa x\A\and\fa x\B)$ .
+
+$(\leftarrow)$ 首先由 $\vdash(\fa x\A\and\fa x\B)\to\fa x\A,\fa x\A\to\A$ 可以得到 $\vdash(\fa x\A\and\fa x\B)\to\A$ 类似的还有 $\vdash(\fa x\A\and\fa x\B)\to\B$ ，从而有 $\vdash(\fa x\A\and\fa x\B)\to(\A\and\B)$ ，之后由 $\fa$-introduction 可得 $\vdash(\fa x\A\and\fa x\B)\to\fa x(\A\and\B)$ .
+
+接下来我们来证明 $\vdash\ex x(\A\or\B)\lra(\ex x\A\or\ex x\B)$ ，事实上可以把存在量词的情形看作全称量词的情形的一个实例，首先注意到 $\vdash\ex x(\A\or\B)\lra \neg\fa x(\neg\A\and\neg\B),(\ex x\A\or\ex x\B)\lra \neg(\fa x\neg\A\and\fa x \neg\B)$ ，于是令 $\A':\eq\neg\A,\B':\eq\neg\B$ ，之后通过 I.4.25 即可得到存在量词的情形的证明.
 
 ##### I.24
 
 $(\fa$-monotonicity$)$ 首先由 $\Ax.2$ 可得 $\vdash\A\to\ex x\A$ ，之后由 $\fa$-monotonicity 可得 $\vdash\fa y\A\to\fa y\ex x\A$ ，之后再由 $\ex$-introduction 得到 $\vdash \ex x\fa y\A\to\fa y\ex x\A$ .
 
-	$($auxiliary constant$)$首先我们扩充语言，向 $L$ 中添加一个常数 $c$ 得到语言 $L'$ ，之后我们先证明 $\vdash_{L'}\fa y\A[x\inp c]\to \fa y\ex x\A$ ，这可以通过 $\Ax.2$ 以及应用一次 $\fa$-monotonicity 得到，取适当变元 $z$ 可得到 $\vdash_L\fa y\A[x\inp z]\to\fa y\ex x\A$ ，这里假设了 $x\not\eq y$ ，于是由 I.4.12 将 $z$ 替换为 $x$ 即可得到 $\vdash_L\fa y\A\to\fa y\ex x\A$ ，之后再进行一次 $\ex$-introduction 即可得到我们想要的结论了.  
+$($auxiliary constant$)$首先我们扩充语言，向 $L$ 中添加一个常数 $c$ 得到语言 $L'$ ，之后我们先证明 $\vdash_{L'}\fa y\A[x\inp c]\to \fa y\ex x\A$ ，这可以通过 $\Ax.2$ 以及应用一次 $\fa$-monotonicity 得到，取适当变元 $z$ 可得到 $\vdash_L\fa y\A[x\inp z]\to\fa y\ex x\A$ ，这里假设了 $x\not\eq y$ ，于是由 I.4.12 将 $z$ 替换为 $x$ 即可得到 $\vdash_L\fa y\A\to\fa y\ex x\A$ ，之后再进行一次 $\ex$-introduction 即可得到我们想要的结论了.  
 
 > ps: srds 这种方法好像也使用了 monotonicity ，感觉本质上还是方法一，辅助常元的作用似乎不大. 
 
@@ -192,9 +192,9 @@ $(\fa$-monotonicity$)$ 首先由 $\Ax.2$ 可得 $\vdash\A\to\ex x\A$ ，之后�
 
 这个题我们用 I.4.26 . 首先由 $\Ax.1$ 有 $\vdash\fa x\A\or\neg\fa x\A$ ，之后只需要分别证明 $\vdash \fa x\A\to \ex x(\A\to\fa x \A),\neg\fa x\A\to\ex x(\A\to\fa x\A)$ .
 
-	$(\vdash\fa x\A\to\ex x(\A\to\fa x\A))$ 首先由 $\Ax.1$ 有 $\vdash\fa x\A\to(\A\to\fa x\A)$ ，之后由 $\Ax.2$ 有 $\vdash(\A\to\fa x\A)\to\ex x(\A\to\fa x\A)$ ，从而应用两次 MP 可以得到 $\vdash\fa x\A\to\ex x(\A\to\fa x\A)$ .
-	
-	$(\vdash\neg\fa x\A\to\ex x(\A\to\fa x\A))$ 首先我们有 $\vdash \neg\fa x\A\lra\ex x\neg\A,\ex x(\A\to\fa x\A)\lra\ex x(\neg\A\or\fa x\A)$ ，由$\ex$-distributive law可得 $\vdash\ex x(\neg\A\or\fa x\A)\lra (\ex x\neg\A\or\ex x\fa x\A)$ ，再由 I.4.25 ，我们只需证明 $\vdash\ex x\neg\A\to(\ex x\neg\A\or\ex x\fa x\A)$ ，而事实上这是 $\Ax.1$ .
+$(\vdash\fa x\A\to\ex x(\A\to\fa x\A))$ 首先由 $\Ax.1$ 有 $\vdash\fa x\A\to(\A\to\fa x\A)$ ，之后由 $\Ax.2$ 有 $\vdash(\A\to\fa x\A)\to\ex x(\A\to\fa x\A)$ ，从而应用两次 MP 可以得到 $\vdash\fa x\A\to\ex x(\A\to\fa x\A)$ .
+
+$(\vdash\neg\fa x\A\to\ex x(\A\to\fa x\A))$ 首先我们有 $\vdash \neg\fa x\A\lra\ex x\neg\A,\ex x(\A\to\fa x\A)\lra\ex x(\neg\A\or\fa x\A)$ ，由$\ex$-distributive law可得 $\vdash\ex x(\neg\A\or\fa x\A)\lra (\ex x\neg\A\or\ex x\fa x\A)$ ，再由 I.4.25 ，我们只需证明 $\vdash\ex x\neg\A\to(\ex x\neg\A\or\ex x\fa x\A)$ ，而事实上这是 $\Ax.1$ .
 
 ##### I.26
 
