@@ -1,0 +1,11 @@
+{{- $type := .Get "type" | default "theorem" | lower -}}
+{{- $title := .Get "title" | default "定理" -}}
+{{- $number := .Get "number" -}}
+<section class="thmbox thmbox-{{ $type }}">
+  <header class="thmbox-title">
+    {{ $title }}{{ with $number }} {{ . }}{{ end }}
+  </header>
+  <div class="thmbox-body">
+    {{ .Inner | strings.TrimSpace | .Page.RenderString }}
+  </div>
+</section>

@@ -204,3 +204,36 @@ a:hover { color: var(--accent); }
   .site-nav a:last-of-type { display: none; }
   .post-card { padding: 22px; }
 }
+/* Semantic theorem-style blocks, rendered by the thmbox shortcode. */
+.thmbox {
+  --thmbox-color: var(--accent);
+  margin: 1.65em 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--thmbox-color);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.thmbox-title {
+  padding: .58rem .95rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--thmbox-color);
+  background: var(--surface-soft);
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+.thmbox-body { padding: .05rem 1rem .2rem; }
+.thmbox-body > :first-child { margin-top: 1em; }
+.thmbox-body > :last-child { margin-bottom: 1em; }
+.thmbox-body blockquote { margin: 1em 0; }
+
+.thmbox-definition { --thmbox-color: #3f7198; }
+.thmbox-lemma { --thmbox-color: #7654a5; }
+.thmbox-example { --thmbox-color: #9a672b; }
+.thmbox-proof { --thmbox-color: var(--muted); }
+
+:root[data-theme="dark"] .thmbox-definition { --thmbox-color: #92c9ef; }
+:root[data-theme="dark"] .thmbox-lemma { --thmbox-color: #c5a5ed; }
+:root[data-theme="dark"] .thmbox-example { --thmbox-color: #efbe7d; }
