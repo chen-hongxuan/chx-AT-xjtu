@@ -1,26 +1,29 @@
 nodes:
   - id: mathematics
-    title: 数学
+    title: Maths
     children:
-      - id: math-linear-algebra
-        title: 线性代数
-        children:
-          - id: math-matrix
-            title: 矩阵
-          - id: math-eigenvalue
-            title: 特征值与特征向量
       - id: mathematical-logic
-        title: 数理逻辑
-      - id: math-discrete
-        title: 离散数学
-  - id: computer-science
-    title: 计算机科学
+        title: Logics
+  - id: xcpcoi
+    title: 算法竞赛
     children:
-      - id: cs-xcpc
-        title: XCPC
-      - id: cs-tcs
-        title: 理论计算机科学
-      - id: cs-algorithms
-        title: 算法
-      - id: cs-python
-        title: Python
+      - id: xcpc
+        title: xcpc
+        children:
+      - id: oi
+        title: oi
+        children:
+      - id: 代码模板
+        title: 代码模板
+        children:
+          - id: xcpcst
+            title: xcpc风格
+            children:
+          - id: oist
+            title: oi风格
+            children:
+  - id: tcs
+    title: 理论计算机
+    children:
+      - id: 5thBeautyOfTCS
+        title: 第五届计算理论之美
