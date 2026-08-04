@@ -70,7 +70,23 @@ a:hover { color: var(--accent); }
   gap: 24px;
 }
 
-.site-brand { font-size: 1.05rem; font-weight: 800; letter-spacing: -.04em; }
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -.04em;
+}
+.site-mark {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #ffffff;
+  object-fit: cover;
+}
 .site-brand span { color: var(--accent); }
 .site-nav { display: flex; align-items: center; gap: 20px; font-size: .94rem; }
 .site-nav a { color: var(--muted); }

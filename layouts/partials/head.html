@@ -2,6 +2,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+<link rel="icon" type="image/png" sizes="192x192" href="{{ "icons/ordinal-spiral-192.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="192x192" href="{{ "icons/ordinal-spiral-192.png" | relURL }}">
+<link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+<meta name="theme-color" content="#f7f7f2">
 {{ $css := "css/main.css" | relURL }}
 <link rel="stylesheet" href="{{ $css }}?v={{ now.Unix }}">
 <script defer src="{{ "js/theme.js" | relURL }}"></script>
