@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Maple Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/fontsource/fonts/maple-mono@5.3.0/latin-400-normal.woff2") format("woff2");
+}
 :root {
   --bg: #f7f7f2;
   --surface: #ffffff;
@@ -156,9 +163,25 @@ a:hover { color: var(--accent); }
 .article-content p, .article-content ul, .article-content ol { margin: 1.15em 0; }
 .article-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .article-content blockquote { margin: 1.5em 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent); color: var(--muted); }
-.article-content pre { padding: 18px; overflow-x: auto; border-radius: 10px; background: var(--code) !important; line-height: 1.6; }
-.article-content code { padding: 2px 5px; border-radius: 4px; background: var(--surface-soft); font-family: "Cascadia Code", Consolas, monospace; font-size: .88em; }
-.article-content pre code { padding: 0; background: transparent; font-size: .86rem; }
+.article-content pre {
+  padding: 18px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: #1f2923;
+  background: #ffffff !important;
+  font-family: "Maple Mono", "Cascadia Code", Consolas, monospace;
+  font-variant-ligatures: normal;
+  line-height: 1.65;
+}
+.article-content code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--surface-soft);
+  font-family: "Maple Mono", "Cascadia Code", Consolas, monospace;
+  font-size: .88em;
+}
+.article-content pre code { padding: 0; color: inherit; background: transparent; font-size: .86rem; }
 .article-content .katex-display { overflow-x: auto; overflow-y: hidden; padding: 5px 0; }
 
 .article-toc { grid-area: toc; position: sticky; top: 90px; align-self: start; color: var(--muted); font-size: .84rem; line-height: 1.5; }
