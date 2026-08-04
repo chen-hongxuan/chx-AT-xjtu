@@ -1,0 +1,6 @@
+{{- $inner := .Inner | htmlEscape -}}
+{{- if eq .Type "block" -}}
+  {{- printf "$$%s$$" $inner | safeHTML -}}
+{{- else -}}
+  {{- printf "$%s$" $inner | safeHTML -}}
+{{- end -}}

@@ -211,7 +211,12 @@ a:hover { color: var(--accent); }
   font-size: .88em;
 }
 .article-content pre code { padding: 0; color: inherit; background: transparent; font-size: .86rem; }
-.article-content .katex-display { overflow-x: auto; overflow-y: hidden; padding: 5px 0; }
+.article-content mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 5px 0;
+}
 
 .article-toc { grid-area: toc; position: sticky; top: 90px; align-self: start; color: var(--muted); font-size: .84rem; line-height: 1.5; }
 .article-toc > p { margin: 0 0 8px; color: var(--text); font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }

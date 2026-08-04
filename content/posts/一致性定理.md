@@ -9,37 +9,37 @@ draft: false
 
 -------------------------------------
 $$
-\gdef\lra{\leftrightarrow}
-\gdef\tx#1{\text{#1}}
-\gdef\line#1#2{\  & #1 \quad & \rm{(#2)}\\}
-\gdef\linet#1#2{\  & #1 \quad & \rm{#2}\\}
-\gdef\fa{\forall}
-\gdef\ex{\exists}
-\gdef\A{\mathcal{A}}
-\gdef\B{\mathcal{B}}
-\gdef\C{\mathcal{C}}
-\gdef\D{\mathcal{D}}
-\gdef\E{\mathcal{E}}
-\gdef\G{\mathcal{G}}
-\gdef\H{\mathcal{H}}
-\gdef\I{\mathcal{I}}
-\gdef\J{\mathcal{J}}
-\gdef\K{\mathcal{K}}
-\gdef\Ax{{\bf Ax}}
-\gdef\ax{\Lambda}
-\gdef\bl{\begin{aligned}}
-\gdef\el{\end{aligned}}
-\gdef\T{\mathscr{T}}
-\gdef\t{ {\bf t} }
-\gdef\f{ {\bf f} }
-\gdef\L#1{L(#1)}
-\gdef\eq{\equiv}
-\gdef\inp{\leftarrow}
-\gdef\la#1{\langle #1\rangle}
-\gdef\ov#1{\overline{#1}}
-\gdef\wff{{\bf Wff}}
-\gdef\so{{\scr O}}
-\gdef\vd{\vdash_{L(N)}}
+\def\lra{\leftrightarrow}
+\def\tx#1{\text{#1}}
+\def\line#1#2{\  & #1 \quad & \rm{(#2)}\\}
+\def\linet#1#2{\  & #1 \quad & \rm{#2}\\}
+\def\fa{\forall}
+\def\ex{\exists}
+\def\A{\mathcal{A}}
+\def\B{\mathcal{B}}
+\def\C{\mathcal{C}}
+\def\D{\mathcal{D}}
+\def\E{\mathcal{E}}
+\def\G{\mathcal{G}}
+\def\H{\mathcal{H}}
+\def\I{\mathcal{I}}
+\def\J{\mathcal{J}}
+\def\K{\mathcal{K}}
+\def\Ax{{\bf Ax}}
+\def\ax{\Lambda}
+\def\bl{\begin{aligned}}
+\def\el{\end{aligned}}
+\def\T{\mathscr{T}}
+\def\t{ {\bf t} }
+\def\f{ {\bf f} }
+\def\L#1{L(#1)}
+\def\eq{\equiv}
+\def\inp{\leftarrow}
+\def\la#1{\langle #1\rangle}
+\def\ov#1{\overline{#1}}
+\def\wff{{\bf Wff}}
+\def\so{{\scr O}}
+\def\vd{\vdash_{L(N)}}
 $$
 ***
 

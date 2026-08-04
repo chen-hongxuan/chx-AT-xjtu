@@ -9,55 +9,55 @@ draft: false
 
 -----------------------------------------------------------------
 $$
-\gdef\lra{\leftrightarrow}
-\gdef\fa{\forall}
-\gdef\ex{\exists}
-\gdef\r{\mathfrak{R}}
-\gdef\bl{\begin{aligned}}
-\gdef\el{\end{aligned}}
-\gdef\t{ {\bf t} }
-\gdef\f{ {\bf f} }
-\gdef\eq{\equiv}
-\gdef\la#1{\langle #1\rangle}
-\gdef\ov#1{\overline{#1}}
-\gdef\m{\mu}
-\gdef\st{{\mathrm{st}}}
-\gdef\p{\mathfrak{P}}
-\gdef\l{\lambda}
-\gdef\xn{{\vec x_n}}
-\gdef\xm{{\vec x_m}}
-\gdef\dd{\downarrow}
-\gdef\aa{\uparrow}
-\gdef\x{\vec x}
-\gdef\if{\mathbf{if}\quad}
-\gdef\oth{\mathbf{otherwise}}
-\gdef\bb#1{\{#1\}}
-\gdef\U#1{U^{(#1)}}
-\gdef\no{\o^{-1}}
-\gdef\dom{\mathrm{dom}\ }
-\gdef\ran{\mathrm{ran}\ }
-\gdef\o{\mathcal O}
-\gdef\re{{\bf r.e.}}
-\gdef\I{\mathcal I}
-\gdef\fd{\mathscr{Find}}
-\gdef\lcm{\mathrm{lcm}}
-\gdef\n{\mathfrak{N}}
-\gdef\rob{\mathbf{ROB}}
-\gdef\w#1{\widetilde{#1}}
-\gdef\uc#1{\ulcorner{#1}\urcorner}
-\gdef\iff{\quad\mathrm{iff}\quad}
-\gdef\imp{\quad\mathrm{implies}\quad}
-\gdef\T{\mathbf{T}}
-\gdef\th{\mathscr{T}}
-\gdef\tr{\mathbb{True}}
-\gdef\A{\mathcal{A}}
-\gdef\B{\mathcal{B}}
-\gdef\Q{\mathcal{Q}}
-\gdef\P{\mathcal{P}}
-\gdef\R{\mathcal{R}}
-\gdef\F{\mathcal{F}}
-\gdef\G{\mathcal{G}}
-\gdef\H{\mathcal{H}}
+\def\lra{\leftrightarrow}
+\def\fa{\forall}
+\def\ex{\exists}
+\def\r{\mathfrak{R}}
+\def\bl{\begin{aligned}}
+\def\el{\end{aligned}}
+\def\t{ {\bf t} }
+\def\f{ {\bf f} }
+\def\eq{\equiv}
+\def\la#1{\langle #1\rangle}
+\def\ov#1{\overline{#1}}
+\def\m{\mu}
+\def\st{{\mathrm{st}}}
+\def\p{\mathfrak{P}}
+\def\l{\lambda}
+\def\xn{{\vec x_n}}
+\def\xm{{\vec x_m}}
+\def\dd{\downarrow}
+\def\aa{\uparrow}
+\def\x{\vec x}
+\def\if{\mathbf{if}\quad}
+\def\oth{\mathbf{otherwise}}
+\def\bb#1{\{#1\}}
+\def\U#1{U^{(#1)}}
+\def\no{\o^{-1}}
+\def\dom{\mathrm{dom}\ }
+\def\ran{\mathrm{ran}\ }
+\def\o{\mathcal O}
+\def\re{{\bf r.e.}}
+\def\I{\mathcal I}
+\def\fd{\mathscr{Find}}
+\def\lcm{\mathrm{lcm}}
+\def\n{\mathfrak{N}}
+\def\rob{\mathbf{ROB}}
+\def\w#1{\widetilde{#1}}
+\def\uc#1{\ulcorner{#1}\urcorner}
+\def\iff{\quad\mathrm{iff}\quad}
+\def\imp{\quad\mathrm{implies}\quad}
+\def\T{\mathbf{T}}
+\def\th{\mathscr{T}}
+\def\tr{\mathbb{True}}
+\def\A{\mathcal{A}}
+\def\B{\mathcal{B}}
+\def\Q{\mathcal{Q}}
+\def\P{\mathcal{P}}
+\def\R{\mathcal{R}}
+\def\F{\mathcal{F}}
+\def\G{\mathcal{G}}
+\def\H{\mathcal{H}}
 $$
 ***
 
