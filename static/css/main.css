@@ -44,7 +44,7 @@ body {
   background-image:
     linear-gradient(rgba(247, 247, 242, .76), rgba(247, 247, 242, .76)),
     url("../images/ordinal-spiral-background.jpg");
-  background-position: center, center 116px;
+  background-position: center, center -214px;
   background-repeat: repeat, no-repeat;
   background-size: auto, 1240px auto;
   background-attachment: scroll, fixed;
@@ -240,7 +240,7 @@ a:hover { color: var(--accent); }
 
 @media (max-width: 760px) {
   body {
-    background-position: center, center 84px;
+    background-position: center, center -148px;
     background-size: auto, 860px auto;
     background-attachment: scroll;
   }
