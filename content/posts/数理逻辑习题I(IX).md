@@ -178,8 +178,8 @@ $$
 
 {{<thmbox type="proof" title="证明">}}
 取关系 $\l xz.Q\in\r_*$ 使得 $R(x)\lra(\ex z)Q(x,z)$ , 并令公式 $\Q(v_0,v_1)$ 在 $\Gamma$ 中强表示 $Q$ , 于是可以构造公式 $\R(v_0):\eq(\ex v_1)\Q(v_0,v_1)$ , 对于 $x\in\N$
-	若 $R(x)$ , 则存在 $z\in\N$ 使得 $Q(x,z)$ , 因此有 $\Gamma\vdash\Q(\w x,\w z)$ , 从而 $\Gamma\vdash(\ex v_1)\Q(\w x,v_1)$ 即 $\R(\w x)$ .
-	若 $\Gamma\vdash(\ex v_1)\Q(\w x,v_1)$ , 由 $\Gamma$ 的 $\omega$-consistency 可得存在 $z\in\N$ 使得 $\Gamma\not \vdash\neg\Q(\w x,\w z)$ , 由 Lem 1 可知这等价于 $\neg\neg Q(x,z)$ 即 $Q(x,z)$ , 故 $(\ex z)Q(x,z)$ 即 $R(x)$ .
+若 $R(x)$ , 则存在 $z\in\N$ 使得 $Q(x,z)$ , 因此有 $\Gamma\vdash\Q(\w x,\w z)$ , 从而 $\Gamma\vdash(\ex v_1)\Q(\w x,v_1)$ 即 $\R(\w x)$ .
+若 $\Gamma\vdash(\ex v_1)\Q(\w x,v_1)$ , 由 $\Gamma$ 的 $\omega$-consistency 可得存在 $z\in\N$ 使得 $\Gamma\not \vdash\neg\Q(\w x,\w z)$ , 由 Lem 1 可知这等价于 $\neg\neg Q(x,z)$ 即 $Q(x,z)$ , 故 $(\ex z)Q(x,z)$ 即 $R(x)$ .
 {{</thmbox>}}
 
 于是我们可以自然地在 $\Gamma$ 中延用公式 $K_*$ , 之后为导出矛盾我们假设 $\Gamma$ 是完备的, 于是考虑集合 $\ov K$ , 对于任意 $x\in\N$ 

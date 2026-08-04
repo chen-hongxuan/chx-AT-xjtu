@@ -148,9 +148,9 @@ $$
 \B_0:\eq\C^*\ ;\B_{k+1}:\eq\B_k[z_{k+1}\leftarrow s_{i_{k+1}}]
 $$
 之后对于 $k\le m$ 施以归纳
-> 		对于 $k=0$ 显然有 $\A_0\eq\B_0$ 从而有 $ \vdash\A_0\lra\B_0$ .
-> 		
-> 		对于 $k<m$ ，由 I.H. 得到 $\Gamma\vdash\A_k\lra\B_k$ ，再由 I.4.12 得到 $\Gamma\vdash(\A_k\lra\B_k)[z_{k+1}\leftarrow t_{i_{k+1}}]$ 即 $\A_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}]$ ，而由 $\Ax.4$ 可得 $ \vdash s_{i_{k+1}}=t_{i_{k+1}}\to(\B_k[z_{k+1}\leftarrow s_{i_{k+1}}]\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}])$ 即 $s_{i_{k+1}}=t_{i_{k+1}}\to(\B_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}])$ ，而又由于 $\Gamma\vdash s_{i_{k+1}}=t_{i_{k+1}}$ ，从而应用 MP 即可得到 $\Gamma\vdash \A_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}],\B_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}]$ 故 $\Gamma\vdash\A_{k+1}\lra\B_{k+1}$ .
+> 对于 $k=0$ 显然有 $\A_0\eq\B_0$ 从而有 $ \vdash\A_0\lra\B_0$ .
+> 
+> 对于 $k<m$ ，由 I.H. 得到 $\Gamma\vdash\A_k\lra\B_k$ ，再由 I.4.12 得到 $\Gamma\vdash(\A_k\lra\B_k)[z_{k+1}\leftarrow t_{i_{k+1}}]$ 即 $\A_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}]$ ，而由 $\Ax.4$ 可得 $ \vdash s_{i_{k+1}}=t_{i_{k+1}}\to(\B_k[z_{k+1}\leftarrow s_{i_{k+1}}]\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}])$ 即 $s_{i_{k+1}}=t_{i_{k+1}}\to(\B_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}])$ ，而又由于 $\Gamma\vdash s_{i_{k+1}}=t_{i_{k+1}}$ ，从而应用 MP 即可得到 $\Gamma\vdash \A_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}],\B_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}]$ 故 $\Gamma\vdash\A_{k+1}\lra\B_{k+1}$ .
 
 从而得到 $\Gamma\vdash \A_m\lra\B_m$ 即 $\C\lra\C'$ .
 

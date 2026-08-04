@@ -113,7 +113,7 @@ $$
 {{<thmbox type="proof" title="证明">}}
 首先当 $\A$ 是原子公式的时候, 假定 $\A\eq P(t_1...t_k)$ , 对于任意的 $j\in|\mB|$ , 由于 $\mB\subseteq\mA$ 故 $j\in|\mA|$ , 于是 $\A[\ov j]^\mA=\t$ 等价于 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA$ , 而再一次由于 $\mB\subseteq\mA$ , 故对于 $1\le i\le k$ 有 $t_i(\ov j)^\mA=t_i(\ov j)^\mB\in|\mB|$ , 从而 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA$ 实际上就是 $\la{t_1(\ov j)^\mA...t_k(\ov j)^\mA}\in P^\mA|_{|\mB|}$ , 即  $\la{t_1(\ov j)^\mB...t_k(\ov j)^\mB}\in P^\mB$ , 也就是 $\A[\ov j]^\mB=\t$ ; 等词的情况同理.
 
-	之后考虑归纳情形, 如果 $\A\eq\neg\B$ , 则对于 $i\in|\mB|^n$ , 根据定义 $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\f$ , 由 I.H. 这等价于 $\B[\ov i]^\mB=\f$ , 等价于 $\A[\ov i]^\mA=\t$ ; 如果 $\A\eq\B\or\C$ , 则对于 $i\in|\mB|^n$ , $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\t$ 或者 $\C[\ov i]^\mA=\t$ , 这等价于 $\B[\ov i]^\mB=\t$ 或者 $\C[\ov i]^\mB=\t$ , 即 $\A[\ov i]^\mB=\t$ .
+之后考虑归纳情形, 如果 $\A\eq\neg\B$ , 则对于 $i\in|\mB|^n$ , 根据定义 $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\f$ , 由 I.H. 这等价于 $\B[\ov i]^\mB=\f$ , 等价于 $\A[\ov i]^\mA=\t$ ; 如果 $\A\eq\B\or\C$ , 则对于 $i\in|\mB|^n$ , $\A[\ov i]^\mA=\t$ 等价于 $\B[\ov i]^\mA=\t$ 或者 $\C[\ov i]^\mA=\t$ , 这等价于 $\B[\ov i]^\mB=\t$ 或者 $\C[\ov i]^\mB=\t$ , 即 $\A[\ov i]^\mB=\t$ .
 {{</thmbox>}}
 
 而对于 $\A\in\Gamma$ , 如果 $\mA\vDash\A$ , 则对于任意的 $i\in|\mB|^n$ , 由于 $\mB\subseteq\mA$ 故 $i\in|\mA|^n$ , 从而有 $\A[\ov i]^\mA=\t$ , 由于 $\A$ 是开公式, 故根据上面的结果有 $\A[\ov i]^\mB=\t$ 从而 $\mB\vDash\A$ .
@@ -167,9 +167,9 @@ $$
 {{<thmbox type="proof" title="证明">}}
 我们对存在量词前缀的长度 $m$ 施以归纳来证明.
 
-	对于 $m=0$ 的情形, 即 $\B$ 本身就是开公式, 那么由 I.53 的 Lem 1 可知结论成立.
+对于 $m=0$ 的情形, 即 $\B$ 本身就是开公式, 那么由 I.53 的 Lem 1 可知结论成立.
 
-	对于归纳情形, 假定 $\B(\vec x_n)\eq\ex z\C(\vec x_n,z)$ , 若 $\B[\ov i]^\mA=\t$ 则存在 $j\in|\mA|$ 使得 $\C[\ov i,\ov j]^\mA=\t$ , 根据 I.H. $\C[\ov i,\ov j]^\mB=\t$ , 从而 $\B[\ov i]^\mB=\t$ .
+对于归纳情形, 假定 $\B(\vec x_n)\eq\ex z\C(\vec x_n,z)$ , 若 $\B[\ov i]^\mA=\t$ 则存在 $j\in|\mA|$ 使得 $\C[\ov i,\ov j]^\mA=\t$ , 根据 I.H. $\C[\ov i,\ov j]^\mB=\t$ , 从而 $\B[\ov i]^\mB=\t$ .
 {{</thmbox>}}
 
 对于任意 $\A(\vec x_n)\in\Gamma$ , 对于任意的 $i\in|\mM_\omega|^n$ , 根据我们对于 $\momg$ 的构造, 存在充分大的 $k\in\N$ 使得 $i\in|\m_k|$ , 而根据前提每个 $\m_k$ 均为 $\Gamma$ 的模型故 $\m_k\vDash\A$ , 即 $\A[\ov i]^{\m_k}=\t$ , 又因为 $\m_k\subseteq\momg$ 且 $\Gamma$ 是归纳的, 故 $\A[\ov i]^\momg=\t$ , 从而 $\momg\vDash\A$ .
