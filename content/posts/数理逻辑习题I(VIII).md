@@ -68,7 +68,8 @@ P_f(0,\xn)&=1,\\
 P_f(y+1,\xn)&=f(y,\xn)\times P_f(y,\xn).
 \el
 $$
-显然 $\l y\xn.S_f,\l y\xn.P_f$ 分别是 $\sum_{z<y}f(z,\xn),\prod_{z<y}f(z,\xn)$ , 而 $\r,\p\r$ 均对原始递归封闭并且 $\l xy.x+y,\l xy.x\times y\in\p\r$ , 所以如果 $f\in\r$ (或者 $\p\r$ ), 那么就有 $S_f,P_f\in\r$ (或者 $\p\r$ ). 
+显然 $\l y\xn.S_f,\l y\xn.P_f$ 分别是 $\sum_{z<y}f(z,\xn),\prod_{z<y}f(z,\xn)$ , 
+而 $\r,\p\r$ 均对原始递归封闭并且 $\l xy.x+y,\l xy.x\times y\in\p\r$ , 所以如果 $f\in\r$ (或者 $\p\r$ ), 那么就有 $S_f,P_f\in\r$ (或者 $\p\r$ ). 
 
 #### I.71
 
@@ -98,16 +99,17 @@ $$
 
 {{<thmbox type="proof" title="证明">}}
 一个显然的观察是, 对于 $r\in\N$ , $r$ 是素数当且仅当对于任意小于 $r$ 的素数 $p$ 均有 $r\mod p\not=0$ . 于是记 $c:=p_0p_1...p_n+1$ , 那么一定有 $c>p_n$ , 如果 $p_{n+1}>c$ , 则 $c$ 不是素数并且小于 $c$ 的素数集就是 $\{p_i:0\le i\le n\}$ , 然而对于任意的 $i\le n$ 均有 $c\mod p_i=1$ , 这与 $c$ 的非素性矛盾了.
+
+从而我们可以对 $n$ 施以强归纳来证明 $p_n\le2^{2^n}$ .
+
+* 对于 $n=0$ , $2=p_n \le 2^{2^0}=2$ .
+* 对于 $n+1$ 的情形, 由 Lem 1 可得
+
+$$
+ p_{n+1}\le p_0p_1...p_n+1\le 2^{2^0}\times 2^{2^1}\times...\times 2^{2^n}+1=2^{2^0+2^1+...+2^n}+1=2^{2^{n+1}-1}+1\le 2^{2^{n+1}}
+$$
 {{</thmbox>}}
 
- 从而我们可以对 $n$ 施以强归纳来证明 $p_n\le2^{2^n}$ .
-
-> * 对于 $n=0$ , $2=p_n \le 2^{2^0}=2$ .
-> * 对于 $n+1$ 的情形, 由 Lem 1 可得
->
-> $$
-> p_{n+1}\le p_0p_1...p_n+1\le 2^{2^0}\times 2^{2^1}\times...\times 2^{2^n}+1=2^{2^0+2^1+...+2^n}+1=2^{2^{n+1}-1}+1\le 2^{2^{n+1}}
-> $$
 
 #### I.74
 
@@ -303,13 +305,13 @@ $$
 
 {{<thmbox type="proof" title="证明">}}
  由于 $f\in\p$ 所以存在 $i_1\in\Phi$ 使得 $f=\bb {i_1}$ , 则对于任意 $x\in\N$ , 我们有
- $$
+$$
  \bl
  x\in f[W_e]&\iff (\ex y)(y\in W_e\and f(y)=x)\\
  &\iff(\ex y)((\ex z)T^{(1)}(e,y,z)\and(\ex z')T^{(1)}(i_1,y,\la{x,z'}))\\
  &\iff(\ex l)(\ex y,z,z')_{\le l} (T^{(1)}(e,y,z)\and T^{(1)}(i_1,y,\la{x,z'}))
  \el
- $$
+$$
  我们记 $N:=\l lxe.(\ex y,z,z')_{\le l}(T^{(1)}(e,y,z)\and T^{(1)}(i_1,y,\la{x,z'}))$ , 则 $N\in\p\r_*$ , 因此由 I.8.49 可得, 关系 $Q:=\l xe.x\in f[W_e]$ 是半递归的, 因此存在 $j_0\in\Phi$ 使得对于任意 $x,e\in\N$ 均有 $(x,e)\in Q\iff \bb{j_0}(x,e)\dd\iff \bb{\sigma(j_0,e)}(x)\dd$ , 因此对于固定的 $e\in\N$ , 对于任意 $x\in\N$ 我们有 $x\in f[W_e]\iff\bb{\sigma(j_0,e)}(x)\dd\iff x\in W_{\sigma(j_0,e)}$ , 因此有 $f[W_e]=W_{\sigma(j_0,e)}$ , 同时 $\sigma$ 函数是原始递归的, 所以 $\l x.\sigma(j_0,x)$ 就是我们想要的那个 $g$ .
 {{</thmbox>}}
 
