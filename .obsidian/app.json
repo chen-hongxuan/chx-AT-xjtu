@@ -1,0 +1,13 @@
+{
+  "livePreview": true,
+  "defaultViewMode": "source",
+  "strictLineBreaks": true,
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "alwaysUpdateLinks": true,
+  "useTab": false,
+  "tabSize": 2,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "content/posts",
+  "attachmentFolderPath": "static/images"
+}

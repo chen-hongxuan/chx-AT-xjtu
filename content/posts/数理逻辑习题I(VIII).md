@@ -93,22 +93,20 @@ $$
 
 这是一个经典的初等数论的结论, 为证明它我们先证明以下的一个引理.
 
-{{<thmbox type="lemma" title="引理" number="1">}}
-对于任意 $n\in\N$ 均有 $p_{n+1}\le p_0p_1...p_n+1$ .
-{{</thmbox>}}
+> [!lemma] 引理 1
+> 对于任意 $n\in\N$ 均有 $p_{n+1}\le p_0p_1...p_n+1$ .
 
-{{<thmbox type="proof" title="证明">}}
-一个显然的观察是, 对于 $r\in\N$ , $r$ 是素数当且仅当对于任意小于 $r$ 的素数 $p$ 均有 $r\mod p\not=0$ . 于是记 $c:=p_0p_1...p_n+1$ , 那么一定有 $c>p_n$ , 如果 $p_{n+1}>c$ , 则 $c$ 不是素数并且小于 $c$ 的素数集就是 $\{p_i:0\le i\le n\}$ , 然而对于任意的 $i\le n$ 均有 $c\mod p_i=1$ , 这与 $c$ 的非素性矛盾了.
-
-从而我们可以对 $n$ 施以强归纳来证明 $p_n\le2^{2^n}$ .
-
-* 对于 $n=0$ , $2=p_n \le 2^{2^0}=2$ .
-* 对于 $n+1$ 的情形, 由 Lem 1 可得
-
-$$
- p_{n+1}\le p_0p_1...p_n+1\le 2^{2^0}\times 2^{2^1}\times...\times 2^{2^n}+1=2^{2^0+2^1+...+2^n}+1=2^{2^{n+1}-1}+1\le 2^{2^{n+1}}
-$$
-{{</thmbox>}}
+> [!proof] 证明
+> 一个显然的观察是, 对于 $r\in\N$ , $r$ 是素数当且仅当对于任意小于 $r$ 的素数 $p$ 均有 $r\mod p\not=0$ . 于是记 $c:=p_0p_1...p_n+1$ , 那么一定有 $c>p_n$ , 如果 $p_{n+1}>c$ , 则 $c$ 不是素数并且小于 $c$ 的素数集就是 $\{p_i:0\le i\le n\}$ , 然而对于任意的 $i\le n$ 均有 $c\mod p_i=1$ , 这与 $c$ 的非素性矛盾了.
+>
+> 从而我们可以对 $n$ 施以强归纳来证明 $p_n\le2^{2^n}$ .
+>
+> * 对于 $n=0$ , $2=p_n \le 2^{2^0}=2$ .
+> * 对于 $n+1$ 的情形, 由 Lem 1 可得
+>
+> $$
+>  p_{n+1}\le p_0p_1...p_n+1\le 2^{2^0}\times 2^{2^1}\times...\times 2^{2^n}+1=2^{2^0+2^1+...+2^n}+1=2^{2^{n+1}-1}+1\le 2^{2^{n+1}}
+> $$
 
 
 #### I.74
@@ -196,24 +194,22 @@ $$
 #### I.80
 
 我们首先需要证明一个引理
-{{<thmbox type="lemma" title="引理" number="1">}}
-存在 $e\in K,e'\notin K$ 使得 $\bb e=\bb {e'}$ .
-{{</thmbox>}}
+> [!lemma] 引理 1
+> 存在 $e\in K,e'\notin K$ 使得 $\bb e=\bb {e'}$ .
 
-{{<thmbox type="proof" title="证明">}}
-显然关系 $\l xy.[x=y]$ 是原始递归的, 因此它也是半递归的, 因此存在一个函数 $\l xy.\rm eq\in\p$ 使得, 对于任意 $x,y\in\N$
-$$
-x=y\iff {\rm eq}(x,y)\dd
-$$
-并且我们稍加修改可以使得当 $x=y$ 时有 ${\rm eq}(x,y)=0$ , 同时我们知道存在 $i_0\in\Phi$ 使得 $\bb{i_0}=\rm eq$ . 我们对 $\rm eq$ 应用 I.8.55 可以得到 $e\in\Phi$ 满足 $\bb e=\l x.{\rm eq}(e,x)$ , 即对于 $x\in\N$
-$$
-\bb e(x)=\left\{\bl
-&0&\if& x=e\\
-&\aa&&\oth
-\el\right.
-$$
-因此 $e\in K$ , 同时我们知道 $\p$ 中的每个函数都有无穷多个指标所以存在 $e'\in\Phi$ 使得 $e'\not=e$ 并且 $\bb{e'}=\bb{e}$ , 于是根据我们对 $e$ 以及 $e'$ 的构造可得 $\bb{e'}(e')\aa$ 所以 $e'\notin K$ .
-{{</thmbox>}}
+> [!proof] 证明
+> 显然关系 $\l xy.[x=y]$ 是原始递归的, 因此它也是半递归的, 因此存在一个函数 $\l xy.\rm eq\in\p$ 使得, 对于任意 $x,y\in\N$
+> $$
+> x=y\iff {\rm eq}(x,y)\dd
+> $$
+> 并且我们稍加修改可以使得当 $x=y$ 时有 ${\rm eq}(x,y)=0$ , 同时我们知道存在 $i_0\in\Phi$ 使得 $\bb{i_0}=\rm eq$ . 我们对 $\rm eq$ 应用 I.8.55 可以得到 $e\in\Phi$ 满足 $\bb e=\l x.{\rm eq}(e,x)$ , 即对于 $x\in\N$
+> $$
+> \bb e(x)=\left\{\bl
+> &0&\if& x=e\\
+> &\aa&&\oth
+> \el\right.
+> $$
+> 因此 $e\in K$ , 同时我们知道 $\p$ 中的每个函数都有无穷多个指标所以存在 $e'\in\Phi$ 使得 $e'\not=e$ 并且 $\bb{e'}=\bb{e}$ , 于是根据我们对 $e$ 以及 $e'$ 的构造可得 $\bb{e'}(e')\aa$ 所以 $e'\notin K$ .
 
 假定 $K$ 是完全指标集, 那么存在 $\frak D\subseteq P$ 使得 $x\in K\iff \bb x\in\frak D$ . 然而根据 Lem 1 我们可以取出 $e,e'\in\N$ 使得 $\bb e=\bb{e'}$ 并且 $e\in K,e'\notin K$ , 与假设矛盾. 
 
@@ -277,17 +273,15 @@ $$
 
 上一个问题让我们构造出了一个从 $A$ 到 $\ov K$ 的归约函数, 而且这个函数在形式系统内, 所以这一问中让我们考察 $A$ 的产生性, 所以一个自然的想法是先考察 $\ov K$ 的产生性, 之后尝试将 $A$ 的产生性归约到 $\ov K$ 上面, 为此我们先看如下引理.
 
-{{<thmbox type="lemma" title="引理" number="1">}}
-$\ov K$ 是产生集.
-{{</thmbox>}}
+> [!lemma] 引理 1
+> $\ov K$ 是产生集.
 
-{{<thmbox type="proof" title="证明">}}
-取函数
-$$
-\psi_{\ov K}:=\l x.x
-$$
-显然 $\psi_{\ov K}\in\p$ , 接下来我们证明它是集合 $\ov K$ 的产生函数. 对于任意 $e\in\N$ 满足 $W_e\subseteq\ov K$ , 假设 $e\in W_e$ , 则根据定义 $e\in K$ , 从而 $W_e\cap K\not=\empty$ , 这与 $W_e\subseteq \ov K$ 矛盾, 从而 $e\notin W_e$ , 因此 $e\notin K$ 即 $e\in\ov K$ , 于是这个 $e$ 恰好就是我们的目标元素.
-{{</thmbox>}}
+> [!proof] 证明
+> 取函数
+> $$
+> \psi_{\ov K}:=\l x.x
+> $$
+> 显然 $\psi_{\ov K}\in\p$ , 接下来我们证明它是集合 $\ov K$ 的产生函数. 对于任意 $e\in\N$ 满足 $W_e\subseteq\ov K$ , 假设 $e\in W_e$ , 则根据定义 $e\in K$ , 从而 $W_e\cap K\not=\empty$ , 这与 $W_e\subseteq \ov K$ 矛盾, 从而 $e\notin W_e$ , 因此 $e\notin K$ 即 $e\in\ov K$ , 于是这个 $e$ 恰好就是我们的目标元素.
 
 之后我们开始构造归约, 首先关注之前构造出来的函数 $\l x.\sigma(i_0,x)$ , 记之为 $\o$ , 则我们有 $x\in\ov K\iff \o(x)\in A$ , 并且这个 $\o$ 是单射, 所以实际上 $\o$ 是 $\ov K$ 到 $A$ 的双射, 因而我们可以构造 $\o$ 的逆函数
 $$
@@ -299,21 +293,19 @@ f[R]:=\bb{f(x):x\in R\and f(x)\dd}
 $$
 则对于全体 $e\in\N$ 均有 $W_e\subseteq A$ 当且仅当 $\o[\no[W_e]]=W_e$ (一个显而易见的事实是对于全体 $e$ 根据规定均有 $\no[W_e]\subseteq\ov K$ ), 事实上半递归集和 $\re$ 集合是等价的, 因而我们可以说明对于 $e\in\N$ 总是存在 $e'$ 使得 $W_{e'}=\no[W_e]$ , 则根据 Lem 1. 可知 $e'$ 满足 $e'\in\ov K- W_{e'}$ , 从而如果 $W_e\subseteq A$ 则有 $\o[W_{e'}]=W_e$ , 从而 $\o(e')\notin W_e$ , 所以接下来我们只需要证明这种映射 $e\mapsto e'$ 是递归的即可.
 
-{{<thmbox type="lemma" title="引理" number="2">}}
-对于任意 $f\in\p$ , 存在原始递归函数 $\l x.g$ 使得对于任意 $e\in\N$ 均有 $f[W_e]=W_{g(e)}$ .
-{{</thmbox>}}
+> [!lemma] 引理 2
+> 对于任意 $f\in\p$ , 存在原始递归函数 $\l x.g$ 使得对于任意 $e\in\N$ 均有 $f[W_e]=W_{g(e)}$ .
 
-{{<thmbox type="proof" title="证明">}}
- 由于 $f\in\p$ 所以存在 $i_1\in\Phi$ 使得 $f=\bb {i_1}$ , 则对于任意 $x\in\N$ , 我们有
-$$
- \bl
- x\in f[W_e]&\iff (\ex y)(y\in W_e\and f(y)=x)\\
- &\iff(\ex y)((\ex z)T^{(1)}(e,y,z)\and(\ex z')T^{(1)}(i_1,y,\la{x,z'}))\\
- &\iff(\ex l)(\ex y,z,z')_{\le l} (T^{(1)}(e,y,z)\and T^{(1)}(i_1,y,\la{x,z'}))
- \el
-$$
- 我们记 $N:=\l lxe.(\ex y,z,z')_{\le l}(T^{(1)}(e,y,z)\and T^{(1)}(i_1,y,\la{x,z'}))$ , 则 $N\in\p\r_*$ , 因此由 I.8.49 可得, 关系 $Q:=\l xe.x\in f[W_e]$ 是半递归的, 因此存在 $j_0\in\Phi$ 使得对于任意 $x,e\in\N$ 均有 $(x,e)\in Q\iff \bb{j_0}(x,e)\dd\iff \bb{\sigma(j_0,e)}(x)\dd$ , 因此对于固定的 $e\in\N$ , 对于任意 $x\in\N$ 我们有 $x\in f[W_e]\iff\bb{\sigma(j_0,e)}(x)\dd\iff x\in W_{\sigma(j_0,e)}$ , 因此有 $f[W_e]=W_{\sigma(j_0,e)}$ , 同时 $\sigma$ 函数是原始递归的, 所以 $\l x.\sigma(j_0,x)$ 就是我们想要的那个 $g$ .
-{{</thmbox>}}
+> [!proof] 证明
+>  由于 $f\in\p$ 所以存在 $i_1\in\Phi$ 使得 $f=\bb {i_1}$ , 则对于任意 $x\in\N$ , 我们有
+> $$
+>  \bl
+>  x\in f[W_e]&\iff (\ex y)(y\in W_e\and f(y)=x)\\
+>  &\iff(\ex y)((\ex z)T^{(1)}(e,y,z)\and(\ex z')T^{(1)}(i_1,y,\la{x,z'}))\\
+>  &\iff(\ex l)(\ex y,z,z')_{\le l} (T^{(1)}(e,y,z)\and T^{(1)}(i_1,y,\la{x,z'}))
+>  \el
+> $$
+>  我们记 $N:=\l lxe.(\ex y,z,z')_{\le l}(T^{(1)}(e,y,z)\and T^{(1)}(i_1,y,\la{x,z'}))$ , 则 $N\in\p\r_*$ , 因此由 I.8.49 可得, 关系 $Q:=\l xe.x\in f[W_e]$ 是半递归的, 因此存在 $j_0\in\Phi$ 使得对于任意 $x,e\in\N$ 均有 $(x,e)\in Q\iff \bb{j_0}(x,e)\dd\iff \bb{\sigma(j_0,e)}(x)\dd$ , 因此对于固定的 $e\in\N$ , 对于任意 $x\in\N$ 我们有 $x\in f[W_e]\iff\bb{\sigma(j_0,e)}(x)\dd\iff x\in W_{\sigma(j_0,e)}$ , 因此有 $f[W_e]=W_{\sigma(j_0,e)}$ , 同时 $\sigma$ 函数是原始递归的, 所以 $\l x.\sigma(j_0,x)$ 就是我们想要的那个 $g$ .
 
 由于 $\no\in\p$ 所以我们可以取这样的 $g$ 使得对于任意 $e$ 均有 $W_{g(e)}=\no[W_e]$ , 于是可以构造函数
 $$

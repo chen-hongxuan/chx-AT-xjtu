@@ -1,0 +1,73 @@
+/* Theorem-style callouts shared conceptually with the Hugo thmbox design. */
+
+.callout[data-callout="theorem"] {
+  --thmbox-color: #2d7b76;
+  --callout-color: 45, 123, 118;
+  --callout-icon: lucide-sigma;
+}
+
+.callout[data-callout="lemma"] {
+  --thmbox-color: #7654a5;
+  --callout-color: 118, 84, 165;
+  --callout-icon: lucide-book-open;
+}
+
+.callout[data-callout="corollary"] {
+  --thmbox-color: #2d7b76;
+  --callout-color: 45, 123, 118;
+  --callout-icon: lucide-git-branch;
+}
+
+.callout[data-callout="proof"] {
+  --thmbox-color: #6f766f;
+  --callout-color: 111, 118, 111;
+  --callout-icon: lucide-badge-check;
+}
+
+.callout[data-callout="definition"] {
+  --thmbox-color: #3f7198;
+  --callout-color: 63, 113, 152;
+  --callout-icon: lucide-book-marked;
+}
+
+.callout[data-callout="remark"] {
+  --thmbox-color: #9a672b;
+  --callout-color: 154, 103, 43;
+  --callout-icon: lucide-message-square;
+}
+
+.callout[data-callout="example"] {
+  --thmbox-color: #9a672b;
+  --callout-color: 154, 103, 43;
+  --callout-icon: lucide-list-checks;
+}
+
+:is(
+  .callout[data-callout="theorem"],
+  .callout[data-callout="lemma"],
+  .callout[data-callout="corollary"],
+  .callout[data-callout="proof"],
+  .callout[data-callout="definition"],
+  .callout[data-callout="remark"],
+  .callout[data-callout="example"]
+) {
+  margin: 1.65em 0;
+  overflow: hidden;
+  border: 1px solid var(--background-modifier-border);
+  border-left: 4px solid var(--thmbox-color);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+:is(
+  .callout[data-callout="theorem"],
+  .callout[data-callout="lemma"],
+  .callout[data-callout="corollary"],
+  .callout[data-callout="proof"],
+  .callout[data-callout="definition"],
+  .callout[data-callout="remark"],
+  .callout[data-callout="example"]
+) .callout-title {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}

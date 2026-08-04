@@ -1,3 +1,10 @@
 public/
 resources/
 .hugo_build.lock
+
+# Obsidian keeps window layout and caches specific to each computer here.
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/core-plugins.json
+.obsidian/plugins/
