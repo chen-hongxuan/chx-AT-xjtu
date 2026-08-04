@@ -1,3 +1,7 @@
+{{- /* Goldmark passthrough leaves one encoded quote marker at the start of
+      lines inside multiline math blocks. Remove only that structural marker;
+      an actual leading greater-than sign remains as the second marker. */ -}}
+{{- $body := replaceRE `(?m)^&gt; ?` "" .Text -}}
 {{- if eq .Type "alert" -}}
   {{- $type := .AlertType | lower -}}
   {{- $defaultTitles := dict
@@ -18,11 +22,11 @@
     {{- end -}}
   </header>
   <div class="thmbox-body">
-    {{ .Text }}
+    {{ $body | safeHTML }}
   </div>
 </section>
 {{- else -}}
 <blockquote>
-  {{ .Text }}
+  {{ $body | safeHTML }}
 </blockquote>
 {{- end -}}
