@@ -2,8 +2,9 @@
 {{- $current := .current -}}
 <ul class="tag-tree">
   {{- range $nodes -}}
+    {{- $urlID := .id | urlize -}}
     <li>
-      <a class="{{ if eq .id $current }}is-current{{ end }}" href="{{ printf "tags/%s/" .id | relURL }}">{{ .title }}</a>
+      <a class="{{ if eq .id $current }}is-current{{ end }}" href="{{ printf "tags/%s/" $urlID | relURL }}">{{ .title }}</a>
       {{- with .children -}}
         {{ partial "tag-tree.html" (dict "nodes" . "current" $current) }}
       {{- end -}}

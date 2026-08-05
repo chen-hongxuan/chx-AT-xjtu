@@ -1,0 +1,34 @@
+{{/*
+  Generate one section page for every node in data/tag_tree.yaml.
+
+  The tree partial can only render links; Hugo still needs a page at each
+  /tags/<id>/ URL. Existing hand-written tag pages are kept and skipped, while
+  newly added tree nodes receive a generated page automatically.
+*/}}
+{{ with site.Data.tag_tree.nodes }}
+  {{ template "add-tag-pages" (dict "nodes" . "ctx" $) }}
+{{ end }}
+
+{{ define "add-tag-pages" }}
+  {{ range .nodes }}
+    {{ $id := printf "%v" .id }}
+    {{ $markdownSource := printf "content/tags/%s/_index.markdown" $id }}
+    {{ $mdSource := printf "content/tags/%s/_index.md" $id }}
+
+    {{ if not (or (fileExists $markdownSource) (fileExists $mdSource)) }}
+      {{ $params := dict "tag_id" $id }}
+      {{ $page := dict
+        "kind" "section"
+        "params" $params
+        "path" $id
+        "title" .title
+        "type" "tag-page"
+      }}
+      {{ $.ctx.AddPage $page }}
+    {{ end }}
+
+    {{ with .children }}
+      {{ template "add-tag-pages" (dict "nodes" . "ctx" $.ctx) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
