@@ -148,9 +148,9 @@ $$
 \B_0:\eq\C^*\ ;\B_{k+1}:\eq\B_k[z_{k+1}\leftarrow s_{i_{k+1}}]
 $$
 之后对于 $k\le m$ 施以归纳
-> 对于 $k=0$ 显然有 $\A_0\eq\B_0$ 从而有 $ \vdash\A_0\lra\B_0$ .
+> 对于 $k=0$ 显然有 $\A_0\eq\B_0$ 从而有 $\vdash\A_0\lra\B_0$ .
 > 
-> 对于 $k<m$ ，由 I.H. 得到 $\Gamma\vdash\A_k\lra\B_k$ ，再由 I.4.12 得到 $\Gamma\vdash(\A_k\lra\B_k)[z_{k+1}\leftarrow t_{i_{k+1}}]$ 即 $\A_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}]$ ，而由 $\Ax.4$ 可得 $ \vdash s_{i_{k+1}}=t_{i_{k+1}}\to(\B_k[z_{k+1}\leftarrow s_{i_{k+1}}]\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}])$ 即 $s_{i_{k+1}}=t_{i_{k+1}}\to(\B_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}])$ ，而又由于 $\Gamma\vdash s_{i_{k+1}}=t_{i_{k+1}}$ ，从而应用 MP 即可得到 $\Gamma\vdash \A_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}],\B_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}]$ 故 $\Gamma\vdash\A_{k+1}\lra\B_{k+1}$ .
+> 对于 $k<m$ ，由 I.H. 得到 $\Gamma\vdash\A_k\lra\B_k$ ，再由 I.4.12 得到 $\Gamma\vdash(\A_k\lra\B_k)[z_{k+1}\leftarrow t_{i_{k+1}}]$ 即 $\A_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}]$ ，而由 $\Ax.4$ 可得 $\vdash s_{i_{k+1}}=t_{i_{k+1}}\to(\B_k[z_{k+1}\leftarrow s_{i_{k+1}}]\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}])$ 即 $s_{i_{k+1}}=t_{i_{k+1}}\to(\B_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}])$ ，而又由于 $\Gamma\vdash s_{i_{k+1}}=t_{i_{k+1}}$ ，从而应用 MP 即可得到 $\Gamma\vdash \A_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}],\B_{k+1}\lra\B_k[z_{k+1}\leftarrow t_{i_{k+1}}]$ 故 $\Gamma\vdash\A_{k+1}\lra\B_{k+1}$ .
 
 从而得到 $\Gamma\vdash \A_m\lra\B_m$ 即 $\C\lra\C'$ .
 
@@ -165,7 +165,7 @@ $$
 不完全必要，主要是演绎定理的问题，如果我们的证明过程中使用的 $\ex$-introduction 所引入的量词均不影响到 $\A$ 中的某个变元 $x$ ，或者说变元 $x$ 被冻结了，那么实际上演绎定理的归纳法仍然正确，所以仍然可以应用演绎定理，从而仍然可以得到反证法的正确性.
  ##### I.21
 
-令 $L':=L\cup\{a\}$ ，则根据 I.4.20 ，条件(2)是在说 $\Gamma\vdash_{L'}\A[a]\to\B$ ，取不在 $\A,\B$ 中出现的变元 $z$ ，则根据 I.4.15 有 $\Gamma\vdash_L \A[z]\to\B$ ，再由 $\ex$-introduction 规则得到 $\Gamma\vdash_L\ex z\A[z]\to\B$ ，由于对 $z$ 的约定以及 I.4.13 可得 $ \vdash\ex x\A[x]\lra\ex z\A[z]$ ，从而应用两次 MP 可以得到 $\Gamma\vdash_L\B$ .
+令 $L':=L\cup\{a\}$ ，则根据 I.4.20 ，条件(2)是在说 $\Gamma\vdash_{L'}\A[a]\to\B$ ，取不在 $\A,\B$ 中出现的变元 $z$ ，则根据 I.4.15 有 $\Gamma\vdash_L \A[z]\to\B$ ，再由 $\ex$-introduction 规则得到 $\Gamma\vdash_L\ex z\A[z]\to\B$ ，由于对 $z$ 的约定以及 I.4.13 可得 $\vdash\ex x\A[x]\lra\ex z\A[z]$ ，从而应用两次 MP 可以得到 $\Gamma\vdash_L\B$ .
 
 #### I.22
 
@@ -174,7 +174,6 @@ $$
 #### I.23
 
 首先来证明 $\vdash\fa x(\A\and\B)\lra(\fa x\A\and\fa x\B)$  
-
 $(\to)$ 首先由 Specialization 可得 $\vdash\fa x(\A\and\B)\to(\A\and\B)$ ，进一步有 $\A\and\B\vDash_{\bf Taut}\A,\B$ ，之后经由 $\Ax.1$ 以及几次 MP 可以得到 $\vdash\fa x(\A\and\B)\to\A,\fa x(\A\and\B)\to\B$ ，再由 $\fa$-introduction 得到 $\vdash\fa x(\A\and\B)\to\fa x\A,\fa x(\A\and\B)\to\fa x\B$ ，而又有 $\C\to\D,\C\to\E\vDash_{\bf Taut}\C\to(\D\and\E)$ ，从而有 $\vdash\fa x(\A\and\B)\to(\fa x\A\and\fa x\B)$ .
 
 $(\leftarrow)$ 首先由 $\vdash(\fa x\A\and\fa x\B)\to\fa x\A,\fa x\A\to\A$ 可以得到 $\vdash(\fa x\A\and\fa x\B)\to\A$ 类似的还有 $\vdash(\fa x\A\and\fa x\B)\to\B$ ，从而有 $\vdash(\fa x\A\and\fa x\B)\to(\A\and\B)$ ，之后由 $\fa$-introduction 可得 $\vdash(\fa x\A\and\fa x\B)\to\fa x(\A\and\B)$ .
