@@ -15,6 +15,7 @@
   --accent: #2f6d55;
   --accent-strong: #1d503d;
   --accent-soft: #dcece3;
+  --quote-accent: #7f6df2;
   --code: #20251f;
   --shadow: 0 12px 32px rgba(31, 47, 36, .08);
 }
@@ -29,6 +30,7 @@
   --accent: #8ac7a3;
   --accent-strong: #b5e1c3;
   --accent-soft: #254332;
+  --quote-accent: #a58cff;
   --code: #171b18;
   --shadow: none;
 }
@@ -191,7 +193,16 @@ a:hover { color: var(--accent); }
 .article-content h3 { margin: 2em 0 .7em; font-size: 1.25rem; }
 .article-content p, .article-content ul, .article-content ol { margin: 1.15em 0; }
 .article-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-.article-content blockquote { margin: 1.5em 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--accent); color: var(--muted); }
+.article-content blockquote {
+  margin: 1.5em 0;
+  padding: .15em 0 .15em 1em;
+  border-left: 4px solid var(--quote-accent);
+  color: var(--text);
+  background: transparent;
+  font-style: normal;
+}
+.article-content blockquote > :first-child { margin-top: 0; }
+.article-content blockquote > :last-child { margin-bottom: 0; }
 .article-content pre {
   padding: 18px;
   overflow-x: auto;
