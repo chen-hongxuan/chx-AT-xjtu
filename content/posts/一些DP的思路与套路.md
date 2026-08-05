@@ -1,7 +1,8 @@
 ---
-title: "一些DP的思路与套路"
+title: 一些DP的思路与套路
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - oidea
 math: true
 draft: false
 ---

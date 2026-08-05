@@ -1,7 +1,8 @@
 ---
-title: "【模板】fmt&fwt"
+title: 【模板】fmt&fwt
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - oist
 math: true
 draft: false
 ---

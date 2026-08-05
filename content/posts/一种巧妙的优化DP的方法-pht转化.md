@@ -1,7 +1,8 @@
 ---
-title: "一种巧妙的优化DP的方法-pht转化"
+title: 一种巧妙的优化DP的方法-pht转化
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - oidea
 math: true
 draft: false
 ---

@@ -1,7 +1,8 @@
 ---
-title: "【luogu题解】[HNOI2009]双递增序列 想不到序列对调的题解"
+title: 【luogu题解】[HNOI2009]双递增序列 想不到序列对调的题解
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - tutorial
 math: true
 draft: false
 ---

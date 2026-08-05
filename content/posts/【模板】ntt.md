@@ -1,7 +1,8 @@
 ---
-title: "【模板】ntt"
+title: 【模板】ntt
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - oist
 math: true
 draft: false
 ---

@@ -1,7 +1,8 @@
 ---
-title: "2024年ICPC区域赛杭州站J题题解"
+title: 2024年ICPC区域赛杭州站J题题解
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - tutorial
 math: true
 draft: false
 ---

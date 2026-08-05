@@ -1,7 +1,8 @@
 ---
-title: "【luogu题解】CF1387A 图上解方程"
+title: 【luogu题解】CF1387A 图上解方程
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - tutorial
 math: true
 draft: false
 ---

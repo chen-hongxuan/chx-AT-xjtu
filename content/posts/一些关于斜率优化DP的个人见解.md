@@ -1,7 +1,8 @@
 ---
-title: "一些关于斜率优化DP的个人见解"
+title: 一些关于斜率优化DP的个人见解
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - oidea
 math: true
 draft: false
 ---

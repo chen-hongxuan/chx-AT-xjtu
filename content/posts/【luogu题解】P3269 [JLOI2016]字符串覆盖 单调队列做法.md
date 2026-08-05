@@ -1,7 +1,8 @@
 ---
-title: "【luogu题解】P3269 [JLOI2016]字符串覆盖 单调队列做法"
+title: 【luogu题解】P3269 [JLOI2016]字符串覆盖 单调队列做法
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - tutorial
 math: true
 draft: false
 ---

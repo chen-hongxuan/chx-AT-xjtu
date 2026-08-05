@@ -1,7 +1,8 @@
 ---
-title: "ss讲课day3"
+title: ss讲课day3
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - course
 math: true
 draft: false
 ---

@@ -1,7 +1,8 @@
 ---
-title: "一种神奇的DP-树上覆盖DP"
+title: 一种神奇的DP-树上覆盖DP
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - oidea
 math: true
 draft: false
 ---

@@ -2,17 +2,36 @@ nodes:
   - id: mathematics
     title: Maths
     children:
-      - id: mathematical-logic
-        title: Logics
+      - id: collage
+        title: 大学知识
+        children: 
+          - id: mathematical-logic
+            title: Logics
+      - id: middleschool
+        title: 中学的陈年旧账
   - id: xcpcoi
     title: 算法竞赛
     children:
+      - id: course
+        title: 讲课课件
+      - id: tutorial
+        title: 题解
+      - id: journal
+        title: 游记
       - id: xcpc
         title: xcpc
         children:
+          - id: xtrain
+            title: xcpc加训
+          - id: xidea
+            title: ideas(of xcpc)
       - id: oi
         title: oi
         children:
+          - id: otrain
+            title: oi训练
+          - id: oidea
+            title: ideas(of oi)
       - id: 代码模板
         title: 代码模板
         children:

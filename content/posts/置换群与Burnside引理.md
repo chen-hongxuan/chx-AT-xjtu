@@ -1,7 +1,8 @@
 ---
-title: "置换群与Burnside引理"
+title: 置换群与Burnside引理
 date: 2026-07-31T00:00:00+08:00
-tags: []
+tags:
+  - middleschool
 math: true
 draft: false
 ---
