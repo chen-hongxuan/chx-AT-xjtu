@@ -97,7 +97,7 @@ $$
 $$
 (2)
 
-假设 $L$ 是包含了二元谓词符号 $<$ 的语言，并且假定$ \vdash_L x<y\to y<x$ ，那么对于任何 $L$ 上的模型 $M=(|M|,\T)$ 均有 $M\vDash_L  x<y\to y<x$，然而模型 $(\N;<_\N)$ 显然不满足它，与假设矛盾，从而 $ \not\vdash_L x<y\to y<x$ .
+假设 $L$ 是包含了二元谓词符号 $<$ 的语言，并且假定$\vdash_L x<y\to y<x$ ，那么对于任何 $L$ 上的模型 $M=(|M|,\T)$ 均有 $M\vDash_L  x<y\to y<x$，然而模型 $(\N;<_\N)$ 显然不满足它，与假设矛盾，从而 $\not\vdash_L x<y\to y<x$ .
 
 (3)
 
@@ -127,7 +127,7 @@ $$
 
 #### I.17
 
-首先容易验证 $(x=y\and y=z)\to x=z$ 和 $x=y\to(y=z\to x=z)$ 是同一个东西，所以只需要证明 $ \vdash x=y\to(y=z\to x=z)$ 即可.
+首先容易验证 $(x=y\and y=z)\to x=z$ 和 $x=y\to(y=z\to x=z)$ 是同一个东西，所以只需要证明 $\vdash x=y\to(y=z\to x=z)$ 即可.
 $$
 \bl
 (1)\line{y=x\to ((u=z)[u\leftarrow y]\lra(u=z)[u\leftarrow x])}{\Ax.4}
@@ -169,7 +169,7 @@ $$
 
 #### I.22
 
-首先看 $ \vdash\A\to\fa x\A$ ，首先 $\vDash_{\bf Taut}\A\to\A$ ，再应用 $\fa$-introduction （ $x$ 不在 $\A$ 中自由出现）即可得到 $ \vdash\A\to\fa x\A$ ；对于 $ \vdash\ex x\A\to\A$ 也是同理，应用 $\ex$-introduction 即可.
+首先看 $\vdash\A\to\fa x\A$ ，首先 $\vDash_{\bf Taut}\A\to\A$ ，再应用 $\fa$-introduction （ $x$ 不在 $\A$ 中自由出现）即可得到 $\vdash\A\to\fa x\A$ ；对于 $\vdash\ex x\A\to\A$ 也是同理，应用 $\ex$-introduction 即可.
 
 #### I.23
 

@@ -292,7 +292,7 @@ $$
 $$
 \no:=\l x.(\m y)[y=\o(x)]
 $$
-其中 $\no\in\p $ 并且 $\dom\no=A$ . 之后对于 $f\in\p$ 以及 $R\subseteq\N$ 我们规定符号
+其中 $\no\in\p$ 并且 $\dom\no=A$ . 之后对于 $f\in\p$ 以及 $R\subseteq\N$ 我们规定符号
 $$
 f[R]:=\bb{f(x):x\in R\and f(x)\dd}
 $$

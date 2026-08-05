@@ -113,7 +113,7 @@ $$
 
 ![](https://cdn.luogu.com.cn/upload/image_hosting/yu54nolp.png)
 
-其中 $t$ 就是向左滑行的量，$t = (\lceil \frac{x}{n} \rceil - \frac{x}{n})\times n $，显然这个 $t$ 是小于 $n$ 的，因为 $\lceil x \rceil - x < 1$ ,然后这个三角形的面积就是 $\frac x 2$ 的，和题目要求一致。
+其中 $t$ 就是向左滑行的量，$t = (\lceil \frac{x}{n} \rceil - \frac{x}{n})\times n$，显然这个 $t$ 是小于 $n$ 的，因为 $\lceil x \rceil - x < 1$ ,然后这个三角形的面积就是 $\frac x 2$ 的，和题目要求一致。
 
 ### F
 
