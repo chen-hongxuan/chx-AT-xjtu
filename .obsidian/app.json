@@ -9,5 +9,6 @@
   "tabSize": 2,
   "newFileLocation": "folder",
   "newFileFolderPath": "content/posts",
-  "attachmentFolderPath": "static/images"
+  "attachmentFolderPath": "static/images",
+  "promptDelete": false
 }
