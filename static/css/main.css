@@ -79,7 +79,7 @@ a:hover { color: var(--accent); }
 
 /* Article pages need extra width for long display equations. */
 .site-main--article {
-  width: min(1360px, calc(100% - 40px));
+  width: min(1240px, calc(100% - 40px));
 }
 
 .nav-wrap {
@@ -188,11 +188,11 @@ a:hover { color: var(--accent); }
 .lead, .page-heading .lead { color: var(--muted); font-size: 1.05rem; }
 .lead > p { margin-bottom: 0; }
 
-.article-shell { width: min(1280px, 100%); margin: 0 auto; padding: 72px 0 96px; }
+.article-shell { width: min(1100px, 100%); margin: 0 auto; padding: 72px 0 96px; }
 .article-header { padding-bottom: 38px; border-bottom: 1px solid var(--line); }
 .article-header h1 { font-size: clamp(2.35rem, 5vw, 4rem); }
 .article-description { max-width: 690px; margin: 22px 0; color: var(--muted); font-size: 1.06rem; }
-.article-layout { display: grid; grid-template-columns: 180px minmax(0, 1fr); grid-template-areas: "toc content"; gap: 40px; margin-top: 42px; }
+.article-layout { display: grid; grid-template-columns: 185px minmax(0, 1fr); grid-template-areas: "toc content"; gap: 48px; margin-top: 42px; }
 .article-content { grid-area: content; min-width: 0; font-size: 1.02rem; }
 .article-content h2 { margin: 2.7em 0 .8em; font-size: 1.65rem; letter-spacing: -.035em; line-height: 1.3; }
 .article-content h3 { margin: 2em 0 .7em; font-size: 1.25rem; }
@@ -259,7 +259,7 @@ a:hover { color: var(--accent); }
 .site-footer p { margin: 0; }
 .muted { color: var(--muted); }
 
-@media (max-width: 980px) {
+@media (max-width: 870px) {
   .article-layout { grid-template-columns: 1fr; grid-template-areas: "toc" "content"; gap: 28px; }
   .article-toc { position: static; padding: 16px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
 }
