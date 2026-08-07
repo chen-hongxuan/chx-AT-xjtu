@@ -5,7 +5,7 @@
   </head>
   <body>
     {{ partial "header.html" . }}
-    <main class="site-main">
+    <main class="site-main{{ if and .IsPage (eq .Section "posts") }} site-main--article{{ end }}">
       {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}
