@@ -154,13 +154,7 @@ $$f[l][r]=g[l+1][r]\cdot yes[DFS_{1,l}][r-l+1].$$
 
 而 $g[l][r]$ 可以按照第一棵子树的右端点 $mid$ 分类:
 
-$$
-g[l][r]
-=
-f[l][r]
-+
-\sum_{mid=l}^{r-1}f[l][mid]g[mid+1][r].
-$$
+$$g[l][r]=f[l][r]+\sum_{mid=l}^{r-1}f[l][mid]g[mid+1][r].$$
 
 边界为
 
