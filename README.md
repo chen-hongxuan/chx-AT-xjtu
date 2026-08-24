@@ -44,6 +44,17 @@ C \arrow[r, "k"'] & D
 ```
 ````
 
+
+```tikz
+\usepackage{tikz-cd}
+\begin{document}
+\begin{tikzcd}[row sep=large, column sep=large]
+A \arrow[r, "f"] \arrow[d, "g"'] & B \arrow[d, "h"] \\
+C \arrow[r, "k"'] & D
+\end{tikzcd}
+\end{document}
+```
+
 不要在代码块中添加 `\documentclass`; Obsidian 插件和博客构建程序会自动
 使用 `standalone` 文档类. 发布时, GitHub Actions 会把同一份源码编译成
 静态 SVG, 因此网页端不需要重新运行 LaTeX. 新图首次部署会稍慢, 已编译
