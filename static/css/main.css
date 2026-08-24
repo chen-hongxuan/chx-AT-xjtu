@@ -234,6 +234,31 @@ a:hover { color: var(--accent); }
   padding: 5px 0;
 }
 
+/* Pre-rendered TikZ/tikz-cd diagrams share their source with Obsidian. */
+.tikz-diagram {
+  margin: 1.8em 0;
+  text-align: center;
+}
+
+.tikz-diagram-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .6rem;
+}
+
+.tikz-diagram img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+}
+
+:root[data-theme="dark"] .tikz-diagram img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 .article-toc { grid-area: toc; position: sticky; top: 90px; align-self: start; color: var(--muted); font-size: .84rem; line-height: 1.5; }
 .article-toc > p { margin: 0 0 8px; color: var(--text); font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .article-toc ul { margin: 0; padding-left: 16px; }

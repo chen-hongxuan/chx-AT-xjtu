@@ -39,12 +39,46 @@ jobs:
           tar -C "${HOME}/.local/hugo" -xf "${{ runner.temp }}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz"
           echo "${HOME}/.local/hugo" >> "${GITHUB_PATH}"
 
-      - name: Protect multiline math from Markdown parsing
+      - name: Detect TikZ diagrams
+        id: tikz
+        shell: bash
+        run: |
+          if grep -ERIli \
+            --include='*.[mM][dD]' \
+            --include='*.[mM][aA][rR][kK][dD][oO][wW][nN]' \
+            '^[[:space:]]*(`{3,}|~{3,})tikz([[:space:]]|$)' content >/dev/null; then
+            echo "present=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "present=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Cache rendered TikZ diagrams
+        if: steps.tikz.outputs.present == 'true'
+        uses: actions/cache@v4
+        with:
+          path: static/generated/tikz
+          key: tikz-${{ runner.os }}-${{ hashFiles('content/**/*.md', 'content/**/*.markdown') }}
+          restore-keys: |
+            tikz-${{ runner.os }}-
+
+      - name: Install TikZ renderer
+        if: steps.tikz.outputs.present == 'true'
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            texlive-latex-base \
+            texlive-latex-extra \
+            texlive-pictures \
+            dvisvgm
+
+      - name: Prepare Markdown and diagrams
         shell: bash
         run: |
           python3 scripts/prepare_hugo_content.py \
             --source content \
-            --destination "${{ runner.temp }}/hugo-content"
+            --destination "${{ runner.temp }}/hugo-content" \
+            --tikz-output static/generated/tikz
 
       - name: Build the blog
         shell: bash

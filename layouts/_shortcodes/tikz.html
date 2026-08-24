@@ -1,0 +1,7 @@
+{{- $src := .Get "src" -}}
+{{- $alt := or (.Get "alt") "交换图" -}}
+<figure class="tikz-diagram">
+  <div class="tikz-diagram-scroll">
+    <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+  </div>
+</figure>

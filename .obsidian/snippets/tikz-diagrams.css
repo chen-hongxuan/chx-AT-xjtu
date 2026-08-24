@@ -1,0 +1,14 @@
+/* Keep category-theory diagrams readable without changing their TikZ source. */
+.markdown-rendered .block-language-tikz {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: .5rem 0;
+  text-align: center;
+}
+
+.markdown-rendered .block-language-tikz svg {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  zoom: 1.35;
+}

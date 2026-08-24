@@ -8,3 +8,8 @@ resources/
 .obsidian/cache/
 .obsidian/core-plugins.json
 .obsidian/plugins/
+
+# Cached SVGs compiled from Obsidian TikZJax code blocks during deployment.
+static/generated/tikz/
+__pycache__/
+*.py[cod]
