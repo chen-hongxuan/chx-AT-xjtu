@@ -6,7 +6,7 @@ nodes:
         title: 大学知识
         children: 
           - id: mathematical-logic
-            title: Logics
+            title: Mathematical Logic
           - id: category-theory
             title: Category Theory
       - id: middleschool
