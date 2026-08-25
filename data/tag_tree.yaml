@@ -7,6 +7,8 @@ nodes:
         children: 
           - id: mathematical-logic
             title: Logics
+          - id: category-theory
+            title: Category Theory
       - id: middleschool
         title: 中学的陈年旧账
   - id: xcpcoi
