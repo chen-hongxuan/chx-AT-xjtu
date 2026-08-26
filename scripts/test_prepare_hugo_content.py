@@ -1,3 +1,5 @@
+import base64
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -15,6 +17,196 @@ class PrepareHugoContentTests(unittest.TestCase):
         self.assertEqual(count, 1)
         self.assertIn("$$a &= b \\\\ = c$$", result)
         self.assertIn("```cpp\n$$\n=\n$$\n```", result)
+
+    def test_typst_multiline_math_preserves_comments_and_newlines(self) -> None:
+        source = Path("typst-article.md")
+        formula = 'x + 10% // keep the following line separate\ntext("a // b") + y'
+        markdown = f"Before\n$$\n{formula}\n$$\nAfter\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "typst")
+
+        self.assertEqual(count, 1)
+        match = re.search(r'source="([A-Za-z0-9+/=]+)"', result)
+        self.assertIsNotNone(match)
+        decoded = base64.b64decode(match.group(1)).decode("utf-8")
+        self.assertEqual(decoded, formula)
+        self.assertNotIn("$$", result)
+
+    def test_typ_processor_marker_forces_typst_on_mathjax_page(self) -> None:
+        source = Path("mixed-article.md")
+        formula = "sum_(i=1)^n i"
+        markdown = f"Before\n$$typ\n{formula}\n$$\nAfter\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(count, 1)
+        match = re.search(r'source="([A-Za-z0-9+/=]+)"', result)
+        self.assertIsNotNone(match)
+        decoded = base64.b64decode(match.group(1)).decode("utf-8")
+        self.assertEqual(decoded, formula)
+        self.assertNotIn("$$typ", result)
+
+    def test_typ_processor_marker_accepts_optional_colon_for_display(self) -> None:
+        source = Path("mixed-article.md")
+        markdown = "$$typ:\nmat(1, 2; 3, 4)\n$$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(count, 1)
+        match = re.search(r'source="([A-Za-z0-9+/=]+)"', result)
+        self.assertIsNotNone(match)
+        decoded = base64.b64decode(match.group(1)).decode("utf-8")
+        self.assertEqual(decoded, "mat(1, 2; 3, 4)")
+
+    def test_typ_processor_block_can_close_after_formula_content(self) -> None:
+        source = Path("mixed-article.md")
+        markdown = "$$typ x + y\nz$$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(count, 1)
+        match = re.search(r'source="([A-Za-z0-9+/=]+)"', result)
+        self.assertIsNotNone(match)
+        decoded = base64.b64decode(match.group(1)).decode("utf-8")
+        self.assertEqual(decoded, "x + y\nz")
+
+    def test_typst_page_block_can_close_after_formula_content(self) -> None:
+        source = Path("typst-article.md")
+        markdown = "$$\nx + y\nz$$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "typst")
+
+        self.assertEqual(count, 1)
+        match = re.search(r'source="([A-Za-z0-9+/=]+)"', result)
+        self.assertIsNotNone(match)
+        decoded = base64.b64decode(match.group(1)).decode("utf-8")
+        self.assertEqual(decoded, "x + y\nz")
+
+    def test_mathjax_block_can_close_after_formula_content(self) -> None:
+        source = Path("mathjax-article.md")
+        markdown = "$$\nx + y\nz$$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(result, "$$x + y z$$\n")
+        self.assertEqual(count, 1)
+
+    def test_mathjax_display_with_space_is_not_a_typst_marker(self) -> None:
+        source = Path("mixed-article.md")
+        markdown = "$$ typ\nx + y\n$$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(result, markdown)
+        self.assertEqual(count, 0)
+
+    def test_raw_display_with_content_on_both_delimiters_is_untouched(self) -> None:
+        source = Path("legacy-display.md")
+        markdown = "$$mn=pos_x,\n\\qquad\nmx=pos_x+s-1.$$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(result, markdown)
+        self.assertEqual(count, 0)
+
+    def test_typst_marker_in_front_matter_is_untouched(self) -> None:
+        source = Path("front-matter.md")
+        markdown = (
+            "---\n"
+            "title: Test\n"
+            "description: |\n"
+            "  $$typ\n"
+            "  x + y\n"
+            "  $$\n"
+            "---\n"
+            "Body\n"
+        )
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(result, markdown)
+        self.assertEqual(count, 0)
+
+    def test_four_space_indented_typst_marker_is_untouched(self) -> None:
+        source = Path("indented-code.md")
+        markdown = "    $$typ\n    sum_(i=1)^n i\n    $$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(result, markdown)
+        self.assertEqual(count, 0)
+
+    def test_indented_pseudo_fence_does_not_close_outer_fence(self) -> None:
+        source = Path("fenced-code.md")
+        markdown = (
+            "````markdown\n"
+            "    ````\n"
+            "$$typ\n"
+            "x + y\n"
+            "$$\n"
+            "````\n"
+        )
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(result, markdown)
+        self.assertEqual(count, 0)
+
+    def test_fence_close_must_have_the_same_blockquote_depth(self) -> None:
+        source = Path("quoted-fence.md")
+        markdown = (
+            "> ````markdown\n"
+            "> code\n"
+            "````\n"
+            "$$typ\n"
+            "x + y\n"
+            "$$\n"
+            "> ````\n"
+        )
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(result, markdown)
+        self.assertEqual(count, 0)
+
+    def test_display_close_must_have_the_same_blockquote_depth(self) -> None:
+        source = Path("quoted-math.md")
+        markdown = "> $$typ\n> x + y\n$$\n> $$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(count, 1)
+        match = re.search(r'source="([A-Za-z0-9+/=]+)"', result)
+        self.assertIsNotNone(match)
+        decoded = base64.b64decode(match.group(1)).decode("utf-8")
+        self.assertEqual(decoded, "x + y\n$$")
+
+    def test_legacy_blockquote_math_with_unquoted_body_still_closes(self) -> None:
+        source = Path("legacy-quote.md")
+        markdown = "> $$\n x + y\n $$\n"
+
+        result, count = prepare.normalize_markdown(markdown, source, "mathjax")
+
+        self.assertEqual(count, 1)
+        self.assertEqual(result, "> $$x + y$$\n")
+
+    def test_math_engine_is_read_from_yaml_or_defaults_to_mathjax(self) -> None:
+        typst = "---\ntitle: Test\nmath_engine: typst\n---\n"
+        default = "---\ntitle: Test\n---\n"
+
+        self.assertEqual(
+            prepare.math_engine_from_front_matter(typst, Path("typst.md")),
+            "typst",
+        )
+        self.assertEqual(
+            prepare.math_engine_from_front_matter(default, Path("latex.md")),
+            "mathjax",
+        )
+
+    def test_unknown_math_engine_is_rejected(self) -> None:
+        markdown = "---\nmath_engine: typso\n---\n"
+        with self.assertRaisesRegex(ValueError, "unsupported math_engine"):
+            prepare.math_engine_from_front_matter(markdown, Path("article.md"))
 
     def test_cached_tikz_fence_becomes_shortcode(self) -> None:
         source = Path("article.md")

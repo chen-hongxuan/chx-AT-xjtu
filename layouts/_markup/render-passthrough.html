@@ -1,6 +1,40 @@
-{{- $inner := .Inner | htmlEscape -}}
-{{- if eq .Type "block" -}}
-  {{- printf "$$%s$$" $inner | safeHTML -}}
+{{- $engine := lower (or (.Page.Param "math_engine") "mathjax") -}}
+{{- $source := .Inner -}}
+{{- $explicitTypst := false -}}
+{{- if eq .Type "inline" -}}
+  {{- if strings.HasPrefix $source "typ:" -}}
+    {{- $explicitTypst = true -}}
+    {{- $source = strings.TrimPrefix "typ:" $source -}}
+  {{- end -}}
+{{- else if eq .Type "block" -}}
+  {{- $blockMarker := or
+    (eq $source "typ")
+    (strings.HasPrefix $source "typ:")
+    (strings.HasPrefix $source "typ ")
+    (strings.HasPrefix $source "typ\t")
+    (strings.HasPrefix $source "typ\n")
+    (strings.HasPrefix $source "typ\r")
+  -}}
+  {{- if $blockMarker -}}
+    {{- $explicitTypst = true -}}
+    {{- $source = strings.TrimPrefix "typ" $source -}}
+    {{- $source = strings.TrimPrefix ":" $source -}}
+    {{- $source = strings.TrimSpace $source -}}
+  {{- end -}}
+{{- end -}}
+{{- if or (eq $engine "typst") $explicitTypst -}}
+  {{- partial "typst-placeholder.html" (dict
+    "mode" .Type
+    "source" $source
+    "origin" .Page.File.Path
+  ) -}}
+{{- else if or (eq $engine "mathjax") (eq $engine "latex") -}}
+  {{- $inner := $source | htmlEscape -}}
+  {{- if eq .Type "block" -}}
+    {{- printf "$$%s$$" $inner | safeHTML -}}
+  {{- else -}}
+    {{- printf "$%s$" $inner | safeHTML -}}
+  {{- end -}}
 {{- else -}}
-  {{- printf "$%s$" $inner | safeHTML -}}
+  {{- errorf "%s: unsupported math_engine %q (use mathjax, latex, or typst)" .Position $engine -}}
 {{- end -}}

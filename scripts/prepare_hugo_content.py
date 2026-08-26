@@ -4,8 +4,9 @@
 Goldmark parses block-level Markdown before its passthrough extension runs. A
 line containing only ``=`` inside a multiline ``$$`` block can therefore turn
 the preceding formula line into a Setext heading. This script copies the
-content tree and folds each display-math block onto one physical line before
-Hugo reads it.
+content tree and folds MathJax display blocks onto one physical line before
+Hugo reads them. Typst display blocks are instead encoded into an internal
+shortcode, preserving comments and physical newlines verbatim.
 
 The same pass also turns Obsidian TikZJax ``tikz`` fences into cached SVG
 assets. Authors can therefore use one ``tikz-cd`` source block in Obsidian and
@@ -15,6 +16,7 @@ on the published site; readers only download the finished SVG.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import re
 import shutil
@@ -23,17 +25,36 @@ import tempfile
 from pathlib import Path
 
 
-DISPLAY_DELIMITER = re.compile(r"^(?P<prefix>[ \t]*(?:>[ \t]*)*)\$\$[ \t]*$")
+MARKDOWN_CONTAINER_PREFIX = r" {0,3}(?:>[ \t]*)*"
+DISPLAY_DELIMITER = re.compile(
+    rf"^(?P<prefix>{MARKDOWN_CONTAINER_PREFIX})\$\$[ \t]*$"
+)
+TYPST_DISPLAY_OPEN = re.compile(
+    rf"^(?P<prefix>{MARKDOWN_CONTAINER_PREFIX})\$\$typ"
+    r"(?P<rest>(?::.*|[ \t].*)?)$"
+)
+DISPLAY_CONTENT_OPEN = re.compile(
+    rf"^(?P<prefix>{MARKDOWN_CONTAINER_PREFIX})\$\$(?P<initial>.+)$"
+)
 FENCE = re.compile(
-    r"^[ \t]*(?:>[ \t]*)*(?P<marker>`{3,}|~{3,})(?P<rest>.*)$"
+    rf"^(?P<prefix>{MARKDOWN_CONTAINER_PREFIX})"
+    r"(?P<marker>`{3,}|~{3,})(?P<rest>.*)$"
 )
 TIKZ_FENCE = re.compile(
-    r"^[ \t]*(?P<marker>`{3,}|~{3,})tikz(?:[ \t]+.*)?[ \t]*$",
+    r"^(?P<prefix> {0,3})(?P<marker>`{3,}|~{3,})"
+    r"tikz(?:[ \t]+.*)?[ \t]*$",
     re.IGNORECASE,
 )
 TIKZ_CACHE_VERSION = "tikz-svg-v1"
 TIKZ_PUBLIC_PREFIX = "generated/tikz"
 TIKZ_TIMEOUT_SECONDS = 60
+SUPPORTED_MATH_ENGINES = {"mathjax", "latex", "typst"}
+YAML_MATH_ENGINE = re.compile(
+    r"^[ \t]*math_engine[ \t]*:[ \t]*['\"]?(?P<engine>[A-Za-z0-9_-]+)['\"]?[ \t]*(?:#.*)?$"
+)
+TOML_MATH_ENGINE = re.compile(
+    r"^[ \t]*math_engine[ \t]*=[ \t]*['\"](?P<engine>[A-Za-z0-9_-]+)['\"][ \t]*(?:#.*)?$"
+)
 
 
 def strip_quote_prefix(line: str, prefix: str) -> str:
@@ -64,7 +85,113 @@ def strip_tex_comment(line: str) -> str:
     return line
 
 
-def closes_fence(line: str, marker_char: str, marker_length: int) -> bool:
+def math_engine_from_front_matter(text: str, source: Path) -> str:
+    """Read the optional per-page engine without adding a YAML dependency."""
+    lines = text.splitlines()
+    if not lines or lines[0].strip() not in {"---", "+++"}:
+        return "mathjax"
+
+    delimiter = lines[0].strip()
+    matcher = YAML_MATH_ENGINE if delimiter == "---" else TOML_MATH_ENGINE
+    for line in lines[1:]:
+        if line.strip() == delimiter or (delimiter == "---" and line.strip() == "..."):
+            break
+        match = matcher.match(line)
+        if not match:
+            continue
+        engine = match.group("engine").lower()
+        if engine not in SUPPORTED_MATH_ENGINES:
+            raise ValueError(
+                f"{source}: unsupported math_engine {engine!r}; "
+                "use mathjax, latex, or typst"
+            )
+        return engine
+    return "mathjax"
+
+
+def encode_shortcode_value(value: str) -> str:
+    """Encode arbitrary source text as a quoted Hugo shortcode parameter."""
+    return base64.b64encode(value.encode("utf-8")).decode("ascii")
+
+
+def front_matter_end_line(lines: list[str]) -> int:
+    """Return the one-based closing line for YAML/TOML front matter."""
+    if not lines or lines[0].strip() not in {"---", "+++"}:
+        return 0
+
+    delimiter = lines[0].strip()
+    for line_number, line in enumerate(lines[1:], start=2):
+        if line.strip() == delimiter or (
+            delimiter == "---" and line.strip() == "..."
+        ):
+            return line_number
+    return len(lines)
+
+
+def same_quote_depth(first_prefix: str, second_prefix: str) -> bool:
+    """Keep display-math delimiters inside the same blockquote container."""
+    return first_prefix.count(">") == second_prefix.count(">")
+
+
+def display_close_matches(
+    opening_prefix: str, closing_prefix: str, math_lines: list[str]
+) -> bool:
+    """Match the container, while retaining compatibility with old notes.
+
+    A few existing articles start a formula with ``> $$`` but omit ``>`` on
+    the formula body and closing delimiter. Treat that established shape as a
+    deliberately escaped container. A lone delimiter outside an otherwise
+    well-formed blockquote formula must not close it.
+    """
+    if same_quote_depth(opening_prefix, closing_prefix):
+        return True
+
+    opening_depth = opening_prefix.count(">")
+    closing_depth = closing_prefix.count(">")
+    if closing_depth >= opening_depth:
+        return False
+
+    for line in math_lines:
+        if not line.strip():
+            continue
+        prefix = re.match(MARKDOWN_CONTAINER_PREFIX, line)
+        if prefix and prefix.group(0).count(">") == closing_depth:
+            return True
+    return False
+
+
+def split_display_content_close(line: str) -> tuple[str, str] | None:
+    """Return the container prefix and content before a trailing ``$$``."""
+    prefix_match = re.match(MARKDOWN_CONTAINER_PREFIX, line)
+    prefix = prefix_match.group(0) if prefix_match else ""
+    inner = strip_quote_prefix(line, prefix).rstrip()
+    if len(inner) <= 2 or not inner.endswith("$$"):
+        return None
+
+    delimiter_start = len(inner) - 2
+    slash_count = 0
+    cursor = delimiter_start - 1
+    while cursor >= 0 and inner[cursor] == "\\":
+        slash_count += 1
+        cursor -= 1
+    if slash_count % 2:
+        return None
+
+    return prefix, f"{prefix}{inner[:delimiter_start]}"
+
+
+def has_same_line_display_close(line: str, prefix: str) -> bool:
+    """Leave complete one-line ``$$...$$`` expressions to Goldmark."""
+    closing = split_display_content_close(line)
+    return bool(closing and same_quote_depth(prefix, closing[0]))
+
+
+def closes_fence(
+    line: str,
+    marker_char: str,
+    marker_length: int,
+    opening_prefix: str = "",
+) -> bool:
     """Return whether a line is a valid close for the current fenced block."""
     match = FENCE.match(line)
     if not match:
@@ -74,6 +201,7 @@ def closes_fence(line: str, marker_char: str, marker_length: int) -> bool:
         marker[0] == marker_char
         and len(marker) >= marker_length
         and not match.group("rest").strip()
+        and same_quote_depth(opening_prefix, match.group("prefix"))
     )
 
 
@@ -202,15 +330,17 @@ def render_tikz_blocks(
     block_lines: list[str] = []
     marker_char = ""
     marker_length = 0
+    marker_prefix = ""
     block_start = 0
     outer_fence_char = ""
     outer_fence_length = 0
+    outer_fence_prefix = ""
     diagram_count = 0
     compiled_count = 0
 
     for line_number, line in enumerate(lines, start=1):
         if block_start:
-            if closes_fence(line, marker_char, marker_length):
+            if closes_fence(line, marker_char, marker_length, marker_prefix):
                 if output_dir is None:
                     raise ValueError(
                         f"{source}:{block_start}: found a tikz block but "
@@ -233,6 +363,7 @@ def render_tikz_blocks(
                 block_lines = []
                 marker_char = ""
                 marker_length = 0
+                marker_prefix = ""
                 block_start = 0
                 diagram_count += 1
             else:
@@ -240,9 +371,15 @@ def render_tikz_blocks(
             continue
 
         if outer_fence_char:
-            if closes_fence(line, outer_fence_char, outer_fence_length):
+            if closes_fence(
+                line,
+                outer_fence_char,
+                outer_fence_length,
+                outer_fence_prefix,
+            ):
                 outer_fence_char = ""
                 outer_fence_length = 0
+                outer_fence_prefix = ""
             output.append(line)
             continue
 
@@ -251,6 +388,7 @@ def render_tikz_blocks(
             marker = opening.group("marker")
             marker_char = marker[0]
             marker_length = len(marker)
+            marker_prefix = opening.group("prefix")
             block_start = line_number
             block_lines = []
             continue
@@ -261,6 +399,7 @@ def render_tikz_blocks(
             marker = generic_fence.group("marker")
             outer_fence_char = marker[0]
             outer_fence_length = len(marker)
+            outer_fence_prefix = generic_fence.group("prefix")
 
         output.append(line)
 
@@ -271,31 +410,83 @@ def render_tikz_blocks(
     return "\n".join(output) + trailing_newline, diagram_count, compiled_count
 
 
-def normalize_markdown(text: str, source: Path) -> tuple[str, int]:
+def normalize_markdown(
+    text: str, source: Path, math_engine: str = "mathjax"
+) -> tuple[str, int]:
     lines = text.splitlines()
     output: list[str] = []
     math_lines: list[str] = []
     math_prefix = ""
     math_start = 0
+    math_is_typst = False
+    raw_math_opening = ""
     fence_char = ""
     fence_length = 0
+    fence_prefix = ""
     normalized_blocks = 0
+    front_matter_end = front_matter_end_line(lines)
 
     for line_number, line in enumerate(lines, start=1):
+        if line_number <= front_matter_end:
+            output.append(line)
+            continue
+
         if math_lines or math_start:
             closing = DISPLAY_DELIMITER.match(line)
-            if closing:
-                parts = []
-                for math_line in math_lines:
-                    part = strip_quote_prefix(math_line, math_prefix)
-                    part = strip_tex_comment(part).strip()
-                    if part:
-                        parts.append(part)
-                output.append(f"{math_prefix}$${' '.join(parts)}$$")
+            closing_prefix = closing.group("prefix") if closing else ""
+            closing_candidate = closing is not None
+            content_closing = None
+            if not closing:
+                content_closing = split_display_content_close(line)
+            if content_closing:
+                closing_prefix = content_closing[0]
+                closing_candidate = True
+
+            if closing_candidate:
+                closes_math = display_close_matches(
+                    math_prefix, closing_prefix, math_lines
+                )
+            else:
+                closes_math = False
+
+            if closes_math:
+                was_raw_math = bool(raw_math_opening)
+                if content_closing and not was_raw_math:
+                    math_lines.append(content_closing[1])
+                if raw_math_opening:
+                    output.append(raw_math_opening)
+                    output.extend(math_lines)
+                    output.append(line)
+                elif math_is_typst:
+                    # Preserve Typst comments, strings, and physical newlines.
+                    # A shortcode keeps the raw source away from Goldmark's
+                    # block parser, so lines such as ``=`` cannot become a
+                    # Setext heading and ``//`` comments keep their scope.
+                    typst_source = "\n".join(
+                        strip_quote_prefix(math_line, math_prefix)
+                        for math_line in math_lines
+                    )
+                    source64 = encode_shortcode_value(typst_source)
+                    origin64 = encode_shortcode_value(f"{source}:{math_start}")
+                    output.append(
+                        f'{math_prefix}{{{{< typst-math source="{source64}" '
+                        f'origin="{origin64}" >}}}}'
+                    )
+                else:
+                    parts = []
+                    for math_line in math_lines:
+                        part = strip_quote_prefix(math_line, math_prefix)
+                        part = strip_tex_comment(part).strip()
+                        if part:
+                            parts.append(part)
+                    output.append(f"{math_prefix}$${' '.join(parts)}$$")
                 math_lines = []
                 math_prefix = ""
                 math_start = 0
-                normalized_blocks += 1
+                math_is_typst = False
+                raw_math_opening = ""
+                if not was_raw_math:
+                    normalized_blocks += 1
             else:
                 math_lines.append(line)
             continue
@@ -306,18 +497,51 @@ def normalize_markdown(text: str, source: Path) -> tuple[str, int]:
             if not fence_char:
                 fence_char = marker[0]
                 fence_length = len(marker)
-            elif closes_fence(line, fence_char, fence_length):
+                fence_prefix = fence.group("prefix")
+            elif closes_fence(line, fence_char, fence_length, fence_prefix):
                 fence_char = ""
                 fence_length = 0
+                fence_prefix = ""
             output.append(line)
             continue
 
         if not fence_char:
-            opening = DISPLAY_DELIMITER.match(line)
+            typst_opening = TYPST_DISPLAY_OPEN.match(line)
+            if typst_opening and has_same_line_display_close(
+                line, typst_opening.group("prefix")
+            ):
+                typst_opening = None
+
+            opening = typst_opening or DISPLAY_DELIMITER.match(line)
             if opening:
                 math_prefix = opening.group("prefix")
                 math_start = line_number
-                math_lines = []
+                math_is_typst = math_engine == "typst" or typst_opening is not None
+                raw_math_opening = ""
+                if typst_opening:
+                    initial = typst_opening.group("rest")
+                    if initial.startswith(":"):
+                        initial = initial[1:]
+                    initial = initial.lstrip(" \t")
+                    math_lines = [f"{math_prefix}{initial}"] if initial else []
+                else:
+                    math_lines = []
+                continue
+
+            content_opening = DISPLAY_CONTENT_OPEN.match(line)
+            if content_opening and not has_same_line_display_close(
+                line, content_opening.group("prefix")
+            ):
+                math_prefix = content_opening.group("prefix")
+                math_start = line_number
+                math_is_typst = math_engine == "typst"
+                if math_is_typst:
+                    initial = content_opening.group("initial")
+                    math_lines = [f"{math_prefix}{initial}"]
+                    raw_math_opening = ""
+                else:
+                    math_lines = []
+                    raw_math_opening = line
                 continue
 
         output.append(line)
@@ -365,10 +589,11 @@ def prepare_content(
             continue
         markdown_files += 1
         text = path.read_text(encoding="utf-8-sig")
+        math_engine = math_engine_from_front_matter(text, path)
         text, diagrams, compiled = render_tikz_blocks(
             text, path, tikz_output, used_tikz_assets
         )
-        normalized, count = normalize_markdown(text, path)
+        normalized, count = normalize_markdown(text, path, math_engine)
         path.write_text(normalized, encoding="utf-8", newline="\n")
         math_blocks += count
         tikz_blocks += diagrams

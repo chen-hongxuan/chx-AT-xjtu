@@ -234,6 +234,37 @@ a:hover { color: var(--accent); }
   padding: 5px 0;
 }
 
+/* Typst pages are compiled to transparent, path-based SVGs during build. */
+.typst-math--inline {
+  display: inline-block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  vertical-align: -.18em;
+}
+
+.typst-math--block {
+  display: block;
+  max-width: 100%;
+  margin: 1.25em 0;
+  padding: 5px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+.typst-math--block img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+}
+
+:root[data-theme="dark"] .typst-math {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* Pre-rendered TikZ/tikz-cd diagrams share their source with Obsidian. */
 .tikz-diagram {
   margin: 1.8em 0;

@@ -26,6 +26,46 @@ draft: false
 - 行内公式：`$a^2+b^2=c^2$`
 - 独立公式：`$$ ... $$` 或 `\[ ... \]`
 - 代码块：用三个反引号包裹，并在首行写明语言，例如 `python`、`cpp` 或 `java`。
+
+公式默认继续使用 MathJax/LaTeX. 如果一篇文章希望改用 Typst, 在 Front
+Matter 中增加:
+
+```yaml
+math_engine: typst
+```
+
+此时该文章 `$...$` 和 `$$...$$` 内部使用 Typst 数学语法, 例如:
+
+```markdown
+$sum_(i=1)^n i$
+
+$$
+mat(1, 2; 3, 4)
+$$
+```
+
+不写 `math_engine`（或写 `math_engine: mathjax`）时, 旧文章的 LaTeX 行为
+完全不变. 可复用的 Typst 定义放在 `typst/math-preamble.typ`; 修改它会让
+相关 SVG 在下一次构建时自动失效并重新生成. GitHub Actions 只在网站中
+确实出现 Typst 公式时安装固定版本的 Typst, 然后把公式编译成透明 SVG.
+目前是按文章切换引擎, `math_engine` 应直接写在该文章顶层 Front Matter 中.
+
+也可以在同一篇文章中只把个别公式交给 Typst. 这种写法与 Obsidian 的
+Typst Mate Processor ID 兼容, 网站构建时会自动去掉 `typ:` 标记:
+
+```markdown
+旧 LaTeX 公式保持不变: $\frac{a}{b}$
+
+Typst 行内公式: $typ:sum_(i=1)^n i$
+
+$$typ
+mat(1, 2; 3, 4)
+$$
+```
+
+未标注的公式仍服从文章的 `math_engine`: 默认使用 MathJax; 只有写了
+`math_engine: typst` 的文章才会默认使用 Typst. 块公式按照 Typst Mate
+的语法把 Processor ID 写成 `$$typ`; 构建程序也兼容 `$$typ:`.
 ## 范畴论交换图
 
 在 Obsidian 的 Community plugins 中搜索并安装 `TikZJax`, 然后启用它.
@@ -85,3 +125,16 @@ hugo server
 
 普通公式和文章可直接用 Hugo 预览. `tikz` 交换图在编辑时以 Obsidian 的
 TikZJax 预览为准; 网页中的 SVG 会在推送到 GitHub 后由发布流程生成.
+
+`hugo server` 不会运行 Hugo 之后的 Typst SVG 编译步骤. 如需在本地检查
+最终网页效果, 请先安装 Typst 0.15.1; 若公式里含中文, 建议同时安装
+`Noto Sans CJK SC` 字体. 然后运行:
+
+```powershell
+hugo build --baseURL http://localhost:1313/
+python scripts/render_typst_math.py --public public --cache .cache/typst-svg --preamble typst/math-preamble.typ
+python -m http.server 1313 --directory public
+```
+
+然后打开 `http://localhost:1313/`. 这只影响本地生成的 `public/` 和缓存,
+不会改写 `content/` 中的 Obsidian 源文件.

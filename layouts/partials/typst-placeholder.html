@@ -1,0 +1,11 @@
+{{- $mode := .mode -}}
+{{- $source64 := .source64 -}}
+{{- if not $source64 -}}
+  {{- $source64 = .source | encoding.Base64Encode -}}
+{{- end -}}
+{{- $origin64 := .origin64 -}}
+{{- if not $origin64 -}}
+  {{- $origin64 = printf "%v" .origin | encoding.Base64Encode -}}
+{{- end -}}
+{{- $assetPrefix := "generated/typst/" | relURL -}}
+<x-typst-math data-typst-version="1" data-typst-mode="{{ $mode }}" data-typst-source="{{ $source64 }}" data-typst-origin="{{ $origin64 }}" data-typst-asset-prefix="{{ $assetPrefix }}"></x-typst-math>

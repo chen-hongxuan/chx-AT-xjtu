@@ -11,5 +11,6 @@ resources/
 
 # Cached SVGs compiled from Obsidian TikZJax code blocks during deployment.
 static/generated/tikz/
+.cache/typst-svg/
 __pycache__/
 *.py[cod]
