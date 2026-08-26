@@ -26,7 +26,6 @@ draft: false
 - 行内公式：`$a^2+b^2=c^2$`
 - 独立公式：`$$ ... $$` 或 `\[ ... \]`
 - 代码块：用三个反引号包裹，并在首行写明语言，例如 `python`、`cpp` 或 `java`。
-
 ## 范畴论交换图
 
 在 Obsidian 的 Community plugins 中搜索并安装 `TikZJax`, 然后启用它.
@@ -51,6 +50,16 @@ C \arrow[r, "k"'] & D
 \begin{tikzcd}[row sep=large, column sep=large]
 A \arrow[r, "f"] \arrow[d, "g"'] & B \arrow[d, "h"] \\
 C \arrow[r, "k"'] & D
+\end{tikzcd}
+\end{document}
+```
+
+```tikz
+\usepackage{tikz-cd}
+\begin{document}
+\begin{tikzcd}
+A\arrow[r,"f"]\arrow[rd,"g",hook] & B\arrow[d,"h"]\\
+C\arrow[r,"k"]&D
 \end{tikzcd}
 \end{document}
 ```
