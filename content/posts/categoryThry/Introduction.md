@@ -12,7 +12,7 @@ title: Introduction
 
 ## Introduction
 
-首先范畴论里最核心的概念就是 universal property , 中文译名叫"泛性质", 于是第一个问题是什么是泛性质. 教材给的第一个例子是一元集 $typ:bold(1)$ , 我们按照范畴论的语言来描述它
+首先范畴论里最核心的概念就是 universal property , 中文译名叫"泛性质", 于是第一个问题是什么是泛性质. 教材给的第一个例子是一元集 $typ:upright(bold(1))$ , 我们按照范畴论的语言来描述它
 
 >[!definition] Property $T(X)$
 > 称一个集合 $X$ 具有性质 $T$ , 简记为 $T(X)$  , 当且仅当对于任意集合 $S$ 存在唯一映射 $typ:f:S->X$ .
