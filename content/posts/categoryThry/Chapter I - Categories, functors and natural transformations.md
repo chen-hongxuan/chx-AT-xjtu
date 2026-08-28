@@ -98,9 +98,21 @@ the maps are invertible and there is only one object.
 类似于集合论里映射的单射满射, 我们也可以定义函子的**忠实性/faithfulness**和**全性/fullness**.
 
 >[!definition] Faithful
+>函子 $F:\A\to\B$ 是忠实的, 当且仅当对于任意的 $A,A'\in\A$ , $F$ 态射层的映射 $\A(A,A')\to\B(F(A),F(A'))$ 是单射.
+
+>[!definition] Full
+>类似于忠实性, 不过将态射层映射的要求由单射改为满射.
+
+最后我们定义范畴的子范畴
+
+>[!definition] Subcategory.
+>范畴 $\B$ 是范畴 $\A$ 的一个子范畴, 当且仅当:
+>1. $\ob(\B)$ is the subclass of $\ob(\A)$ .
+>2. For each $X,X'\in\B$ , $\B(X,X')$ is the subclass of $\A(X,X')$.
+>3. 范畴 $\B$ 的态射应当在复合意义下封闭, 并且保留恒等态射.
 ## Natural transformations
 
 ## Exercise
 
-### I.1.13
+### 1.1.13
 设态射 $A\map fB,B\map{g,g'} A$ 满足 $fg=fg'=1_B,gf=g'f=1_A$ 那么显然有$$\begin{aligned}g&=g\circ1_B\\&=g(fg')\\&=(gf)g'\\&=1_A\circ g'=g'\end{aligned}$$因此态射的逆必定是唯一的.
