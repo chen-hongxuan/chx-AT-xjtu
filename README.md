@@ -88,7 +88,7 @@ C \arrow[r, "k"'] & D
 \usepackage{tikz-cd}
 \begin{document}
 \begin{tikzcd}[row sep=large, column sep=large]
-A \arrow[r, "f"] \arrow[d, "g"'] & B \arrow[d, "h"] \\
+A \arrow[r, "f"] \arrow[d,dashed, "g"'] & B \arrow[d, "h"] \\
 C \arrow[r, "k"'] & D
 \end{tikzcd}
 \end{document}
