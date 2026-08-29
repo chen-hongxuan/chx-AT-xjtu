@@ -3,6 +3,7 @@ import re
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import prepare_hugo_content as prepare
 
@@ -234,6 +235,46 @@ class PrepareHugoContentTests(unittest.TestCase):
             result,
         )
         self.assertNotIn("```tikz", result)
+
+    def test_compile_tikz_uses_equals_for_dvisvgm_output(self) -> None:
+        commands: list[list[str]] = []
+
+        def fake_run_checked(
+            command: list[str], cwd: Path, source: Path, line: int
+        ) -> None:
+            commands.append(command)
+            if command[0] == "latex":
+                (cwd / "diagram.dvi").write_bytes(b"DVI")
+                return
+
+            output_option = next(
+                argument for argument in command if argument.startswith("--output=")
+            )
+            Path(output_option.partition("=")[2]).write_text(
+                "<svg/>", encoding="utf-8"
+            )
+
+        with tempfile.TemporaryDirectory() as temp_name:
+            destination = Path(temp_name) / "diagram.svg"
+            source_text = (
+                "\\begin{document}\n"
+                "\\begin{tikzpicture}\\end{tikzpicture}\n"
+                "\\end{document}"
+            )
+            with mock.patch.object(
+                prepare, "run_checked", side_effect=fake_run_checked
+            ):
+                prepare.compile_tikz(source_text, destination, Path("article.md"), 7)
+
+            self.assertTrue(destination.is_file())
+
+        dvisvgm_command = next(
+            command for command in commands if command[0] == "dvisvgm"
+        )
+        self.assertNotIn("--output", dvisvgm_command)
+        self.assertEqual(
+            sum(argument.startswith("--output=") for argument in dvisvgm_command), 1
+        )
 
     def test_tikz_fence_requires_output_directory(self) -> None:
         markdown = "```tikz\n\\begin{document}\n\\end{document}\n```\n"
