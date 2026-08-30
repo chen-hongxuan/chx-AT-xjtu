@@ -42,12 +42,13 @@ FENCE = re.compile(
 )
 TIKZ_FENCE = re.compile(
     r"^(?P<prefix> {0,3})(?P<marker>`{3,}|~{3,})"
-    r"tikz(?:[ \t]+.*)?[ \t]*$",
+    r"tikz(?P<options>(?:[ \t]+.*?)?)[ \t]*$",
     re.IGNORECASE,
 )
 TIKZ_CACHE_VERSION = "tikz-svg-v1"
 TIKZ_PUBLIC_PREFIX = "generated/tikz"
 TIKZ_TIMEOUT_SECONDS = 60
+TIKZ_SIZES = {"medium", "large", "wide"}
 SUPPORTED_MATH_ENGINES = {"mathjax", "latex", "typst"}
 YAML_MATH_ENGINE = re.compile(
     r"^[ \t]*math_engine[ \t]*:[ \t]*['\"]?(?P<engine>[A-Za-z0-9_-]+)['\"]?[ \t]*(?:#.*)?$"
@@ -212,6 +213,26 @@ def tikz_digest(source: str) -> str:
     return hashlib.sha256(payload).hexdigest()[:24]
 
 
+def parse_tikz_options(options: str, source: Path, line: int) -> str | None:
+    """Read presentation-only options from a ``tikz`` fence info string."""
+    size: str | None = None
+    for option in options.split():
+        if not option.startswith("size="):
+            raise ValueError(
+                f"{source}:{line}: unsupported tikz option {option!r}; "
+                "use size=medium, size=large, or size=wide"
+            )
+        if size is not None:
+            raise ValueError(f"{source}:{line}: tikz size was specified more than once")
+        size = option.removeprefix("size=").lower()
+        if size not in TIKZ_SIZES:
+            raise ValueError(
+                f"{source}:{line}: unsupported tikz size {size!r}; "
+                "use medium, large, or wide"
+            )
+    return size
+
+
 def cached_svg_is_valid(path: Path) -> bool:
     """Reject missing, empty, or obviously incomplete cache entries."""
     if not path.is_file() or path.stat().st_size == 0:
@@ -330,6 +351,7 @@ def render_tikz_blocks(
     marker_char = ""
     marker_length = 0
     marker_prefix = ""
+    diagram_size: str | None = None
     block_start = 0
     outer_fence_char = ""
     outer_fence_length = 0
@@ -357,12 +379,15 @@ def render_tikz_blocks(
                 output.append(
                     '{{< tikz src="'
                     + f"{TIKZ_PUBLIC_PREFIX}/{svg_name}"
-                    + '" alt="交换图" >}}'
+                    + '" alt="交换图"'
+                    + (f' size="{diagram_size}"' if diagram_size else "")
+                    + " >}}"
                 )
                 block_lines = []
                 marker_char = ""
                 marker_length = 0
                 marker_prefix = ""
+                diagram_size = None
                 block_start = 0
                 diagram_count += 1
             else:
@@ -388,6 +413,9 @@ def render_tikz_blocks(
             marker_char = marker[0]
             marker_length = len(marker)
             marker_prefix = opening.group("prefix")
+            diagram_size = parse_tikz_options(
+                opening.group("options"), source, line_number
+            )
             block_start = line_number
             block_lines = []
             continue

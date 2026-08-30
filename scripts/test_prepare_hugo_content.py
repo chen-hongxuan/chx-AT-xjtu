@@ -236,6 +236,28 @@ class PrepareHugoContentTests(unittest.TestCase):
         )
         self.assertNotIn("```tikz", result)
 
+    def test_tikz_fence_can_request_a_larger_web_size(self) -> None:
+        source = Path("article.md")
+        tikz = "\\begin{document}\n\\end{document}\n"
+        markdown = f"```tikz size=large\n{tikz}```\n"
+
+        with tempfile.TemporaryDirectory() as temp_name:
+            output_dir = Path(temp_name)
+            digest = prepare.tikz_digest(tikz)
+            (output_dir / f"{digest}.svg").write_text("<svg/>", encoding="utf-8")
+            result, diagrams, compiled = prepare.render_tikz_blocks(
+                markdown, source, output_dir
+            )
+
+        self.assertEqual(diagrams, 1)
+        self.assertEqual(compiled, 0)
+        self.assertIn('size="large"', result)
+
+    def test_tikz_fence_rejects_unknown_size(self) -> None:
+        markdown = "```tikz size=huge\n\\begin{document}\n\\end{document}\n```\n"
+        with self.assertRaisesRegex(ValueError, "unsupported tikz size"):
+            prepare.render_tikz_blocks(markdown, Path("article.md"), Path("tikz"))
+
     def test_compile_tikz_uses_equals_for_dvisvgm_output(self) -> None:
         commands: list[list[str]] = []
 

@@ -286,6 +286,10 @@ a:hover { color: var(--accent); }
   margin: 0 auto;
 }
 
+.tikz-diagram--medium img { width: min(100%, 24rem); }
+.tikz-diagram--large img { width: min(100%, 32rem); }
+.tikz-diagram--wide img { width: min(100%, 44rem); }
+
 :root[data-theme="dark"] .tikz-diagram img {
   filter: invert(1) hue-rotate(180deg);
 }

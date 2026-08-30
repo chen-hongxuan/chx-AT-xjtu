@@ -34,7 +34,7 @@ title: Introduction
 下一个例子是在向量空间范畴内的, 在这里的对象是向量空间, 态射是线性映射, 那么对于一个以向量组 $\{v_i:i\in S\}$ 为基底的向量空间 $V$ , 我们该如何描述它呢? 我们看看它与这个向量空间范畴内的其他对象如何互动的: 对于任意向量空间 $W$ 以及从 $V$ 到 $W$ 的线性变换 $f$ , 我们可以通过指定各个基底被映射到哪里了来唯一地确定整个线性变换. 准确的表述如下:
 对于固定的集合 $S$ 以及映射 $i:s\mapsto v_s$ , 那么 $V$ 的一个泛性质就是
 
-```tikz
+```tikz size=large
 \usepackage{tikz-cd}
 \begin{document}\begin{tikzcd}[row sep=large,column sep=large]
 S\arrow[r,"i"]\arrow[rd,"\forall\,{\rm function}\,f"']&V\arrow[d,dashed,"\exists!\,{\rm{linear}}\,{\overline{f}}"]\\
