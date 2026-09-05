@@ -136,7 +136,7 @@ G(X) \arrow[r,"G(f)"]&G(Y)
 而类似于恒等映射的概念, 我们可以导出某个函子 $F$ 的恒等自然变换 $$\id_F:(\id_F)_X=1_{F(X)}$$ 于是我们可以在函子间建立等价关系.
 
 >[!definition] Natural isomorphic
->对于函子 $F,G:\A\to\B$ , 称 $F,G$ 是自然同构的当且仅当存在自然变换 $\eta:F\to G$ 以及 $\epsilon:G\to F$ 
+>对于函子 $F,G:\A\to\B$ , 称 $F,G$ 是自然同构的当且仅当存在自然变换 $\eta:F\to G$ 以及 $\epsilon:G\to F$ 使得 $\eta\circ\epsilon=\id_G, \epsilon\circ\eta=\id_F$
 ## Exercise
 
 ### 1.1.13
