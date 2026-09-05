@@ -16,6 +16,7 @@ $$
 \def\el{\end{aligned}}
 \def\vect{{\bf Vect}}
 \def\hom{{\bf Hom}}
+\def\id{{\rm id}}
 $$
 ## Categories
 
@@ -112,7 +113,36 @@ the maps are invertible and there is only one object.
 >3. 范畴 $\B$ 的态射应当在复合意义下封闭, 并且保留恒等态射.
 ## Natural transformations
 
+> 自然变换是函子间的变换.
+
+>[!definition] Natural transformation
+>对于范畴 $\A,\B$ 以及函子 $F,G:\A\to\B$ , 一个自然变换 $\alpha:F\to G$ 是一族 $\B$ 中的态射 $(\alpha_X)_{X\in\A}$ 满足:
+>1. 对于任意的 $X\in\A$ , 均有 $\alpha_X\in\B(F(X),G(X))$ .
+>2. 对于任意的 $X\map f Y\in\A$ , 均有 $\alpha_{Y}\circ F(f)=G(f)\circ\alpha_X$ .
+
+当然, 一般来讲我们会用交换图来表述这个过程:
+```tikz
+\usepackage{tikz-cd}
+\begin{document}\begin{tikzcd}[row sep=large, column sep=large]
+F(X) \arrow[r,"F(f)"]\arrow[d,"\alpha_X"] &F(Y)\arrow[d,"\alpha_Y"]\\
+G(X) \arrow[r,"G(f)"]&G(Y)
+\end{tikzcd}\end{document}
+```
+由于自然变换是一族态射, 并且是函子间的变换, 所以我们自然地会想到自然变换的连接, 以下是纵列方向的连接:
+
+>[!definition] Vertical composition
+>对于范畴 $\A,\B$ 以及它们间的函子 $F,G,H$ , 假定有自然变换 $\alpha:F\to G$ 以及 $\beta:G\to H$ , 于是可以自然导出如下的一族态射:$$(\beta\circ\alpha)_X=\beta_X\circ\alpha_X$$容易验证 $\beta\circ\alpha$ 是 $F\to H$ 的自然变换, 这定义了自然变换的纵向复合.
+
+而类似于恒等映射的概念, 我们可以导出某个函子 $F$ 的恒等自然变换 $$\id_F:(\id_F)_X=1_{F(X)}$$ 于是我们可以在函子间建立等价关系.
+
+>[!definition] Natural isomorphic
+>对于函子 $F,G:\A\to\B$ , 称 $F,G$ 是自然同构的当且仅当存在自然变换 $\eta:F\to G$ 以及 $\epsilon:G\to F$ 
 ## Exercise
 
 ### 1.1.13
 设态射 $A\map fB,B\map{g,g'} A$ 满足 $fg=fg'=1_B,gf=g'f=1_A$ 那么显然有$$\begin{aligned}g&=g\circ1_B\\&=g(fg')\\&=(gf)g'\\&=1_A\circ g'=g'\end{aligned}$$因此态射的逆必定是唯一的.
+
+### 1.2.21
+对于函子 $F:\A\to\B$ 设 $X,Y\in\A$ 满足存在 $f\in\A(X,Y)$ 使得 $f:X\cong Y$ . 则存在 $Y\map g X$ 使得 $gf=1_X,fg=1_Y$ . 由于函子保持恒等映射和态射复合, 所以有 $F(gf)=F(g)F(f)=F(1_X)=1_{F(X)}$ , 另一方向同理. 因而 $F(f):F(X)\cong F(Y)$ .
+
+### 1.2.24
