@@ -215,6 +215,195 @@ $$
 $$
 当 $A$ 与 $B$ 变化时, 这两族态射分别组成 unit 与 counit. 因此, unit 和 counit 可以理解为伴随对应在两族恒等态射上留下的信息; 本节接下来要说明, 这些信息实际上足以恢复整个伴随.
 
+准确来说, 对于任意的 $X\in\A$ 与 $Y\in\B$, 定义
+$$
+\eta_X:=\left(1_{F(X)}\right)^{*_{X,F(X)}}
+:X\to G(F(X)),
+$$
+以及
+$$
+\epsilon_Y:=\left(1_{G(Y)}\right)^{*_{G(Y),Y}}
+:F(G(Y))\to Y.
+$$
+它们分别组成自然变换
+$$
+\eta:1_\A\to G\circ F,
+\qquad
+\epsilon:F\circ G\to1_\B.
+$$
+
+>[!lemma] Triangle identities
+>由伴随 $F\dashv G$ 得到的 unit $\eta$ 与 counit $\epsilon$ 满足如下两条等式. 对于任意的 $X\in\A$,
+>$$
+>\boxed{\epsilon_{F(X)}\circ F(\eta_X)=1_{F(X)}};
+>$$
+>对于任意的 $Y\in\B$,
+>$$
+>\boxed{G(\epsilon_Y)\circ\eta_{G(Y)}=1_{G(Y)}}.
+>$$
+>也就是说, 下面两幅图交换:
+>
+>```tikz size=medium
+>\usepackage{tikz-cd}
+>\begin{document}
+>\begin{tikzcd}[row sep=large, column sep=large]
+>F(X) \arrow[rr,"F(\eta_X)"] \arrow[dr,"1_{F(X)}"']
+>& & F(G(F(X))) \arrow[dl,"\epsilon_{F(X)}"]\\
+>& F(X) &
+>\end{tikzcd}
+>\end{document}
+>```
+>
+>```tikz size=medium
+>\usepackage{tikz-cd}
+>\begin{document}
+>\begin{tikzcd}[row sep=large, column sep=large]
+>G(Y) \arrow[rr,"\eta_{G(Y)}"] \arrow[dr,"1_{G(Y)}"']
+>& & G(F(G(Y))) \arrow[dl,"G(\epsilon_Y)"]\\
+>& G(Y) &
+>\end{tikzcd}
+>\end{document}
+>```
+
+这两条等式的意思很简单. 在第一条等式中, $F(\eta_X)$ 先在 $F(X)$ 中加入一层 $G\circ F$, 然后 $\epsilon_{F(X)}$ 再将这一层消去; 最后得到的结果与恒等态射相同. 第二条等式则是在 $G(Y)$ 上进行同样的过程.
+
+>[!proof]
+>先证明第一条等式. 由 unit 的定义, $\eta_X$ 是 $1_{F(X)}$ 的伴随对应, 因此
+>$$
+>\left(\eta_X\right)^{*_{X,F(X)}}=1_{F(X)}.
+>$$
+>另一方面, 由 counit 的定义,
+>$$
+>\left(1_{G(F(X))}\right)^{*_{G(F(X)),F(X)}}
+>=\epsilon_{F(X)}.
+>$$
+>现在对 $1_{G(F(X))}\circ\eta_X$ 使用伴随对应的自然性, 可得
+>$$
+>\left(1_{G(F(X))}\circ\eta_X\right)^{*_{X,F(X)}}
+>=\epsilon_{F(X)}\circ F(\eta_X).
+>$$
+>因为 $1_{G(F(X))}\circ\eta_X=\eta_X$, 所以左边就是 $1_{F(X)}$. 从而
+>$$
+>\epsilon_{F(X)}\circ F(\eta_X)=1_{F(X)}.
+>$$
+>
+>对于第二条等式, 同样使用伴随对应的自然性可得
+>$$
+>\left(G(\epsilon_Y)\circ\eta_{G(Y)}\right)^{*_{G(Y),Y}}
+>=\epsilon_Y\circ
+>\left(\eta_{G(Y)}\right)^{*_{G(Y),F(G(Y))}}
+>=\epsilon_Y.
+>$$
+>而由 counit 的定义,
+>$$
+>\left(1_{G(Y)}\right)^{*_{G(Y),Y}}=\epsilon_Y.
+>$$
+>因为伴随对应是一一对应, 所以
+>$$
+>G(\epsilon_Y)\circ\eta_{G(Y)}=1_{G(Y)}.
+>$$
+
+这两条等式称为 **triangle identities**. 它们不是额外指定的性质, 而是由伴随对应的自然性以及 unit、counit 的定义直接得到的.
+
+>[!lemma] Recovering the adjunction from the unit and counit
+>设 $F\dashv G$ 是一个伴随, 其 unit 与 counit 分别为 $\eta$ 和 $\epsilon$. 那么整个伴随对应都可以由 $\eta$ 和 $\epsilon$ 恢复出来.
+>
+>具体来说, 对于任意的 $X\in\A$、$Y\in\B$ 以及态射
+>$$
+>g:F(X)\to Y,
+>$$
+>它在 $\A$ 中的伴随对应为
+>$$
+>\boxed{
+>g^{*_{X,Y}}=G(g)\circ\eta_X
+>}.
+>$$
+>也就是说, 它是复合态射
+>$$
+>X\xrightarrow{\eta_X}G(F(X))
+>\xrightarrow{G(g)}G(Y).
+>$$
+>
+>反过来, 对于态射
+>$$
+>f:X\to G(Y),
+>$$
+>它在 $\B$ 中的伴随对应为
+>$$
+>\boxed{
+>f^{*_{X,Y}}=\epsilon_Y\circ F(f)
+>}.
+>$$
+>也就是说, 它是复合态射
+>$$
+>F(X)\xrightarrow{F(f)}F(G(Y))
+>\xrightarrow{\epsilon_Y}Y.
+>$$
+
+>[!proof]
+>对于 $g:F(X)\to Y$, 有
+>$$
+>g=g\circ1_{F(X)}.
+>$$
+>由 unit 的定义, $1_{F(X)}$ 的伴随对应是 $\eta_X$. 因此由伴随对应的自然性,
+>$$
+>\bl
+>g^{*_{X,Y}}
+>&=\left(g\circ1_{F(X)}\right)^{*_{X,Y}}\\
+>&=G(g)\circ
+>\left(1_{F(X)}\right)^{*_{X,F(X)}}\\
+>&=G(g)\circ\eta_X.
+>\el
+>$$
+>
+>对于 $f:X\to G(Y)$, 有
+>$$
+>f=1_{G(Y)}\circ f.
+>$$
+>由 counit 的定义, $1_{G(Y)}$ 的伴随对应是 $\epsilon_Y$. 因此同样由自然性,
+>$$
+>\bl
+>f^{*_{X,Y}}
+>&=\left(1_{G(Y)}\circ f\right)^{*_{X,Y}}\\
+>&=\left(1_{G(Y)}\right)^{*_{G(Y),Y}}\circ F(f)\\
+>&=\epsilon_Y\circ F(f).
+>\el
+>$$
+
+这个引理说明, unit 和 counit 虽然只记录了两族恒等态射的伴随对应, 但是由自然性可以从它们求出任意态射的伴随对应. 因此, 当 $F$、$G$、$\eta$ 与 $\epsilon$ 都已经确定时, 原来的伴随对应也就被完全确定了.
+
+不过, 这里仍然假定伴随 $F\dashv G$ 已经存在. 接下来的 Theorem 2.2.5 将进一步说明: 反过来, 只要给定满足三角等式的 $\eta$ 与 $\epsilon$, 上面的两个公式就能够构造出一个伴随.
+
+>[!theorem] Adjunctions via units and counits
+>给定范畴 $\A,\B$ 以及函子
+>$$
+>F:\A\to\B,
+>\qquad
+>G:\B\to\A.
+>$$
+>以下两类数据之间存在一一对应:
+>
+>1. $F$ 在左、$G$ 在右的一个伴随结构, 也就是对于每个 $X\in\A$ 与 $Y\in\B$, 指定一个关于 $X,Y$ 自然的一一对应
+>   $$
+>   \A(X,G(Y))\cong\B(F(X),Y);
+>   $$
+>2. 一对自然变换
+>   $$
+>   \eta:1_\A\to G\circ F,
+>   \qquad
+>   \epsilon:F\circ G\to1_\B,
+>   $$
+>   并且它们满足三角等式. 将三角等式完全写到对象上, 就是对于任意的 $X\in\A$ 与 $Y\in\B$ 都有
+>   $$
+>   \epsilon_{F(X)}\circ F(\eta_X)=1_{F(X)},
+>   $$
+>   以及
+>   $$
+>   G(\epsilon_Y)\circ\eta_{G(Y)}=1_{G(Y)}.
+>   $$
+
+这里的第一项不是只要求命题“$F$ 左伴随于 $G$”成立, 而是包含具体选定的 Hom-set 之间的自然一一对应. 这个定理说明, 将一个伴随结构送到它的 unit 与 counit 时没有丢失信息; 反过来, 满足三角等式的 unit 与 counit 也恰好能够确定一个伴随结构.
+
 ## Adjunctions via initial objects
 
 ## Exercise
