@@ -41,7 +41,7 @@ FENCE = re.compile(
     r"(?P<marker>`{3,}|~{3,})(?P<rest>.*)$"
 )
 TIKZ_FENCE = re.compile(
-    r"^(?P<prefix> {0,3})(?P<marker>`{3,}|~{3,})"
+    rf"^(?P<prefix>{MARKDOWN_CONTAINER_PREFIX})(?P<marker>`{{3,}}|~{{3,}})"
     r"tikz(?P<options>(?:[ \t]+.*?)?)[ \t]*$",
     re.IGNORECASE,
 )
@@ -344,7 +344,7 @@ def render_tikz_blocks(
     output_dir: Path | None,
     used_assets: set[str] | None = None,
 ) -> tuple[str, int, int]:
-    """Replace top-level ``tikz`` fences with Hugo SVG shortcodes."""
+    """Replace ``tikz`` fences, including quoted ones, with SVG shortcodes."""
     lines = text.splitlines()
     output: list[str] = []
     block_lines: list[str] = []
@@ -376,13 +376,14 @@ def render_tikz_blocks(
                     compiled_count += 1
                 if used_assets is not None:
                     used_assets.add(svg_name)
-                output.append(
+                shortcode = (
                     '{{< tikz src="'
                     + f"{TIKZ_PUBLIC_PREFIX}/{svg_name}"
                     + '" alt="交换图"'
                     + (f' size="{diagram_size}"' if diagram_size else "")
                     + " >}}"
                 )
+                output.append(marker_prefix + shortcode)
                 block_lines = []
                 marker_char = ""
                 marker_length = 0
@@ -391,7 +392,7 @@ def render_tikz_blocks(
                 block_start = 0
                 diagram_count += 1
             else:
-                block_lines.append(line)
+                block_lines.append(strip_quote_prefix(line, marker_prefix))
             continue
 
         if outer_fence_char:

@@ -253,6 +253,35 @@ class PrepareHugoContentTests(unittest.TestCase):
         self.assertEqual(compiled, 0)
         self.assertIn('size="large"', result)
 
+    def test_tikz_fence_inside_blockquote_stays_inside_blockquote(self) -> None:
+        source = Path("article.md")
+        tikz = (
+            "\\usepackage{tikz-cd}\n"
+            "\\begin{document}\n"
+            "\\begin{tikzcd} A \\arrow[r] & B \\end{tikzcd}\n"
+            "\\end{document}\n"
+        )
+        quoted_tikz = "".join(f">{line}\n" for line in tikz.splitlines())
+        markdown = f">[!proof]\n>正文\n>```tikz size=medium\n{quoted_tikz}>```\n>结论\n"
+
+        with tempfile.TemporaryDirectory() as temp_name:
+            output_dir = Path(temp_name)
+            digest = prepare.tikz_digest(tikz)
+            (output_dir / f"{digest}.svg").write_text("<svg/>", encoding="utf-8")
+            result, diagrams, compiled = prepare.render_tikz_blocks(
+                markdown, source, output_dir
+            )
+
+        self.assertEqual(diagrams, 1)
+        self.assertEqual(compiled, 0)
+        self.assertIn(
+            f'>{{{{< tikz src="generated/tikz/{digest}.svg" alt="交换图" size="medium" >}}}}',
+            result,
+        )
+        self.assertIn(">正文\n", result)
+        self.assertIn(">结论\n", result)
+        self.assertNotIn(">```tikz", result)
+
     def test_tikz_fence_rejects_unknown_size(self) -> None:
         markdown = "```tikz size=huge\n\\begin{document}\n\\end{document}\n```\n"
         with self.assertRaisesRegex(ValueError, "unsupported tikz size"):
