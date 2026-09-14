@@ -22,18 +22,20 @@ $$
 $$
 ## Definition and examples
 
->[!definition] Adjoint functors
+>[!definition] Adjoint functors and an adjunction
 >对于范畴 $\A,\B$ 以及函子
 >$$
 >F:\A\to\B,\qquad G:\B\to\A,
 >$$
 >称 $F$ **左伴随于** $G$, 或者称 $G$ **右伴随于** $F$, 记为
 >$$F\dashv G,$$
->当且仅当对于任意的 $A\in\A$ 以及 $B\in\B$, 都有一个指定的一一对应
+>当且仅当存在一族关于 $A\in\A$ 与 $B\in\B$ 自然的一一对应
 >$$
 >(-)^{*_{A,B}}:\A(A,G(B))\longleftrightarrow\B(F(A),B).
 >$$
->对于 $\phi\in\A(A,G(B))$, 以
+>命题 $F\dashv G$ 只表示至少存在这样一族自然的一一对应. 在所有可能的对应中具体选择一族, 才称为 $F$ 与 $G$ 之间的 **an adjunction**, 在本文中也称为一个**伴随结构**.
+>
+>以下固定 $F$ 与 $G$ 之间的一个伴随结构. 对于 $\phi\in\A(A,G(B))$, 以
 >$$\phi^{*_{A,B}}\in\B(F(A),B)$$
 >表示它在右边的对应; 对于 $\psi\in\B(F(A),B)$, 也以
 >$$\psi^{*_{A,B}}\in\A(A,G(B))$$
@@ -66,6 +68,14 @@ $$
 
 最后的等式说明, 无论我们先在 $\A$ 中复合再取对应, 还是先取对应再在 $\B$ 中复合, 最后得到的态射都是同一个. 这正是 Hom-set 之间的对应关于 $A$ 与 $B$ 的自然性.
 
+>[!remark] 性质与结构
+>“$F$ is left adjoint to $G$”与“an adjunction between $F$ and $G$”并不是完全相同的说法:
+>
+>- **$F$ is left adjoint to $G$** 是一个性质, 它只断言某个伴随结构存在, 记为 $F\dashv G$;
+>- **an adjunction between $F$ and $G$** 是一份具体的数据, 它包含一族已经选定的、关于两个对象自然的 Hom-set 一一对应.
+>
+>这类似于“$X\cong Y$”与“选定一个同构 $f:X\to Y$”之间的区别. 前者只说明存在同构, 后者则指定了一个具体的同构. 在上下文已经固定某个伴随结构时, 通常仍会简写为 $F\dashv G$, 但这时必须记得背后还包含那一族已经选定的对应.
+
 >[!example] Product-exponential adjunction in $\mathbf{Set}$
 >固定一个集合 $B$. 对集合取与 $B$ 的笛卡尔积以及取从 $B$ 出发的函数集, 分别给出函子
 >$$
@@ -81,7 +91,7 @@ $$
 >$$\bar g(a)(b)=g(a,b).$$
 >反过来, 对于 $f:A\to C^B$, 定义 $\bar f:A\times B\to C$ 为
 >$$\bar f(a,b)=f(a)(b).$$
->这两个构造互为逆映射, 并且容易验证这一对应关于 $A$ 与 $C$ 是自然的. 因此
+>这两个构造互为逆映射, 并且容易验证这一对应关于 $A$ 与 $C$ 是自然的. 因此, currying 给出了这两个函子之间的一个伴随结构, 从而
 >$$
 >-\times B\dashv(-)^B.
 >$$
@@ -114,7 +124,7 @@ $$
 >$$
 >F':\A'\to\A'',\qquad G':\A''\to\A',
 >$$
->并且 $F\dashv G$, $F'\dashv G'$. 分别以 $(-)^{*^{FG}}$ 和 $(-)^{*^{F'G'}}$ 表示这两个伴随的对应.
+>并且已经分别选定 $F$ 与 $G$ 之间、$F'$ 与 $G'$ 之间的一个伴随结构. 特别地, $F\dashv G$ 且 $F'\dashv G'$. 分别以 $(-)^{*^{FG}}$ 和 $(-)^{*^{F'G'}}$ 表示这两个伴随结构中的对应.
 >
 >对于任意的 $X\in\A$ 与 $Y\in\A''$, 我们定义 $F'F$ 与 $GG'$ 之间的新对应. 若
 >$$\phi:X\to GG'(Y),$$
@@ -178,11 +188,11 @@ $$
 >=\lambda(v\circ f\circ u)
 >=v\circ(\lambda f)\circ u,
 >$$
->所以这族双射关于 $V,W$ 是自然的, 从而给出一个伴随
+>所以这族双射关于 $V,W$ 是自然的, 从而给出一个伴随结构, 并且在性质层面有
 >$$
 >1_{\mathbf{Vect}_{\mathbb R}}\dashv1_{\mathbf{Vect}_{\mathbb R}}.
 >$$
->不同的 $\lambda$ 给出不同的对应. 因此, 伴随的 Hom-set 对应是伴随结构的一部分, 而不能只由函子 $F,G$ 唯一确定.
+>不同的 $\lambda$ 给出不同的伴随结构, 但它们都使同一个命题 $1_{\mathbf{Vect}_{\mathbb R}}\dashv1_{\mathbf{Vect}_{\mathbb R}}$ 成立. 因此, $F\dashv G$ 这一性质并不包含对伴随结构的唯一选择, 具体的 Hom-set 对应也不能只由函子 $F,G$ 唯一确定.
 
 ## Adjunctions via units and counits
 
@@ -191,15 +201,15 @@ $$
 >$$
 >\B(F(A),B)\cong\A(A,G(B))
 >$$
->定义了伴随. 本节将从另一个角度重新叙述同一个概念: 一个伴随也可以由两个自然变换
+>给出了一个伴随结构. 本节将从另一个角度重新叙述同一个结构: 一个伴随结构也可以由两个自然变换
 >$$
 >\eta:1_\A\to GF,
 >\qquad
 >\epsilon:FG\to1_\B
 >$$
->以及它们所满足的 triangle identities 来描述. 这不是另一种伴随, 而是用另一组等价的数据记录原来的 Hom-set 对应.
+>以及它们所满足的 triangle identities 来描述. 这不是另一个伴随结构, 而是用另一组等价的数据记录原来那一族 Hom-set 对应.
 
-为了找到这两个自然变换, 我们先考虑如何从伴随对应中选出一些最基本的信息. 一个伴随为每对对象 $A\in\A,B\in\B$ 给出了许多态射之间的对应; 在这些态射中, 最特殊的就是恒等态射.
+为了找到这两个自然变换, 我们先固定 $F$ 与 $G$ 之间的一个伴随结构, 并考虑如何从它的 Hom-set 对应中选出一些最基本的信息. 这族对应为每对对象 $A\in\A,B\in\B$ 给出了许多态射之间的对应; 在这些态射中, 最特殊的就是恒等态射.
 
 对于任意的 $A\in\A$, 取 $B=F(A)$ 并考察
 $$1_{F(A)}:F(A)\to F(A).$$
@@ -213,7 +223,7 @@ $$1_{G(B)}:G(B)\to G(B).$$
 $$
 \left(1_{G(B)}\right)^{*_{G(B),B}}:FG(B)\to B.
 $$
-当 $A$ 与 $B$ 变化时, 这两族态射分别组成 unit 与 counit. 因此, unit 和 counit 可以理解为伴随对应在两族恒等态射上留下的信息; 本节接下来要说明, 这些信息实际上足以恢复整个伴随.
+当 $A$ 与 $B$ 变化时, 这两族态射分别组成 unit 与 counit. 因此, unit 和 counit 可以理解为伴随结构中的对应在两族恒等态射上留下的信息; 本节接下来要说明, 这些信息实际上足以恢复整个伴随结构.
 
 准确来说, 对于任意的 $X\in\A$ 与 $Y\in\B$, 定义
 $$
@@ -233,7 +243,7 @@ $$
 $$
 
 >[!lemma] Triangle identities
->由伴随 $F\dashv G$ 得到的 unit $\eta$ 与 counit $\epsilon$ 满足如下两条等式. 对于任意的 $X\in\A$,
+>固定 $F$ 与 $G$ 之间的一个伴随结构. 由它得到的 unit $\eta$ 与 counit $\epsilon$ 满足如下两条等式. 对于任意的 $X\in\A$,
 >$$
 >\boxed{\epsilon_{F(X)}\circ F(\eta_X)=1_{F(X)}};
 >$$
@@ -306,7 +316,7 @@ $$
 这两条等式称为 **triangle identities**. 它们不是额外指定的性质, 而是由伴随对应的自然性以及 unit、counit 的定义直接得到的.
 
 >[!lemma] Recovering the adjunction from the unit and counit
->设 $F\dashv G$ 是一个伴随, 其 unit 与 counit 分别为 $\eta$ 和 $\epsilon$. 那么整个伴随对应都可以由 $\eta$ 和 $\epsilon$ 恢复出来.
+>固定 $F$ 与 $G$ 之间的一个伴随结构, 并设其 unit 与 counit 分别为 $\eta$ 和 $\epsilon$. 那么这个伴随结构中的全部 Hom-set 对应都可以由 $\eta$ 和 $\epsilon$ 恢复出来.
 >
 >具体来说, 对于任意的 $X\in\A$、$Y\in\B$ 以及态射
 >$$
@@ -372,7 +382,7 @@ $$
 
 这个引理说明, unit 和 counit 虽然只记录了两族恒等态射的伴随对应, 但是由自然性可以从它们求出任意态射的伴随对应. 因此, 当 $F$、$G$、$\eta$ 与 $\epsilon$ 都已经确定时, 原来的伴随对应也就被完全确定了.
 
-不过, 这里仍然假定伴随 $F\dashv G$ 已经存在. 接下来的 Theorem 2.2.5 将进一步说明: 反过来, 只要给定满足三角等式的 $\eta$ 与 $\epsilon$, 上面的两个公式就能够构造出一个伴随.
+不过, 这里不只是使用了“$F\dashv G$”这一存在性命题, 而是先固定了 $F$ 与 $G$ 之间的一个伴随结构. 接下来的 Theorem 2.2.5 将进一步说明: 反过来, 只要给定满足三角等式的 $\eta$ 与 $\epsilon$, 上面的两个公式就能够构造出唯一的伴随结构.
 
 >[!theorem] Adjunctions via units and counits
 >给定范畴 $\A,\B$ 以及函子
