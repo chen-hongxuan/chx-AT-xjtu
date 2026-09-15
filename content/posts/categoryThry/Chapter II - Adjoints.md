@@ -414,6 +414,204 @@ $$
 
 这里的第一项不是只要求命题“$F$ 左伴随于 $G$”成立, 而是包含具体选定的 Hom-set 之间的自然一一对应. 这个定理说明, 将一个伴随结构送到它的 unit 与 counit 时没有丢失信息; 反过来, 满足三角等式的 unit 与 counit 也恰好能够确定一个伴随结构.
 
+>[!proof]
+>我们要构造这两类数据之间的对应, 然后依次证明这个对应是良定义的、单射的和满射的.
+>
+>**由伴随结构得到 unit 与 counit.** 先固定 $F$ 与 $G$ 之间的一个伴随结构. 对于 $X\in\A$ 与 $Y\in\B$, 定义
+>$$
+>\eta_X:=\left(1_{F(X)}\right)^{*_{X,F(X)}},
+>\qquad
+>\epsilon_Y:=\left(1_{G(Y)}\right)^{*_{G(Y),Y}}.
+>$$
+>先说明这两族态射是自然变换. 这里只验证 $\eta$, $\epsilon$ 的自然性可以对偶地得到.
+>
+>对于任意的态射 $h:X\to X'$, 我们需要证明
+>$$
+>\eta_{X'}\circ h=G(F(h))\circ\eta_X.
+>$$
+>等式两边都是从 $X$ 到 $G(F(X'))$ 的态射, 因此可以分别取它们在 $\B(F(X),F(X'))$ 中的伴随对应. 对于左边, 由自然性可得
+>$$
+>\bl
+>\left(\eta_{X'}\circ h\right)^{*_{X,F(X')}}
+>&=\left(\eta_{X'}\right)^{*_{X',F(X')}}\circ F(h)\\
+>&=1_{F(X')}\circ F(h)\\
+>&=F(h).
+>\el
+>$$
+>对于右边, 同样由自然性可得
+>$$
+>\bl
+>\left(G(F(h))\circ\eta_X\right)^{*_{X,F(X')}}
+>&=F(h)\circ\left(\eta_X\right)^{*_{X,F(X)}}\\
+>&=F(h)\circ1_{F(X)}\\
+>&=F(h).
+>\el
+>$$
+>因为伴随对应是一一对应, 所以原来等式的两边相等. 因此 $\eta$ 是自然变换. $\epsilon$ 的自然性对偶地可得, 而 Lemma 2.2.2 又说明它们满足三角等式. 所以从一个伴随结构出发, 的确可以得到定理第二项中的一对自然变换; 这个对应是良定义的.
+>
+>**单射性.** 假定 $F$ 与 $G$ 之间有两个伴随结构 $(-)^{*^{(1)}}$ 与 $(-)^{*^{(2)}}$, 并且它们导出了相同的 $\eta$ 与 $\epsilon$. 由 Lemma 2.2.4, 对于任意的态射 $f:X\to G(Y)$, 都有
+>$$
+>f^{*^{(1)}_{X,Y}}=\epsilon_Y\circ F(f)=f^{*^{(2)}_{X,Y}},
+>$$
+>而对于任意的态射 $g:F(X)\to Y$, 都有
+>$$
+>g^{*^{(1)}_{X,Y}}=G(g)\circ\eta_X=g^{*^{(2)}_{X,Y}}.
+>$$
+>因此两个伴随结构中的对应在每个态射上的取值都相同, 所以它们是同一个伴随结构. 这就证明了单射性.
+>
+>**满射性.** 反过来, 假定给定自然变换
+>$$
+>\eta:1_\A\to G\circ F,
+>\qquad
+>\epsilon:F\circ G\to1_\B,
+>$$
+>并且它们满足三角等式. 对于任意的 $X\in\A$ 与 $Y\in\B$, 我们定义两个方向的对应如下:
+>$$
+>\bl
+>f:X\to G(Y)
+>&\quad\longmapsto\quad
+>f^{*_{X,Y}}:=\epsilon_Y\circ F(f),\\
+>g:F(X)\to Y
+>&\quad\longmapsto\quad
+>g^{*_{X,Y}}:=G(g)\circ\eta_X.
+>\el
+>$$
+>先说明这两个方向互为逆映射. 对于 $f:X\to G(Y)$, 由构造可得
+>$$
+>\bl
+>\left(f^{*_{X,Y}}\right)^{*_{X,Y}}
+>&=G(\epsilon_Y)\circ G(F(f))\circ\eta_X\\
+>&=G(\epsilon_Y)\circ\eta_{G(Y)}\circ f\\
+>&=f.
+>\el
+>$$
+>第二个等号使用了 $\eta$ 对于态射 $f$ 的自然性, 第三个等号使用了第二条三角等式
+>$$
+>G(\epsilon_Y)\circ\eta_{G(Y)}=1_{G(Y)}.
+>$$
+>对于 $g:F(X)\to Y$, 同样有
+>$$
+>\bl
+>\left(g^{*_{X,Y}}\right)^{*_{X,Y}}
+>&=\epsilon_Y\circ F(G(g))\circ F(\eta_X)\\
+>&=g\circ\epsilon_{F(X)}\circ F(\eta_X)\\
+>&=g.
+>\el
+>$$
+>第二个等号使用了 $\epsilon$ 对于态射 $g$ 的自然性, 第三个等号使用了第一条三角等式
+>$$
+>\epsilon_{F(X)}\circ F(\eta_X)=1_{F(X)}.
+>$$
+>因此这两个方向互为逆映射.
+>
+>接下来验证这族对应的自然性. 任取态射
+>$$
+>u:X'\to X,
+>\qquad
+>v:Y\to Y',
+>\qquad
+>\phi:X\to G(Y).
+>$$
+>由对应的定义以及 $\epsilon$ 对于 $v$ 的自然性,
+>$$
+>\bl
+>\left(G(v)\circ\phi\circ u\right)^{*_{X',Y'}}
+>&=\epsilon_{Y'}\circ F(G(v))\circ F(\phi)\circ F(u)\\
+>&=v\circ\epsilon_Y\circ F(\phi)\circ F(u)\\
+>&=v\circ\phi^{*_{X,Y}}\circ F(u).
+>\el
+>$$
+>这正是伴随对应关于 $X$ 与 $Y$ 的自然性, 所以上面的构造给出了 $F$ 与 $G$ 之间的一个伴随结构.
+>
+>最后还要验证这个伴随结构导出的 unit 与 counit 正是原来给定的 $\eta$ 与 $\epsilon$. 对于任意的 $X\in\A$,
+>$$
+>\left(1_{F(X)}\right)^{*_{X,F(X)}}
+>=G\left(1_{F(X)}\right)\circ\eta_X
+>=\eta_X;
+>$$
+>对于任意的 $Y\in\B$,
+>$$
+>\left(1_{G(Y)}\right)^{*_{G(Y),Y}}
+>=\epsilon_Y\circ F\left(1_{G(Y)}\right)
+>=\epsilon_Y.
+>$$
+>因此每一对满足三角等式的 $\eta$ 与 $\epsilon$ 都来自一个伴随结构, 从而得到了满射性. 结合前面的单射性, 定理得证.
+
+#### 左伴随构造“最自由”或“最小”的对象
+
+考虑一个伴随结构
+$$
+F:\A\rightleftarrows\B:G,
+\qquad
+F\dashv G.
+$$
+给定一个对象 $X\in\A$ 后, 左伴随首先构造出一个对象
+$$
+F(X)\in\B.
+$$
+但是, 只有 $F(X)$ 还不能说明这个构造有什么特殊之处. 伴随结构还给出 unit 的一个分量
+$$
+\eta_X:X\to G(F(X)).
+$$
+因为 $X$ 与 $F(X)$ 分别属于 $\A$ 与 $\B$, 所以一般不能直接比较它们. 函子 $G$ 将 $F(X)$ 带回 $\A$ 后, $\eta_X$ 才给出了原对象 $X$ 进入这个新对象的标准方式. 因此, 左伴随在 $X$ 上真正给出的普遍构造应当看成一对数据
+$$
+\left(F(X),\eta_X:X\to G(F(X))\right).
+$$
+
+为了说明它的普遍性, 任取一个对象 $Y\in\B$ 以及态射
+$$
+f:X\to G(Y),
+$$
+也就是说, 我们任意给出另一种将 $X$ 放入某个来自 $\B$ 的对象中的方式. 记 $f$ 的伴随对应为
+$$
+\overline f:=f^{*_{X,Y}}:F(X)\to Y.
+$$
+这里 $\overline f$ 是 $\B$ 中的态射, 所以它还不能直接与 $\eta_X$ 复合. 对它施加函子 $G$ 后, 可以得到 $\A$ 中的态射
+$$
+G(\overline f):G(F(X))\to G(Y).
+$$
+**这个 $G(\overline f)$ 描述了 $G(F(X))$ 进入 $G(Y)$ 的方式.** 这里的“进入”只表示存在这样一个态射, 并不表示它一定是集合意义下的单射. 它的起点恰好是 $\eta_X$ 的终点, 因为
+$$
+\eta_X:X\to G(F(X)).
+$$
+所以二者可以自然地复合为
+$$
+X\xrightarrow{\eta_X}G(F(X))
+\xrightarrow{G(\overline f)}G(Y).
+$$
+伴随对应要求这个复合恰好还原原来的 $f$:
+$$
+\boxed{G(\overline f)\circ\eta_X=f}.
+$$
+也就是说, 任意一种将 $X$ 映入 $G(Y)$ 的方式, 都可以唯一地分成上面的两步:
+
+```tikz size=medium
+\usepackage{tikz-cd}
+\begin{document}
+\begin{tikzcd}[row sep=large, column sep=large]
+X \arrow[r,"\eta_X"] \arrow[dr,"f"']
+& G(F(X)) \arrow[d,"G(\overline f)"]\\
+& G(Y)
+\end{tikzcd}
+\end{document}
+```
+
+因此, $\eta_X$ 可以看成所有态射 $X\to G(Y)$ 共有的第一步. 一旦给定 $f:X\to G(Y)$, 它就唯一确定了第二步 $\overline f:F(X)\to Y$, 而 $G(\overline f)$ 则把这第二步带回 $\A$, 使它能够接在 $\eta_X$ 后面. 这正是信息之间的转换
+$$
+\A(X,G(Y))\cong\B(F(X),Y).
+$$
+
+这里还有一个需要注意的地方: 我们需要的不是任意态射 $G(F(X))\to G(Y)$, 而是一个形如 $G(\overline f)$ 的态射, 其中 $\overline f$ 必须是 $\B$ 中的态射. 因此, 这个分解不仅给出一个集合层面的映射, 还保留了 $\B$ 中的结构. 真正重要的性质是: 对于每个 $f:X\to G(Y)$, 都存在唯一的 $\overline f:F(X)\to Y$ 使上述三角形交换.
+
+这就是“最自由”或“最小”中的“最”所表达的内容. 它通常不是说 $F(X)$ 的元素数量最少, 也不是说它与 $X$ 的距离最近, 而是说: 对于任意其他候选对象 $Y$ 以及任意候选方式 $f:X\to G(Y)$, 都存在唯一的态射 $\overline f:F(X)\to Y$ 与之对应. 因此, 其他候选构造都可以由 $F(X)$ 以唯一的方式得到.
+
+在不同范畴中, 这个普遍性质会表现成不同的“最”:
+
+- 对于自由群函子, $F(X)$ 是由集合 $X$ 生成的最自由的群. 任意函数 $X\to G(Y)$ 都唯一延伸为群同态 $F(X)\to Y$, 所以这里的“最自由”表示没有加入不必要的关系;
+- 对于闭包函子, $F(A)=\operatorname{Cl}(A)$ 是包含 $A$ 的最小闭集. 任意包含 $A$ 的闭集 $B$ 都满足 $\operatorname{Cl}(A)\subseteq B$, 所以这里的普遍性质真的表现为包含关系下的最小性.
+
+因此,“给定一个对象以后, 左伴随构造出满足某种额外条件的最自由或最小的对象”这句话的准确含义是: 左伴随为 $X$ 构造 $F(X)$ 以及标准态射 $\eta_X:X\to G(F(X))$, 并且任意其他形如 $f:X\to G(Y)$ 的构造都能够沿着 $\eta_X$ 唯一分解. 在偏序范畴中, 这种唯一分解表现为最小性; 在代数范畴中, 它通常表现为自由性.
+
 ## Adjunctions via initial objects
 
 ## Exercise
@@ -450,3 +648,76 @@ $$
 >因为 $T$ 是终对象, 所以右边恰好包含一个态射, 从而左边也恰好包含一个态射. 因此对于每个 $X\in\A$, 都存在唯一的态射
 >$$X\to G(T).$$
 >所以 $G(T)$ 是 $\A$ 中的终对象.
+
+### 2.2.10
+
+>[!exercise]
+>设 $A,B$ 是偏序集, 并且
+>$$
+>f:A\to B,
+>\qquad
+>g:B\to A
+>$$
+>都是保序映射. 直接证明以下两个条件等价:
+>
+>1. 对于任意的 $a\in A$ 与 $b\in B$,
+>   $$
+>   f(a)\leq b\iff a\leq g(b);
+>   $$
+>2. 对于任意的 $a\in A$ 与 $b\in B$,
+>   $$
+>   a\leq g(f(a)),
+>   \qquad
+>   f(g(b))\leq b.
+>   $$
+
+>[!proof]
+>先证明 $(1)\Rightarrow(2)$. 任取 $a\in A$, 在条件 $(1)$ 中令 $b=f(a)$, 可得
+>$$
+>a\leq g(f(a))iff f(a)\leq f(a).
+>$$
+>右边由自反性自然成立, 所以
+>$$
+>a\leq g(f(a)).
+>$$
+>再任取 $b\in B$, 在条件 $(1)$ 中令 $a=g(b)$, 可得
+>$$
+>f(g(b))\leq biff g(b)\leq g(b).
+>$$
+>右边同样由自反性成立, 所以
+>$$
+>f(g(b))\leq b.
+>$$
+>因此条件 $(2)$ 成立.
+>
+>下面证明 $(2)\Rightarrow(1)$. 任取 $a\in A$ 与 $b\in B$. 先假定
+>$$
+>f(a)\leq b.
+>$$
+>因为 $g$ 是保序映射, 所以
+>$$
+>g(f(a))\leq g(b).
+>$$
+>再由条件 $(2)$ 中的 $a\leq g(f(a))$, 可得
+>$$
+>a\leq g(f(a))\leq g(b),
+>$$
+>从而 $a\leq g(b)$.
+>
+>反过来, 假定
+>$$
+>a\leq g(b).
+>$$
+>因为 $f$ 是保序映射, 所以
+>$$
+>f(a)\leq f(g(b)).
+>$$
+>再由条件 $(2)$ 中的 $f(g(b))\leq b$, 可得
+>$$
+>f(a)\leq f(g(b))\leq b,
+>$$
+>从而 $f(a)\leq b$. 因此
+>$$
+>f(a)\leq b\iff a\leq g(b),
+>$$
+>所以条件 $(1)$ 成立.
