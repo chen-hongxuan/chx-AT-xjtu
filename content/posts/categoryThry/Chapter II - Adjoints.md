@@ -674,7 +674,7 @@ $$
 >[!proof]
 >先证明 $(1)\Rightarrow(2)$. 任取 $a\in A$, 在条件 $(1)$ 中令 $b=f(a)$, 可得
 >$$
->a\leq g(f(a))iff f(a)\leq f(a).
+>a\leq g(f(a))\iff f(a)\leq f(a).
 >$$
 >右边由自反性自然成立, 所以
 >$$
@@ -682,7 +682,7 @@ $$
 >$$
 >再任取 $b\in B$, 在条件 $(1)$ 中令 $a=g(b)$, 可得
 >$$
->f(g(b))\leq biff g(b)\leq g(b).
+>f(g(b))\leq b\iff g(b)\leq g(b).
 >$$
 >右边同样由自反性成立, 所以
 >$$
@@ -721,3 +721,488 @@ $$
 >f(a)\leq b\iff a\leq g(b),
 >$$
 >所以条件 $(1)$ 成立.
+
+### 2.2.11
+
+>[!exercise]
+>设有一个伴随结构
+>$$
+>F:\A\rightleftarrows\B:G,
+>\qquad
+>F\dashv G,
+>$$
+>其 unit 与 counit 分别为 $\eta$ 与 $\epsilon$. 令 $\operatorname{Fix}(GF)$ 为 $\A$ 的满子范畴, 其对象是所有使
+>$$
+>\eta_X:X\to G(F(X))
+>$$
+>成为同构的 $X\in\A$. 对偶地, 令 $\operatorname{Fix}(FG)$ 为 $\B$ 的满子范畴, 其对象是所有使
+>$$
+>\epsilon_Y:F(G(Y))\to Y
+>$$
+>成为同构的 $Y\in\B$.
+>
+>1. 证明原来的伴随结构可以限制为 $\operatorname{Fix}(GF)$ 与 $\operatorname{Fix}(FG)$ 之间的范畴等价;
+>2. 选取一些伴随的例子, 求出这样得到的范畴等价.
+
+>[!proof]
+>先证明原来的函子可以直接限制到这两个满子范畴上. 任取
+>$$
+>X\in\operatorname{Fix}(GF).
+>$$
+>我们需要证明
+>$$
+>F(X)\in\operatorname{Fix}(FG),
+>$$
+>也就是证明
+>$$
+>\epsilon_{F(X)}:F(G(F(X)))\to F(X)
+>$$
+>是同构.
+>
+>由 $X\in\operatorname{Fix}(GF)$ 可知, $\eta_X:X\to G(F(X))$ 是同构. 记它的逆态射为
+>$$
+>\theta_X:G(F(X))\to X.
+>$$
+>于是
+>$$
+>\theta_X\circ\eta_X=1_X,
+>\qquad
+>\eta_X\circ\theta_X=1_{G(F(X))}.
+>$$
+>由 counit 的定义以及伴随对应的自然性,
+>$$
+>\bl
+>\epsilon_{F(X)}
+>&=\left(1_{G(F(X))}\right)^{*_{G(F(X)),F(X)}}\\
+>&=\left(\eta_X\circ\theta_X\right)^{*_{G(F(X)),F(X)}}\\
+>&=\left(\eta_X\right)^{*_{X,F(X)}}\circ F(\theta_X)\\
+>&=1_{F(X)}\circ F(\theta_X)\\
+>&=F(\theta_X).
+>\el
+>$$
+>因为 $\theta_X$ 是同构, 而函子保持同构, 所以 $F(\theta_X)$ 是同构. 因此 $\epsilon_{F(X)}$ 是同构, 从而
+>$$
+>F(X)\in\operatorname{Fix}(FG).
+>$$
+>
+>反过来, 任取 $Y\in\operatorname{Fix}(FG)$. 此时 $\epsilon_Y$ 是同构, 所以 $G(\epsilon_Y)$ 也是同构. 由第二条三角等式
+>$$
+>G(\epsilon_Y)\circ\eta_{G(Y)}=1_{G(Y)}
+>$$
+>可得
+>$$
+>\eta_{G(Y)}=G(\epsilon_Y)^{-1}.
+>$$
+>因此 $\eta_{G(Y)}$ 是同构, 从而
+>$$
+>G(Y)\in\operatorname{Fix}(GF).
+>$$
+>
+>所以 $F$ 与 $G$ 在对象上的限制确实落在相应的满子范畴中. 因为这两个子范畴都是满子范畴, 它们保留了所选对象之间的全部态射, 所以 $F$ 与 $G$ 在态射上的作用也可以直接限制. 由此得到函子
+>$$
+>F':\operatorname{Fix}(GF)\to\operatorname{Fix}(FG),
+>\qquad
+>G':\operatorname{Fix}(FG)\to\operatorname{Fix}(GF).
+>$$
+>
+>将原来的 unit 与 counit 限制到这些对象上, 得到自然变换
+>$$
+>\eta':1_{\operatorname{Fix}(GF)}\to G'\circ F',
+>\qquad
+>\epsilon':F'\circ G'\to1_{\operatorname{Fix}(FG)}.
+>$$
+>它们的自然性直接来自 $\eta$ 与 $\epsilon$ 的自然性. 又因为 $\operatorname{Fix}(GF)$ 中的对象正是使 $\eta_X$ 成为同构的对象, 而 $\operatorname{Fix}(FG)$ 中的对象正是使 $\epsilon_Y$ 成为同构的对象, 所以 $\eta'$ 与 $\epsilon'$ 都是自然同构.
+>
+>因此
+>$$
+>\left(F',G',\eta',\epsilon'\right)
+>$$
+>给出了 $\operatorname{Fix}(GF)$ 与 $\operatorname{Fix}(FG)$ 之间的范畴等价.
+>
+>第二问要求从具体伴随中寻找相应的例子, 此处从略.
+
+### 2.2.12(a)
+
+>[!exercise]
+>设有一个伴随结构
+>$$
+>F:\A\rightleftarrows\B:G,
+>\qquad
+>F\dashv G,
+>$$
+>其 counit 为
+>$$
+>\epsilon:F\circ G\to1_\B.
+>$$
+>证明右伴随 $G$ 是全忠实函子, 当且仅当 $\epsilon$ 是自然同构.
+
+>[!proof]
+>先证明右伴随 $G$ 全忠实可以推出 $\epsilon$ 是自然同构. 任取 $X\in\B$. 为了证明
+>$$
+>\epsilon_X:F(G(X))\to X
+>$$
+>是同构, 我们为它构造逆态射.
+>
+>第二条三角等式中出现了态射
+>$$
+>\eta_{G(X)}:G(X)\to G(F(G(X))).
+>$$
+>因为 $G$ 是全的, 所以存在态射
+>$$
+>\delta_X:X\to F(G(X))
+>$$
+>使得
+>$$
+>G(\delta_X)=\eta_{G(X)}.
+>$$
+>又因为 $G$ 是忠实的, 所以这样的 $\delta_X$ 是唯一的.
+>
+>先证明
+>$$
+>\delta_X\circ\epsilon_X=1_{F(G(X))}.
+>$$
+>对左边取伴随对应, 由 counit 的定义可得
+>$$
+>\bl
+>\left(\delta_X\circ\epsilon_X\right)^{*_{G(X),F(G(X))}}
+>&=G(\delta_X)\circ
+>\left(\epsilon_X\right)^{*_{G(X),X}}\\
+>&=G(\delta_X)\circ1_{G(X)}\\
+>&=\eta_{G(X)}.
+>\el
+>$$
+>另一方面, 由 unit 的定义,
+>$$
+>\left(1_{F(G(X))}\right)^{*_{G(X),F(G(X))}}
+>=\eta_{G(X)}.
+>$$
+>因为伴随对应是一一对应, 所以
+>$$
+>\delta_X\circ\epsilon_X=1_{F(G(X))}.
+>$$
+>
+>再证明
+>$$
+>\epsilon_X\circ\delta_X=1_X.
+>$$
+>对这个复合施加函子 $G$, 并使用第二条三角等式, 可得
+>$$
+>\bl
+>G(\epsilon_X\circ\delta_X)
+>&=G(\epsilon_X)\circ G(\delta_X)\\
+>&=G(\epsilon_X)\circ\eta_{G(X)}\\
+>&=1_{G(X)}\\
+>&=G(1_X).
+>\el
+>$$
+>因为 $G$ 是忠实的, 所以
+>$$
+>\epsilon_X\circ\delta_X=1_X.
+>$$
+>因此 $\delta_X$ 是 $\epsilon_X$ 的逆. 对于每个 $X\in\B$, $\epsilon_X$ 都是同构, 所以 $\epsilon$ 是自然同构.
+>
+>反过来, 假定 $\epsilon$ 是自然同构. 对于任意的对象 $X,Y\in\B$ 以及态射 $f:X\to Y$, 由 counit 的定义与伴随对应的自然性可得
+>$$
+>\bl
+>\left(f\circ\epsilon_X\right)^{*_{G(X),Y}}
+>&=G(f)\circ\left(\epsilon_X\right)^{*_{G(X),X}}\\
+>&=G(f)\circ1_{G(X)}\\
+>&=G(f).
+>\el
+>$$
+>
+>先证明忠实性. 假定 $f,f':X\to Y$ 满足
+>$$
+>G(f)=G(f').
+>$$
+>由上面的等式可得
+>$$
+>\left(f\circ\epsilon_X\right)^{*_{G(X),Y}}
+>=\left(f'\circ\epsilon_X\right)^{*_{G(X),Y}}.
+>$$
+>因为伴随对应是一一对应, 所以
+>$$
+>f\circ\epsilon_X=f'\circ\epsilon_X.
+>$$
+>再在右边复合 $\epsilon_X^{-1}$, 可得
+>$$
+>f=f'.
+>$$
+>因此 $G$ 是忠实的.
+>
+>最后证明全性. 任取态射
+>$$
+>g:G(X)\to G(Y).
+>$$
+>它的伴随对应为
+>$$
+>g^{*_{G(X),Y}}:F(G(X))\to Y.
+>$$
+>定义
+>$$
+>f:=g^{*_{G(X),Y}}\circ\epsilon_X^{-1}:X\to Y.
+>$$
+>于是
+>$$
+>f\circ\epsilon_X=g^{*_{G(X),Y}}.
+>$$
+>因此
+>$$
+>\bl
+>G(f)
+>&=\left(f\circ\epsilon_X\right)^{*_{G(X),Y}}\\
+>&=\left(g^{*_{G(X),Y}}\right)^{*_{G(X),Y}}\\
+>&=g.
+>\el
+>$$
+>所以每个态射 $g:G(X)\to G(Y)$ 都是某个态射 $f:X\to Y$ 在 $G$ 下的像, 从而 $G$ 是全的. 因此 $G$ 是全忠实函子.
+>
+>第二问关于 reflection 以及具体例子的讨论从略.
+
+### 2.2.13
+
+>[!exercise]
+>给定集合映射
+>$$
+>f:K\to L.
+>$$
+>逆像给出关于包含关系保序的映射
+>$$
+>f^*:\mathcal P(L)\to\mathcal P(K),
+>\qquad
+>f^*(B)=f^{-1}(B).
+>$$
+>
+>1. 求 $f^*$ 的左伴随和右伴随;
+>2. 对第一投影
+>   $$
+>   p:X\times Y\to X
+>   $$
+>   应用第一问的结果, 并说明两个伴随的 unit 与 counit 所表达的逻辑含义.
+
+关于这些构造与逻辑量词的关系, 以及 unit、counit 的逻辑含义, 见文末的 [Bonus 伴随作为一种量词](#bonus-伴随作为一种量词).
+
+>[!proof]
+>**(a)** 定义映射
+>$$
+>L_f:\mathcal P(K)\to\mathcal P(L)
+>$$
+>为直接像
+>$$
+>L_f(A):=f(A)=\{f(x):x\in A\}.
+>$$
+>它是保序的. 对于任意的 $A\subseteq K$ 与 $B\subseteq L$, 有
+>$$
+>L_f(A)\subseteq B
+>\iff
+>A\subseteq f^{-1}(B)
+>=f^*(B).
+>$$
+>因此
+>$$
+>L_f\dashv f^*.
+>$$
+>
+>接下来定义映射
+>$$
+>R_f:\mathcal P(K)\to\mathcal P(L)
+>$$
+>为
+>$$
+>R_f(A)
+>:=\left\{
+>y\in L:
+>f^{-1}(\{y\})\subseteq A
+>\right\}.
+>$$
+>也就是说, $y\in R_f(A)$ 当且仅当 $y$ 在 $f$ 下的整个纤维都包含在 $A$ 中. 如果 $y$ 不在 $f$ 的像中, 那么这个纤维是空集, 因而 $y$ 也属于 $R_f(A)$.
+>
+>如果 $A\subseteq A'$, 那么任何包含在 $A$ 中的纤维也包含在 $A'$ 中, 所以
+>$$
+>R_f(A)\subseteq R_f(A').
+>$$
+>因此 $R_f$ 也是保序的. 对于任意的 $A\subseteq K$ 与 $B\subseteq L$, 有
+>$$
+>f^{-1}(B)\subseteq A
+>\iff
+>B\subseteq R_f(A).
+>$$
+>因此
+>$$
+>f^*\dashv R_f.
+>$$
+>综上,
+>$$
+>\boxed{L_f\dashv f^*\dashv R_f}.
+>$$
+>
+>**(b)** 第一投影
+>$$
+>p:X\times Y\to X,
+>\qquad
+>p(x,y)=x
+>$$
+>只是第一问中的一个特殊函数, 因此可以直接令
+>$$
+>K=X\times Y,\qquad L=X,\qquad f=p.
+>$$
+>对于 $S\subseteq X$, 逆像为
+>$$
+>p^*(S)=S\times Y.
+>$$
+>对于 $R\subseteq X\times Y$, 左伴随为
+>$$
+>L_p(R)=p(R)
+>=\left\{
+>x\in X:
+>R\cap(\{x\}\times Y)\neq\varnothing
+>\right\},
+>$$
+>也就是由所有满足“纤维 $\{x\}\times Y$ 与 $R$ 相交”的 $x$ 组成的子集.
+>
+>右伴随为
+>$$
+>R_p(R)
+>=\left\{
+>x\in X:
+>\{x\}\times Y\subseteq R
+>\right\},
+>$$
+>也就是由所有满足“整个纤维 $\{x\}\times Y$ 都包含在 $R$ 中”的 $x$ 组成的子集. 因此
+>$$
+>\boxed{L_p\dashv p^*\dashv R_p}.
+>$$
+>
+>这两个伴随的 unit 与 counit 在集合语言中分别是下面四个包含关系:
+>$$
+>\bl
+>R&\subseteq p^*(L_p(R)),\\
+>L_p(p^*(S))&\subseteq S,\\
+>S&\subseteq R_p(p^*(S)),\\
+>p^*(R_p(R))&\subseteq R.
+>\el
+>$$
+>前两个属于 $L_p\dashv p^*$, 后两个属于 $p^*\dashv R_p$. 它们的逻辑解释统一放在文末的 Bonus 中.
+
+## Bonus 伴随作为一种量词
+
+把一个子集 $A\subseteq K$ 看成谓词时,
+$$
+A(x)
+\quad\Longleftrightarrow\quad
+x\in A.
+$$
+子集包含
+$$
+A\subseteq A'
+$$
+则表示谓词之间的蕴含: $A(x)$ 成立时, $A'(x)$ 也成立. 因此, 幂集偏序 $\mathcal P(K)$ 可以看成论域 $K$ 上全部谓词组成的偏序.
+
+给定函数
+$$
+f:K\to L,
+$$
+逆像
+$$
+f^*:\mathcal P(L)\to\mathcal P(K)
+$$
+将 $L$ 上的谓词 $B(y)$ 变成 $K$ 上的谓词
+$$
+f^*(B)(x)
+\quad\Longleftrightarrow\quad
+B(f(x)).
+$$
+因此, $f^*$ 可以理解为沿着 $f$ 进行代入. 元素沿 $f$ 从 $K$ 进入 $L$, 而谓词则沿相反方向从 $L$ 被拉回到 $K$.
+
+第一问构造的左伴随 $L_f$ 可以记为 $\exists_f$. 对于 $A\subseteq K$ 与 $y\in L$,
+$$
+y\in L_f(A)
+\quad\Longleftrightarrow\quad
+\exists x\in K,\quad f(x)=y\ \land\ x\in A.
+$$
+所以 $L_f$ 在 $y$ 的纤维上进行存在量化: 只要纤维中至少有一个元素属于 $A$, 就将 $y$ 放入结果中.
+
+右伴随 $R_f$ 可以记为 $\forall_f$. 对于 $A\subseteq K$ 与 $y\in L$,
+$$
+y\in R_f(A)
+\quad\Longleftrightarrow\quad
+\forall x\in K,\quad f(x)=y\Longrightarrow x\in A.
+$$
+所以 $R_f$ 在 $y$ 的纤维上进行全称量化: 只有纤维中的每个元素都属于 $A$, 才将 $y$ 放入结果中. 如果纤维为空, 这个条件自动成立, 这与全称命题的空真性一致.
+
+因此
+$$
+\boxed{\exists_f\dashv f^*\dashv\forall_f}.
+$$
+这不是形式上的类比, 而是说存在量化与全称量化可以精确地表示为代入函子的左伴随与右伴随.
+
+对于投影
+$$
+p:X\times Y\to X,
+$$
+一个子集 $R\subseteq X\times Y$ 可以看成二元谓词 $R(x,y)$. 此时
+$$
+\begin{aligned}
+x\in L_p(R)
+&\Longleftrightarrow
+\exists y\in Y,\ R(x,y),\\
+x\in R_p(R)
+&\Longleftrightarrow
+\forall y\in Y,\ R(x,y).
+\end{aligned}
+$$
+所以通常将 $L_p$ 与 $R_p$ 分别写成
+$$
+\exists_Y,\qquad\forall_Y,
+$$
+并且有
+$$
+\boxed{\exists_Y\dashv p^*\dashv\forall_Y}.
+$$
+这里 $p^*$ 将一元谓词 $S(x)$ 变成不依赖 $y$ 的二元谓词
+$$
+p^*(S)(x,y)\Longleftrightarrow S(x),
+$$
+而它的两个伴随则分别通过存在量化和全称量化消去变量 $y$.
+
+最后来看 unit 与 counit 的逻辑含义. 对于 $\exists_Y\dashv p^*$, unit
+$$
+R\subseteq p^*(\exists_YR)
+$$
+表示
+$$
+R(x,y)\Longrightarrow\exists y'\in Y,\ R(x,y').
+$$
+它说明, 如果 $R(x,y)$ 对某个已经给定的 $y$ 成立, 那么当然可以断言存在一个使 $R(x,y')$ 成立的 $y'$.
+
+同一个伴随的 counit
+$$
+\exists_Y(p^*(S))\subseteq S
+$$
+表示
+$$
+\left(\exists y\in Y,\ S(x)\right)\Longrightarrow S(x).
+$$
+因为 $S(x)$ 与 $y$ 无关, 所以只要左边成立, 就可以直接得到 $S(x)$.
+
+对于 $p^*\dashv\forall_Y$, unit
+$$
+S\subseteq\forall_Y(p^*(S))
+$$
+表示
+$$
+S(x)\Longrightarrow\forall y\in Y,\ S(x).
+$$
+因为 $S(x)$ 与 $y$ 无关, 所以它一旦成立, 就对每个 $y$ 都成立.
+
+最后, counit
+$$
+p^*(\forall_YR)\subseteq R
+$$
+表示
+$$
+\left(\forall y'\in Y,\ R(x,y')\right)
+\Longrightarrow
+R(x,y).
+$$
+它说明, 如果 $R(x,y')$ 对每个 $y'$ 都成立, 那么它当然对当前给定的 $y$ 成立.
