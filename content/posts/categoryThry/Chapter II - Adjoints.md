@@ -614,6 +614,159 @@ $$
 
 ## Adjunctions via initial objects
 
+> [!definition] Comma category
+> 给定范畴 $\A,\B,\mathscr{C}$ 以及函子
+> $$
+> P:\A\to\mathscr{C},
+> \qquad
+> Q:\B\to\mathscr{C}.
+> $$
+> 因为 $P$ 与 $Q$ 的值都在 $\mathscr{C}$ 中, 所以可以考虑从 $P(X)$ 到 $Q(Y)$ 的态射. **逗号范畴** $(P\Rightarrow Q)$, 也常记作 $(P\downarrow Q)$, 定义如下.
+>
+> 它的对象是三元组
+> $$
+> (X,h,Y),
+> $$
+> 其中
+> $$
+> X\in\A,
+> \qquad
+> Y\in\B,
+> \qquad
+> h:P(X)\to Q(Y).
+> $$
+> 因此, 逗号范畴中的一个对象可以看成 $\mathscr{C}$ 中的一条指定态射
+> $$
+> P(X)\xrightarrow{h}Q(Y).
+> $$
+>
+> 从 $(X,h,Y)$ 到 $(X',h',Y')$ 的态射是一对态射
+> $$
+> f:X\to X',
+> \qquad
+> g:Y\to Y',
+> $$
+> 并且要求下面的方块交换:
+>
+> ```tikz size=medium
+> \usepackage{tikz-cd}
+> \begin{document}
+> \begin{tikzcd}[row sep=large, column sep=large]
+> P(X) \arrow[r,"P(f)"] \arrow[d,"h"']
+> & P(X') \arrow[d,"h'"]\\
+> Q(Y) \arrow[r,"Q(g)"']
+> & Q(Y')
+> \end{tikzcd}
+> \end{document}
+> ```
+>
+> 也就是说,
+> $$
+> \boxed{Q(g)\circ h=h'\circ P(f)}.
+> $$
+> 对象 $(X,h,Y)$ 上的恒等态射是 $(1_X,1_Y)$; 两个态射的复合逐项定义:
+> $$
+> (f',g')\circ(f,g)
+> =
+> (f'\circ f,g'\circ g).
+> $$
+> 由 $P,Q$ 的函子性以及两个方块的交换性, 复合后得到的方块仍然交换, 因而这些数据的确构成一个范畴.
+
+这里的符号 $P\Rightarrow Q$ 只是逗号范畴的记号, 并不表示 $P$ 与 $Q$ 之间存在自然变换. 实际上, $P$ 与 $Q$ 的定义域可以不同. 这个定义所做的事情, 是把所有形如
+$$
+P(X)\to Q(Y)
+$$
+的态射收集为对象, 再把它们之间的交换方块作为态射.
+
+**Remark 2.3.2.** 逗号范畴自带两个投影函子
+$$
+\pi_{\A}:(P\Rightarrow Q)\to\A,
+\qquad
+\pi_{\B}:(P\Rightarrow Q)\to\B.
+$$
+它们在对象上分别取出三元组的两端:
+$$
+\pi_{\A}(X,h,Y)=X,
+\qquad
+\pi_{\B}(X,h,Y)=Y,
+$$
+在态射上则分别取出一对态射的两个分量:
+$$
+\pi_{\A}(f,g)=f,
+\qquad
+\pi_{\B}(f,g)=g.
+$$
+将它们分别与 $P,Q$ 复合, 得到两个从 $(P\Rightarrow Q)$ 到 $\mathscr{C}$ 的函子
+$$
+P\pi_{\A},
+\qquad
+Q\pi_{\B}.
+$$
+每个对象 $(X,h,Y)$ 中的态射 $h:P(X)\to Q(Y)$ 自然地给出一个分量
+$$
+\alpha_{(X,h,Y)}:=h.
+$$
+于是这些分量组成自然变换
+$$
+\alpha:P\pi_{\A}\Longrightarrow Q\pi_{\B}.
+$$
+对于态射 $(f,g):(X,h,Y)\to(X',h',Y')$, $\alpha$ 的自然性要求
+$$
+Q(g)\circ h=h'\circ P(f),
+$$
+而这恰好就是逗号范畴定义中的交换条件. 因此 $\alpha$ 不需要另外选择, 它是由逗号范畴中的对象和态射自然导出的.
+
+**Example 2.3.3.** 固定范畴 $\A$ 中的对象 $A$. **切片范畴** $\A/A$ 的对象是所有指向 $A$ 的态射
+$$
+h:X\to A.
+$$
+从 $(X,h)$ 到 $(X',h')$ 的态射是满足
+$$
+h'\circ f=h
+$$
+的态射 $f:X\to X'$. 以
+$$
+A^*:\mathbf{1}\to\A
+$$
+表示选出对象 $A$ 的函子, 就有
+$$
+\A/A\cong(1_{\A}\Rightarrow A^*).
+$$
+
+对偶地, **余切片范畴** $A/\A$ 的对象是所有从 $A$ 出发的态射 $A\to X$, 并且
+$$
+A/\A\cong(A^*\Rightarrow1_{\A}).
+$$
+因此, 切片范畴收集所有进入固定对象 $A$ 的方式, 而余切片范畴收集所有从 $A$ 出发的方式; 它们都是逗号范畴的特殊情形.
+
+**Example 2.3.4.** 给定函子
+$$
+G:\B\to\A
+$$
+以及对象 $A\in\A$. 以
+$$
+A^*:\mathbf{1}\to\A
+$$
+表示选出对象 $A$ 的函子. 逗号范畴 $(A^*\Rightarrow G)$ 的对象可以简记为
+$$
+(B,f),
+\qquad
+f:A\to G(B),
+$$
+其中 $B\in\B$. 从 $(B,f)$ 到 $(B',f')$ 的态射是满足
+$$
+G(q)\circ f=f'
+$$
+的态射 $q:B\to B'$. 因此, $(A^*\Rightarrow G)$ 收集了所有将 $A$ 映入某个形如 $G(B)$ 的对象的方式, 而它的态射描述这些方式之间如何通过 $\B$ 中的态射相互联系.
+
+严格来说, 逗号范畴的对象是二元组 $(B,f)$, 而不只是态射 $f:A\to G(B)$. 因为可能存在不同的对象 $B,B'\in\B$ 满足 $G(B)=G(B')$, 如果只记录 $f$, 就会丢失它所对应的 $\B$ 中的对象.
+
+本节开头的自由向量空间例子正是这种构造的一个特例. 此时 $A=S$, $G=U:\mathbf{Vect}_k\to\mathbf{Set}$, 并以
+$$
+S^*:\mathbf{1}\to\mathbf{Set}
+$$
+表示选出集合 $S$ 的函子. 因此相应的逗号范畴是 $(S^*\Rightarrow U)$, 而自由向量空间的泛性质可以重新表述为: $(F(S),\eta_S)$ 是这个逗号范畴的始对象.
+
 ## Exercise
 
 ### 2.1.15
