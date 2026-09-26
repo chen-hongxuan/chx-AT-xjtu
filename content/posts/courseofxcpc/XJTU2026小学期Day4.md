@@ -3,8 +3,8 @@ title: XJTU2026小学期Day4
 math: true
 tags:
   - course
-draft:
 date: 2026-08-03
+draft: false
 ---
 # 动态规划入门
 

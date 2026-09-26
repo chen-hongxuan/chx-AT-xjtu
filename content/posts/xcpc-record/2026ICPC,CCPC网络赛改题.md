@@ -4,7 +4,7 @@ date: 2026-09-25
 tags:
   - xtrain
 math: true
-draft: true
+draft: false
 ---
 
 ## ICPC Online 1

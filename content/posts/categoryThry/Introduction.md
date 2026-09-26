@@ -3,8 +3,8 @@ date: 2026-08-25
 tags:
   - category-theory
 math: true
-draft:
 title: Introduction
+draft: false
 ---
 #### 前言
 

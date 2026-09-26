@@ -4,6 +4,7 @@ tags:
   - xtrain
 date: 2026-08-08
 math: true
+draft: false
 ---
 吃瘪了, 打完感觉彻底燃尽了.
 ### I

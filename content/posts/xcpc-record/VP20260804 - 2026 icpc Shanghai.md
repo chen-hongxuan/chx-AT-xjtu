@@ -4,6 +4,7 @@ tags:
   - xtrain
 date: 2026-08-04
 math: true
+draft: false
 ---
 
 ### D
