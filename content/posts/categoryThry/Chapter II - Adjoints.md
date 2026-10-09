@@ -767,6 +767,75 @@ S^*:\mathbf{1}\to\mathbf{Set}
 $$
 表示选出集合 $S$ 的函子. 因此相应的逗号范畴是 $(S^*\Rightarrow U)$, 而自由向量空间的泛性质可以重新表述为: $(F(S),\eta_S)$ 是这个逗号范畴的始对象.
 
+>[!lemma] Lemma 2.3.5
+>给定 $F:\A\to\B$ 与 $G:\B\to\A$ 之间的一个伴随结构 $F\dashv G$. 这个伴随的 unit 给出自然变换
+>$$
+>\eta:1_\A\Longrightarrow GF.
+>$$
+>对于任意 $A\in\A$, 二元组
+>$$
+>(F(A),\eta_A:A\to GF(A))
+>$$
+>是逗号范畴 $(A^*\Rightarrow G)$ 的始对象. 简称“$\eta_A$ 是始对象”时, 指的仍是这个二元组.
+
+>[!proof]
+>任取 $(A^*\Rightarrow G)$ 中的对象 $(B,f)$, 其中 $f:A\to G(B)$. 根据逗号范畴的定义, 从 $(F(A),\eta_A)$ 到 $(B,f)$ 的态射, 就是满足
+>$$
+>G(q)\circ\eta_A=f
+>$$
+>的态射 $q:F(A)\to B$.
+>
+>由前一节的伴随对应可知, $q$ 对应的态射恰好是 $G(q)\circ\eta_A$. 因为这个对应是双射, 所以对于给定的 $f$, 存在唯一的 $q$ 满足上述等式. 这对每个 $(B,f)$ 都成立, 从而 $(F(A),\eta_A)$ 是始对象.
+
+>[!theorem] Theorem 2.3.6
+>给定范畴 $\A,\B$ 以及函子 $F:\A\to\B$ 和 $G:\B\to\A$. 以下两类数据之间存在一一对应:
+>
+>1. $F$ 与 $G$ 之间的一个伴随结构, 其中 $F$ 是左伴随;
+>2. 一个自然变换 $\eta:1_\A\Longrightarrow GF$, 使得对于每个 $A\in\A$, 二元组 $(F(A),\eta_A)$ 都是逗号范畴 $(A^*\Rightarrow G)$ 的始对象.
+>
+>这个对应将一个伴随结构送到它的 unit.
+
+>[!proof]
+>先看从伴随结构到自然变换的方向. 给定一个伴随结构, 取它的 unit $\eta$. 由 Lemma 2.3.5, 每个 $(F(A),\eta_A)$ 都是相应逗号范畴的始对象, 所以 $\eta$ 确实属于定理所说的第二类数据.
+>
+>这个对应是单射的. 对于任意的 $A\in\A$、$B\in\B$ 和 $q:F(A)\to B$, $q$ 在伴随对应下得到的态射是
+>$$
+>q^{*_{A,B}}=G(q)\circ\eta_A.
+>$$
+>因此, 如果两个伴随结构给出同一个 $\eta$, 那么它们把每个 $q$ 送到同一个态射. 两个方向的对应互为逆映射, 所以这两个伴随结构相同.
+>
+>现在反过来, 给定满足第二项条件的自然变换 $\eta$. 对于 $A\in\A$、$B\in\B$ 以及任意态射 $\phi:A\to G(B)$, 始对象 $(F(A),\eta_A)$ 到对象 $(B,\phi)$ 存在唯一的态射. 按逗号范畴的定义, 这就是说存在唯一的
+>$$
+>\overline\phi:F(A)\to B
+>$$
+>满足
+>$$
+>G(\overline\phi)\circ\eta_A=\phi.
+>$$
+>我们就以 $\phi\mapsto\overline\phi$ 定义 Hom-set 之间的对应. 它的反方向是 $q\mapsto G(q)\circ\eta_A$: 上式说明 $\overline\phi$ 对应回 $\phi$; 而对于任意 $q:F(A)\to B$, $q$ 本身满足 $G(q)\circ\eta_A=G(q)\circ\eta_A$, 由始对象给出的唯一性可知 $\overline{G(q)\circ\eta_A}=q$. 因此这两个方向互为逆映射.
+>
+>接下来验证自然性. 取 $f:A'\to A$、$g:B\to B'$ 以及 $\phi:A\to G(B)$. 因为 $\eta$ 是自然变换, 所以 $GF(f)\circ\eta_{A'}=\eta_A\circ f$. 于是
+>$$
+>\begin{aligned}
+>G\bigl(g\circ\overline\phi\circ F(f)\bigr)\circ\eta_{A'}
+>&=G(g)\circ G(\overline\phi)\circ GF(f)\circ\eta_{A'}\\
+>&=G(g)\circ G(\overline\phi)\circ\eta_A\circ f\\
+>&=G(g)\circ\phi\circ f.
+>\end{aligned}
+>$$
+>因此 $g\circ\overline\phi\circ F(f)$ 满足 $G(g)\circ\phi\circ f$ 所要求的交换条件. 再由唯一性得到
+>$$
+>\overline{G(g)\circ\phi\circ f}
+>=g\circ\overline\phi\circ F(f).
+>$$
+>所以刚才构造的一一对应关于 $A$ 与 $B$ 都自然, 从而给出了 $F$ 与 $G$ 之间的一个伴随结构.
+>
+>最后确认这个伴随结构的 unit 就是原先给定的 $\eta$. 在 $(A^*\Rightarrow G)$ 中, $1_{F(A)}$ 是 $(F(A),\eta_A)$ 到自身的态射, 因为 $G(1_{F(A)})\circ\eta_A=\eta_A$. 由始对象给出的唯一性可知
+>$$
+>\overline{\eta_A}=1_{F(A)}.
+>$$
+>也就是说, $1_{F(A)}$ 在新伴随对应下得到的态射正是 $\eta_A$. 因此每个满足条件的 $\eta$ 都来自一个伴随结构, 定理得证.
+
 ## Exercise
 
 ### 2.1.15
@@ -1236,6 +1305,35 @@ $$
 >\el
 >$$
 >前两个属于 $L_p\dashv p^*$, 后两个属于 $p^*\dashv R_p$. 它们的逻辑解释统一放在文末的 Bonus 中.
+
+### 2.3.11
+
+>[!exercise]
+>设有伴随结构
+>$$
+>F:\mathbf{Set}\to\A,
+>\qquad
+>U:\A\to\mathbf{Set},
+>\qquad F\dashv U,
+>$$
+>其 unit 为 $\eta$. 假设存在 $A_0\in\A$, 使得集合 $U(A_0)$ 至少有两个元素. 证明对于每个集合 $S$, 态射
+>$$
+>\eta_S:S\to U(F(S))
+>$$
+>都是单射. 在自由群与遗忘函子的伴随中, 这个结论意味着什么?
+
+>[!proof]
+>任取集合 $S$. 由 Lemma 2.3.5, $(F(S),\eta_S)$ 是逗号范畴 $(S^*\Rightarrow U)$ 的始对象. 假设 $\eta_S$ 不是单射, 那么存在不同的 $s,t\in S$ 满足
+>$$
+>\eta_S(s)=\eta_S(t).
+>$$
+>从 $U(A_0)$ 中取不同的元素 $x,y$, 并选取函数 $f:S\to U(A_0)$, 使 $f(s)=x$ 且 $f(t)=y$. 于是 $(A_0,f)$ 是 $(S^*\Rightarrow U)$ 中的对象. 因为 $(F(S),\eta_S)$ 是始对象, 必须存在态射 $q:F(S)\to A_0$ 满足
+>$$
+>U(q)\circ\eta_S=f.
+>$$
+>但 $\eta_S(s)=\eta_S(t)$ 使左边在 $s,t$ 处取值相同, 而 $f(s)=x\ne y=f(t)$. 因此这样的 $q$ 根本不存在, 与始对象的性质矛盾. 所以 $\eta_S$ 是单射.
+>
+>对于自由群与遗忘函子的伴随, $F(S)$ 是由 $S$ 生成的自由群, $\eta_S$ 将 $s\in S$ 送到对应的自由生成元. 由于存在至少两个元素的群, 上述条件成立, 因而不同的自由生成元在自由群中仍是不同的元素.
 
 ## Bonus 伴随作为一种量词
 
