@@ -6,6 +6,7 @@ math: true
 title: Introduction
 draft: false
 ---
+
 #### 前言
 
 教材是 Cambridge Studies in Advanced Mathematics 系列丛书的 *Basic Category Theory* , 作者是 Tom Leinster. 先前已经学习过一次了, 不过由于上次学完后就把这套知识搁置转而去学习数理逻辑了, 现在感觉技术细节已经遗忘的差不多了, 然而下一个阶段就要开始 Categorical Logic 的学习了, 所以需要快速重拾一下知识.
@@ -32,24 +33,34 @@ draft: false
 >对于环 $X$ 而言, 若对于任意环 $R$ , 存在唯一的环同态 $X\to R$ , 那么有环同构 $X\cong\mathbb Z$ .
 
 下一个例子是在向量空间范畴内的, 在这里的对象是向量空间, 态射是线性映射, 那么对于一个以向量组 $\{v_i:i\in S\}$ 为基底的向量空间 $V$ , 我们该如何描述它呢? 我们看看它与这个向量空间范畴内的其他对象如何互动的: 对于任意向量空间 $W$ 以及从 $V$ 到 $W$ 的线性变换 $f$ , 我们可以通过指定各个基底被映射到哪里了来唯一地确定整个线性变换. 准确的表述如下:
-对于固定的集合 $S$ 以及映射 $i:s\mapsto v_s$ , 那么 $V$ 的一个泛性质就是
 
-```tikz size=medium
-\usepackage{tikz-cd}
-\begin{document}\begin{tikzcd}[row sep=large,column sep=large]
-S\arrow[r,"i"]\arrow[rd,"\forall\,{\rm function}\,f"']&V\arrow[d,dashed,"\exists!\,{\rm{linear}}\,{\overline{f}}"]\\
-&\forall W
-\end{tikzcd}\end{document}
-```
+>[!example] 带有指定基底的向量空间的泛性质
+>固定集合 $S$ 以及映射 $i:s\mapsto v_s$. 对任意向量空间 $W$ 和函数 $f:S\to W$, 存在唯一的线性映射 $\overline f:V\to W$ 使 $\overline f\circ i=f$.
+>
+>```tikz size=medium
+>\usepackage{tikz-cd}
+>\begin{document}\begin{tikzcd}[row sep=large,column sep=large]
+>S\arrow[r,"i"]\arrow[rd,"\forall\,{\rm function}\,f"']&V\arrow[d,dashed,"\exists!\,{\rm{linear}}\,{\overline{f}}"]\\
+>&\forall W
+>\end{tikzcd}\end{document}
+>```
+
 总之泛性质就是描述范畴里一个对象如何通过态射与其他对象交互的特点, 范畴论里的 Adjoints, Limits, Representative 分别是三种不同的描述泛性质的方式.
 
 ## Exercise
 
 ### 0.13
+
 #### a.
-(Uniqueness) 对于任意的环同态 $f,g:\mathbb Z[x]\to R$ 满足 $f(x)=g(x)=r$ , 那么对于任意的多项式 $F\in\mathbb Z[x]$ , 假定 $$typ F=sum_(i<=0) F_i x^i$$ 那么一定有$$typ f(F)&=sum_(i<=n)F_i r^i\ &=g(F)$$ 从而 $f=g$ .
+
+>[!proof] Uniqueness
+>对于任意的环同态 $f,g:\mathbb Z[x]\to R$ 满足 $f(x)=g(x)=r$ , 那么对于任意的多项式 $F\in\mathbb Z[x]$ , 假定 $$typ F=sum_(i<=0) F_i x^i$$ 那么一定有$$typ f(F)&=sum_(i<=n)F_i r^i\ &=g(F)$$ 从而 $f=g$ .
+
 (Existence) 在唯一性里其实已经证明了, 在指定了$x$ 这个基础元素映射到哪里之后就可以自然的扩张到整个环 $\mathbb Z[x]$ 上了.
+
 #### b.
-令环 $A$ 及其中的元素 $a$ 也满足这个性质, 那么我们考虑两个方向的同态 $\phi:a\mapsto x$ 以及 $\psi:x\mapsto a$ , 由于 $A\to A$ 的满足 $a\mapsto a$ 的同态根据对 $A$ 的假设仅有 $\mathrm{id}_A$ , 因此有 $\psi\circ\phi={\rm id}_A$ ; 类似的论证可以得到 $\phi\circ\psi={\rm id}_{\mathbb Z[x]}$ , 从而这个 $\psi$ 即是满足 $\psi(x)=a$ 的同构, 而唯一性可以由 **(a)** 导出.
+
+>[!proof]
+>令环 $A$ 及其中的元素 $a$ 也满足这个性质, 那么我们考虑两个方向的同态 $\phi:a\mapsto x$ 以及 $\psi:x\mapsto a$ , 由于 $A\to A$ 的满足 $a\mapsto a$ 的同态根据对 $A$ 的假设仅有 $\mathrm{id}_A$ , 因此有 $\psi\circ\phi={\rm id}_A$ ; 类似的论证可以得到 $\phi\circ\psi={\rm id}_{\mathbb Z[x]}$ , 从而这个 $\psi$ 即是满足 $\psi(x)=a$ 的同构, 而唯一性可以由 **(a)** 导出.
 
 ### 0.14

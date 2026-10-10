@@ -22,14 +22,16 @@ $$
 $$
 ## Categories
 
->范畴论的语言不以集合论为基础, 所以以下的用词是朴素的, 用自然语言表达的. 同时, 我们也不应当去苛求一个建立在集合论基础下的范畴论.
+范畴论的语言不以集合论为基础, 所以以下的用词是朴素的, 用自然语言表达的. 同时, 我们也不应当去苛求一个建立在集合论基础下的范畴论.
 
 >[!definition] 范畴/Category
 >一个范畴 $\scr A$ 包含以下的元素,
 >1. 一个元素的聚类(这里使用 collection 这个词汇, 刻意区别与集合论中的 set 或者是 class ), 称之为范畴 $\scr A$ 的对象, 记为 $\rm ob({\scr A})$ .
 >2. 对于任意的 $A,A'\in {\rm ob({\scr A})}$ , 都有一组态射的聚类, 记之为 $\A(A,A')$ . 对于 $f\in \A(A,A')$ 我们时常用箭头 $A \map{f} A'$ 来表示之.
->3. 对于任意的 $A,B,C\in\A$ , 都有态射(morphism/map)的复合 $\circ$ 满足$$\begin{aligned}\A(B,C)\times\A(A,B)&\to\A(A,C)\\(g,f)&\mapsto g\circ f\end{aligned}$$并且这个复合满足结合律(我们可以用函数以及函数间的复合来类比地理解它).
+>3. 对于任意的 $A,B,C\in\A$ , 都有态射(morphism/map)的复合 $\circ$ 满足$$\begin{aligned}\A(B,C)\times\A(A,B)&\to\A(A,C)\\(g,f)&\mapsto g\circ f\end{aligned}$$并且这个复合满足结合律.
 >4. 对于每个 $A\in\A$ , 在 $\A(A,A)$ 中存在恒等态射 $1_A$ .
+
+我们可以用函数以及函数间的复合来类比地理解这里的复合.
 
 于是我们有非常多范畴的例子, 比如:
 
@@ -77,10 +79,12 @@ the maps are invertible and there is only one object.
 >1. $\ob(\A\times\B)=\ob(\A)\times\ob(\B)$
 >2. 对于 $A,A'\in\A$ 以及 $B,B'\in\B$ 有 $$(\A\times\B)((A,B),(A',B'))=\A(A,A')\times\B(B,B')$$
 >3. 定义 $\A\times\B$ 中的复合 $\circ_{\A\times\B}$ 为$$((f,g),(f',g'))\mapsto(f\circ_\A f',g\circ_\B g')$$
+
 ## Functor
 
 >One of the lessons of category theory is that whenever we meet a new type of mathematical object, we should always ask whether there is a sensible notion of ‘map’ between such objects. We can ask this about categories themselves. The answer is yes, and a map between categories is called a functor.
->函子是范畴间的"映射".
+
+函子是范畴间的"映射".
 
 >[!definition] 函子/Functor
 >对于范畴 $\A,\B$ , 一个函子 $F:\A\to\B$ 包含以下元素
@@ -89,6 +93,7 @@ the maps are invertible and there is only one object.
 
 在代数学里常见的例子是遗忘函子和自由函子, 具体的例证需要用到基数算术的知识, 在此略过. 之后在用语上作如下的约定
 
+>[!definition] 用语约定
 >1. A **contravariant functor** from $\A$ to $\B$ is a functor $\A\op\to\B$ .
 >2. An ordinary functor $\A\to\B$ is sometimes called a **covariant functor** from $\A$ to $\B$ .
 >3. A **presheaf** is a functor $\A\op\to\bf Set$
@@ -96,7 +101,9 @@ the maps are invertible and there is only one object.
 之后来看一个例子
 
 >[!example]
->固定域 $k$ , 考虑其上的向量空间构成的范畴 ${\bf Vect}_k$ , 对于向量空间 $V,W\in{\bf Vect}_k$ 从 $V$ 到 $W$ 的线性映射 ${\bf Hom}(V,W)$ 也是一个 $k$ 上的向量空间. 于是如果我们固定了 $W$ , 那么对于线性映射 $\overline g:V\to V'$ , 这很自然地导出了一个从 $\hom(V',W)$ 到 $\hom(V,W)$ 的线性映射 $$f\mapsto f\circ \overline g$$我们把这个映射记为 $(-\circ \overline g)$ , 唯一的不协调的地方是 $\overline g$ 的方向是反过来的, 所以一个协调的好办法就是把 $\vect_k$ 中的态射的方向都反向得到 $\vect_k\op$ 于是我们就自然地导出了一个函子$$\bl\hom(-,W):\vect_k\op&\to\vect_k\\V&\mapsto\hom(V,W)\\(V\map{f\op}V')&\mapsto(-\circ f)_{\hom(V,W)\to\hom(V',W)}\el$$
+>固定域 $k$ , 考虑其上的向量空间构成的范畴 ${\bf Vect}_k$ , 对于向量空间 $V,W\in{\bf Vect}_k$ 从 $V$ 到 $W$ 的线性映射 ${\bf Hom}(V,W)$ 也是一个 $k$ 上的向量空间. 于是如果我们固定了 $W$ , 那么对于线性映射 $\overline g:V\to V'$ , 这很自然地导出了一个从 $\hom(V',W)$ 到 $\hom(V,W)$ 的线性映射 $$f\mapsto f\circ \overline g$$我们把这个映射记为 $(-\circ \overline g)$ , 于是我们就自然地导出了一个函子$$\bl\hom(-,W):\vect_k\op&\to\vect_k\\V&\mapsto\hom(V,W)\\(V\map{f\op}V')&\mapsto(-\circ f)_{\hom(V,W)\to\hom(V',W)}\el$$
+
+唯一的不协调的地方是 $\overline g$ 的方向是反过来的, 所以一个协调的好办法就是把 $\vect_k$ 中的态射的方向都反向得到 $\vect_k\op$.
 
 类似于集合论里映射的单射满射, 我们也可以定义函子的**忠实性/faithfulness**和**全性/fullness**.
 
@@ -113,9 +120,10 @@ the maps are invertible and there is only one object.
 >1. $\ob(\B)$ is the subclass of $\ob(\A)$ .
 >2. For each $X,X'\in\B$ , $\B(X,X')$ is the subclass of $\A(X,X')$.
 >3. 范畴 $\B$ 的态射应当在复合意义下封闭, 并且保留恒等态射.
+
 ## Natural transformations
 
-> 自然变换是函子间的变换.
+自然变换是函子间的变换.
 
 >[!definition] Natural transformation
 >对于范畴 $\A,\B$ 以及函子 $F,G:\A\to\B$ , 一个自然变换 $\alpha:F\to G$ 是一族 $\B$ 中的态射 $(\alpha_X)_{X\in\A}$ 满足:
@@ -130,7 +138,12 @@ F(X) \arrow[r,"F(f)"]\arrow[d,"\alpha_X"] &F(Y)\arrow[d,"\alpha_Y"]\\
 G(X) \arrow[r,"G(f)"]&G(Y)
 \end{tikzcd}\end{document}
 ```
-之后我们来看一个例子. 对于固定的正整数 $n$ 以及任意交换环 $R$ , 我们可以导出数域是 $R$ 的 $n\times n$ 的矩阵构成的一个集合 $M_n(R)$ , 并且可以在其上定义矩阵的乘法 $*_R$ , 于是结构$$(M_n(R),*_R)$$构成了一个幺半群, 并且任意的环同态 $R\to S$ 都导出了 $M_n(R)\to M_n(S)$ 上的同态, 故实际上 $M_n$ 是一个 $\bf CRing\to Mon$ 的函子, 而另外一方面考虑 $\bf CRing\to Mon$ 的遗忘函子 $U$ , 它忘记了 $R$ 上的加法结构, 只保留乘法结构, 对于 $X\in M_n(R)$ , 我们可以求出其行列式, 显然 $\det_R(X)\in U(R)$ 并且对于任意的 $X,Y\in M_n(R)$ 均有 $\det_R(XY)=\det_R(X)\det_R(Y)$ , 于是 $\det_R$ 是一个 $M_n(R)\to U(R)$ 的同态, 于是这就形成了一组 $\bf Mon$ 中的态射$$(\mathrm{det}_R:M_n(R)\to U(R))_{R\in\bf CRing}$$于是我们就会很自然地去询问$$\rm det_{(-)}$$ 构成一个 $M_n\to U$ 的自然变换吗? 事实上是构成的, 以下来进行验证.
+之后我们来看一个例子.
+
+>[!example] 矩阵与遗忘函子
+>对于固定的正整数 $n$ 以及任意交换环 $R$ , 我们可以导出数域是 $R$ 的 $n\times n$ 的矩阵构成的一个集合 $M_n(R)$ , 并且可以在其上定义矩阵的乘法 $*_R$ , 于是结构$$(M_n(R),*_R)$$构成了一个幺半群, 并且任意的环同态 $R\to S$ 都导出了 $M_n(R)\to M_n(S)$ 上的同态, 故实际上 $M_n$ 是一个 $\bf CRing\to Mon$ 的函子. 另外一方面考虑 $\bf CRing\to Mon$ 的遗忘函子 $U$ , 它忘记了 $R$ 上的加法结构, 只保留乘法结构.
+
+对于 $X\in M_n(R)$ , 我们可以求出其行列式, 显然 $\det_R(X)\in U(R)$ 并且对于任意的 $X,Y\in M_n(R)$ 均有 $\det_R(XY)=\det_R(X)\det_R(Y)$ , 于是 $\det_R$ 是一个 $M_n(R)\to U(R)$ 的同态, 于是这就形成了一组 $\bf Mon$ 中的态射$$(\mathrm{det}_R:M_n(R)\to U(R))_{R\in\bf CRing}$$于是我们就会很自然地去询问$$\rm det_{(-)}$$ 构成一个 $M_n\to U$ 的自然变换吗? 事实上是构成的, 以下来进行验证.
 
 >[!proof]
 >对于任意的 $S,T\in\bf CRing$ 以及环同态 $\theta:S\to T$ , 我们需要检查交换图
@@ -161,14 +174,19 @@ G(X) \arrow[r,"G(f)"]&G(Y)
 由于自然变换是一族态射, 并且是函子间的变换, 所以我们自然地会想到自然变换的连接, 以下是纵列方向的连接:
 
 >[!definition] Vertical composition
->对于范畴 $\A,\B$ 以及它们间的函子 $F,G,H$ , 假定有自然变换 $\alpha:F\to G$ 以及 $\beta:G\to H$ , 于是可以自然导出如下的一族态射:$$(\beta\circ\alpha)_X=\beta_X\circ\alpha_X$$容易验证 $\beta\circ\alpha$ 是 $F\to H$ 的自然变换, 这定义了自然变换的纵向复合.
+>对于范畴 $\A,\B$ 以及它们间的函子 $F,G,H$ , 假定有自然变换 $\alpha:F\to G$ 以及 $\beta:G\to H$ , 于是可以自然导出如下的一族态射:$$(\beta\circ\alpha)_X=\beta_X\circ\alpha_X$$这定义了自然变换的纵向复合.
+
+容易验证 $\beta\circ\alpha$ 是 $F\to H$ 的自然变换.
 
 而类似于恒等映射的概念, 我们可以导出某个函子 $F$ 的恒等自然变换 $$\id_F:(\id_F)_X=1_{F(X)}$$ 于是我们可以在函子间建立等价关系.
 
 >[!definition] Natural isomorphic
 >对于函子 $F,G:\A\to\B$ , 称 $F,G$ 是自然同构的当且仅当存在自然变换 $\eta:F\to G$ 以及 $\epsilon:G\to F$ 使得 $\eta\circ\epsilon=\id_G, \epsilon\circ\eta=\id_F$ , 这种情况下简记为 $F\cong G$ .
 
-于是这就导出了函子空间的概念, 对于任意范畴 $\A,\B$ , 令范畴 $[\A,\B]$ 的对象为全体 $\A\to\B$ 的函子, 而对于函子 $F,G:\A\to\B$ , 他们之间的态射就是全体 $F\to G$ 的自然变换.
+于是这就导出了函子空间的概念.
+
+>[!example] 函子范畴
+>对于任意范畴 $\A,\B$ , 令范畴 $[\A,\B]$ 的对象为全体 $\A\to\B$ 的函子, 而对于函子 $F,G:\A\to\B$ , 他们之间的态射就是全体 $F\to G$ 的自然变换.
 
 之后我们有一个对于自然变换是否是同构的等价的描述:
 
@@ -287,16 +305,18 @@ $$
 =G'(\alpha_X)\circ\alpha'_{F(X)}.
 $$
 所以这两种写法对于每个 $X$ 都严格相等, 而不只是彼此同构. 因此我们可以无歧义地定义
-$$
-(\alpha'*\alpha)_X
-:=\alpha'_{G(X)}\circ F'(\alpha_X)
-=G'(\alpha_X)\circ\alpha'_{F(X)}.
-$$
-由这些分量组成的自然变换
-$$
-\alpha'*\alpha:F'F\to G'G
-$$
-称为 $\alpha'$ 与 $\alpha$ 的 **horizontal composition**.
+
+>[!definition] Horizontal composition
+>$$
+>(\alpha'*\alpha)_X
+>:=\alpha'_{G(X)}\circ F'(\alpha_X)
+>=G'(\alpha_X)\circ\alpha'_{F(X)}.
+>$$
+>由这些分量组成的自然变换
+>$$
+>\alpha'*\alpha:F'F\to G'G
+>$$
+>称为 $\alpha'$ 与 $\alpha$ 的 **horizontal composition**.
 
 最后简略验证它的自然性. 对于任意的 $f:X\to Y$, 依次使用 $\alpha'$ 与 $\alpha$ 的自然性可得
 $$
@@ -312,10 +332,14 @@ $$
 ## Exercise
 
 ### 1.1.13
-设态射 $A\map fB,B\map{g,g'} A$ 满足 $fg=fg'=1_B,gf=g'f=1_A$ 那么显然有$$\begin{aligned}g&=g\circ1_B\\&=g(fg')\\&=(gf)g'\\&=1_A\circ g'=g'\end{aligned}$$因此态射的逆必定是唯一的.
+
+>[!proof]
+>设态射 $A\map fB,B\map{g,g'} A$ 满足 $fg=fg'=1_B,gf=g'f=1_A$ 那么显然有$$\begin{aligned}g&=g\circ1_B\\&=g(fg')\\&=(gf)g'\\&=1_A\circ g'=g'\end{aligned}$$因此态射的逆必定是唯一的.
 
 ### 1.2.21
-对于函子 $F:\A\to\B$ 设 $X,Y\in\A$ 满足存在 $f\in\A(X,Y)$ 使得 $f:X\cong Y$ . 则存在 $Y\map g X$ 使得 $gf=1_X,fg=1_Y$ . 由于函子保持恒等映射和态射复合, 所以有 $F(gf)=F(g)F(f)=F(1_X)=1_{F(X)}$ , 另一方向同理. 因而 $F(f):F(X)\cong F(Y)$ .
+
+>[!proof]
+>对于函子 $F:\A\to\B$ 设 $X,Y\in\A$ 满足存在 $f\in\A(X,Y)$ 使得 $f:X\cong Y$ . 则存在 $Y\map g X$ 使得 $gf=1_X,fg=1_Y$ . 由于函子保持恒等映射和态射复合, 所以有 $F(gf)=F(g)F(f)=F(1_X)=1_{F(X)}$ , 另一方向同理. 因而 $F(f):F(X)\cong F(Y)$ .
 
 ### 1.2.24
 
@@ -324,8 +348,7 @@ $$
 Z(G)=\{z\in G\mid zg=gz\text{ 对任意 }g\in G\}.
 $$
 
->[!note] 解法来源
->以下解法及所使用的反例由 OpenAI 给出.
+以下解法及所使用的反例由 OpenAI 给出.
 
 >[!proof]
 >这样的函子不存在. 为了说明这一点, 考虑二阶循环群 $C_2$ 与三阶对称群 $S_3$. $S_3$ 是集合 $\{1,2,3\}$ 上所有置换组成的群, 共有六个元素
@@ -358,38 +381,41 @@ $$
 
 令 $\B$ 为有限集合与集合间双射组成的范畴. 对于有限集合 $X$, 以 $\operatorname{Sym}(X)$ 表示 $X$ 上所有置换组成的集合, 以 $\operatorname{Ord}(X)$ 表示 $X$ 上所有全序组成的集合.
 
-**(a)** 对于 $\B$ 中的双射 $f:X\to Y$, 定义
-$$
-\operatorname{Sym}(f):\operatorname{Sym}(X)\to\operatorname{Sym}(Y),
-\qquad p\longmapsto f\circ p\circ f^{-1}.
-$$
-也就是说, 我们用 $f$ 将 $X$ 上的置换搬到 $Y$ 上.
+**(a)**
 
-另一方面, 设 $p\in\operatorname{Ord}(X)$, 并将这个全序记为 $\leq_p$. 在 $Y$ 上定义全序 $\leq_{\operatorname{Ord}(f)(p)}$:
-$$
-y\leq_{\operatorname{Ord}(f)(p)}y'
-\quad\Longleftrightarrow\quad
-f^{-1}(y)\leq_p f^{-1}(y').
-$$
-这就定义了函数
-$$
-\operatorname{Ord}(f):\operatorname{Ord}(X)\to\operatorname{Ord}(Y).
-$$
-这两个定义都没有使用任意的选择. 对于恒等映射, 它们显然给出恒等映射; 对于双射 $X\xrightarrow{f}Y\xrightarrow{g}Z$, 由
-$$
-(g\circ f)^{-1}=f^{-1}\circ g^{-1}
-$$
-可以直接得到
-$$
-\operatorname{Sym}(g\circ f)=\operatorname{Sym}(g)\circ\operatorname{Sym}(f),
-$$
-$$
-\operatorname{Ord}(g\circ f)=\operatorname{Ord}(g)\circ\operatorname{Ord}(f).
-$$
-所以这两个构造分别给出了函子
-$$
-\operatorname{Sym},\operatorname{Ord}:\B\to\mathbf{Set}.
-$$
+>[!proof]
+>对于 $\B$ 中的双射 $f:X\to Y$, 定义
+>$$
+>\operatorname{Sym}(f):\operatorname{Sym}(X)\to\operatorname{Sym}(Y),
+>\qquad p\longmapsto f\circ p\circ f^{-1}.
+>$$
+>另一方面, 设 $p\in\operatorname{Ord}(X)$, 并将这个全序记为 $\leq_p$. 在 $Y$ 上定义全序 $\leq_{\operatorname{Ord}(f)(p)}$:
+>$$
+>y\leq_{\operatorname{Ord}(f)(p)}y'
+>\quad\Longleftrightarrow\quad
+>f^{-1}(y)\leq_p f^{-1}(y').
+>$$
+>这就定义了函数
+>$$
+>\operatorname{Ord}(f):\operatorname{Ord}(X)\to\operatorname{Ord}(Y).
+>$$
+>这两个定义都没有使用任意的选择. 对于恒等映射, 它们显然给出恒等映射; 对于双射 $X\xrightarrow{f}Y\xrightarrow{g}Z$, 由
+>$$
+>(g\circ f)^{-1}=f^{-1}\circ g^{-1}
+>$$
+>可以直接得到
+>$$
+>\operatorname{Sym}(g\circ f)=\operatorname{Sym}(g)\circ\operatorname{Sym}(f),
+>$$
+>$$
+>\operatorname{Ord}(g\circ f)=\operatorname{Ord}(g)\circ\operatorname{Ord}(f).
+>$$
+>所以这两个构造分别给出了函子
+>$$
+>\operatorname{Sym},\operatorname{Ord}:\B\to\mathbf{Set}.
+>$$
+
+也就是说, 我们用 $f$ 将 $X$ 上的置换搬到 $Y$ 上.
 
 **(b)** 假定存在自然变换
 $$
@@ -406,26 +432,31 @@ $$
 $$
 所以等式左边始终是固定的全序 $\eta_Y(1_Y)$. 但是右边是将全序 $\eta_X(1_X)$ 通过 $f$ 搬到 $Y$ 上, 它会随着 $f$ 的不同而改变.
 
-具体地, 取 $X=Y=\{0,1\}$, 并令 $\tau:X\to X$ 交换 $0$ 与 $1$. 若 $\eta_X(1_X)$ 中 $0<1$, 那么经过 $\operatorname{Ord}(\tau)$ 后得到的全序中 $1<0$; 反方向同理. 因此
-$$
-\operatorname{Ord}(\tau)\bigl(\eta_X(1_X)\bigr)\neq \eta_X(1_X).
-$$
-然而 $\operatorname{Sym}(\tau)(1_X)=1_X$, 所以自然性又要求上式两边相等, 产生矛盾. 因此不存在自然变换 $\operatorname{Sym}\to\operatorname{Ord}$.
+>[!proof]
+>具体地, 取 $X=Y=\{0,1\}$, 并令 $\tau:X\to X$ 交换 $0$ 与 $1$. 若 $\eta_X(1_X)$ 中 $0<1$, 那么经过 $\operatorname{Ord}(\tau)$ 后得到的全序中 $1<0$; 反方向同理. 因此
+>$$
+>\operatorname{Ord}(\tau)\bigl(\eta_X(1_X)\bigr)\neq \eta_X(1_X).
+>$$
+>然而 $\operatorname{Sym}(\tau)(1_X)=1_X$, 所以自然性又要求上式两边相等, 产生矛盾. 因此不存在自然变换 $\operatorname{Sym}\to\operatorname{Ord}$.
 
-**(c)** 如果 $X$ 有 $n$ 个元素, 那么
-$$
-|\operatorname{Sym}(X)|=n!,
-$$
-因为 $X$ 上的置换就是对这 $n$ 个元素进行排列. 同时
-$$
-|\operatorname{Ord}(X)|=n!,
-$$
-因为每个全序都唯一对应于一种排列
-$$x_1<x_2<\cdots<x_n.$$
-所以对于每个有限集合 $X$, 都存在集合间的同构
-$$
-\operatorname{Sym}(X)\cong\operatorname{Ord}(X).
-$$
+**(c)**
+
+>[!proof]
+>如果 $X$ 有 $n$ 个元素, 那么
+>$$
+>|\operatorname{Sym}(X)|=n!,
+>$$
+>因为 $X$ 上的置换就是对这 $n$ 个元素进行排列. 同时
+>$$
+>|\operatorname{Ord}(X)|=n!,
+>$$
+>因为每个全序都唯一对应于一种排列
+>$$x_1<x_2<\cdots<x_n.$$
+>所以对于每个有限集合 $X$, 都存在集合间的同构
+>$$
+>\operatorname{Sym}(X)\cong\operatorname{Ord}(X).
+>$$
+
 但是由 (b) 可知, 这些同构不能组成自然同构. 也就是说, 对每个 $X$ 分别存在同构, 并不代表这些同构能够自然地统一选取.
 
 
@@ -478,7 +509,8 @@ $F$ 是 full、faithful 且 essentially surjective. 如果它一定存在拟逆 
 
 还有一种不依赖选择公理的说法: 把 essentially surjective 加强为 **split essentially surjective**. 这不只要求每个 $B$ 存在某个原像, 而是把选好的 $G(B)$ 与同构 $\epsilon_B:F(G(B))\cong B$ 直接作为条件的一部分. 此时可以由这些数据构造 $G$, 不必再调用选择公理. 换句话说, 我们没有消除选择的数据, 而是把它从证明中的隐含步骤改成了定理的显式条件.
 
->[!remark] 本文采用的理解
->在本文中, “full、faithful 且 essentially surjective 的函子是等价”应理解为已经采用了足够的选择原则. 对小范畴, 普通选择公理即可; 对大范畴, 可以使用 Grothendieck universe 的层级约定, 或在类理论中采用相应的全局选择原则. 如果希望完全不依赖选择公理, 就应当把 essentially surjective 改成 split essentially surjective, 并明确给出所选择的对象与同构.
+### 本文采用的理解
+
+在本文中, “full、faithful 且 essentially surjective 的函子是等价”应理解为已经采用了足够的选择原则. 对小范畴, 普通选择公理即可; 对大范畴, 可以使用 Grothendieck universe 的层级约定, 或在类理论中采用相应的全局选择原则. 如果希望完全不依赖选择公理, 就应当把 essentially surjective 改成 split essentially surjective, 并明确给出所选择的对象与同构.
 
 关于这些集合论约定, 可以进一步参考 [Mike Shulman, *Set theory for category theory*](https://arxiv.org/abs/0810.1279) 以及 [Zhen Lin Low, *Universes for category theory*](https://arxiv.org/abs/1304.5227). [Stacks Project 对这一结论的表述](https://stacks.math.columbia.edu/tag/02C3) 则明确把范畴限制为小范畴.

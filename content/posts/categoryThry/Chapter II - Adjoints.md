@@ -34,47 +34,48 @@ $$
 >(-)^{*_{A,B}}:\A(A,G(B))\longleftrightarrow\B(F(A),B).
 >$$
 >命题 $F\dashv G$ 只表示至少存在这样一族自然的一一对应. 在所有可能的对应中具体选择一族, 才称为 $F$ 与 $G$ 之间的 **an adjunction**, 在本文中也称为一个**伴随结构**.
->
->以下固定 $F$ 与 $G$ 之间的一个伴随结构. 对于 $\phi\in\A(A,G(B))$, 以
->$$\phi^{*_{A,B}}\in\B(F(A),B)$$
->表示它在右边的对应; 对于 $\psi\in\B(F(A),B)$, 也以
->$$\psi^{*_{A,B}}\in\A(A,G(B))$$
->表示它在左边的对应. 这里同一个符号 $(-)^{*_{A,B}}$ 同时表示这一对应的两个方向, 具体方向由输入态射所在的 Hom-set 决定. 因为两个方向互为逆映射, 所以
->$$
->\left(\phi^{*_{A,B}}\right)^{*_{A,B}}=\phi,
->\qquad
->\left(\psi^{*_{A,B}}\right)^{*_{A,B}}=\psi.
->$$
->此外, 这一族对应还必须关于 $A$ 和 $B$ 是自然的. 具体来说, 对于任意的对象 $A',A\in\A$ 与 $B,B'\in\B$, 以及态射
->$$
->f:A'\to A,\qquad g:B\to B',\qquad\phi:A\to G(B),
->$$
->复合态射
->$$
->A'\xrightarrow{f}A\xrightarrow{\phi}G(B)\xrightarrow{G(g)}G(B')
->$$
->在对应下必须等于
->$$
->F(A')\xrightarrow{F(f)}F(A)
->\xrightarrow{\phi^{*_{A,B}}}B\xrightarrow{g}B'.
->$$
->也就是说,
->$$
->\boxed{
->\left(G(g)\circ\phi\circ f\right)^{*_{A',B'}}
->=g\circ\phi^{*_{A,B}}\circ F(f)
->}.
->$$
+
+以下固定 $F$ 与 $G$ 之间的一个伴随结构. 对于 $\phi\in\A(A,G(B))$, 以
+$$\phi^{*_{A,B}}\in\B(F(A),B)$$
+表示它在右边的对应; 对于 $\psi\in\B(F(A),B)$, 也以
+$$\psi^{*_{A,B}}\in\A(A,G(B))$$
+表示它在左边的对应. 这里同一个符号 $(-)^{*_{A,B}}$ 同时表示这一对应的两个方向, 具体方向由输入态射所在的 Hom-set 决定. 因为两个方向互为逆映射, 所以
+$$
+\left(\phi^{*_{A,B}}\right)^{*_{A,B}}=\phi,
+\qquad
+\left(\psi^{*_{A,B}}\right)^{*_{A,B}}=\psi.
+$$
+此外, 这一族对应还必须关于 $A$ 和 $B$ 是自然的. 具体来说, 对于任意的对象 $A',A\in\A$ 与 $B,B'\in\B$, 以及态射
+$$
+f:A'\to A,\qquad g:B\to B',\qquad\phi:A\to G(B),
+$$
+复合态射
+$$
+A'\xrightarrow{f}A\xrightarrow{\phi}G(B)\xrightarrow{G(g)}G(B')
+$$
+在对应下必须等于
+$$
+F(A')\xrightarrow{F(f)}F(A)
+\xrightarrow{\phi^{*_{A,B}}}B\xrightarrow{g}B'.
+$$
+也就是说,
+$$
+\boxed{
+\left(G(g)\circ\phi\circ f\right)^{*_{A',B'}}
+=g\circ\phi^{*_{A,B}}\circ F(f)
+}.
+$$
 
 最后的等式说明, 无论我们先在 $\A$ 中复合再取对应, 还是先取对应再在 $\B$ 中复合, 最后得到的态射都是同一个. 这正是 Hom-set 之间的对应关于 $A$ 与 $B$ 的自然性.
 
->[!remark] 性质与结构
->“$F$ is left adjoint to $G$”与“an adjunction between $F$ and $G$”并不是完全相同的说法:
->
->- **$F$ is left adjoint to $G$** 是一个性质, 它只断言某个伴随结构存在, 记为 $F\dashv G$;
->- **an adjunction between $F$ and $G$** 是一份具体的数据, 它包含一族已经选定的、关于两个对象自然的 Hom-set 一一对应.
->
->这类似于“$X\cong Y$”与“选定一个同构 $f:X\to Y$”之间的区别. 前者只说明存在同构, 后者则指定了一个具体的同构. 在上下文已经固定某个伴随结构时, 通常仍会简写为 $F\dashv G$, 但这时必须记得背后还包含那一族已经选定的对应.
+### 性质与结构
+
+“$F$ is left adjoint to $G$”与“an adjunction between $F$ and $G$”并不是完全相同的说法:
+
+- **$F$ is left adjoint to $G$** 是一个性质, 它只断言某个伴随结构存在, 记为 $F\dashv G$;
+- **an adjunction between $F$ and $G$** 是一份具体的数据, 它包含一族已经选定的、关于两个对象自然的 Hom-set 一一对应.
+
+这类似于“$X\cong Y$”与“选定一个同构 $f:X\to Y$”之间的区别. 前者只说明存在同构, 后者则指定了一个具体的同构. 在上下文已经固定某个伴随结构时, 通常仍会简写为 $F\dashv G$, 但这时必须记得背后还包含那一族已经选定的对应.
 
 >[!example] Product-exponential adjunction in $\mathbf{Set}$
 >固定一个集合 $B$. 对集合取与 $B$ 的笛卡尔积以及取从 $B$ 出发的函数集, 分别给出函子
@@ -91,11 +92,12 @@ $$
 >$$\bar g(a)(b)=g(a,b).$$
 >反过来, 对于 $f:A\to C^B$, 定义 $\bar f:A\times B\to C$ 为
 >$$\bar f(a,b)=f(a)(b).$$
->这两个构造互为逆映射, 并且容易验证这一对应关于 $A$ 与 $C$ 是自然的. 因此, currying 给出了这两个函子之间的一个伴随结构, 从而
->$$
->-\times B\dashv(-)^B.
->$$
->这个对应通常称为 **currying**, 它只是把 $g(a,b)$ 改写成 $\bar g(a)(b)$.
+
+这两个构造互为逆映射, 并且容易验证这一对应关于 $A$ 与 $C$ 是自然的. 因此, currying 给出了这两个函子之间的一个伴随结构, 从而
+$$
+-\times B\dashv(-)^B.
+$$
+这个对应通常称为 **currying**, 它只是把 $g(a,b)$ 改写成 $\bar g(a)(b)$.
 
 >[!definition] Initial and terminal objects
 >设 $\A$ 是一个范畴. 如果对象 $I\in\A$ 满足: 对于任意的 $A\in\A$, 都恰好存在一个态射
@@ -116,7 +118,7 @@ $$
 >
 >对于终对象使用方向相反的同样论证即可.
 
->[!remark] Composition of adjunctions
+>[!lemma] Composition of adjunctions
 >设有三个范畴 $\A,\A',\A''$ 以及函子
 >$$
 >F:\A\to\A',\qquad G:\A'\to\A,
@@ -124,7 +126,13 @@ $$
 >$$
 >F':\A'\to\A'',\qquad G':\A''\to\A',
 >$$
->并且已经分别选定 $F$ 与 $G$ 之间、$F'$ 与 $G'$ 之间的一个伴随结构. 特别地, $F\dashv G$ 且 $F'\dashv G'$. 分别以 $(-)^{*^{FG}}$ 和 $(-)^{*^{F'G'}}$ 表示这两个伴随结构中的对应.
+>并且已经分别选定 $F$ 与 $G$ 之间、$F'$ 与 $G'$ 之间的一个伴随结构. 特别地, $F\dashv G$ 且 $F'\dashv G'$. 则
+>$$
+>F'\circ F\dashv G\circ G'.
+>$$
+
+>[!proof]
+>分别以 $(-)^{*^{FG}}$ 和 $(-)^{*^{F'G'}}$ 表示这两个伴随结构中的对应.
 >
 >对于任意的 $X\in\A$ 与 $Y\in\A''$, 我们定义 $F'F$ 与 $GG'$ 之间的新对应. 若
 >$$\phi:X\to GG'(Y),$$
@@ -171,8 +179,12 @@ $$
 >F'\circ F\dashv G\circ G'.
 >$$
 
->[!remark] Non-uniqueness of an adjunction
->即使两个函子 $F$ 与 $G$ 已经固定, 它们之间的伴随对应也未必唯一. 例如取
+### Non-uniqueness of an adjunction
+
+即使两个函子 $F$ 与 $G$ 已经固定, 它们之间的伴随对应也未必唯一.
+
+>[!example] 不同的伴随对应
+>例如取
 >$$
 >F=G=1_{\mathbf{Vect}_{\mathbb R}}.
 >$$
@@ -182,6 +194,8 @@ $$
 >\mathbf{Vect}_{\mathbb R}(V,W),\\
 >\qquad f&\mapsto\lambda f.\el
 >$$
+
+>[!proof]
 >它是双射, 逆映射为 $g\mapsto\lambda^{-1}g$. 对于任意的线性映射 $u:V'\to V$ 与 $v:W\to W'$, 有
 >$$
 >\Phi^\lambda_{V',W'}(v\circ f\circ u)
@@ -192,22 +206,22 @@ $$
 >$$
 >1_{\mathbf{Vect}_{\mathbb R}}\dashv1_{\mathbf{Vect}_{\mathbb R}}.
 >$$
->不同的 $\lambda$ 给出不同的伴随结构, 但它们都使同一个命题 $1_{\mathbf{Vect}_{\mathbb R}}\dashv1_{\mathbf{Vect}_{\mathbb R}}$ 成立. 因此, $F\dashv G$ 这一性质并不包含对伴随结构的唯一选择, 具体的 Hom-set 对应也不能只由函子 $F,G$ 唯一确定.
+
+不同的 $\lambda$ 给出不同的伴随结构, 但它们都使同一个命题 $1_{\mathbf{Vect}_{\mathbb R}}\dashv1_{\mathbf{Vect}_{\mathbb R}}$ 成立. 因此, $F\dashv G$ 这一性质并不包含对伴随结构的唯一选择, 具体的 Hom-set 对应也不能只由函子 $F,G$ 唯一确定.
 
 ## Adjunctions via units and counits
 
->[!note] 学习脉络
->上一节从一族自然的一一对应
->$$
->\B(F(A),B)\cong\A(A,G(B))
->$$
->给出了一个伴随结构. 本节将从另一个角度重新叙述同一个结构: 一个伴随结构也可以由两个自然变换
->$$
->\eta:1_\A\to GF,
->\qquad
->\epsilon:FG\to1_\B
->$$
->以及它们所满足的 triangle identities 来描述. 这不是另一个伴随结构, 而是用另一组等价的数据记录原来那一族 Hom-set 对应.
+上一节从一族自然的一一对应
+$$
+\B(F(A),B)\cong\A(A,G(B))
+$$
+给出了一个伴随结构. 本节将从另一个角度重新叙述同一个结构: 一个伴随结构也可以由两个自然变换
+$$
+\eta:1_\A\to GF,
+\qquad
+\epsilon:FG\to1_\B
+$$
+以及它们所满足的 triangle identities 来描述. 这不是另一个伴随结构, 而是用另一组等价的数据记录原来那一族 Hom-set 对应.
 
 为了找到这两个自然变换, 我们先固定 $F$ 与 $G$ 之间的一个伴随结构, 并考虑如何从它的 Hom-set 对应中选出一些最基本的信息. 这族对应为每对对象 $A\in\A,B\in\B$ 给出了许多态射之间的对应; 在这些态射中, 最特殊的就是恒等态射.
 
@@ -225,22 +239,23 @@ $$
 $$
 当 $A$ 与 $B$ 变化时, 这两族态射分别组成 unit 与 counit. 因此, unit 和 counit 可以理解为伴随结构中的对应在两族恒等态射上留下的信息; 本节接下来要说明, 这些信息实际上足以恢复整个伴随结构.
 
-准确来说, 对于任意的 $X\in\A$ 与 $Y\in\B$, 定义
-$$
-\eta_X:=\left(1_{F(X)}\right)^{*_{X,F(X)}}
-:X\to G(F(X)),
-$$
-以及
-$$
-\epsilon_Y:=\left(1_{G(Y)}\right)^{*_{G(Y),Y}}
-:F(G(Y))\to Y.
-$$
-它们分别组成自然变换
-$$
-\eta:1_\A\to G\circ F,
-\qquad
-\epsilon:F\circ G\to1_\B.
-$$
+>[!definition] Unit and counit
+>准确来说, 对于任意的 $X\in\A$ 与 $Y\in\B$, 定义
+>$$
+>\eta_X:=\left(1_{F(X)}\right)^{*_{X,F(X)}}
+>:X\to G(F(X)),
+>$$
+>以及
+>$$
+>\epsilon_Y:=\left(1_{G(Y)}\right)^{*_{G(Y),Y}}
+>:F(G(Y))\to Y.
+>$$
+>它们分别组成自然变换
+>$$
+>\eta:1_\A\to G\circ F,
+>\qquad
+>\epsilon:F\circ G\to1_\B.
+>$$
 
 >[!lemma] Triangle identities
 >固定 $F$ 与 $G$ 之间的一个伴随结构. 由它得到的 unit $\eta$ 与 counit $\epsilon$ 满足如下两条等式. 对于任意的 $X\in\A$,
@@ -621,7 +636,7 @@ $$
 > \qquad
 > Q:\B\to\mathscr{C}.
 > $$
-> 因为 $P$ 与 $Q$ 的值都在 $\mathscr{C}$ 中, 所以可以考虑从 $P(X)$ 到 $Q(Y)$ 的态射. **逗号范畴** $(P\Rightarrow Q)$, 也常记作 $(P\downarrow Q)$, 定义如下.
+> **逗号范畴** $(P\Rightarrow Q)$, 也常记作 $(P\downarrow Q)$, 定义如下.
 >
 > 它的对象是三元组
 > $$
@@ -634,10 +649,6 @@ $$
 > Y\in\B,
 > \qquad
 > h:P(X)\to Q(Y).
-> $$
-> 因此, 逗号范畴中的一个对象可以看成 $\mathscr{C}$ 中的一条指定态射
-> $$
-> P(X)\xrightarrow{h}Q(Y).
 > $$
 >
 > 从 $(X,h,Y)$ 到 $(X',h',Y')$ 的态射是一对态射
@@ -670,7 +681,13 @@ $$
 > =
 > (f'\circ f,g'\circ g).
 > $$
-> 由 $P,Q$ 的函子性以及两个方块的交换性, 复合后得到的方块仍然交换, 因而这些数据的确构成一个范畴.
+
+因为 $P$ 与 $Q$ 的值都在 $\mathscr{C}$ 中, 所以可以考虑从 $P(X)$ 到 $Q(Y)$ 的态射. 因此, 逗号范畴中的一个对象可以看成 $\mathscr{C}$ 中的一条指定态射
+$$
+P(X)\xrightarrow{h}Q(Y).
+$$
+
+由 $P,Q$ 的函子性以及两个方块的交换性, 复合后得到的方块仍然交换, 因而这些数据的确构成一个范畴.
 
 这里的符号 $P\Rightarrow Q$ 只是逗号范畴的记号, 并不表示 $P$ 与 $Q$ 之间存在自然变换. 实际上, $P$ 与 $Q$ 的定义域可以不同. 这个定义所做的事情, 是把所有形如
 $$
@@ -678,86 +695,93 @@ P(X)\to Q(Y)
 $$
 的态射收集为对象, 再把它们之间的交换方块作为态射.
 
-**Remark 2.3.2.** 逗号范畴自带两个投影函子
-$$
-\pi_{\A}:(P\Rightarrow Q)\to\A,
-\qquad
-\pi_{\B}:(P\Rightarrow Q)\to\B.
-$$
-它们在对象上分别取出三元组的两端:
-$$
-\pi_{\A}(X,h,Y)=X,
-\qquad
-\pi_{\B}(X,h,Y)=Y,
-$$
-在态射上则分别取出一对态射的两个分量:
-$$
-\pi_{\A}(f,g)=f,
-\qquad
-\pi_{\B}(f,g)=g.
-$$
-将它们分别与 $P,Q$ 复合, 得到两个从 $(P\Rightarrow Q)$ 到 $\mathscr{C}$ 的函子
-$$
-P\pi_{\A},
-\qquad
-Q\pi_{\B}.
-$$
-每个对象 $(X,h,Y)$ 中的态射 $h:P(X)\to Q(Y)$ 自然地给出一个分量
-$$
-\alpha_{(X,h,Y)}:=h.
-$$
-于是这些分量组成自然变换
-$$
-\alpha:P\pi_{\A}\Longrightarrow Q\pi_{\B}.
-$$
+>[!example] 逗号范畴的投影（Remark 2.3.2）
+>逗号范畴自带两个投影函子
+>$$
+>\pi_{\A}:(P\Rightarrow Q)\to\A,
+>\qquad
+>\pi_{\B}:(P\Rightarrow Q)\to\B.
+>$$
+>它们在对象上分别取出三元组的两端:
+>$$
+>\pi_{\A}(X,h,Y)=X,
+>\qquad
+>\pi_{\B}(X,h,Y)=Y,
+>$$
+>在态射上则分别取出一对态射的两个分量:
+>$$
+>\pi_{\A}(f,g)=f,
+>\qquad
+>\pi_{\B}(f,g)=g.
+>$$
+>将它们分别与 $P,Q$ 复合, 得到两个从 $(P\Rightarrow Q)$ 到 $\mathscr{C}$ 的函子
+>$$
+>P\pi_{\A},
+>\qquad
+>Q\pi_{\B}.
+>$$
+>每个对象 $(X,h,Y)$ 中的态射 $h:P(X)\to Q(Y)$ 自然地给出一个分量
+>$$
+>\alpha_{(X,h,Y)}:=h.
+>$$
+>于是这些分量组成自然变换
+>$$
+>\alpha:P\pi_{\A}\Longrightarrow Q\pi_{\B}.
+>$$
+
 对于态射 $(f,g):(X,h,Y)\to(X',h',Y')$, $\alpha$ 的自然性要求
 $$
 Q(g)\circ h=h'\circ P(f),
 $$
 而这恰好就是逗号范畴定义中的交换条件. 因此 $\alpha$ 不需要另外选择, 它是由逗号范畴中的对象和态射自然导出的.
 
-**Example 2.3.3.** 固定范畴 $\A$ 中的对象 $A$. **切片范畴** $\A/A$ 的对象是所有指向 $A$ 的态射
-$$
-h:X\to A.
-$$
-从 $(X,h)$ 到 $(X',h')$ 的态射是满足
-$$
-h'\circ f=h
-$$
-的态射 $f:X\to X'$. 以
-$$
-A^*:\mathbf{1}\to\A
-$$
-表示选出对象 $A$ 的函子, 就有
-$$
-\A/A\cong(1_{\A}\Rightarrow A^*).
-$$
+>[!example] Example 2.3.3
+>固定范畴 $\A$ 中的对象 $A$. **切片范畴** $\A/A$ 的对象是所有指向 $A$ 的态射
+>$$
+>h:X\to A.
+>$$
+>从 $(X,h)$ 到 $(X',h')$ 的态射是满足
+>$$
+>h'\circ f=h
+>$$
+>的态射 $f:X\to X'$. 以
+>$$
+>A^*:\mathbf{1}\to\A
+>$$
+>表示选出对象 $A$ 的函子, 就有
+>$$
+>\A/A\cong(1_{\A}\Rightarrow A^*).
+>$$
+>
+>对偶地, **余切片范畴** $A/\A$ 的对象是所有从 $A$ 出发的态射 $A\to X$, 并且
+>$$
+>A/\A\cong(A^*\Rightarrow1_{\A}).
+>$$
 
-对偶地, **余切片范畴** $A/\A$ 的对象是所有从 $A$ 出发的态射 $A\to X$, 并且
-$$
-A/\A\cong(A^*\Rightarrow1_{\A}).
-$$
 因此, 切片范畴收集所有进入固定对象 $A$ 的方式, 而余切片范畴收集所有从 $A$ 出发的方式; 它们都是逗号范畴的特殊情形.
 
-**Example 2.3.4.** 给定函子
-$$
-G:\B\to\A
-$$
-以及对象 $A\in\A$. 以
-$$
-A^*:\mathbf{1}\to\A
-$$
-表示选出对象 $A$ 的函子. 逗号范畴 $(A^*\Rightarrow G)$ 的对象可以简记为
-$$
-(B,f),
-\qquad
-f:A\to G(B),
-$$
-其中 $B\in\B$. 从 $(B,f)$ 到 $(B',f')$ 的态射是满足
-$$
-G(q)\circ f=f'
-$$
-的态射 $q:B\to B'$. 因此, $(A^*\Rightarrow G)$ 收集了所有将 $A$ 映入某个形如 $G(B)$ 的对象的方式, 而它的态射描述这些方式之间如何通过 $\B$ 中的态射相互联系.
+>[!example] Example 2.3.4
+>给定函子
+>$$
+>G:\B\to\A
+>$$
+>以及对象 $A\in\A$. 以
+>$$
+>A^*:\mathbf{1}\to\A
+>$$
+>表示选出对象 $A$ 的函子. 逗号范畴 $(A^*\Rightarrow G)$ 的对象可以简记为
+>$$
+>(B,f),
+>\qquad
+>f:A\to G(B),
+>$$
+>其中 $B\in\B$. 从 $(B,f)$ 到 $(B',f')$ 的态射是满足
+>$$
+>G(q)\circ f=f'
+>$$
+>的态射 $q:B\to B'$.
+
+因此, $(A^*\Rightarrow G)$ 收集了所有将 $A$ 映入某个形如 $G(B)$ 的对象的方式, 而它的态射描述这些方式之间如何通过 $\B$ 中的态射相互联系.
 
 严格来说, 逗号范畴的对象是二元组 $(B,f)$, 而不只是态射 $f:A\to G(B)$. 因为可能存在不同的对象 $B,B'\in\B$ 满足 $G(B)=G(B')$, 如果只记录 $f$, 就会丢失它所对应的 $\B$ 中的对象.
 
@@ -776,7 +800,9 @@ $$
 >$$
 >(F(A),\eta_A:A\to GF(A))
 >$$
->是逗号范畴 $(A^*\Rightarrow G)$ 的始对象. 简称“$\eta_A$ 是始对象”时, 指的仍是这个二元组.
+>是逗号范畴 $(A^*\Rightarrow G)$ 的始对象.
+
+简称“$\eta_A$ 是始对象”时, 指的仍是这个二元组.
 
 >[!proof]
 >任取 $(A^*\Rightarrow G)$ 中的对象 $(B,f)$, 其中 $f:A\to G(B)$. 根据逗号范畴的定义, 从 $(F(A),\eta_A)$ 到 $(B,f)$ 的态射, 就是满足
@@ -1040,8 +1066,8 @@ $$
 >\left(F',G',\eta',\epsilon'\right)
 >$$
 >给出了 $\operatorname{Fix}(GF)$ 与 $\operatorname{Fix}(FG)$ 之间的范畴等价.
->
->第二问要求从具体伴随中寻找相应的例子, 此处从略.
+
+第二问要求从具体伴随中寻找相应的例子, 此处从略.
 
 ### 2.2.12(a)
 
@@ -1178,8 +1204,8 @@ $$
 >\el
 >$$
 >所以每个态射 $g:G(X)\to G(Y)$ 都是某个态射 $f:X\to Y$ 在 $G$ 下的像, 从而 $G$ 是全的. 因此 $G$ 是全忠实函子.
->
->第二问关于 reflection 以及具体例子的讨论从略.
+
+第二问关于 reflection 以及具体例子的讨论从略.
 
 ### 2.2.13
 
@@ -1304,7 +1330,8 @@ $$
 >p^*(R_p(R))&\subseteq R.
 >\el
 >$$
->前两个属于 $L_p\dashv p^*$, 后两个属于 $p^*\dashv R_p$. 它们的逻辑解释统一放在文末的 Bonus 中.
+
+前两个属于 $L_p\dashv p^*$, 后两个属于 $p^*\dashv R_p$. 它们的逻辑解释统一放在文末的 Bonus 中.
 
 ### 2.3.11
 
@@ -1332,8 +1359,8 @@ $$
 >U(q)\circ\eta_S=f.
 >$$
 >但 $\eta_S(s)=\eta_S(t)$ 使左边在 $s,t$ 处取值相同, 而 $f(s)=x\ne y=f(t)$. 因此这样的 $q$ 根本不存在, 与始对象的性质矛盾. 所以 $\eta_S$ 是单射.
->
->对于自由群与遗忘函子的伴随, $F(S)$ 是由 $S$ 生成的自由群, $\eta_S$ 将 $s\in S$ 送到对应的自由生成元. 由于存在至少两个元素的群, 上述条件成立, 因而不同的自由生成元在自由群中仍是不同的元素.
+
+对于自由群与遗忘函子的伴随, $F(S)$ 是由 $S$ 生成的自由群, $\eta_S$ 将 $s\in S$ 送到对应的自由生成元. 由于存在至少两个元素的群, 上述条件成立, 因而不同的自由生成元在自由群中仍是不同的元素.
 
 ## Bonus 伴随作为一种量词
 
