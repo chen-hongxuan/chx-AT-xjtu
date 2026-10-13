@@ -553,3 +553,311 @@ $$
 因此, 讨论不同选择原则时, 我们需要分别说明**选择的集合族范围、所使用的集合宇宙层级, 以及命题针对的范畴**. 单凭“对象层次”或“元层次”的名称, 不能判断它们的强弱. 即使接受全局选择, 也不会使所有范畴的满态射都有右逆; 上面的 $\mathbf{Grp}$ 反例仍然存在.
 
 关于小范畴的等价判据与满态射, 可分别参考 [Stacks Project 的等价判据](https://stacks.math.columbia.edu/tag/02C3) 与 [满态射的定义](https://stacks.math.columbia.edu/tag/003A); 宇宙层级及类选择的讨论可参考 [Mike Shulman, *Set theory for category theory*, §7–8](https://arxiv.org/abs/0810.1279).
+
+## Small and large categories
+
+比较集合的大小时, 我们规定 $|A|\leq|B|$ 表示存在单射 $A\to B$, 而 $|A|=|B|$ 表示存在双射 $A\to B$. Cantor–Bernstein 定理说明, 两个集合能够互相单射, 就足以保证它们之间存在双射.
+
+恒等映射与单射的复合说明这个比较自反且传递. 它在集合上是预序: 互相不大于只保证同构, 不保证两个集合相等. 记 $|A|<|B|$ 表示 $|A|\leq|B|$ 且 $|A|\ne|B|$; 由 Cantor–Bernstein 定理, 有 $|A|\leq|B|<|C|\Rightarrow|A|<|C|$.
+
+### Cantor–Bernstein
+
+>[!theorem] Theorem 3.2.1 (Cantor–Bernstein)
+>设 $A,B$ 是集合. 如果 $|A|\leq|B|\leq|A|$, 那么 $A\cong B$.
+
+证明的思路是在 $A,B$ 中分别构造交错嵌套的两列集合, 得到两侧的层垒结构. 然后在不同的层上分别使用 $f$ 与 $g^{-1}$, 将两侧的各层以及交集部分对应起来.
+
+>[!proof]
+>设 $f:A\to B$、$g:B\to A$ 都是单射. 在 $A$ 中递归定义
+>$$
+>\begin{aligned}
+>\mathcal M_0&=A,&\mathcal M_{i+1}&=gf[\mathcal M_i],\\
+>\mathcal K_0&=g[B],&\mathcal K_{i+1}&=gf[\mathcal K_i]
+>\end{aligned}
+>\qquad(i\in\mathbb N),
+>$$
+>其中 $gf=g\circ f$. 由归纳法可得
+>$$
+>\mathcal M_0\supseteq\mathcal K_0\supseteq\mathcal M_1\supseteq\mathcal K_1\supseteq\cdots.
+>$$
+>同样, 在 $B$ 中定义
+>$$
+>\begin{aligned}
+>\widehat{\mathcal M}_0&=B,&\widehat{\mathcal M}_{i+1}&=fg[\widehat{\mathcal M}_i],\\
+>\widehat{\mathcal K}_0&=f[A],&\widehat{\mathcal K}_{i+1}&=fg[\widehat{\mathcal K}_i],
+>\end{aligned}
+>$$
+>得到交错包含关系
+>$$
+>\widehat{\mathcal M}_0\supseteq\widehat{\mathcal K}_0\supseteq\widehat{\mathcal M}_1\supseteq\widehat{\mathcal K}_1\supseteq\cdots.
+>$$
+>记
+>$$
+>\mathcal M_\omega=\bigcap_{i\in\mathbb N}\mathcal M_i,
+>\qquad
+>\widehat{\mathcal M}_\omega=\bigcap_{i\in\mathbb N}\widehat{\mathcal M}_i.
+>$$
+>由交错包含关系, $A$ 被分成 $\mathcal M_\omega$ 以及两类差集 $\mathcal M_i\setminus\mathcal K_i$、$\mathcal K_i\setminus\mathcal M_{i+1}$, 这些部分两两不交且覆盖 $A$. $B$ 侧也有相应的分割.
+>
+>单射 $g$ 给出反函数 $g^{-1}:g[B]\to B$. 定义
+>$$
+>\varphi:A\to B,\qquad
+>\varphi(x)=
+>\begin{cases}
+>f(x),&x\in\mathcal M_\omega\ \text{或}\ (\exists i\in\mathbb N)\,x\in\mathcal M_i\setminus\mathcal K_i,\\
+>g^{-1}(x),&(\exists i\in\mathbb N)\,x\in\mathcal K_i\setminus\mathcal M_{i+1}.
+>\end{cases}
+>$$
+>这里第二类差集都包含在 $\mathcal K_0=g[B]$ 中, 所以 $g^{-1}$ 有定义.
+>
+>根据构造, 对每个 $i\in\mathbb N$ 都有
+>$$
+>\begin{aligned}
+>f[\mathcal M_i]&=\widehat{\mathcal K}_i,
+>&f[\mathcal K_i]&=\widehat{\mathcal M}_{i+1},\\
+>g^{-1}[\mathcal K_i]&=\widehat{\mathcal M}_i,
+>&g^{-1}[\mathcal M_{i+1}]&=\widehat{\mathcal K}_i.
+>\end{aligned}
+>$$
+>因为 $f$ 与 $g^{-1}$ 都是单射, 它们保持差集, 因而
+>$$
+>\begin{aligned}
+>f[\mathcal M_i\setminus\mathcal K_i]
+>&=f[\mathcal M_i]\setminus f[\mathcal K_i]
+>=\widehat{\mathcal K}_i\setminus\widehat{\mathcal M}_{i+1},\\
+>g^{-1}[\mathcal K_i\setminus\mathcal M_{i+1}]
+>&=g^{-1}[\mathcal K_i]\setminus g^{-1}[\mathcal M_{i+1}]
+>=\widehat{\mathcal M}_i\setminus\widehat{\mathcal K}_i.
+>\end{aligned}
+>$$
+>最后, 利用 $f$ 的单射性以及 $B$ 侧的交错包含关系, 有
+>$$
+>\begin{aligned}
+>f[\mathcal M_\omega]
+>&=f\!\left[\bigcap_{i\in\mathbb N}\mathcal M_i\right]
+>=\bigcap_{i\in\mathbb N}f[\mathcal M_i]\\
+>&=\bigcap_{i\in\mathbb N}\widehat{\mathcal K}_i
+>=\bigcap_{i\in\mathbb N}\widehat{\mathcal M}_i
+>=\widehat{\mathcal M}_\omega.
+>\end{aligned}
+>$$
+>这里像与交集交换, 是因为单射保证同一元素在各层中的前像必定是同一个元素.
+>
+>因此, $\varphi$ 在各部分上都是单射, 其像恰好是 $B$ 中两类差集与交集部分, 两两不交且覆盖 $B$. 所以 $\varphi:A\to B$ 是双射.
+
+这份证明可在经典 ZF 中完成, 不需要选择公理: 两列集合由递归唯一确定, $g^{-1}$ 的值也由唯一前像确定. 其中对各层及交集部分的分类使用了经典逻辑. 关于 Cantor–Bernstein 定理与排中律的关系, 可参考 [Pradic 与 Brown, *Cantor-Bernstein implies Excluded Middle*](https://arxiv.org/abs/1904.09193).
+
+### Cantor's theorem
+
+>[!theorem] Theorem 3.2.2 (Cantor)
+>对任意集合 $A$, 都有 $|A|<|\mathcal P(A)|$.
+
+>[!proof]
+>映射 $a\mapsto\{a\}$ 是单射, 所以 $|A|\leq|\mathcal P(A)|$. 任取 $f:A\to\mathcal P(A)$, 令
+>$$
+>D=\{a\in A\mid a\notin f(a)\}.
+>$$
+>若 $f$ 满射, 则存在 $a_0\in A$ 使 $f(a_0)=D$, 从而
+>$$
+>a_0\in D\iff a_0\notin f(a_0)\iff a_0\notin D,
+>$$
+>矛盾. 所以不存在从 $A$ 到 $\mathcal P(A)$ 的满射, 更不存在双射.
+
+因此, 对每个集合 $A$, 都存在集合 $B$ 使 $|A|<|B|$: 取 $B=\mathcal P(A)$ 即可. 这就是 Corollary 3.2.3, 也就是说, **不存在最大的集合大小**.
+
+### 集合的同构类型
+
+>[!theorem] Proposition 3.2.4
+>设 $I$ 是集合, $(A_i)_{i\in I}$ 是一族集合. 则存在集合 $X$, 与每个 $A_i$ 都不同构.
+
+>[!proof]
+>令
+>$$
+>S=\coprod_{i\in I}A_i,\qquad X=\mathcal P(S).
+>$$
+>对任意 $j\in I$, 不交并的包含映射 $A_j\to S$ 是单射. 再由 Cantor 定理得到
+>$$
+>|A_j|\leq|S|<|\mathcal P(S)|=|X|,
+>$$
+>所以 $A_j\not\cong X$.
+
+这里的 $I$ 可以是任意集合, 允许不可数多项. 因而, **任何由集合编号的清单, 都无法列尽全部集合的同构类型**. 这为接下来区分小范畴与大范畴提供了依据.
+
+### 类、小范畴与局部小范畴
+
+作者非正式地用 **class** (类) 表示一批数学对象. 能组成集合的类称为 **small**, 否则称为 **large**. 任意一个集合都是小的, 包括不可数集合; 全体集合构成的类则是大的. 这里暂未建立完整的类理论, 大小仍相对于当前的集合论背景而言.
+
+>[!definition] Small / locally small
+>范畴 $\mathcal C$ 称为**小范畴**, 如果它的全体态射组成一个集合; 否则称为**大范畴**.
+>
+>范畴 $\mathcal C$ 称为**局部小范畴**, 如果对任意两个固定对象 $A,B$, 态射类 $\mathcal C(A,B)$ 都是集合.
+
+小范畴一定局部小, 其对象也组成集合, 因为每个对象对应自己的恒等态射. 严格来说, 只有在局部小的情况下, 才能将 $\mathcal C(A,B)$ 称为 hom-set; 许多作者直接把局部小性作为范畴定义的一部分.
+
+反过来, **对象组成集合且局部小, 就能推出范畴小**.
+
+>[!proof]
+>若 $\operatorname{Ob}(\mathcal C)$ 是集合, 且每个 $\mathcal C(A,B)$ 都是集合, 那么将态射连同其定义域和值域记录下来, 全体态射可写成由集合编号的不交并
+>$$
+>\coprod_{(A,B)\in\operatorname{Ob}(\mathcal C)^2}\mathcal C(A,B),
+>$$
+>所以它们组成集合.
+
+同样, 一个范畴有限, 当且仅当其对象有限, 且每两个对象之间的态射都只有有限多个.
+
+Examples 3.2.5–3.2.6 中, $\mathbf{Set}$ 局部小, 因为固定 $A,B$ 后, 所有函数 $A\to B$ 组成函数集 $B^A$. $\mathbf{Vect}_k,\mathbf{Grp},\mathbf{Ab},\mathbf{Ring},\mathbf{Top}$ 也都局部小: 保持相应结构的映射, 构成底层函数集的子集. 但 $\mathbf{Set}$ 的对象无法组成集合, 所以它是一个局部小的大范畴.
+
+### 本质小范畴
+
+>[!definition] Essentially small
+>如果范畴 $\mathcal C$ 等价于某个小范畴, 就称 $\mathcal C$ 是**本质小范畴**.
+
+>[!example] 标准有限集合组成的范畴 (Example 3.2.7)
+>对 $n\in\mathbb N$, 取标准有限集合 $[n]=\{0,\ldots,n-1\}$, 其中 $[0]=\varnothing$. 以这些集合为对象, 以它们之间的所有函数为态射, 得到 $\mathbf{FinSet}$ 的满子范畴 $\mathcal B$.
+
+$\mathcal B$ 的对象由 $\mathbb N$ 编号, 每个 hom-set 又是有限集, 所以 $\mathcal B$ 是小范畴. 每个有限集合都同构于某个 $[n]$, 因而包含函子 $\mathcal B\to\mathbf{FinSet}$ 满、忠实且本质满. 按照 Chapter I 的等价判据及相应选择约定, 有 $\mathcal B\simeq\mathbf{FinSet}$. 所以 $\mathbf{FinSet}$ 本质小, 尽管全体有限集合本身组成大类.
+
+如果 $\mathcal C$ 本质小, 取等价函子 $E:\mathcal B\to\mathcal C$, 其中 $\mathcal B$ 小. 那么 $(E(B))_{B\in\operatorname{Ob}(\mathcal B)}$ 就是一族由集合编号的对象, 涵盖 $\mathcal C$ 的全部同构类型. 这个表述避免把可能过大的同构类本身当作集合的元素.
+
+>[!theorem] Proposition 3.2.8
+>$\mathbf{Set}$ 不是本质小范畴.
+
+>[!proof]
+>若 $\mathbf{Set}$ 等价于小范畴 $\mathcal B$, 则等价函子的像给出一族由集合 $\operatorname{Ob}(\mathcal B)$ 编号的集合, 涵盖全部集合的同构类型. 这与 Proposition 3.2.4 矛盾.
+
+### 其他非本质小范畴
+
+Example 3.2.9 说明, 对任意域 $k$, $\mathbf{Vect}_k$ 也不是本质小范畴. 这里使用自由函子与遗忘函子的伴随 $F\dashv U$.
+
+>[!proof]
+>任取由集合 $I$ 编号的向量空间族 $(V_i)_{i\in I}$, 令
+>$$
+>S=\mathcal P\!\left(\coprod_{i\in I}U(V_i)\right).
+>$$
+>由 Cantor 定理, 对每个 $i$ 都有 $|U(V_i)|<|S|$. 自由向量空间 $F(S)$ 自带由 $S$ 编号的一组基, 所以 unit $\eta_S:S\to U(F(S))$ 是单射. 因而
+>$$
+>|U(V_i)|<|S|\leq|U(F(S))|.
+>$$
+>向量空间同构必然给出底层集合的双射, 所以 $F(S)$ 与每个 $V_i$ 都不同构. 因此任何由集合编号的向量空间族都不能涵盖全部同构类型, $\mathbf{Vect}_k$ 不是本质小范畴.
+
+同样, $\mathbf{Grp},\mathbf{Ab},\mathbf{Ring},\mathbf{Top}$ 都不是本质小范畴. 统一的论证见习题 3.2.14: 若 $U:\mathcal C\to\mathbf{Set}$ 有左伴随, 且某个 $U(C_0)$ 至少含两个元素, 习题 2.3.11 就保证 unit $S\to U(F(S))$ 是单射, 从而可以重复上述大小比较.
+
+### 小范畴组成的范畴
+
+>[!definition] Definition 3.2.10
+>以小范畴为对象、函子为态射的范畴记为 $\mathbf{Cat}$.
+
+教材先前用 $\mathbf{CAT}$ 表示更一般的范畴与函子组成的范畴. 使用“所有范畴”这样的说法时, 仍按 Chapter I 的类与宇宙层级约定理解其大小.
+
+>[!example] 幺半群对应的单对象小范畴 (Example 3.2.11)
+>给定幺半群 $M$, 构造只有一个对象 $*$ 的范畴, 令 $\operatorname{Hom}(*,*)=M$, 以乘法为复合, 单位元为恒等态射. 反过来, 单对象小范畴的全体自态射在复合下构成一个幺半群.
+
+这两种构造把幺半群同态与函子对应起来. 因此, 若 $\mathcal M$ 是 $\mathbf{Cat}$ 中由单对象小范畴组成的满子范畴, 则有
+$$
+\mathbf{Mon}\simeq\mathcal M.
+$$
+这里“小”保证 $\operatorname{Hom}(*,*)$ 确实是集合, 从而符合通常对幺半群的定义; 单对象条件本身不保证范畴小.
+
+## Exercise
+
+### 3.1.1
+
+>[!exercise]
+>对角函子 $\Delta:\mathbf{Set}\to\mathbf{Set}\times\mathbf{Set}$ 在对象上由 $\Delta(S)=(S,S)$ 给出. 构造 $\Delta$ 的左伴随和右伴随.
+
+>[!proof]
+>先找 $\Delta$ 的左伴随. 固定 $U=(U_1,U_2)\in\mathbf{Set}\times\mathbf{Set}$. 按照伴随的始对象刻画, 我们要找集合 $F(U)$ 和态射
+>$$
+>\eta_U:U\to\Delta F(U),
+>$$
+>使得任意 $f:U\to\Delta S$ 都唯一地写成 $\Delta(f')\circ\eta_U$, 其中 $f':F(U)\to S$.
+>
+>取 $F(U)=U_1+U_2$, 令 $\iota_i:U_i\to U_1+U_2$ 为不交并的两个包含映射, 并取 $\eta_U=(\iota_1,\iota_2)$. 任意 $f:U\to\Delta S$ 是一对函数 $f_1:U_1\to S$、$f_2:U_2\to S$. 上述分解条件就是
+>$$
+>f'\circ\iota_1=f_1,\qquad f'\circ\iota_2=f_2.
+>$$
+>和的泛性质恰好给出唯一的 $f'=[f_1,f_2]:U_1+U_2\to S$. 因此 $(F(U),\eta_U)$ 是 $(U^*\Rightarrow\Delta)$ 的始对象.
+>
+>对于态射 $g=(g_1,g_2):U\to V$, 由和的泛性质定义唯一的 $F(g):F(U)\to F(V)$, 使
+>$$
+>F(g)\circ\iota_i^U=\iota_i^V\circ g_i\qquad(i=1,2).
+>$$
+>唯一性保证 $F$ 保持恒等态射与复合, 而这两个等式也正是 $\eta$ 的自然性条件. 于是由 Theorem 2.3.6 得到 $F\dashv\Delta$.
+>
+>再找 $\Delta$ 的右伴随. 固定 $V=(A,B)\in\mathbf{Set}\times\mathbf{Set}$. 对偶地, 我们要找集合 $R(V)$ 和态射 $\varepsilon_V:\Delta R(V)\to V$, 使得任意 $f:\Delta S\to V$ 都唯一地写成 $\varepsilon_V\circ\Delta(f')$, 其中 $f':S\to R(V)$.
+>
+>取 $R(V)=A\times B$, 令 $\pi_A:A\times B\to A$、$\pi_B:A\times B\to B$ 为投影, 并取 $\varepsilon_V=(\pi_A,\pi_B)$. 任意 $f:\Delta S\to V$ 是一对函数 $f_A:S\to A$、$f_B:S\to B$. 分解条件就是
+>$$
+>\pi_A\circ f'=f_A,\qquad\pi_B\circ f'=f_B.
+>$$
+>积的泛性质恰好给出唯一的 $f'=\langle f_A,f_B\rangle:S\to A\times B$. 因此 $(R(V),\varepsilon_V)$ 是 $(\Delta\Rightarrow V^*)$ 的终对象.
+>
+>对于态射 $h=(h_A:A\to A',h_B:B\to B')$, 定义
+>$$
+>R(h)=\langle h_A\circ\pi_A,\,h_B\circ\pi_B\rangle:A\times B\to A'\times B'.
+>$$
+>积的唯一性保证 $R$ 是函子, $\varepsilon$ 是自然变换, 从而 $\Delta\dashv R$. 综上,
+>$$
+>(+)\dashv\Delta\dashv(\times).
+>$$
+
+### 3.2.12
+
+>[!exercise]
+>(a) 设 $\theta:\mathcal P(A)\to\mathcal P(A)$ 关于包含关系保序. 考虑
+>$$
+>S=\bigcup_{\substack{R\subseteq A\\R\subseteq\theta(R)}}R,
+>$$
+>证明 $\theta$ 至少有一个不动点, 即存在 $S\subseteq A$ 满足 $\theta(S)=S$.
+>
+>(b) 给定函数 $f:A\to B$、$g:B\to A$, 利用 (a) 证明存在 $S\subseteq A$, 使得
+>$$
+>g[B\setminus f[S]]=A\setminus S.
+>$$
+>
+>(c) 推出 Cantor–Bernstein 定理.
+
+正文已经给出层垒证明; 这道题提供从保序映射的不动点出发的另一条路线. (b) 中的 $f,g$ 不要求单射, 在 (c) 中才应用到互相单射的情形.
+
+### 3.2.13
+
+>[!exercise]
+>(a) 对函数 $f:A\to\mathcal P(A)$, 考虑 $\{a\in A\mid a\notin f(a)\}$, 证明 $f$ 不是满射.
+>
+>(b) 推出 Cantor 定理: $|A|<|\mathcal P(A)|$.
+
+证明见正文 Cantor's theorem 部分.
+
+### 3.2.14
+
+>[!exercise]
+>(a) 设 $U:\mathcal C\to\mathbf{Set}$ 有左伴随, 且存在 $C_0\in\mathcal C$ 使 $U(C_0)$ 至少有两个元素. 证明: 对任意集合 $I$ 及对象族 $(C_i)_{i\in I}$, 都存在 $\mathcal C$ 中的对象, 与每个 $C_i$ 都不同构. 提示: 使用习题 2.3.11.
+>
+>(b) 推出这样的 $\mathcal C$ 不是本质小范畴.
+>
+>(c) 推出 $\mathbf{Set},\mathbf{Vect}_k,\mathbf{Grp},\mathbf{Ab},\mathbf{Ring},\mathbf{Top}$ 都不是本质小范畴.
+
+### 3.2.15
+
+>[!exercise]
+>判断下列范畴是否小、是否局部小:
+>
+>(a) 幺半群范畴 $\mathbf{Mon}$;
+>
+>(b) 将整数群 $\mathbb Z$ 视为单对象范畴;
+>
+>(c) 将整数有序集 $\mathbb Z$ 视为范畴;
+>
+>(d) 小范畴组成的范畴 $\mathbf{Cat}$;
+>
+>(e) 全体基数在乘法下构成的单对象范畴.
+
+最后一项的唯一对象以全体基数为自态射, 复合为基数乘法, 恒等态射为基数 $1$. 此处允许自态射构成大类.
+
+### 3.2.16
+
+>[!exercise]
+>设 $O:\mathbf{Cat}\to\mathbf{Set}$ 将小范畴映到其对象集. 构造函子 $C,D,I$, 给出伴随链
+>$$
+>C\dashv D\dashv O\dashv I.
+>$$
