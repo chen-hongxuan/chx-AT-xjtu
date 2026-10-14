@@ -819,6 +819,122 @@ $$
 
 正文已经给出层垒证明; 这道题提供从保序映射的不动点出发的另一条路线. (b) 中的 $f,g$ 不要求单射, 在 (c) 中才应用到互相单射的情形.
 
+#### (a) 从递降迭代到交集构造
+
+##### 第一次尝试
+
+我先不使用教材给出的构造, 而是从 $A$ 出发, 递归定义
+$$
+A_0=A,\qquad A_{n+1}=\theta(A_n)\qquad(n\in\mathbb N).
+$$
+因为 $\theta(A)\subseteq A$, 再由保序性与归纳法得到
+$$
+A_0\supseteq A_1\supseteq A_2\supseteq\cdots.
+$$
+于是尝试取 $S_\omega=\bigcap_{n\in\mathbb N}A_n$. 但保序性只保证
+$$
+\theta(S_\omega)
+\subseteq\bigcap_{n\in\mathbb N}\theta(A_n)
+=\bigcap_{n\in\mathbb N}A_{n+1}
+=S_\omega,
+$$
+其中可能出现严格包含. 如果 $\theta$ 额外保持这种递降可数交, 就能得到等号; 仅有保序性还不够.
+
+我最初猜测 $A$ 可数时这一步就会稳定, 但这个猜测也需要修正.
+
+>[!example] 可数集合上的反例
+>取 $A=\mathbb N\cup\{\infty\}$, 按 $0<1<2<\cdots<\infty$ 排序. 定义
+>$$
+>\theta(X)=\{x\in X\mid\exists y\in X,\ y<x\}.
+>$$
+>也就是说, 对非空 $X$ 删除其最小元素, 并令 $\theta(\varnothing)=\varnothing$.
+
+这个映射保序: 若 $X\subseteq Y$, 则 $X$ 中比 $x$ 小的元素在 $Y$ 中仍然存在. 从 $A$ 开始迭代得到
+$$
+A_n=\{n,n+1,\ldots\}\cup\{\infty\},
+\qquad S_\omega=\{\infty\},
+$$
+而 $\theta(S_\omega)=\varnothing\subsetneq S_\omega$. 所以可数性不能保证自然数次迭代后取交就得到不动点.
+
+##### 修正: 超限延长
+
+既然取交以后仍可能继续下降, 我就把这个交集作为下一阶段的起点, 再重复同样的过程. 用超限递归可以统一写成
+$$
+\begin{aligned}
+A_0&=A,\\
+A_{\alpha+1}&=\theta(A_\alpha),\\
+A_\lambda&=\bigcap_{\beta<\lambda}A_\beta
+\qquad(\lambda\text{ 为非零极限序数}).
+\end{aligned}
+$$
+保序性保证整个序列递降. 接下来的问题是, 它需要延长多少步才能停止变化?
+
+我原先想取一个比 $\mathcal P(A)$ 更大的基数作为序数长度, 比如将 $|\mathcal P(\mathcal P(A))|$ 视为初始序数. 在承认 AC 的背景中这是可行的; 如果希望去掉这一步的良序化假设, 可以使用 **Hartogs 定理**: 对每个集合 $X$, 存在不能单射到 $X$ 的序数, 最小的一个记为 $h(X)$. 这个定理可在 ZF 中证明, 不需要 AC.
+
+取 $\kappa=h(\mathcal P(A))$, 将上面的递归定义到 $\kappa$.
+
+>[!proof]
+>若对所有 $\alpha<\kappa$ 都有 $A_{\alpha+1}\subsetneq A_\alpha$, 那么对任意 $\alpha<\beta<\kappa$,
+>$$
+>A_\beta\subseteq A_{\alpha+1}\subsetneq A_\alpha.
+>$$
+>因此所有 $A_\alpha$ 都不同, $\alpha\mapsto A_\alpha$ 给出单射 $\kappa\to\mathcal P(A)$, 与 Hartogs 数的定义矛盾. 所以存在 $\alpha<\kappa$ 使 $\theta(A_\alpha)=A_\alpha$.
+>
+>若 $F$ 是任意不动点, 由超限归纳始终有 $F\subseteq A_\beta$: 初始时 $F\subseteq A$; 后继时由保序性得到 $F=\theta(F)\subseteq\theta(A_\beta)$; 极限时取交即可. 所以稳定后得到的是最大不动点.
+
+这条路线可以在 ZF 中完成, 但需要先建立序数、Hartogs 定理与超限递归等工具. 关于 Hartogs 定理可参考 [集合论讲义的 Theorem 7.28](https://people.maths.ox.ac.uk/~bays/teaching/b1set/B1.2.pdf).
+
+##### 优化: 取所有单向稳定集合的交
+
+回看递降过程, 每个阶段的集合 $X$ 都满足 $\theta(X)\subseteq X$. 这让我想到, 可以从所有满足这个条件的集合出发, 将它们一起取交. 于是定义
+$$
+T=\{X\subseteq A\mid\theta(X)\subseteq X\},
+\qquad S=\bigcap T.
+$$
+这里 $A\in T$, 所以 $T$ 非空. 下面直接利用 $S$ 在 $T$ 中的最小性证明它是不动点.
+
+>[!proof]
+>对任意 $X\in T$, 有 $S\subseteq X$, 因而
+>$$
+>\theta(S)\subseteq\theta(X)\subseteq X.
+>$$
+>对所有 $X\in T$ 取交, 得到 $\theta(S)\subseteq S$, 所以 $S\in T$.
+>
+>再由保序性得到
+>$$
+>\theta(\theta(S))\subseteq\theta(S),
+>$$
+>所以 $\theta(S)\in T$. 根据 $S=\bigcap T$, 又有 $S\subseteq\theta(S)$, 从而 $\theta(S)=S$.
+>
+>每个不动点都属于 $T$, 因而都包含 $S$. 所以这个构造给出的是最小不动点.
+
+这个证明不使用 AC, 也不需要先发展超限迭代理论. 它直接使用保序性与交集的最大下界性质; 将交集换成最大下界, 同一论证也适用于一般完备格. 这就是 Knaster–Tarski 定理的最小不动点构造.
+
+我原先“把所有路径交起来”的想法, 在这里被改写为对所有满足 $\theta(X)\subseteq X$ 的集合取交. 不需要再断言两条迭代路径逐点相交后仍是迭代路径: 保序性仅保证 $\theta(X\cap Y)\subseteq\theta(X)\cap\theta(Y)$, 不保证等号.
+
+##### 两条路线的共同点
+
+两条路线都利用了同一个保持条件:
+$$
+\theta(X)\subseteq X
+\quad\Longrightarrow\quad
+\theta(\theta(X))\subseteq\theta(X).
+$$
+超限迭代不断取得更小的集合, 再用集合大小限制严格递降的长度; 直接交集则先取得 $T$ 的最小元素, 使得 $\theta(S)$ 无法再严格小于 $S$. 两者都先得到一个方向的包含, 再由稳定性或极值性质取得反向包含.
+
+不过, 从 $A$ 向下迭代得到最大不动点, 而上述交集给出最小不动点. 两种构造可以配成下面两组:
+
+| 所求对象 | 迭代构造 | 直接构造 |
+| --- | --- | --- |
+| 最小不动点 | 从 $\varnothing$ 向上迭代, 极限处取并 | $\bigcap\{X\subseteq A\mid\theta(X)\subseteq X\}$ |
+| 最大不动点 | 从 $A$ 向下迭代, 极限处取交 | $\bigcup\{X\subseteq A\mid X\subseteq\theta(X)\}$ |
+
+教材提示的正是第二行的直接构造. 例如 $\theta=\mathrm{id}$ 时, 最小不动点是 $\varnothing$, 最大不动点是 $A$. 这两种对偶构造可参考 [Knaster–Tarski 不动点定理的证明](https://www.cs.utexas.edu/~misra/Notes.dir/KnasterTarski.pdf).
+
+在按包含关系定义箭头的偏序范畴中, $\varnothing$ 是始对象, $A$ 是终对象; 上面构造的 $S$ 则是 $T$ 这个偏序范畴的始对象. 因而最后的证明也是通过一个最小性的泛性质导出不动点性质.
+
+先前的集合论学习给了我超限迭代与控制迭代长度的工具. 随后, 我从具体过程里提取出各阶段始终满足的条件, 再用这个条件直接刻画所求对象. 这个过程也说明, 从逐步构造转向泛性质, 可以通过研究构造中保持的性质来完成.
+
 ### 3.2.13
 
 >[!exercise]
