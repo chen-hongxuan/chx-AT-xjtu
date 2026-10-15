@@ -22,7 +22,7 @@ $$
 $$
 ## Categories
 
-范畴论的语言不以集合论为基础, 所以以下的用词是朴素的, 用自然语言表达的. 同时, 我们也不应当去苛求一个建立在集合论基础下的范畴论.
+本章先用 collection 描述对象和态射, 暂不限制它们必须组成集合. 关于这种语言的背景, 以及集合、类和选择原则的约定, 见 [Chapter EX]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#language-background).
 
 >[!definition] 范畴/Category
 >一个范畴 $\scr A$ 包含以下的元素,
@@ -274,7 +274,7 @@ G(X) \arrow[r,"G(f)"]&G(Y)
 >$$\epsilon_B:F(G(B))\to B$$
 >是同构. 取 $A=G(B)$ , 就有 $F(A)\cong B$ , 所以 $F$ 在对象上 essentially surjective.
 
-*关于上述构造中所使用的选择, 以及它在大范畴中引出的基础问题, 见文末的 [关于选择公理与大范畴](#关于选择公理与大范畴).*
+*上述构造需要同时选定对象及同构. 对小范畴, 普通集合论选择公理足够; 大范畴还需说明选择的范围. 详细讨论移至 [Chapter EX: 等价判据中的选择]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#equivalence-choice).*
 
 ## Vertical and horizontal compositions
 
@@ -458,59 +458,3 @@ $$
 >$$
 
 但是由 (b) 可知, 这些同构不能组成自然同构. 也就是说, 对每个 $X$ 分别存在同构, 并不代表这些同构能够自然地统一选取.
-
-
-## 关于选择公理与大范畴
-
-在上面的证明中, 我们多次说“选择一个对象”或者“选择一个同构”. 如果范畴的对象不能组成集合, 那么这些选择是否仍然安全? 这个问题确实存在. 不过真正需要注意的并不是“选择的次数太多”, 而是我们是否需要同时作出一整族选择, 以及这族选择是由集合还是由真类来编号的.
-
-### 选择发生在哪里
-
-回到 full、faithful 且 essentially surjective 的函子 $F:\A\to\B$. 对于每个 $B\in\B$ , 本质满性告诉我们: 存在某个 $A\in\A$ 以及同构
-$$\epsilon_B:F(A)\xrightarrow{\sim}B.$$
-但是这句话只分别保证了每个 $B$ 都有这样的 $A$. 为了定义拟逆函子 $G$, 我们还要对所有 $B$ 同时指定一个这样的对象, 并令
-$$G(B)=A.$$
-因此证明真正需要的是一族选择
-$$B\longmapsto\bigl(G(B),\epsilon_B:F(G(B))\xrightarrow{\sim}B\bigr).$$
-
-一旦这族数据已经选好, 态射上的定义就不再需要选择. 对于任意的 $f:B\to B'$, 因为 $F$ 是 full 且 faithful, 所以恰好存在一个态射 $G(f):G(B)\to G(B')$ 满足
-$$F(G(f))=\epsilon_{B'}^{-1}\circ f\circ\epsilon_B.$$
-这里 full 保证它存在, faithful 保证它唯一. 恒等态射与复合的验证也都由唯一性直接得到. 因此, 整个构造中真正需要选择的是对象以及相应的同构, 而不是态射.
-
-正文中“先选取每个同构类的代表元”的说法很适合帮助理解: $G$ 要把彼此同构的对象送到预先选好的代表元. 不过对于大范畴, “所有同构类组成的商”本身可能有大小问题. 所以在正式处理大范畴时, 直接对每个 $B$ 选择 $G(B)$ 和 $\epsilon_B$ 会更稳妥.
-
-### 选择公理确实参与了这个定理
-
-如果 $\A$ 和 $\B$ 都是小范畴, 那么上述候选对象与同构可以组成一族非空集合, 普通的选择公理便允许我们同时选出 $G(B)$ 和 $\epsilon_B$. 这里的选择并不只是某种证明技巧: 对所有小范畴都断言
-$$\text{full}+\text{faithful}+\text{essentially surjective}\Longrightarrow\text{equivalence}$$
-实际上已经足以推出选择公理.
-
-为了看出这一点, 设 $(X_i)_{i\in I}$ 是一族非空集合. 构造范畴 $\A$, 其对象是所有的 $(i,x)$, 其中 $x\in X_i$; 两个对象之间恰好有一个态射, 当且仅当它们的第一个分量相同. 再令 $\B$ 为以 $I$ 为对象的离散范畴, 并定义
-$$F:\A\to\B,\qquad F(i,x)=i.$$
-$F$ 是 full、faithful 且 essentially surjective. 如果它一定存在拟逆 $G$, 那么 $G(i)$ 必须具有形式 $(i,x_i)$, 从而 $i\mapsto x_i$ 就是这一族集合的选择函数. 所以, 如果不使用任何形式的选择公理, 这个定理的反方向一般不能成立.
-
-因此, 这里的问题并不是选择公理处于一种无法讨论的模糊状态. 它与 ZF 的关系可以被精确地研究; 对当前证明来说, 关键只是明确我们采用了哪一种选择原则, 以及它是否足以完成这里的选择.
-
-需要区分的是, 从“$F$ 是 equivalence”推出它 full、faithful 且 essentially surjective 的方向并不需要重新作出这些选择, 因为拟逆 $G$ 和两个自然同构已经作为条件的一部分给出了. 需要选择的是反方向, 即从三个性质构造 $G$ 的过程.
-
-### 当范畴是大范畴时
-
-如果 $\operatorname{Ob}(\B)$ 是真类, 那么我们需要的就是一族由真类编号的选择. ZFC 中的选择公理只谈集合族, 因而不能直接保证这种选择存在. 仅仅要求范畴 locally small 也不能解决这个问题: locally small 只保证任意两个对象之间的态射组成集合, 并不保证所有对象组成集合.
-
-这正是为什么 $\mathbf{Set}$、$\mathbf{Vect}_k$、$\mathbf{Grp}$、$\mathbf{Ring}$ 和 $\mathbf{CRing}$ 等范畴通常被视为大范畴. 它们虽然 locally small, 但对象并不能在通常的集合论层级中组成集合; 它们一般也不能通过取一个小骨架而变成小范畴. 因此, 把所有范畴都规定成小范畴虽然能避开当前问题, 却会排除许多最常用的例子.
-
-常见的处理方式有以下几种:
-
-1. **只在小范畴之间使用这个定理.** 此时普通的选择公理已经足够. 这是最简单的做法, 但使用范围有限.
-
-2. **使用 Grothendieck universe.** 先固定一个宇宙 $\mathcal U$, 把其中的集合叫作小集合; 再在一个更大的宇宙 $\mathcal V$ 中讨论它们. 这样 $\mathbf{Set}_{\mathcal U}$ 相对于 $\mathcal U$ 是大范畴, 但它的全部对象相对于 $\mathcal V$ 又构成集合, 因而可以在更高一层使用选择公理. 这种方法不会消灭大小问题, 而是把所需的选择放到更高的集合论层级中. 还要注意, “存在足够多的 Grothendieck universe”通常作为额外的集合论约定使用, 不能直接由 ZFC 证明.
-
-3. **使用带有全局选择原则的类理论.** 例如在 NBG 或 GBC 一类理论中把集合和真类都作为讨论对象, 再加入足够的 Global Choice 原则, 便可以为这里出现的类族统一指定代表元. 这使我们能够直接处理大范畴, 但必须明确说明所采用的基础体系.
-
-还有一种不依赖选择公理的说法: 把 essentially surjective 加强为 **split essentially surjective**. 这不只要求每个 $B$ 存在某个原像, 而是把选好的 $G(B)$ 与同构 $\epsilon_B:F(G(B))\cong B$ 直接作为条件的一部分. 此时可以由这些数据构造 $G$, 不必再调用选择公理. 换句话说, 我们没有消除选择的数据, 而是把它从证明中的隐含步骤改成了定理的显式条件.
-
-### 本文采用的理解
-
-在本文中, “full、faithful 且 essentially surjective 的函子是等价”应理解为已经采用了足够的选择原则. 对小范畴, 普通选择公理即可; 对大范畴, 可以使用 Grothendieck universe 的层级约定, 或在类理论中采用相应的全局选择原则. 如果希望完全不依赖选择公理, 就应当把 essentially surjective 改成 split essentially surjective, 并明确给出所选择的对象与同构.
-
-关于这些集合论约定, 可以进一步参考 [Mike Shulman, *Set theory for category theory*](https://arxiv.org/abs/0810.1279) 以及 [Zhen Lin Low, *Universes for category theory*](https://arxiv.org/abs/1304.5227). [Stacks Project 对这一结论的表述](https://stacks.math.columbia.edu/tag/02C3) 则明确把范畴限制为小范畴.

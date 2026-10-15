@@ -11,6 +11,8 @@ draft: false
 
 教材是 Cambridge Studies in Advanced Mathematics 系列丛书的 *Basic Category Theory* , 作者是 Tom Leinster. 先前已经学习过一次了, 不过由于上次学完后就把这套知识搁置转而去学习数理逻辑了, 现在感觉技术细节已经遗忘的差不多了, 然而下一个阶段就要开始 Categorical Logic 的学习了, 所以需要快速重拾一下知识.
 
+关于学习中涉及的集合论、形式系统与语言背景的延伸讨论, 统一整理在 [Chapter EX - Discussion on Set Theory]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}).
+
 ## Introduction
 
 首先范畴论里最核心的概念就是 universal property , 中文译名叫"泛性质", 于是第一个问题是什么是泛性质. 教材给的第一个例子是一元集 $\bf 1$ , 我们按照范畴论的语言来描述它
@@ -27,7 +29,7 @@ draft: false
 
 >Properties such as this are called ‘universal’ because they state how the object being described (in this case, the set 1) relates to the entire universe in which it lives (in this case, the universe of sets). The property begins with the words ‘for all sets X’, and therefore says something about the relationship between 1 and every set X: namely, that there is a unique map from X to 1.
 
-注意这里的 Universe 是放在集合论范畴下的, 我们的语言仅有集合和映射. 下一个例子是环中的, 在这里范畴是全体环构成的类, 环之间的关系是环同态, 于是考虑一个环 $\mathbb Z$ , 刻画它的一个泛性质是
+这里的 universe 指当前讨论的范畴. 一元集的例子发生在 $\mathbf{Set}$ 中, 我们通过集合和映射来描述对象之间的关系. 下一个例子是环中的, 在这里范畴是全体环构成的类, 环之间的关系是环同态, 于是考虑一个环 $\mathbb Z$ , 刻画它的一个泛性质是
 
 >[!theorem] Universal property of $\mathbb Z$ .
 >对于环 $X$ 而言, 若对于任意环 $R$ , 存在唯一的环同态 $X\to R$ , 那么有环同构 $X\cong\mathbb Z$ .

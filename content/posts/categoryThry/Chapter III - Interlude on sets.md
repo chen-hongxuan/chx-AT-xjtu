@@ -13,25 +13,11 @@ draft: false
 
 本章先讨论 $\mathbf{Set}$ 中的常见构造, 再区分小范畴与大范畴, 最后补充一些关于集合论基础的历史讨论.
 
-## 本文的语言背景
+## 本章的背景约定
 
-我把我们实际进行数学思考时所依赖的对象、直觉和推理背景称为**意识宇宙**. 在明确写下某个形式系统之前, 我们已经能够在这个背景中谈论自然数、集合, 并进行数学推理. 这是本文理解形式化的出发点. 这里的意识宇宙指数学思考的背景; 下文的 Grothendieck 宇宙则是用于控制集合大小的数学概念, 两者需要区分.
+本章在通常的数学背景中讨论集合与函数, $\mathbf{Set}$ 指当前背景中的集合范畴. 除非另有说明, 这组笔记默认接受普通的、由集合编号的选择公理. 本章的构造及大小比较都在这个背景中理解.
 
-一个**形式系统**规定了使用哪些符号、怎样组成合法的表达式、接受哪些公理, 以及允许怎样从已有表达式推出新的表达式. 这些属于语法层面的规定. 语义则通过解释, 把这些符号与背景中的某个数学结构联系起来, 使公式能够表达关于该结构的命题. 我们希望选取的公理和推理规则能够捕获其中一部分真理. 例如, PA 将大量通常的自然数论证形式化; 但一个命题能够在 PA 的语言中表达, 还不保证它能够在 PA 中被证明.
-
-对于一个选定的形式系统 $T$, 在系统中使用公理和规则证明公式, 是对象层次的工作; 从外部研究 $T$ 的语言、证明以及模型, 则是相对于 $T$ 的元层次工作. 一个例子是归纳: 我们可以在 PA 中应用归纳公理模式证明算术结论, 也可以在外部对公式的结构或复杂度进行归纳, 证明关于语法对象的结论. 两者的研究对象与推理所处的位置不同.
-
-这里还需要保留层次的相对性. 关于 PA 的元推理可以进一步在某个形式理论中实现, 例如在 ZFC 中定义公式和证明, 再研究 PA. 此时 ZFC 承担关于 PA 的元理论的角色; 当我们转而研究 ZFC 本身时, 它又成为对象理论. 因此, 意识宇宙说明我们开展数学活动的背景, 而“对象”和“元”还需要相对于当前研究的系统来区分.
-
-**本文目前是在这个背景中进行非形式化、但受公理约束的范畴论研究.** 我们使用范畴公理、通常的数学推理, 以及讨论时明确接受的背景假设, 尚未将所有论证逐步写入一个指定的完整形式系统. 用对象与态射表达一个性质, 是将它翻译成范畴语言; 要把整段讨论形式化, 还需要固定相应的语言、公理与推理规则.
-
-**除非另有说明, 这组贯穿全书的范畴论学习笔记默认当前意识宇宙承认普通集合论选择公理 $\mathrm{AC}$:** 任意由集合编号的非空集合族都存在选择函数. 本文的 $\mathbf{Set}$ 指当前背景中的集合与函数; 因而这项约定等价于 $\mathrm{AC}_{\mathbf{Set}}$, 即 $\mathbf{Set}$ 中每个满态射都存在右逆. 这一等价在下文的 [Choice](#choice) 部分说明.
-
-按上面的用语, 这是描述当前意识宇宙中集合与函数所具有的一项性质的外部语句, 也是我们接受的一项额外假设. 单凭一般的范畴公理, 并不能推出这项存在性结论. 当我们把同样的语句列入一个形式理论的公理时, 它又成为那个对象理论中的公理. 其他范畴的 $\mathrm{AC}_{\mathcal C}$ 则需要分别判断; 同一个背景可以满足 $\mathrm{AC}_{\mathbf{Set}}$, 同时不满足 $\mathrm{AC}_{\mathbf{Grp}}$.
-
-涉及大范畴的统一选择时, 仍需按 Chapter I 的讨论说明相应的选择原则或宇宙层级. 普通集合论选择公理本身不直接保证真类编号的选择; 更大的 Grothendieck 宇宙或类理论中的全局选择原则, 需要根据论证的范围另行说明.
-
-我们也可以讨论接受不同假设的数学背景, 比如研究 $\mathrm{ZF}+\neg\mathrm{AC}$ 的模型. 将这些背景理解为不同的意识宇宙, 是我采用的哲学解释; 在具体推理中, 仍然需要说明当前接受哪些假设. 选择公理在这里表达的是选择函数的存在性, 并不要求人实际执行、描述或计算任意多次选择.
+我们会用对象和态射重新表述集合的性质, 但尚未把整套讨论逐步写入某个指定的形式系统. 关于意识宇宙、对象与元层次, 以及不同范围的选择原则, 见 [Chapter EX]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#language-background). 涉及大范畴的统一选择时, 还需说明相应的宇宙层级或类选择原则.
 
 ## Constructions with sets
 
@@ -136,22 +122,7 @@ $$
 
 所以, 对任意 $X$, 给出态射 $X\times B\to A$ 与给出态射 $X\to A^B$ 是自然地一一对应的. 这就是第 II 章中 currying 对应在 $\mathbf{Set}$ 里的具体含义.
 
-#### 一些关于 $A^B$ 和 $\prod_{b\in B}A$ 的 Idea
-
-我尝试只从泛性质出发证明 $\prod_{b\in B}A\cong A^B$, 却发现两种泛性质给出的数据并不直接相同. 对任意 $X$, 到 $\prod_{b\in B}A$ 的一条态射等价于分别给出一族态射 $f_b:X\to A$; 到 $A^B$ 的一条态射则等价于给出一条态射 $f:X\times B\to A$. 要证明这两个对象同构, 还需要说明“一族 $f_b$”与“一条 $f$”对每个 $X$ 都自然地对应. 这一步不能只靠两种构造各自的泛性质得到.
-
-这让我想到数理逻辑中语法与模型的关系: 如果一个结论仅从某套公理推出, 它就应在这套公理的所有模型中成立. 这里用到的是 soundness 的方向. 类似地, 如果上面的同构仅由抽象的范畴泛性质推出, 那么它就应在每个具备相应构造的范畴中成立. 我所遇到的困难可能意味着: 在 $\mathbf{Set}$ 中把上述两种数据对应起来, 用到了集合特有的性质.
-
-关键是分清 $B$ 的两种角色. 在 $\prod_{b\in B}A$ 中, $B$ 的元素充当**外部的索引**; 在指数对象 $A^B$ 中, $B$ 是范畴里的**对象**. 一般范畴的对象未必能直接当作索引集合, 所以若要比较两者, 必须先指定一套外部索引. 在 $\mathbf{Set}$ 中, 集合 $B$ 恰好也能用自己的元素作索引, 并且满足
-$$
-B\cong\coprod_{b\in B}1,\qquad
-X\times B\cong\coprod_{b\in B}X.
-$$
-后一式说明: 一条 $X\times B\to A$ 的态射, 等价于从每一份 $X$ 各给出一条 $f_b:X\to A$ 的态射. 于是指数对象与以 $B$ 的元素为索引的积满足相同的泛性质, 从而自然同构. 这也可以具体写成 $h:B\to A$ 与函数值族 $(h(b))_{b\in B}$ 之间的对应.
-
-这个额外条件在别的范畴中可以失败. 例如在偏序集和单调映射构成的范畴 $\mathbf{Pos}$ 中, 令 $A=B=\{0<1\}$. 若用 $B$ 的两个底层元素作外部索引, 两份 $A$ 的积 $A\times A$ 有四个元素; 但指数对象 $A^B$ 是由单调映射 $B\to A$ 按逐点序排列而成的偏序集, 只有三个元素, 分别由像 $(0,0)$、$(0,1)$、$(1,1)$ 决定, 因而二者不同构. 这里任意一族 $f_b:X\to A$ 未必能合成单调映射 $X\times B\to A$: 还必须满足由 $B$ 的顺序带来的相容条件.
-
-因此, 我的怀疑是对的, 但需要说得更准确: **仅凭外部索引积与指数对象各自的泛性质, 不能推出它们同构**; 在 $\mathbf{Set}$ 中的说明还使用了 $B$ 是单点集之和, 以及积对这种和的分配. 如果把 $\prod_{b:B}A$ 理解为某种“内部的依赖积”, 那已经是另一种构造, 不能与这里按 $B$ 的元素作外部索引的积混为一谈.
+在 $\mathbf{Set}$ 中, $A^B$ 与以 $B$ 的元素为索引的积 $\prod_{b\in B}A$ 自然同构. 这还使用了集合 $B$ 可以看成由其元素编号的一元集之和, 不能仅凭两种构造各自的泛性质推广到所有范畴. 我的探索及其他范畴中的反例整理在 [Chapter EX]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#products-and-exponentials).
 
 ### Digression on arithmetic
 
@@ -414,7 +385,7 @@ f^{-1}(\{y\})=\{x\in X\mid f(x)=y\}
 $$
 非空. 指定右逆 $s$, 就是在每个纤维中选择一个元素 $s(y)$, 并将所有选择记录为一条函数. 这里断言的是函数的存在性, 不要求给出可计算或可描述的选择方法.
 
-#### 满态射与其他范畴中的“选择公理”
+#### 满态射与范畴化表述
 
 “满射”的通常定义涉及集合中的元素. 如果希望将上述断言翻译成只使用态射的语言, 就需要引入满态射.
 
@@ -440,119 +411,7 @@ $$
 $$
 \mathbf{Set}\text{ 中每个满态射都存在右逆}.
 $$
-右逆的定义也只涉及态射、复合与恒等态射. 所以我们可以保留这个句式, 将 $\mathbf{Set}$ 换成其他范畴.
-
->[!definition] 范畴 $\mathcal C$ 的选择性质 $\mathrm{AC}_{\mathcal C}$
->对固定的范畴 $\mathcal C$, 记 $\mathrm{AC}_{\mathcal C}$ 为以下性质: 每个满态射 $f:X\to Y$ 都存在 $\mathcal C$ 中的态射 $s:Y\to X$, 满足
->$$
->f\circ s=\operatorname{id}_Y.
->$$
->有右逆的满态射也称为**分裂满态射** (split epimorphism), 因而这个性质可以简称为“每个满态射都分裂”.
-
-在任意范畴中, 有右逆一定能推出满态射.
-
->[!proof]
->若 $u\circ f=v\circ f$ 且 $f\circ s=\operatorname{id}_Y$, 就在等式两边右复合 $s$, 得到
->$$
->u=u\circ f\circ s=v\circ f\circ s=v.
->$$
->所以 $f$ 满足右消去律, 是满态射.
-
-但从满态射推出右逆需要额外条件, 一般的范畴公理并不保证它成立.
-
-按照本文关于意识宇宙的用语, **这些选择命题是对我们意识宇宙中所研究结构的不同限定**. 例如, $\mathrm{AC}_{\mathbf{Set}}$ 要求其中的集合与函数具有上述性质; $\mathrm{AC}_{\mathbf{Grp}}$ 则要求其中的群与群同态具有相应性质. 每次都需要说明所谈的是哪个范畴, 以及允许哪些态射.
-
-当研究抽象范畴 $\mathcal C$ 时, 可以将 $\mathrm{AC}_{\mathcal C}$ 作为额外公理, 限定所研究的范畴. 当 $\mathcal C$ 已经是一个具体确定的范畴时, 它就是一条需要判断真假的外部命题. 不同范畴的这些命题也不自动形成一条强弱有序的公理链.
-
-例如, 在同一个接受普通选择公理的背景中, 可以同时有 $\mathrm{AC}_{\mathbf{Set}}$ 成立, 而 $\mathrm{AC}_{\mathbf{Grp}}$ 不成立.
-
->[!example] 群中的满态射
->取商同态
->$$
->q:\mathbb Z\to\mathbb Z/2\mathbb Z,\qquad q(n)=\overline n.
->$$
-
-$q$ 是满射群同态, 因而是 $\mathbf{Grp}$ 中的满态射. 但它没有群同态右逆.
-
->[!proof]
->若存在群同态右逆 $s:\mathbb Z/2\mathbb Z\to\mathbb Z$, 则
->$$
->2s(\overline1)=s(\overline1+\overline1)=s(\overline0)=0.
->$$
->因为 $\mathbb Z$ 中没有非零元素满足 $2n=0$, 所以 $s(\overline1)=0$. 于是 $q(s(\overline1))=\overline0\ne\overline1$, 与 $q\circ s=\operatorname{id}_{\mathbb Z/2\mathbb Z}$ 矛盾.
-
-作为集合之间的函数, $q$ 确实可以取右逆 $s(\overline0)=0$, $s(\overline1)=1$. 但这条函数不是群同态, 因而不是 $\mathbf{Grp}$ 中的态射. 可见, 普通选择公理保证的原像选择, 未必保持其他范畴要求的结构.
-
-因此, 我们不能进一步断言“所有范畴都满足 $\mathrm{AC}_{\mathcal C}$”. 上面的群范畴已经给出反例. 只要保留这些对象、态射及通常的推理规则, 增加选择原则也不能让这个已经被否定的具体性质成立.
-
-#### 与 Chapter I 的选择公理相联系
-
-前面在 [Chapter I 的“关于选择公理与大范畴”]({{< relref "posts/categoryThry/Chapter I - Categories, functors and natural transformations.md" >}}#关于选择公理与大范畴) 中, 为构造等价函子的拟逆, 使用了背景中的选择原则. 如果谈的是普通的集合论选择公理, 它可以写成下面的形式.
-
->[!definition] 集合论层面的选择公理 $\mathrm{AC}$
->给定集合 $I$ 及一族非空集合 $(X_i)_{i\in I}$, 存在函数
->$$
->c:I\to\bigcup_{i\in I}X_i
->$$
->使得 $c(i)\in X_i$ 对每个 $i\in I$ 都成立. 这样的 $c$ 称为这族集合的**选择函数**.
-
-这里的 $I$ 必须是集合; 普通选择公理不直接涉及真类编号的选择. 在通常的 ZF 背景下, 有
-$$
-\boxed{\mathrm{AC}\Longleftrightarrow\mathrm{AC}_{\mathbf{Set}}.}
-$$
-
->[!proof]
->先设 $\mathrm{AC}$ 成立. 对任意满射 $f:X\to Y$, 集合族 $(f^{-1}(\{y\}))_{y\in Y}$ 的每项都非空. 选择公理给出函数 $s:Y\to X$, 满足 $s(y)\in f^{-1}(\{y\})$, 因而 $f(s(y))=y$. 所以 $s$ 是右逆, 得到 $\mathrm{AC}_{\mathbf{Set}}$.
->
->反过来, 设 $\mathrm{AC}_{\mathbf{Set}}$ 成立. 对一族非空集合 $(X_i)_{i\in I}$, 构造不交并
->$$
->E=\{(i,x)\mid i\in I,\ x\in X_i\},
->$$
->以及投影 $p:E\to I$, $p(i,x)=i$. 每个 $X_i$ 非空, 所以 $p$ 满射. 根据 $\mathrm{AC}_{\mathbf{Set}}$, 存在右逆 $s:I\to E$. 等式 $p(s(i))=i$ 保证 $s(i)$ 具有形式 $(i,x_i)$, 其中 $x_i\in X_i$. 因而 $c(i)=x_i$ 就是所需的选择函数.
-
-所以, 我们在意识宇宙中接受普通集合论选择公理, 就等价于断言当前集合与函数构成的范畴满足 $\mathrm{AC}_{\mathbf{Set}}$. 这两个表述使用的是同一背景中的集合与函数.
-
-回到 Chapter I, 设 $F:\mathcal C\to\mathcal D$ 是 full、faithful 且 essentially surjective 的函子. 对每个 $d\in\mathcal D$, 要选定一个对象 $c_d$ 及同构
-$$
-\epsilon_d:F(c_d)\xrightarrow{\sim}d,
-$$
-然后令 $G(d)=c_d$. 当两个范畴都是小范畴时, 每个 $d$ 对应的候选对 $(c_d,\epsilon_d)$ 组成非空集合, 所有这些候选集合又由集合 $\operatorname{Ob}(\mathcal D)$ 编号, 因而普通 $\mathrm{AC}$ 足够. 一旦选好这些数据, $G$ 在态射上的定义由 full 与 faithful 唯一确定, 不需要再作选择.
-
-Chapter I 还说明了反方向: 如果对所有小范畴都断言这样的函子有拟逆, 就能为任意非空集合族构造选择函数. 因而在通常的 ZF 背景下, 有
-$$
-\mathrm{AC}
-\Longleftrightarrow\mathrm{AC}_{\mathbf{Set}}
-\Longleftrightarrow
-\begin{gathered}
-\text{小范畴之间的每个 full、faithful 且}\\
-\text{essentially surjective 的函子都是等价}.
-\end{gathered}
-$$
-这里只针对某个特定函子给出一套选择数据, 并不等于接受了对所有集合族都成立的完整选择公理.
-
-##### 选择范围更小: 有限或可数编号
-
-所谓“更低层面的选择”, 可以指只允许对某些范围的集合族作选择. 例如, 有限多个非空集合可以同时选择, 这在 ZF 中已经能够证明; 如果只接受可数选择, 就只保证由可数集合编号的非空集合族有选择函数.
-
-这些限制对应于满射的目标集合大小: 有限的目标集合只需要有限次选择, 可数的目标集合只需要可数选择. 因此, $\mathbf{FinSet}$ 中每个满态射都有右逆可以在 ZF 中证明, 却不能由此推出整个 $\mathbf{Set}$ 的 $\mathrm{AC}_{\mathbf{Set}}$. 可数选择也不保证任意大小的满射都有右逆.
-
-同样, 在 Chapter I 的构造中, 如果候选集合确实都是集合, 且 $\operatorname{Ob}(\mathcal D)$ 有限或可数, 相应范围的选择就足够. 只接受这些较弱原则, 还不能得到对所有小范畴都成立的等价结论. 这里“有限次选择”指索引集有限, 不应与“从任意多的非空有限集合中同时选择”混淆.
-
-##### 宇宙层级更高: 较大集合与真类
-
-“更高或更低”也可以指所讨论集合的大小层级. 这与上面限制索引集有限或可数是两个不同的问题.
-
-例如, 固定两个 Grothendieck 宇宙 $\mathcal U\in\mathcal V$, 并用 $\mathbf{Set}_{\mathcal U}$、$\mathbf{Set}_{\mathcal V}$ 分别表示相应范围内的集合与函数. 在较大宇宙 $\mathcal V$ 中接受普通选择公理, 就能为 $\mathcal U$ 中的满射选取右逆. 而且这个右逆仍属于 $\mathcal U$: 若 $f:X\to Y$ 的 $X,Y$ 都在 $\mathcal U$ 中, 则右逆的图是 $Y\times X$ 的子集, 由 Grothendieck 宇宙的闭包性质, 它也在 $\mathcal U$ 中.
-
-因此, 对这样的宇宙层级, 较大范围内的选择能够保证较小范围内的 $\mathrm{AC}_{\mathbf{Set}_{\mathcal U}}$. 但只接受 $\mathcal U$ 范围内的选择, 并不自动保证 $\mathcal V$ 范围内的选择, 也不能直接完成 $\mathcal U$ 外的大族选择. 这里使用了 Grothendieck 宇宙的闭包性质, 不能不加限定地推广到任意两个集合论模型.
-
-这正是 Chapter I 中处理大范畴的一种方式: $\mathbf{Set}_{\mathcal U}$ 的全部对象相对于 $\mathcal U$ 不组成小集合, 但在 $\mathcal V$ 中组成集合, 因而可以使用较大范围内的选择公理. 存在这样的 Grothendieck 宇宙层级本身是额外的基础假设, 不能由普通选择公理单独得到.
-
-如果直接在类理论中处理真类编号的选择, 则还需要相应的类选择原则. 例如, **Global Choice** 可以表述为: 存在一个类函数, 为每个非空集合指定其中的一个元素. 在合适的类理论背景中, 它推出普通集合选择, 也能支持 Chapter I 中对大范畴的对象及同构作统一选择. 但普通 $\mathrm{AC}$ 或 $\mathrm{AC}_{\mathbf{Set}}$ 本身不直接提供这套类层面的选择.
-
-因此, 讨论不同选择原则时, 我们需要分别说明**选择的集合族范围、所使用的集合宇宙层级, 以及命题针对的范畴**. 单凭“对象层次”或“元层次”的名称, 不能判断它们的强弱. 即使接受全局选择, 也不会使所有范畴的满态射都有右逆; 上面的 $\mathbf{Grp}$ 反例仍然存在.
-
-关于小范畴的等价判据与满态射, 可分别参考 [Stacks Project 的等价判据](https://stacks.math.columbia.edu/tag/02C3) 与 [满态射的定义](https://stacks.math.columbia.edu/tag/003A); 宇宙层级及类选择的讨论可参考 [Mike Shulman, *Set theory for category theory*, §7–8](https://arxiv.org/abs/0810.1279).
+普通集合论选择公理与这个表述等价. 关于这项等价、将同一句式用于其他范畴时的区别, 以及它与 Chapter I 的等价判据和大范畴选择的关系, 见 [Chapter EX: 选择公理与范畴等价]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#choice-and-equivalence).
 
 ## Small and large categories
 
@@ -565,87 +424,7 @@ $$
 >[!theorem] Theorem 3.2.1 (Cantor–Bernstein)
 >设 $A,B$ 是集合. 如果 $|A|\leq|B|\leq|A|$, 那么 $A\cong B$.
 
-证明的思路是在 $A,B$ 中分别构造交错嵌套的两列集合, 得到两侧的层垒结构. 然后在不同的层上分别使用 $f$ 与 $g^{-1}$, 将两侧的各层以及交集部分对应起来.
-
->[!proof]
->设 $f:A\to B$、$g:B\to A$ 都是单射. 在 $A$ 中递归定义
->$$
->\begin{aligned}
->\mathcal M_0&=A,&\mathcal M_{i+1}&=gf[\mathcal M_i],\\
->\mathcal K_0&=g[B],&\mathcal K_{i+1}&=gf[\mathcal K_i]
->\end{aligned}
->\qquad(i\in\mathbb N),
->$$
->其中 $gf=g\circ f$. 由归纳法可得
->$$
->\mathcal M_0\supseteq\mathcal K_0\supseteq\mathcal M_1\supseteq\mathcal K_1\supseteq\cdots.
->$$
->同样, 在 $B$ 中定义
->$$
->\begin{aligned}
->\widehat{\mathcal M}_0&=B,&\widehat{\mathcal M}_{i+1}&=fg[\widehat{\mathcal M}_i],\\
->\widehat{\mathcal K}_0&=f[A],&\widehat{\mathcal K}_{i+1}&=fg[\widehat{\mathcal K}_i],
->\end{aligned}
->$$
->得到交错包含关系
->$$
->\widehat{\mathcal M}_0\supseteq\widehat{\mathcal K}_0\supseteq\widehat{\mathcal M}_1\supseteq\widehat{\mathcal K}_1\supseteq\cdots.
->$$
->记
->$$
->\mathcal M_\omega=\bigcap_{i\in\mathbb N}\mathcal M_i,
->\qquad
->\widehat{\mathcal M}_\omega=\bigcap_{i\in\mathbb N}\widehat{\mathcal M}_i.
->$$
->由交错包含关系, $A$ 被分成 $\mathcal M_\omega$ 以及两类差集 $\mathcal M_i\setminus\mathcal K_i$、$\mathcal K_i\setminus\mathcal M_{i+1}$, 这些部分两两不交且覆盖 $A$. $B$ 侧也有相应的分割.
->
->单射 $g$ 给出反函数 $g^{-1}:g[B]\to B$. 定义
->$$
->\varphi:A\to B,\qquad
->\varphi(x)=
->\begin{cases}
->f(x),&x\in\mathcal M_\omega\ \text{或}\ (\exists i\in\mathbb N)\,x\in\mathcal M_i\setminus\mathcal K_i,\\
->g^{-1}(x),&(\exists i\in\mathbb N)\,x\in\mathcal K_i\setminus\mathcal M_{i+1}.
->\end{cases}
->$$
->这里第二类差集都包含在 $\mathcal K_0=g[B]$ 中, 所以 $g^{-1}$ 有定义.
->
->根据构造, 对每个 $i\in\mathbb N$ 都有
->$$
->\begin{aligned}
->f[\mathcal M_i]&=\widehat{\mathcal K}_i,
->&f[\mathcal K_i]&=\widehat{\mathcal M}_{i+1},\\
->g^{-1}[\mathcal K_i]&=\widehat{\mathcal M}_i,
->&g^{-1}[\mathcal M_{i+1}]&=\widehat{\mathcal K}_i.
->\end{aligned}
->$$
->因为 $f$ 与 $g^{-1}$ 都是单射, 它们保持差集, 因而
->$$
->\begin{aligned}
->f[\mathcal M_i\setminus\mathcal K_i]
->&=f[\mathcal M_i]\setminus f[\mathcal K_i]
->=\widehat{\mathcal K}_i\setminus\widehat{\mathcal M}_{i+1},\\
->g^{-1}[\mathcal K_i\setminus\mathcal M_{i+1}]
->&=g^{-1}[\mathcal K_i]\setminus g^{-1}[\mathcal M_{i+1}]
->=\widehat{\mathcal M}_i\setminus\widehat{\mathcal K}_i.
->\end{aligned}
->$$
->最后, 利用 $f$ 的单射性以及 $B$ 侧的交错包含关系, 有
->$$
->\begin{aligned}
->f[\mathcal M_\omega]
->&=f\!\left[\bigcap_{i\in\mathbb N}\mathcal M_i\right]
->=\bigcap_{i\in\mathbb N}f[\mathcal M_i]\\
->&=\bigcap_{i\in\mathbb N}\widehat{\mathcal K}_i
->=\bigcap_{i\in\mathbb N}\widehat{\mathcal M}_i
->=\widehat{\mathcal M}_\omega.
->\end{aligned}
->$$
->这里像与交集交换, 是因为单射保证同一元素在各层中的前像必定是同一个元素.
->
->因此, $\varphi$ 在各部分上都是单射, 其像恰好是 $B$ 中两类差集与交集部分, 两两不交且覆盖 $B$. 所以 $\varphi:A\to B$ 是双射.
-
-这份证明可在经典 ZF 中完成, 不需要选择公理: 两列集合由递归唯一确定, $g^{-1}$ 的值也由唯一前像确定. 其中对各层及交集部分的分类使用了经典逻辑. 关于 Cantor–Bernstein 定理与排中律的关系, 可参考 [Pradic 与 Brown, *Cantor-Bernstein implies Excluded Middle*](https://arxiv.org/abs/1904.09193).
+证明可以在 $A,B$ 中分别构造交错递降的集合列, 将两侧的层垒及交集部分一一对应. 我的完整证明及其所依赖的假设移至 [Chapter EX: Cantor–Bernstein 的层垒证明]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#cantor-bernstein).
 
 ### Cantor's theorem
 
@@ -715,7 +494,7 @@ Examples 3.2.5–3.2.6 中, $\mathbf{Set}$ 局部小, 因为固定 $A,B$ 后, �
 >[!example] 标准有限集合组成的范畴 (Example 3.2.7)
 >对 $n\in\mathbb N$, 取标准有限集合 $[n]=\{0,\ldots,n-1\}$, 其中 $[0]=\varnothing$. 以这些集合为对象, 以它们之间的所有函数为态射, 得到 $\mathbf{FinSet}$ 的满子范畴 $\mathcal B$.
 
-$\mathcal B$ 的对象由 $\mathbb N$ 编号, 每个 hom-set 又是有限集, 所以 $\mathcal B$ 是小范畴. 每个有限集合都同构于某个 $[n]$, 因而包含函子 $\mathcal B\to\mathbf{FinSet}$ 满、忠实且本质满. 按照 Chapter I 的等价判据及相应选择约定, 有 $\mathcal B\simeq\mathbf{FinSet}$. 所以 $\mathbf{FinSet}$ 本质小, 尽管全体有限集合本身组成大类.
+$\mathcal B$ 的对象由 $\mathbb N$ 编号, 每个 hom-set 又是有限集, 所以 $\mathcal B$ 是小范畴. 每个有限集合都同构于某个 $[n]$, 因而包含函子 $\mathcal B\to\mathbf{FinSet}$ 满、忠实且本质满. 按照 Chapter I 的等价判据及 [Chapter EX 中的选择约定]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#large-categories-and-choice), 有 $\mathcal B\simeq\mathbf{FinSet}$. 所以 $\mathbf{FinSet}$ 本质小, 尽管全体有限集合本身组成大类.
 
 如果 $\mathcal C$ 本质小, 取等价函子 $E:\mathcal B\to\mathcal C$, 其中 $\mathcal B$ 小. 那么 $(E(B))_{B\in\operatorname{Ob}(\mathcal B)}$ 就是一族由集合编号的对象, 涵盖 $\mathcal C$ 的全部同构类型. 这个表述避免把可能过大的同构类本身当作集合的元素.
 
@@ -747,7 +526,7 @@ Example 3.2.9 说明, 对任意域 $k$, $\mathbf{Vect}_k$ 也不是本质小范�
 >[!definition] Definition 3.2.10
 >以小范畴为对象、函子为态射的范畴记为 $\mathbf{Cat}$.
 
-教材先前用 $\mathbf{CAT}$ 表示更一般的范畴与函子组成的范畴. 使用“所有范畴”这样的说法时, 仍按 Chapter I 的类与宇宙层级约定理解其大小.
+教材先前用 $\mathbf{CAT}$ 表示更一般的范畴与函子组成的范畴. 使用“所有范畴”这样的说法时, 其大小仍按 [Chapter EX 的类与宇宙层级约定]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#large-categories-and-choice) 理解.
 
 >[!example] 幺半群对应的单对象小范畴 (Example 3.2.11)
 >给定幺半群 $M$, 构造只有一个对象 $*$ 的范畴, 令 $\operatorname{Hom}(*,*)=M$, 以乘法为复合, 单位元为恒等态射. 反过来, 单对象小范畴的全体自态射在复合下构成一个幺半群.
@@ -817,127 +596,13 @@ $$
 >
 >(c) 推出 Cantor–Bernstein 定理.
 
-正文已经给出层垒证明; 这道题提供从保序映射的不动点出发的另一条路线. (b) 中的 $f,g$ 不要求单射, 在 (c) 中才应用到互相单射的情形.
+[层垒证明]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#cantor-bernstein) 已整理到 Chapter EX; 这道题提供从保序映射的不动点出发的另一条路线. (b) 中的 $f,g$ 不要求单射, 在 (c) 中才应用到互相单射的情形.
 
-#### (a) 从递降迭代到交集构造
-
-##### 第一次尝试
-
-我先不使用教材给出的构造, 而是从 $A$ 出发, 递归定义
+对于 (a), 我的构造是
 $$
-A_0=A,\qquad A_{n+1}=\theta(A_n)\qquad(n\in\mathbb N).
+T=\{X\subseteq A\mid\theta(X)\subseteq X\},\qquad S=\bigcap T.
 $$
-因为 $\theta(A)\subseteq A$, 再由保序性与归纳法得到
-$$
-A_0\supseteq A_1\supseteq A_2\supseteq\cdots.
-$$
-于是尝试取 $S_\omega=\bigcap_{n\in\mathbb N}A_n$. 但保序性只保证
-$$
-\theta(S_\omega)
-\subseteq\bigcap_{n\in\mathbb N}\theta(A_n)
-=\bigcap_{n\in\mathbb N}A_{n+1}
-=S_\omega,
-$$
-其中可能出现严格包含. 如果 $\theta$ 额外保持这种递降可数交, 就能得到等号; 仅有保序性还不够.
-
-我最初猜测 $A$ 可数时这一步就会稳定, 但这个猜测也需要修正.
-
->[!example] 可数集合上的反例
->取 $A=\mathbb N\cup\{\infty\}$, 按 $0<1<2<\cdots<\infty$ 排序. 定义
->$$
->\theta(X)=\{x\in X\mid\exists y\in X,\ y<x\}.
->$$
->也就是说, 对非空 $X$ 删除其最小元素, 并令 $\theta(\varnothing)=\varnothing$.
-
-这个映射保序: 若 $X\subseteq Y$, 则 $X$ 中比 $x$ 小的元素在 $Y$ 中仍然存在. 从 $A$ 开始迭代得到
-$$
-A_n=\{n,n+1,\ldots\}\cup\{\infty\},
-\qquad S_\omega=\{\infty\},
-$$
-而 $\theta(S_\omega)=\varnothing\subsetneq S_\omega$. 所以可数性不能保证自然数次迭代后取交就得到不动点.
-
-##### 修正: 超限延长
-
-既然取交以后仍可能继续下降, 我就把这个交集作为下一阶段的起点, 再重复同样的过程. 用超限递归可以统一写成
-$$
-\begin{aligned}
-A_0&=A,\\
-A_{\alpha+1}&=\theta(A_\alpha),\\
-A_\lambda&=\bigcap_{\beta<\lambda}A_\beta
-\qquad(\lambda\text{ 为非零极限序数}).
-\end{aligned}
-$$
-保序性保证整个序列递降. 接下来的问题是, 它需要延长多少步才能停止变化?
-
-我原先想取一个比 $\mathcal P(A)$ 更大的基数作为序数长度, 比如将 $|\mathcal P(\mathcal P(A))|$ 视为初始序数. 在承认 AC 的背景中这是可行的; 如果希望去掉这一步的良序化假设, 可以使用 **Hartogs 定理**: 对每个集合 $X$, 存在不能单射到 $X$ 的序数, 最小的一个记为 $h(X)$. 这个定理可在 ZF 中证明, 不需要 AC.
-
-取 $\kappa=h(\mathcal P(A))$, 将上面的递归定义到 $\kappa$.
-
->[!proof]
->若对所有 $\alpha<\kappa$ 都有 $A_{\alpha+1}\subsetneq A_\alpha$, 那么对任意 $\alpha<\beta<\kappa$,
->$$
->A_\beta\subseteq A_{\alpha+1}\subsetneq A_\alpha.
->$$
->因此所有 $A_\alpha$ 都不同, $\alpha\mapsto A_\alpha$ 给出单射 $\kappa\to\mathcal P(A)$, 与 Hartogs 数的定义矛盾. 所以存在 $\alpha<\kappa$ 使 $\theta(A_\alpha)=A_\alpha$.
->
->若 $F$ 是任意不动点, 由超限归纳始终有 $F\subseteq A_\beta$: 初始时 $F\subseteq A$; 后继时由保序性得到 $F=\theta(F)\subseteq\theta(A_\beta)$; 极限时取交即可. 所以稳定后得到的是最大不动点.
-
-这条路线可以在 ZF 中完成, 但需要先建立序数、Hartogs 定理与超限递归等工具. 关于 Hartogs 定理可参考 [集合论讲义的 Theorem 7.28](https://people.maths.ox.ac.uk/~bays/teaching/b1set/B1.2.pdf).
-
-##### 优化: 取所有合法起点的交
-
-回看递降过程, 每个阶段的集合 $X$ 都满足 $\theta(X)\subseteq X$. 反过来, 任意满足这个条件的 $X$ 都可以作为递降迭代的起点. 我把从 $X$ 出发的路径称为“路径 $X$”; 将路径 $X$ 和路径 $Y$“插到一起”, 是指取 $X\cap Y$ 作为新起点, 再从这里重新迭代.
-
-因此, 需要验证的是合法起点对交集封闭. 这个性质成立, 而且可以推广到任意多个合法起点. 这让我想到, 不妨把所有合法起点都取交, 于是定义
-$$
-T=\{X\subseteq A\mid\theta(X)\subseteq X\},
-\qquad S=\bigcap T.
-$$
-这里 $A\in T$, 所以 $T$ 非空. 下面直接利用 $S$ 在 $T$ 中的最小性证明它是不动点.
-
->[!proof]
->先取任意非空一族合法起点 $(X_i)_{i\in I}$, 令 $Z=\bigcap_{i\in I}X_i$. 对每个 $i\in I$, 有 $Z\subseteq X_i$, 因而
->$$
->\theta(Z)\subseteq\theta(X_i)\subseteq X_i.
->$$
->对所有 $i\in I$ 取交, 得到 $\theta(Z)\subseteq Z$, 所以交集仍是合法起点. 在 $\mathcal P(A)$ 中将空族的交约定为 $A$, 这个结论也包含空族的情形.
->
->特别地, 对 $T$ 中所有起点取交, 得到 $\theta(S)\subseteq S$, 所以 $S\in T$.
->
->再由保序性得到
->$$
->\theta(\theta(S))\subseteq\theta(S),
->$$
->所以 $\theta(S)\in T$. 根据 $S=\bigcap T$, 又有 $S\subseteq\theta(S)$, 从而 $\theta(S)=S$.
->
->每个不动点都属于 $T$, 因而都包含 $S$. 所以这个构造给出的是最小不动点.
-
-这个证明不使用 AC, 也不需要先发展超限迭代理论. 它直接使用保序性与交集的最大下界性质; 将交集换成最大下界, 同一论证也适用于一般完备格. 这就是 Knaster–Tarski 定理的最小不动点构造.
-
-因此, “把所有路径插到一起”可以准确理解为: 将所有合法起点取交, 再从这个交集出发迭代. 交集本身仍是合法起点; 进一步由它在 $T$ 中的最小性得到 $\theta(S)=S$, 所以这条新路径从一开始就已经稳定. 这个论证不需要预先证明每条路径最终都会稳定.
-
-##### 两条路线的共同点
-
-两条路线都利用了同一个保持条件:
-$$
-\theta(X)\subseteq X
-\quad\Longrightarrow\quad
-\theta(\theta(X))\subseteq\theta(X).
-$$
-超限迭代不断取得更小的集合, 再用集合大小限制严格递降的长度; 直接交集则先取得 $T$ 的最小元素, 使得 $\theta(S)$ 无法再严格小于 $S$. 两者都先得到一个方向的包含, 再由稳定性或极值性质取得反向包含.
-
-不过, 从 $A$ 向下迭代得到最大不动点, 而上述交集给出最小不动点. 两种构造可以配成下面两组:
-
-| 所求对象 | 迭代构造 | 直接构造 |
-| --- | --- | --- |
-| 最小不动点 | 从 $\varnothing$ 向上迭代, 极限处取并 | $\bigcap\{X\subseteq A\mid\theta(X)\subseteq X\}$ |
-| 最大不动点 | 从 $A$ 向下迭代, 极限处取交 | $\bigcup\{X\subseteq A\mid X\subseteq\theta(X)\}$ |
-
-教材提示的正是第二行的直接构造. 例如 $\theta=\mathrm{id}$ 时, 最小不动点是 $\varnothing$, 最大不动点是 $A$. 这两种对偶构造可参考 [Knaster–Tarski 不动点定理的证明](https://www.cs.utexas.edu/~misra/Notes.dir/KnasterTarski.pdf).
-
-在按包含关系定义箭头的偏序范畴中, $\varnothing$ 是始对象, $A$ 是终对象; 上面构造的 $S$ 则是 $T$ 这个偏序范畴的始对象. 因而最后的证明也是通过一个最小性的泛性质导出不动点性质.
-
-先前的集合论学习给了我超限迭代与控制迭代长度的工具. 随后, 我从具体过程里提取出各阶段始终满足的条件, 再用这个条件直接刻画所求对象. 这个过程也说明, 从逐步构造转向泛性质, 可以通过研究构造中保持的性质来完成.
+保序性保证 $S$ 与 $\theta(S)$ 都属于 $T$, 再由 $S$ 的最小性得到 $\theta(S)=S$. 从自然数次迭代、超限延长到这个交集构造的探索与完整证明, 见 [Chapter EX: 保序映射的不动点]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#monotone-fixed-points).
 
 ### 3.2.13
 

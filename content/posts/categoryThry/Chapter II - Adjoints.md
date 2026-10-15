@@ -1228,7 +1228,7 @@ $$
 >   $$
 >   应用第一问的结果, 并说明两个伴随的 unit 与 counit 所表达的逻辑含义.
 
-关于这些构造与逻辑量词的关系, 以及 unit、counit 的逻辑含义, 见文末的 [Bonus 伴随作为一种量词](#bonus-伴随作为一种量词).
+关于这些构造与逻辑量词的关系, 以及 unit、counit 的逻辑含义, 见 [Chapter EX: 子集、谓词与量词]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#predicates-and-quantifiers).
 
 >[!proof]
 >**(a)** 定义映射
@@ -1331,7 +1331,7 @@ $$
 >\el
 >$$
 
-前两个属于 $L_p\dashv p^*$, 后两个属于 $p^*\dashv R_p$. 它们的逻辑解释统一放在文末的 Bonus 中.
+前两个属于 $L_p\dashv p^*$, 后两个属于 $p^*\dashv R_p$. 它们的逻辑解释统一放在 [Chapter EX: 子集、谓词与量词]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#predicates-and-quantifiers) 中.
 
 ### 2.3.11
 
@@ -1361,126 +1361,3 @@ $$
 >但 $\eta_S(s)=\eta_S(t)$ 使左边在 $s,t$ 处取值相同, 而 $f(s)=x\ne y=f(t)$. 因此这样的 $q$ 根本不存在, 与始对象的性质矛盾. 所以 $\eta_S$ 是单射.
 
 对于自由群与遗忘函子的伴随, $F(S)$ 是由 $S$ 生成的自由群, $\eta_S$ 将 $s\in S$ 送到对应的自由生成元. 由于存在至少两个元素的群, 上述条件成立, 因而不同的自由生成元在自由群中仍是不同的元素.
-
-## Bonus 伴随作为一种量词
-
-把一个子集 $A\subseteq K$ 看成谓词时,
-$$
-A(x)
-\quad\Longleftrightarrow\quad
-x\in A.
-$$
-子集包含
-$$
-A\subseteq A'
-$$
-则表示谓词之间的蕴含: $A(x)$ 成立时, $A'(x)$ 也成立. 因此, 幂集偏序 $\mathcal P(K)$ 可以看成论域 $K$ 上全部谓词组成的偏序.
-
-给定函数
-$$
-f:K\to L,
-$$
-逆像
-$$
-f^*:\mathcal P(L)\to\mathcal P(K)
-$$
-将 $L$ 上的谓词 $B(y)$ 变成 $K$ 上的谓词
-$$
-f^*(B)(x)
-\quad\Longleftrightarrow\quad
-B(f(x)).
-$$
-因此, $f^*$ 可以理解为沿着 $f$ 进行代入. 元素沿 $f$ 从 $K$ 进入 $L$, 而谓词则沿相反方向从 $L$ 被拉回到 $K$.
-
-第一问构造的左伴随 $L_f$ 可以记为 $\exists_f$. 对于 $A\subseteq K$ 与 $y\in L$,
-$$
-y\in L_f(A)
-\quad\Longleftrightarrow\quad
-\exists x\in K,\quad f(x)=y\ \land\ x\in A.
-$$
-所以 $L_f$ 在 $y$ 的纤维上进行存在量化: 只要纤维中至少有一个元素属于 $A$, 就将 $y$ 放入结果中.
-
-右伴随 $R_f$ 可以记为 $\forall_f$. 对于 $A\subseteq K$ 与 $y\in L$,
-$$
-y\in R_f(A)
-\quad\Longleftrightarrow\quad
-\forall x\in K,\quad f(x)=y\Longrightarrow x\in A.
-$$
-所以 $R_f$ 在 $y$ 的纤维上进行全称量化: 只有纤维中的每个元素都属于 $A$, 才将 $y$ 放入结果中. 如果纤维为空, 这个条件自动成立, 这与全称命题的空真性一致.
-
-因此
-$$
-\boxed{\exists_f\dashv f^*\dashv\forall_f}.
-$$
-这不是形式上的类比, 而是说存在量化与全称量化可以精确地表示为代入函子的左伴随与右伴随.
-
-对于投影
-$$
-p:X\times Y\to X,
-$$
-一个子集 $R\subseteq X\times Y$ 可以看成二元谓词 $R(x,y)$. 此时
-$$
-\begin{aligned}
-x\in L_p(R)
-&\Longleftrightarrow
-\exists y\in Y,\ R(x,y),\\
-x\in R_p(R)
-&\Longleftrightarrow
-\forall y\in Y,\ R(x,y).
-\end{aligned}
-$$
-所以通常将 $L_p$ 与 $R_p$ 分别写成
-$$
-\exists_Y,\qquad\forall_Y,
-$$
-并且有
-$$
-\boxed{\exists_Y\dashv p^*\dashv\forall_Y}.
-$$
-这里 $p^*$ 将一元谓词 $S(x)$ 变成不依赖 $y$ 的二元谓词
-$$
-p^*(S)(x,y)\Longleftrightarrow S(x),
-$$
-而它的两个伴随则分别通过存在量化和全称量化消去变量 $y$.
-
-最后来看 unit 与 counit 的逻辑含义. 对于 $\exists_Y\dashv p^*$, unit
-$$
-R\subseteq p^*(\exists_YR)
-$$
-表示
-$$
-R(x,y)\Longrightarrow\exists y'\in Y,\ R(x,y').
-$$
-它说明, 如果 $R(x,y)$ 对某个已经给定的 $y$ 成立, 那么当然可以断言存在一个使 $R(x,y')$ 成立的 $y'$.
-
-同一个伴随的 counit
-$$
-\exists_Y(p^*(S))\subseteq S
-$$
-表示
-$$
-\left(\exists y\in Y,\ S(x)\right)\Longrightarrow S(x).
-$$
-因为 $S(x)$ 与 $y$ 无关, 所以只要左边成立, 就可以直接得到 $S(x)$.
-
-对于 $p^*\dashv\forall_Y$, unit
-$$
-S\subseteq\forall_Y(p^*(S))
-$$
-表示
-$$
-S(x)\Longrightarrow\forall y\in Y,\ S(x).
-$$
-因为 $S(x)$ 与 $y$ 无关, 所以它一旦成立, 就对每个 $y$ 都成立.
-
-最后, counit
-$$
-p^*(\forall_YR)\subseteq R
-$$
-表示
-$$
-\left(\forall y'\in Y,\ R(x,y')\right)
-\Longrightarrow
-R(x,y).
-$$
-它说明, 如果 $R(x,y')$ 对每个 $y'$ 都成立, 那么它当然对当前给定的 $y$ 成立.
