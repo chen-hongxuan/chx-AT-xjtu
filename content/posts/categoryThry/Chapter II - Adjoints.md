@@ -862,6 +862,127 @@ $$
 >$$
 >也就是说, $1_{F(A)}$ 在新伴随对应下得到的态射正是 $\eta_A$. 因此每个满足条件的 $\eta$ 都来自一个伴随结构, 定理得证.
 
+### 由逐点的始对象自动组装伴随 {#adjoints-from-initial-objects}
+
+>[!corollary] Corollary 2.3.7
+>给定函子 $G:\B\to\A$. $G$ 存在左伴随, 当且仅当对每个 $A\in\A$, 逗号范畴 $(A^*\Rightarrow G)$ 都存在始对象. 这个逗号范畴也记作 $(A\downarrow G)$.
+
+Theorem 2.3.6 已经给定了函子 $F,G$, 并要求 $\eta$ 事先是自然变换. 这条推论则只固定 $G$: 为每个 $A$ 选出一个始对象以后, 起初的 $F(A)$ 只是对象的名字, $\eta_A$ 也只是分别给出的态射. 始对象的泛性质会确定 $F$ 在态射上的作用, 并自动保证函子性与 $\eta$ 的自然性.
+
+下面按本组笔记既有的 [选择约定]({{< relref "posts/categoryThry/Chapter EX - Discussion on Set Theory.md" >}}#choice-and-equivalence), 为每个 $A$ 选定一个始对象. 一旦这些数据已经选好, 后面的态射由唯一性确定, 不再需要额外选择.
+
+>[!proof]
+>若 $G$ 已有左伴随, 则由 Lemma 2.3.5, 对应的 unit 为每个逗号范畴给出始对象.
+>
+>反过来, 对每个 $A\in\A$, 选定始对象
+>$$
+>(F(A),\eta_A:A\to G(F(A))).
+>$$
+>现在给定态射 $f:A\to A'$. 二元组
+>$$
+>(F(A'),\eta_{A'}\circ f)
+>$$
+>是 $(A^*\Rightarrow G)$ 中的对象. 由始对象的性质, 存在唯一的态射
+>$$
+>F(f):F(A)\to F(A')
+>$$
+>满足
+>$$
+>\boxed{G(F(f))\circ\eta_A=\eta_{A'}\circ f.}
+>$$
+>这就定义了 $F$ 在态射上的作用.
+>
+>先验证恒等态射. $\operatorname{id}_{F(A)}$ 满足
+>$$
+>G(\operatorname{id}_{F(A)})\circ\eta_A
+>=\eta_A
+>=\eta_A\circ\operatorname{id}_A.
+>$$
+>由唯一性得到 $F(\operatorname{id}_A)=\operatorname{id}_{F(A)}$.
+>
+>再取 $f:A\to A'$ 与 $g:A'\to A''$. 根据定义,
+>$$
+>\begin{aligned}
+>G(F(g)\circ F(f))\circ\eta_A
+>&=G(F(g))\circ G(F(f))\circ\eta_A\\
+>&=G(F(g))\circ\eta_{A'}\circ f\\
+>&=\eta_{A''}\circ g\circ f.
+>\end{aligned}
+>$$
+>所以 $F(g)\circ F(f)$ 与 $F(g\circ f)$ 满足同一个交换条件. 再由始对象给出的唯一性得到
+>$$
+>F(g\circ f)=F(g)\circ F(f).
+>$$
+>因此 $F:\A\to\B$ 是函子.
+>
+>而定义 $F(f)$ 时要求的等式
+>$$
+>GF(f)\circ\eta_A=\eta_{A'}\circ f
+>$$
+>恰好就是 $\eta:1_\A\Longrightarrow GF$ 的自然性条件. 于是 $\eta$ 是自然变换, 并且每个 $(F(A),\eta_A)$ 都具有所需的始对象性质. 由 Theorem 2.3.6, 得到 $F\dashv G$.
+
+这里重要的观点是: **逐个选定始对象之后, 不需要再额外筛选一套彼此相容的选择; 始对象的唯一性会强制给出相容的态射.** 对象层的泛性质由此把逐点构造组织成一个函子, 连同自然的 unit 一起给出伴随.
+
+在 [习题 3.2.16]({{< relref "posts/categoryThry/Chapter III - Interlude on sets.md" >}}#3216) 中, 为每个集合 $S$ 构造离散范畴 $D(S)$ 并验证 $(D(S),\operatorname{id}_S)$ 是 $(S\downarrow O)$ 的始对象, 就能使用这个推论得到 $D\dashv O$. 这说明伴随的始对象刻画同时提供了构造伴随的方法.
+
+#### 对偶: 由终对象自动组装右伴随 {#right-adjoints-from-terminal-objects}
+
+>[!corollary] Corollary 2.3.7 的对偶 (Exercise 2.3.9)
+>给定函子 $F:\A\to\B$. $F$ 存在右伴随, 当且仅当对每个 $B\in\B$, 逗号范畴 $(F\downarrow B)$ 都存在终对象. 这个逗号范畴也可以记作 $(F\Rightarrow B^*)$, 其中 $B^*:\mathbf1\to\B$ 选出对象 $B$.
+
+这里固定的是左伴随候选 $F$. 按同样的选择约定, 逐个选定终对象以后, 终对象的唯一性会确定右伴随在态射上的作用, 并保证 counit 的自然性.
+
+>[!proof]
+>若 $F$ 已有右伴随 $G$, 则由 Lemma 2.3.5 的对偶, 对应的 counit 为每个 $(F\downarrow B)$ 给出终对象.
+>
+>反过来, 对每个 $B\in\B$, 选定终对象
+>$$
+>(G(B),\varepsilon_B:F(G(B))\to B).
+>$$
+>给定态射 $u:B\to B'$, 则
+>$$
+>(G(B),u\circ\varepsilon_B)
+>$$
+>是 $(F\downarrow B')$ 中的对象. 因此终对象的性质给出唯一态射
+>$$
+>G(u):G(B)\to G(B')
+>$$
+>满足
+>$$
+>\boxed{\varepsilon_{B'}\circ F(G(u))
+>=u\circ\varepsilon_B.}
+>$$
+>这就定义了 $G$ 在态射上的作用.
+>
+>恒等态射 $\operatorname{id}_{G(B)}$ 满足 $u=\operatorname{id}_B$ 时的交换条件, 因而由唯一性得到
+>$$
+>G(\operatorname{id}_B)=\operatorname{id}_{G(B)}.
+>$$
+>再取 $u:B\to B'$ 与 $v:B'\to B''$, 有
+>$$
+>\begin{aligned}
+>\varepsilon_{B''}\circ F(G(v)\circ G(u))
+>&=\varepsilon_{B''}\circ F(G(v))\circ F(G(u))\\
+>&=v\circ\varepsilon_{B'}\circ F(G(u))\\
+>&=v\circ u\circ\varepsilon_B.
+>\end{aligned}
+>$$
+>所以 $G(v)\circ G(u)$ 与 $G(v\circ u)$ 满足同一个终对象给出的交换条件. 由唯一性得到
+>$$
+>G(v\circ u)=G(v)\circ G(u).
+>$$
+>因此 $G:\B\to\A$ 是函子.
+>
+>而定义 $G(u)$ 时的等式恰好就是 $\varepsilon:FG\Longrightarrow1_\B$ 的自然性条件. 再由 Theorem 2.3.6 的对偶, 得到 $F\dashv G$.
+
+因此, 两个方向遵循同一个机制: **固定右伴随候选, 逐点选始对象, 自动组装左伴随与 unit; 固定左伴随候选, 逐点选终对象, 自动组装右伴随与 counit.** 两种构造都由唯一性保证相容.
+
+回到习题 3.2.16, 要寻找 $O:\mathbf{Cat}\to\mathbf{Set}$ 的右伴随 $I$, 就应当为每个集合 $S$ 选定 $(O\downarrow S)$ 的终对象
+$$
+(I(S),\varepsilon_S:O(I(S))\to S).
+$$
+一旦具有这个终对象性质, 就能由对偶推论得到 $O\dashv I$.
+
 ## Exercise
 
 ### 2.1.15

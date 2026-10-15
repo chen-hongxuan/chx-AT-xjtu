@@ -622,6 +622,64 @@ $$
 >
 >(c) 推出 $\mathbf{Set},\mathbf{Vect}_k,\mathbf{Grp},\mathbf{Ab},\mathbf{Ring},\mathbf{Top}$ 都不是本质小范畴.
 
+#### (a) 归约到集合的同构类型
+
+我的思路是先假设这一族对象能够覆盖全部对象的同构类型, 再利用伴随把这个假设转化成关于集合的断言. 自由对象的 unit 让任意集合进入某个 $U(C_i)$, 于是可以用这些集合的子集收集全部集合的同构类型, 得到矛盾.
+
+>[!proof]
+>记 $U$ 的左伴随为 $F$. 由 [习题 2.3.11]({{< relref "posts/categoryThry/Chapter II - Adjoints.md" >}}#2311), 对任意集合 $S$, unit
+>$$
+>\eta_S:S\to U(F(S))
+>$$
+>都是单射.
+>
+>固定任意由集合 $I$ 编号的对象族 $(C_i)_{i\in I}$. 假设 $\mathcal C$ 中每个对象都同构于某个 $C_i$. 那么对任意集合 $S$, 都存在某个 $i\in I$ 使
+>$$
+>F(S)\cong C_i.
+>$$
+>函子保持同构, 所以 $U(F(S))\cong U(C_i)$. 将这个双射与 $\eta_S$ 复合, 得到单射
+>$$
+>j:S\hookrightarrow U(C_i).
+>$$
+>因此 $S$ 与像集 $j[S]\subseteq U(C_i)$ 双射.
+>
+>现在令
+>$$
+>K=\bigcup_{i\in I}\mathcal P(U(C_i)).
+>$$
+>由替换、幂集与并集公理, $K$ 是集合. 刚才的论证说明: 每个集合 $S$ 都同构于 $K$ 的某个元素. 将 $K$ 本身作为索引集, 就得到一族覆盖全部集合同构类型的集合, 与 Proposition 3.2.4 矛盾.
+>
+>所以这族 $(C_i)_{i\in I}$ 不可能覆盖全部对象的同构类型. 必定存在 $\mathcal C$ 中的某个对象, 与每个 $C_i$ 都不同构.
+
+这里应当取 $\bigcup_{i\in I}\mathcal P(U(C_i))$: 一个像集只保证属于其中某个幂集, 不要求同时属于所有这些幂集. 论证也只逐次使用某个 $i$ 及某个同构的存在性, 不需要为所有集合 $S$ 同时选择见证.
+
+#### (b) 不可能本质小
+
+>[!proof]
+>若 $\mathcal C$ 本质小, 则存在小范畴 $\mathcal B$ 与等价函子 $E:\mathcal B\to\mathcal C$. 因为 $\operatorname{Ob}(\mathcal B)$ 是集合, 对象族
+>$$
+>(E(B))_{B\in\operatorname{Ob}(\mathcal B)}
+>$$
+>就由集合编号. 等价函子的本质满性保证它覆盖 $\mathcal C$ 的全部对象同构类型, 与 (a) 矛盾. 所以 $\mathcal C$ 不是本质小范畴.
+
+因此, 这个论证得到的结论比“不是小范畴”更强: 即使允许用等价替换范畴, 也无法把它变成小范畴.
+
+#### (c) 应用于常见范畴
+
+各个范畴中可以取以下函子与对象:
+
+| 范畴 $\mathcal C$ | 函子 $U:\mathcal C\to\mathbf{Set}$ | 左伴随 $F$ | 满足条件的 $C_0$ |
+| --- | --- | --- | --- |
+| $\mathbf{Set}$ | 恒等函子 | 恒等函子 | 二元集 $\{0,1\}$ |
+| $\mathbf{Vect}_k$ | 遗忘函子 | 自由向量空间函子 | 向量空间 $k$ |
+| $\mathbf{Grp}$ | 遗忘函子 | 自由群函子 | $\mathbb Z/2\mathbb Z$ |
+| $\mathbf{Ab}$ | 遗忘函子 | 自由阿贝尔群函子 | $\mathbb Z/2\mathbb Z$ |
+| $\mathbf{Ring}$ | 遗忘函子 | 自由环函子 | 环 $\mathbb Z$ |
+| $\mathbf{Top}$ | 遗忘函子 | 赋予离散拓扑的函子 | 离散二点空间 |
+
+>[!proof]
+>表中每个 $U$ 都有给定的左伴随, 且 $U(C_0)$ 至少有两个元素. 因此都满足 (a) 的条件, 再由 (b) 得到: 这些范畴均不是本质小范畴.
+
 ### 3.2.15
 
 >[!exercise]
@@ -646,3 +704,174 @@ $$
 >$$
 >C\dashv D\dashv O\dashv I.
 >$$
+
+这四个函子的方向交替出现:
+$$
+C,O:\mathbf{Cat}\to\mathbf{Set},
+\qquad
+D,I:\mathbf{Set}\to\mathbf{Cat}.
+$$
+我们依次构造 $D$、$C$ 和 $I$, 并使用 [Corollary 2.3.7 及其对偶]({{< relref "posts/categoryThry/Chapter II - Adjoints.md" >}}#adjoints-from-initial-objects): 逐个选定相应逗号范畴中的始对象或终对象, 便能自动组装伴随.
+
+#### 对象集函子 $O$
+
+$\mathbf{Cat}$ 的对象是小范畴, 态射是函子. 因此 $O$ 的作用分为两层:
+$$
+\begin{aligned}
+O(\mathcal A)&=\operatorname{Ob}(\mathcal A),\\
+O(H)(X)&=H(X)
+\qquad(H:\mathcal A\to\mathcal B).
+\end{aligned}
+$$
+第一行取出小范畴的对象集; 第二行取出函子在对象上的作用, 得到函数 $O(H):O(\mathcal A)\to O(\mathcal B)$. 小性保证这里的对象集确实是集合.
+
+所以, $O(\mathcal A)$ 忘掉了 $\mathcal A$ 内部的态射与复合结构, $O(H)$ 则只记录 $H$ 的对象映射. 这里 $O$ 在态射层接受的是 $\mathbf{Cat}$ 中的函子, 原范畴内部的态射属于这个函子所作用的范畴的数据.
+
+#### $D\dashv O$: 离散范畴
+
+要找 $O$ 的左伴随, 对每个集合 $S$, 需要构造 $(S\downarrow O)$ 的始对象.
+
+>[!example] 离散范畴 $D(S)$
+>取对象集为 $S$ 的范畴, 每个对象只有自己的恒等态射, 不同对象之间没有态射.
+>
+>对函数 $u:S\to T$, 定义函子 $D(u):D(S)\to D(T)$, 在对象上送 $s\mapsto u(s)$, 在态射上送
+>$$
+>\operatorname{id}_s\longmapsto\operatorname{id}_{u(s)}.
+>$$
+
+>[!proof]
+>因为 $O(D(S))=S$, 取
+>$$
+>\eta_S=\operatorname{id}_S:S\to O(D(S)).
+>$$
+>给定任意小范畴 $\mathcal A$ 与函数 $f:S\to O(\mathcal A)$, 存在唯一的函子
+>$$
+>\bar f:D(S)\to\mathcal A
+>$$
+>在对象上按 $f$ 映射, 在态射上将 $\operatorname{id}_s$ 送到 $\operatorname{id}_{f(s)}$. 因为定义域只有恒等态射, 这个规定满足函子的条件, 且没有其他选择.
+>
+>于是
+>$$
+>O(\bar f)\circ\eta_S=f.
+>$$
+>因此 $(D(S),\eta_S)$ 是 $(S\downarrow O)$ 的始对象. 由 Corollary 2.3.7, 得到 $D\dashv O$.
+
+这个泛性质表达的是: 从离散范畴出发的函子, 只需指定每个对象的去向.
+
+##### 离散范畴构造的唯一性
+
+我起初还想知道, 离散范畴是不是唯一可能的构造. 这已经可以用伴随的始对象刻画回答.
+
+>[!proof]
+>若另有 $L\dashv O$, 其 unit 为 $\eta^L$, 那么对每个集合 $S$,
+>$$
+>(L(S),\eta^L_S),\qquad
+>(D(S),\operatorname{id}_S)
+>$$
+>都是 $(S\downarrow O)$ 的始对象. 始对象在唯一同构意义下唯一, 因而存在唯一与 unit 相容的范畴同构
+>$$
+>\theta_S:L(S)\xrightarrow{\sim}D(S),
+>\qquad O(\theta_S)\circ\eta^L_S=\operatorname{id}_S.
+>$$
+>对函数 $u:S\to T$, 两个函子 $D(u)\circ\theta_S$ 与 $\theta_T\circ L(u)$ 经 $O$ 取得对象函数后, 再与 $\eta^L_S$ 复合, 结果都为 $u$:
+>$$
+>\begin{aligned}
+>O(D(u)\circ\theta_S)\circ\eta^L_S
+>&=u,\\
+>O(\theta_T\circ L(u))\circ\eta^L_S
+>&=O(\theta_T)\circ\eta^L_T\circ u=u.
+>\end{aligned}
+>$$
+>第二行使用了 $\eta^L$ 的自然性. 因此由始对象的唯一性, 这两个函子相等, 所以这些 $\theta_S$ 组成自然同构 $L\cong D$.
+
+这里得到的是 $\mathbf{Cat}$ 中的范畴同构, 所以每个 $L(S)$ 本身也必须是离散范畴, 对象集与 $S$ 双射. 若进一步固定对象集就是 $S$, 并固定 unit 为恒等映射, 则上述同构在对象上就是恒等映射, 且范畴中只能有各对象的恒等态射.
+
+#### $C\dashv D$: 连通分支集合
+
+我从射入离散范畴的函子出发考虑这个构造. 若 $F:\mathcal A\to D(S)$, 且 $\mathcal A$ 中存在态射 $X\to Y$, 那么 $D(S)$ 中必须存在 $F(X)\to F(Y)$ 的态射, 因而
+$$
+F(X)=F(Y).
+$$
+沿着一条允许任意方向行走的有限态射路径, 对象的像都必须相同. 于是可以把 $\mathcal A$ 看成图, 将态射看成无向边, 按照连通性划分对象.
+
+>[!example] 连通分支函子 $C$
+>在 $\operatorname{Ob}(\mathcal A)$ 上定义等价关系: $X\sim Y$ 当且仅当存在有限序列
+>$$
+>X=X_0,X_1,\ldots,X_n=Y,
+>$$
+>使每两个相邻对象之间存在某一方向的态射; 允许 $n=0$. 定义连通分支集合
+>$$
+>C(\mathcal A)=\operatorname{Ob}(\mathcal A)/{\sim}.
+>$$
+>对函子 $H:\mathcal A\to\mathcal B$, 定义
+>$$
+>C(H):C(\mathcal A)\to C(\mathcal B),
+>\qquad [X]\longmapsto[H(X)].
+>$$
+
+函子将态射路径送到态射路径, 所以 $C(H)$ 良定义. 这里 $C(\mathcal A)$ 是集合; 以这些分支为对象的离散范畴是 $D(C(\mathcal A))$.
+
+>[!proof]
+>定义函子
+>$$
+>\eta_{\mathcal A}:\mathcal A\to D(C(\mathcal A)),
+>$$
+>在对象上送 $X\mapsto[X]$, 在态射上将 $X\to Y$ 送到共同分支 $[X]=[Y]$ 上的恒等态射. 这个规定保持恒等态射与复合.
+>
+>给定任意集合 $S$ 与函子 $F:\mathcal A\to D(S)$, 上面的观察说明 $F$ 在每个连通分支上恒定. 因此存在唯一函数
+>$$
+>\bar F:C(\mathcal A)\to S,
+>\qquad [X]\longmapsto F(X).
+>$$
+>它满足
+>$$
+>D(\bar F)\circ\eta_{\mathcal A}=F:
+>$$
+>对象映射相同, 而离散范畴中的态射由对象映射唯一确定. 唯一性也由每个分支的像必须等于 $F(X)$ 得到.
+>
+>因此 $(C(\mathcal A),\eta_{\mathcal A})$ 是 $(\mathcal A\downarrow D)$ 的始对象. 由 Corollary 2.3.7, 得到 $C\dashv D$.
+
+这里的“最小”可以准确理解为: 取包含所有态射端点对的最小等价关系, 只作态射强制要求的识别. 不同连通分支仍可以独立指定它们在 $S$ 中的像.
+
+#### $O\dashv I$: 任意对象对之间恰有一条态射
+
+接下来使用 Corollary 2.3.7 的对偶, 为每个集合 $S$ 构造 $(O\downarrow S)$ 的终对象. 我的构造类似于一个完全有向图, 但这里也包括每个对象到自身的唯一态射.
+
+>[!example] 范畴 $I(S)$
+>令对象集为 $S$, 对任意 $x,y\in S$, 恰有一条态射 $a_{x,y}:x\to y$. 定义
+>$$
+>\operatorname{id}_x=a_{x,x},
+>\qquad
+>a_{y,z}\circ a_{x,y}=a_{x,z}.
+>$$
+>对函数 $u:S\to T$, 定义函子 $I(u):I(S)\to I(T)$, 在对象上送 $x\mapsto u(x)$, 在态射上送
+>$$
+>a_{x,y}\longmapsto a_{u(x),u(y)}.
+>$$
+
+恒等律与结合律都由态射的唯一性保证; 同样, $I(u)$ 保持恒等态射与复合.
+
+>[!proof]
+>因为 $O(I(S))=S$, 取
+>$$
+>\varepsilon_S=\operatorname{id}_S:O(I(S))\to S.
+>$$
+>给定任意小范畴 $\mathcal A$ 与函数 $f:O(\mathcal A)\to S$, 定义函子
+>$$
+>\bar f:\mathcal A\to I(S)
+>$$
+>在对象上送 $X\mapsto f(X)$, 将任意态射 $b:X\to Y$ 送到唯一的 $a_{f(X),f(Y)}$. 恒等态射与复合的保持由目标范畴中态射的唯一性保证.
+>
+>这个函子满足
+>$$
+>\varepsilon_S\circ O(\bar f)=f.
+>$$
+>而任何满足这个等式的函子, 其对象映射都已经被 $f$ 确定, 态射映射也只有一种可能. 所以 $\bar f$ 唯一.
+>
+>因此 $(I(S),\varepsilon_S)$ 是 $(O\downarrow S)$ 的终对象. 由 Corollary 2.3.7 的对偶, 得到 $O\dashv I$.
+
+至此, 三个伴随都已经得到:
+$$
+\boxed{C\dashv D\dashv O\dashv I.}
+$$
+其中 $D$ 让对象之间只有恒等态射, $I$ 让任意对象对之间恰有一条态射; $C$ 则记录一个范畴中被态射路径连接起来的对象分支. 三个泛性质分别说明了这些构造如何与对象赋值及函子联系起来.
