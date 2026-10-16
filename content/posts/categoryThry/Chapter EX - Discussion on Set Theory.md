@@ -298,7 +298,7 @@ $$
 >$\operatorname{Fun}(g)$ 表示集合 $g$ 是一个函数的图: 它的每个元素都是有序对, 并且同一第一分量至多对应一个第二分量. 具体可以写为
 >$$
 >\begin{aligned}
->\operatorname{Fun}(g)\quad\Longleftrightarrow\quad&
+>\operatorname{Fun}(g)\quad:\equiv\quad&
 >\bigl(\forall u\in g\,\exists x\,\exists y\
 >u=\langle x,y\rangle\bigr)\\
 >&\land\forall x\,\forall y\,\forall y'\,
@@ -315,7 +315,7 @@ $$
 $$
 \begin{aligned}
 R_\psi(\alpha,g,p)
-\quad\Longleftrightarrow\quad&
+\quad:\equiv\quad&
 \operatorname{Ord}(\alpha)
 \land \operatorname{Fun}(g)
 \land\operatorname{dom}(g)=\alpha\\
@@ -380,7 +380,7 @@ $$
 $$
 \begin{aligned}
 \varphi_\psi(\alpha,y,p)
-\quad\Longleftrightarrow\quad&
+\quad:\equiv\quad&
 \operatorname{Ord}(\alpha)\\
 &\land\exists g\bigl(
 R_\psi(\alpha+1,g,p)\land g(\alpha)=y
@@ -394,7 +394,7 @@ $$
 1. **元层面: 给出规则公式.** 选定 $\psi(h,y,p)$, 说明它表达怎样的递归规则.
 2. **对象层面: 证明规则的函数性.** 给出 $\mathrm{ZF}\vdash\forall h\,\exists!y\,\psi(h,y,p)$ 所表示的形式证明; 如果参数需要满足 $C(p)$, 就证明带有这一前提的版本. 被证明的函数性公式属于对象语言, 而 $\mathrm{ZF}\vdash$ 是我们在元语言中对可证性的表述. 这里的“验证”并不承诺一个自动判定任意公式是否具有函数性的程序.
 3. **元层面: 按模板构造新公式.** 将 $\psi$ 代入 $R_\psi$ 与 $\varphi_\psi$ 的句法模板, 得到显式的一阶公式 $\varphi_\psi(\alpha,y,p)$. 构造公式本身不必等待第 2 步; 第 2 步提供后面应用定理的条件.
-4. **元层面: 按证明范式生成对象层面的证明.** 这里的范式指上面的 [“有界递归序列的存在与唯一性”证明](#bounded-class-recursion), 以及随后由递归初段定义 $\varphi_\psi$ 的构造与论证. 将选定的 $\psi$ 及第 2 步给出的函数性证明代入这个通用范式, 由它生成新公式对每个序数具有唯一输出、且输出遵循原规则的 ZF 证明. 生成证明的操作发生在元层面, 生成的证明则属于对象层面的 ZF.
+4. **元层面: 按证明范式生成对象层面的证明.** 这里的范式指上面的 [“有界递归序列的存在与唯一性”证明](#bounded-class-recursion), 以及随后由递归初段定义 $\varphi_\psi$ 的构造与论证, 包括下文 [“$\varphi_\psi$ 满足递归要求”](#unbounded-recursion-correctness) 中的证明. 将选定的 $\psi$ 及第 2 步给出的函数性证明代入这个通用范式, 由它生成新公式对每个序数具有唯一输出、且输出遵循原规则的 ZF 证明. 生成证明的操作发生在元层面, 生成的证明则属于对象层面的 ZF.
 
 因此, 应用这个原理时, 我们需要自行提供的证明只有第 2 步中原规则的函数性证明. 第 4 步由既有的证明范式生成, 无需再为这个具体规则独立寻找递归结论的证明.
 
@@ -412,17 +412,108 @@ $$
 \Bigr].
 \end{aligned}
 $$
-若用 $F_p(\alpha)$ 简记 $\varphi_\psi$ 描述的值, 递归关系就是
+
+###### $\varphi_\psi$ 满足递归要求 {#unbounded-recursion-correctness}
+
+递归要求也可以明确写成一条 ZF 定理. 先在元层面定义公式
+$$
+\begin{aligned}
+P_\psi(\alpha,h,p)\quad:\equiv\quad&
+\operatorname{Fun}(h)
+\land\operatorname{dom}(h)=\alpha\\
+&\land\forall\beta<\alpha\
+\varphi_\psi(\beta,h(\beta),p).
+\end{aligned}
+$$
+它表达“$h$ 是由 $\varphi_\psi$ 给出的长度为 $\alpha$ 的历史函数”. 对每个固定的 $\psi$, 上面同一个证明范式还给出
+$$
+\begin{aligned}
+\mathrm{ZF}\vdash\forall p\,\Bigl[
+&\bigl(\forall k\,\exists!y\,\psi(k,y,p)\bigr)
+\longrightarrow\\
+&\forall\alpha\Bigl(
+\operatorname{Ord}(\alpha)\longrightarrow
+\exists!h\,\Bigl[
+P_\psi(\alpha,h,p)\\
+&\hspace{4em}\land\forall y\bigl(
+\varphi_\psi(\alpha,y,p)
+\longleftrightarrow\psi(h,y,p)
+\bigr)
+\Bigr]\Bigr)
+\Bigr].
+\end{aligned}
+$$
+其中 $h$ 的存在性说明每个阶段之前的全部历史确实组成一个集合函数; 双条件则说明, $\varphi_\psi$ 在该阶段给出的值恰好是规则 $\psi$ 对这个历史给出的值. 结合第 2 步提供的规则函数性的 ZF 证明, 即可在相应参数条件下消去函数性前提, 得到 **ZF 对“构造出来的 $\varphi_\psi$ 满足递归要求”的证明**.
+
+>[!proof] 从有界递归得到递归关系
+>固定满足函数性前提的 $p$ 及序数 $\alpha$. 由有界递归定理, 存在唯一的 $g$ 满足 $R_\psi(\alpha+1,g,p)$. 令 $h=g\restriction\alpha$.
+>
+>对每个 $\beta<\alpha$, 限制 $g\restriction(\beta+1)$ 满足 $R_\psi(\beta+1,g\restriction(\beta+1),p)$. 因而由 $\varphi_\psi$ 的定义,
+>$$
+>\varphi_\psi(\beta,g(\beta),p).
+>$$
+>所以 $P_\psi(\alpha,h,p)$ 成立. 又由 $g$ 在阶段 $\alpha$ 的递归条件及 $\varphi_\psi$ 的定义, 分别得到
+>$$
+>\psi(h,g(\alpha),p),\qquad
+>\varphi_\psi(\alpha,g(\alpha),p).
+>$$
+>$\psi(h,-,p)$ 的输出唯一性来自前提, $\varphi_\psi(\alpha,-,p)$ 的输出唯一性来自有界递归的唯一性. 二者都有输出 $g(\alpha)$, 因而对任意 $y$ 都有
+>$$
+>\varphi_\psi(\alpha,y,p)
+>\longleftrightarrow\psi(h,y,p).
+>$$
+>最后, 若 $h'$ 也满足 $P_\psi(\alpha,h',p)$, 则由 $\varphi_\psi$ 在每个 $\beta<\alpha$ 处的输出唯一性, 有 $h'(\beta)=h(\beta)$. 两者的定义域都是 $\alpha$, 所以由函数外延性得到 $h'=h$.
+
+这里 $p,\alpha,h,y$ 等量化变量全部表示集合. $\psi$、$\varphi_\psi$ 与 $P_\psi$ 则是在元层面固定的公式, 将这些缩写展开后, 上面的断言就是集合论语言中的一阶公式. 这一证明同样可以按既有范式在 ZF 中形式化, 不需要另行提供关于这个具体 $\psi$ 的递归正确性证明.
+
+若用 $F_p(\alpha)$ 简记 $\varphi_\psi$ 描述的值, 刚刚证明的递归关系便可以简写为
 $$
 \psi(F_p\restriction\alpha,F_p(\alpha),p).
 $$
-这里 $F_p\restriction\alpha$ 是集合函数. 上式可以通过 $\varphi_\psi$ 展开为一阶公式, 不需要把整个真类 $F_p$ 作为对象语言中的变量. 这个类函数也由递归关系唯一确定: 两个候选若在某阶段不同, 取最小的不同阶段, 就与原规则的函数性矛盾. 这里比较的候选也各自由固定公式描述, 唯一性按相应公式实例理解, 不引入对所有类函数的量词.
+这里 $F_p\restriction\alpha$ 就是上面的历史函数 $h$, 上式的一阶表述已经给出. 这个类函数也由递归关系唯一确定: 两个候选若在某阶段不同, 取最小的不同阶段, 就与原规则的函数性矛盾. 这里比较的候选也各自由固定公式描述, 唯一性按相应公式实例理解, 不引入对所有类函数的量词.
 
 因此, “对每个规则公式 $\psi$, 都可以构造相应公式及证明”是元层面的**定理模式**; 对每个固定 $\psi$, 得到的函数性与递归性质都有对象层面的 ZF 证明. 一阶 ZF 中不能直接写 $\forall\psi$ 并把 $\psi$ 当作可应用的谓词变量. 对谓词或关系变量量化属于二阶语法; 对公式的语法编码量化则仍可以是一阶的, 但编码本身不会自动在谓词位置发挥作用.
 
 #### 1.2 超限归纳法 {#transfinite-induction}
 
-超限递归构造序列; 超限归纳则用来证明性质. 在对象层面的讨论中, 先固定一个一阶公式 $P(\alpha,p)$, 用它表达我们要证明的性质, 其中 $p$ 是集合参数.
+超限递归构造序列; 超限归纳则用来证明性质. 这里也可以区分两种表述: 在有上界时用集合表示性质, 或者在元层面固定一个描述性质的一阶公式.
+
+##### 有上界, 性质由集合表示 {#bounded-set-induction}
+
+固定一个序数 $\kappa$. 如果只讨论阶段 $\beta<\kappa$, 就可以用一个子集 $S\subseteq\kappa$ 记录性质在哪些阶段成立: $\beta\in S$ 表示阶段 $\beta$ 满足性质. 这里 $S$ 表示性质的外延, 不承担编码性质公式的工作.
+
+由于 $\beta$ 是序数, $\beta\subseteq S$ 就表示所有比 $\beta$ 小的阶段都属于 $S$. 因而归纳条件可以写成
+$$
+\forall\beta\in\kappa\,
+\bigl(\beta\subseteq S\longrightarrow\beta\in S\bigr).
+$$
+
+>[!theorem] 有界超限归纳的集合版本
+>若 $\kappa$ 是序数, $S\subseteq\kappa$, 并且对每个 $\beta\in\kappa$ 都有
+>$$
+>\beta\subseteq S\longrightarrow\beta\in S,
+>$$
+>那么 $S=\kappa$.
+
+因为 $\kappa$ 与 $S$ 都是集合变量, 这个版本可以在 ZF 中写成一条统一的全称定理:
+$$
+\begin{aligned}
+\mathrm{ZF}\vdash\forall\kappa\,\forall S\,\Bigl[
+&\bigl(\operatorname{Ord}(\kappa)\land S\subseteq\kappa\\
+&\quad\land\forall\beta\in\kappa\,
+(\beta\subseteq S\longrightarrow\beta\in S)\bigr)
+\longrightarrow S=\kappa
+\Bigr].
+\end{aligned}
+$$
+这里 $\forall S$ 是对象语言中对集合的一阶量化. 我们能够统一讨论所有作为性质外延的子集, 无需把性质公式放到量词的位置.
+
+>[!proof] 最小反例
+>若 $S\ne\kappa$, 则 $\kappa\setminus S$ 是序数 $\kappa$ 的非空子集, 因而存在最小元 $\beta$. 对任意 $\gamma<\beta$, 都有 $\gamma\in\kappa$, 且由 $\beta$ 的最小性得到 $\gamma\in S$. 所以 $\beta\subseteq S$. 归纳条件于是给出 $\beta\in S$, 与 $\beta\in\kappa\setminus S$ 矛盾.
+
+##### 性质由固定公式描述
+
+现在在元层面固定一个一阶公式 $P(\alpha,p)$, 用它表达我们要证明的性质, 其中 $p$ 是集合参数. 这个版本可以讨论全体序数上的归纳.
 
 >[!theorem] 超限归纳
 >若对每个序数 $\alpha$ 都有
@@ -455,6 +546,14 @@ $$
 >C=\{\xi\leq\gamma:\neg P(\xi,p)\}.
 >$$
 >由序数的良序性, $C$ 有最小元 $\mu$. 对每个 $\xi<\mu$, 都有 $P(\xi,p)$; 归纳条件于是给出 $P(\mu,p)$, 与 $\mu\in C$ 矛盾.
+
+这两个版本通过分离公理联系起来. 对于任意在元层面固定的公式 $P$、集合参数 $p$ 与序数 $\kappa$, 分离公理给出集合
+$$
+S=\{\beta\in\kappa:P(\beta,p)\}.
+$$
+将它代入上面的集合版本, 就得到关于公式 $P$ 的有界超限归纳实例. 因而在有上界时, 我们既可以先固定公式再应用归纳, 也可以直接在那条统一的 ZF 定理中对集合 $S$ 作全称量化.
+
+无上界时, 性质成立的阶段可能形成真类. 例如性质恒真时, 它的全部成立阶段就是 $\operatorname{Ord}$, 无法收集成一个集合 $S$. 所以全体序数上的公式版本仍然按固定公式给出定理模式; 其中可以量化集合参数 $p$, 而“对每个公式 $P$”仍属于元层面的表述.
 
 实践中常将归纳步骤分成三种情形:
 
@@ -566,7 +665,7 @@ $$
 >**反向替换得到一个序数.** 现在可以定义反向公式
 >$$
 >H'(X,R,x,\xi)
->\quad\Longleftrightarrow\quad
+>\quad:\equiv\quad
 >x\in X\land\operatorname{Ord}(\xi)
 >\land H^*(X,R,\xi,x).
 >$$
@@ -589,7 +688,7 @@ $$
 进一步, 可以统一定义序型公式:
 $$
 \begin{aligned}
-T(X,R,\delta)\quad\Longleftrightarrow\quad&
+T(X,R,\delta)\quad:\equiv\quad&
 \operatorname{Ord}(\delta)\\
 &\land\exists u\Bigl[
 u:\delta\to X\text{ 是双射}\\
@@ -724,7 +823,7 @@ $$
 把一个子集 $A\subseteq K$ 看成谓词时,
 $$
 A(x)
-\quad\Longleftrightarrow\quad
+\quad:\equiv\quad
 x\in A.
 $$
 子集包含
@@ -744,7 +843,7 @@ $$
 将 $L$ 上的谓词 $B(y)$ 变成 $K$ 上的谓词
 $$
 f^*(B)(x)
-\quad\Longleftrightarrow\quad
+\quad:\equiv\quad
 B(f(x)).
 $$
 因此, $f^*$ 可以理解为沿着 $f$ 进行代入. 元素沿 $f$ 从 $K$ 进入 $L$, 而谓词则沿相反方向从 $L$ 被拉回到 $K$.
@@ -796,7 +895,7 @@ $$
 $$
 这里 $p^*$ 将一元谓词 $S(x)$ 变成不依赖 $y$ 的二元谓词
 $$
-p^*(S)(x,y)\Longleftrightarrow S(x),
+p^*(S)(x,y):\equiv S(x),
 $$
 而它的两个伴随则分别通过存在量化和全称量化消去变量 $y$.
 
